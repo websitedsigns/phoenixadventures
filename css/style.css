@@ -29,11 +29,18 @@ body {
   color: white;
 }
 
-/* Hero Section */
+/* Hero Section with background image */
 .hero {
-  background: url('../img/hero.jpg') center/cover no-repeat;
+  background: url('../img/redbus.jpg') center/cover no-repeat;
   min-height: 80vh;
   position: relative;
+}
+
+/* Dark faded overlay */
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15); /* adjust opacity as needed */
 }
 
 .hero::after {
@@ -51,4 +58,86 @@ body {
 /* Footer */
 .footer {
   background: #151515;
+}
+
+#welcome {
+  background: #f8f9fa; /* light grey */
+}
+
+#welcome h2 {
+  color: #B22222; /* Phoenix red */
+}
+
+#welcome h4 {
+  color: #FF6F00; /* Flame orange */
+}
+
+#info h2 {
+  color: #B22222; /* Phoenix red */
+}
+
+.accordion-button {
+  font-size: 1.05rem;
+}
+
+.accordion-button:not(.collapsed) {
+  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+  color: #fff;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-body {
+  background: #f8f9fa; /* light grey */
+  color: #333; /* dark text */
+}
+
+/* ================================
+   Desktop-only Adventure Grid
+   (hidden on mobile via Bootstrap)
+   ================================ */
+
+.adventure-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.adventure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+}
+
+.adventure-card .adventure-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%);
+}
+
+.adventure-card .adventure-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.adventure-card h4 {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #FFD700; /* Phoenix gold */
+}
+
+.adventure-card p {
+  margin: 0;
+  line-height: 1.4;
 }
