@@ -1,0 +1,54 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Phoenix Gradient Colours */
+.announcement {
+  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+}
+
+.btn-phoenix {
+  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-phoenix:hover {
+  opacity: 0.9;
+}
+
+.btn-outline-phoenix {
+  border: 2px solid #FF6F00;
+  color: #FF6F00;
+  font-weight: 600;
+}
+
+.btn-outline-phoenix:hover {
+  background: #FF6F00;
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  background: url('../img/hero.jpg') center/cover no-repeat;
+  min-height: 80vh;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer */
+.footer {
+  background: #151515;
+}
