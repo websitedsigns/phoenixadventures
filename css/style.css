@@ -29,30 +29,70 @@ body {
   color: white;
 }
 
-/* Hero Section with background image */
+/* Hero Section */
 .hero {
   background: url('../img/redbus.jpg') center/cover no-repeat;
-  min-height: 80vh;
+  min-height: 100vh; /* expand to full screen */
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-/* Dark faded overlay */
 .hero .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.15); /* adjust opacity as needed */
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.55); /* stronger fade for readability */
 }
 
 .hero .container {
   position: relative;
   z-index: 1;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+/* Hero Text Styling */
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.hero h4 {
+  font-size: 1.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero {
+    min-height: auto; /* adjust height for mobile */
+    padding: 4rem 1rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero h4 {
+    font-size: 1.3rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+  .hero h4 {
+    font-size: 1.2rem;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
 }
 
 /* Footer */
