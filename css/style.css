@@ -95,6 +95,73 @@ body {
   }
 }
 
+
+/* Hero Section */
+.herotour {
+  background: url('../img/trips/RTH.png') center/cover no-repeat;
+  min-height: 100vh; /* expand to full screen */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.herotour .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55); /* stronger fade for readability */
+}
+
+.herotour .container {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+/* Hero Text Styling */
+.herotour h1 {
+  font-size: 2.5rem;
+}
+
+.herotour h4 {
+  font-size: 1.5rem;
+}
+
+.herotour p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .herotour {
+    min-height: auto; /* adjust height for mobile */
+    padding: 4rem 1rem;
+  }
+  .herotour h1 {
+    font-size: 2rem;
+  }
+  .herotour h4 {
+    font-size: 1.3rem;
+  }
+  .herotour p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .herotour h1 {
+    font-size: 1.7rem;
+  }
+  .herotour h4 {
+    font-size: 1.2rem;
+  }
+  .herotour p {
+    font-size: 0.95rem;
+  }
+}
+
 /* Footer */
 .footer {
   background: #151515;
