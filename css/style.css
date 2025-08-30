@@ -248,3 +248,9 @@ body {
   margin: 0;
   line-height: 1.4;
 }
+
+.bg-tripmonth {
+  background-color: rgba(217, 217, 217, 0.9); /* light grey with 90% opacity */
+  border-radius: 10px; /* keep the rounded look */
+  padding: 1rem;
+}
