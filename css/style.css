@@ -1,14 +1,14 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Phoenix Gradient Colours */
 .announcement {
-  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+  background: linear-gradient(90deg, #b22222, #ff6f00 50%, #ffd700);
 }
 
 .btn-phoenix {
-  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+  background: linear-gradient(90deg, #b22222, #ff6f00 50%, #ffd700);
   border: none;
   color: white;
   font-weight: 600;
@@ -19,19 +19,19 @@ body {
 }
 
 .btn-outline-phoenix {
-  border: 2px solid #FF6F00;
-  color: #FF6F00;
+  border: 2px solid #ff6f00;
+  color: #ff6f00;
   font-weight: 600;
 }
 
 .btn-outline-phoenix:hover {
-  background: #FF6F00;
+  background: #ff6f00;
   color: white;
 }
 
 /* Hero Section */
 .hero {
-  background: url('../img/redbus.jpg') center/cover no-repeat;
+  background: url("../img/phoenix/redbus.jpg") center/cover no-repeat;
   min-height: 100vh; /* expand to full screen */
   position: relative;
   display: flex;
@@ -41,7 +41,7 @@ body {
 .hero .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55); /* stronger fade for readability */
+  background: rgba(0, 0, 0, 0.55); /* stronger fade for readability */
 }
 
 .hero .container {
@@ -95,10 +95,9 @@ body {
   }
 }
 
-
 /* Hero Section */
 .herotour {
-  background: url('../img/trips/RTH.png') center/cover no-repeat;
+  background: url("../img/rides/RTH.png") center/cover no-repeat;
   min-height: 100vh; /* expand to full screen */
   position: relative;
   display: flex;
@@ -108,7 +107,7 @@ body {
 .herotour .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55); /* stronger fade for readability */
+  background: rgba(0, 0, 0, 0.55); /* stronger fade for readability */
 }
 
 .herotour .container {
@@ -172,15 +171,15 @@ body {
 }
 
 #welcome h2 {
-  color: #B22222; /* Phoenix red */
+  color: #b22222; /* Phoenix red */
 }
 
 #welcome h4 {
-  color: #FF6F00; /* Flame orange */
+  color: #ff6f00; /* Flame orange */
 }
 
 #info h2 {
-  color: #B22222; /* Phoenix red */
+  color: #b22222; /* Phoenix red */
 }
 
 .accordion-button {
@@ -188,7 +187,7 @@ body {
 }
 
 .accordion-button:not(.collapsed) {
-  background: linear-gradient(90deg, #B22222, #FF6F00 50%, #FFD700);
+  background: linear-gradient(90deg, #b22222, #ff6f00 50%, #ffd700);
   color: #fff;
   box-shadow: none;
 }
@@ -217,19 +216,23 @@ body {
   align-items: flex-end;
   overflow: hidden;
   color: #fff;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .adventure-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
 }
 
 .adventure-card .adventure-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 70%
+  );
 }
 
 .adventure-card .adventure-content {
@@ -241,7 +244,7 @@ body {
 .adventure-card h4 {
   margin: 0 0 8px;
   font-weight: 700;
-  color: #FFD700; /* Phoenix gold */
+  color: #ffd700; /* Phoenix gold */
 }
 
 .adventure-card p {
@@ -253,4 +256,31 @@ body {
   background-color: rgba(217, 217, 217, 0.9); /* light grey with 90% opacity */
   border-radius: 10px; /* keep the rounded look */
   padding: 1rem;
+}
+
+.tour-box {
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent dark overlay */
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  background-blend-mode: darken; /* darken image so text is clear */
+  background-size: cover;
+  background-position: center;
+}
+.tour-box:hover {
+  transform: scale(1.03);
+}
+.btn-phoenix {
+  background-color: #ff5e14;
+  color: #fff;
+  border: none;
+}
+.btn-phoenix:hover {
+  background-color: #e6550d;
+  color: #fff;
+}
+.month-header {
+  cursor: pointer;
 }
