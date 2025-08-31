@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disneyland Paris Booking Wizard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+  .step { display: none; }
+  .step.active { display: block; }
+  .progress { height: 30px; }
+  .progress-bar { font-weight: bold; }
+  .cart-box { position: sticky; top: 20px; }
+  .hero { height: 610px; background: url('../img/parks/disney.png') center/cover no-repeat; position: relative; }
+  .overlay { background-color: rgba(0,0,0,0.5); position:absolute; top:0; left:0; width:100%; height:100%; }
+</style>
+</head>
+<body class="bg-light">
+
+<!-- Hero / Start Booking -->
+<header class="hero d-flex align-items-center text-white text-center">
+  <div class="overlay"></div>
+  <div class="container position-relative py-5">
+    <h1 class="display-4 fw-bold mb-3">Disneyland Paris Booking</h1>
+    <p class="lead mb-4">August 30th 2025</p>
+  </div>
+</header>
+
+<!-- Booking Wizard -->
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Complete Your Booking</h2>
+  <div class="progress mb-4">
+    <div id="progressBar" class="progress-bar bg-primary" role="progressbar" style="width: 25%;">Step 1 of 4</div>
+  </div>
+
+  <div class="row">
+    <!-- LEFT: Wizard Steps -->
+    <div class="col-lg-8">
+
+      <!-- STEP 1: Travel -->
+      <div class="step active" id="step1">
+        <h4 class="mb-3">Step 1: Travel Booking</h4>
+        <form id="travelForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="adults" class="form-label">Adults (£79 each)</label>
+              <select id="adults" class="form-select">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="children" class="form-label">Children (£79 each)</label>
+              <select id="children" class="form-select">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="travelDate" class="form-label">Travel Date</label>
+              <select id="travelDate" class="form-select">
+                <option value="2025-08-30" selected>August 30th, 2025</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3"><p class="fw-bold">Travel Price: £<span id="travelPrice">79</span></p></div>
+          <div class="d-flex justify-content-end mt-3">
+            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: Optional Park Tickets -->
+      <div class="step" id="step2">
+        <h4 class="mb-3">Step 2: Optional Park Tickets</h4>
+        <form id="ticketForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="ticketType" class="form-label">Ticket Type</label>
+              <select id="ticketType" class="form-select">
+                <option value="73" data-label="1 Day 1 Park - 12+">1 Day 1 Park - 12+ (£73)</option>
+                <option value="68" data-label="1 Day 1 Park - 3-11">1 Day 1 Park - 3-11 (£68)</option>
+                <option value="96" data-label="1 Day 2 Park - 12+">1 Day 2 Park - 12+ (£96)</option>
+                <option value="90" data-label="1 Day 2 Park - 3-11">1 Day 2 Park - 3-11 (£90)</option>
+                <option value="0" data-label="No Ticket Required" selected>No Ticket Required (£0)</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="participants" class="form-label">Number of Participants</label>
+              <select id="participants" class="form-select">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3"><p class="fw-bold">Ticket Price: £<span id="ticketPrice">0</span></p></div>
+          <div class="d-flex justify-content-between mt-3">
+            <button type="button" class="btn btn-secondary" onclick="prevStep(1)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3: Passenger Details & Payment -->
+      <div class="step" id="step3">
+        <h4 class="mb-3">Step 3: Passenger Details & Payment</h4>
+        <form id="detailsForm">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">First Name</label><input type="text" class="form-control" required></div>
+            <div class="col-md-6"><label class="form-label">Last Name</label><input type="text" class="form-control" required></div>
+            <div class="col-md-12"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
+          </div>
+
+          <hr class="my-4">
+          <h5>Payment Options</h5>
+          <div class="form-check"><input class="form-check-input" type="radio" name="payment" id="card" checked><label class="form-check-label" for="card">💳 Credit/Debit Card (Stripe Demo)</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" name="payment" id="paypal"><label class="form-check-label" for="paypal">🅿️ PayPal Demo</label></div>
+
+          <div id="stripeContainer" style="margin-top:15px;">
+            <label class="form-label">Card Details</label>
+            <div id="card-element" class="form-control"></div>
+            <div id="card-errors" class="text-danger mt-2"></div>
+          </div>
+
+          <div id="paypalContainer" style="display:none; margin-top:15px;">
+            <button type="button" class="btn btn-primary" onclick="simulatePayPal()">Pay with PayPal</button>
+          </div>
+
+          <div class="d-flex justify-content-between mt-3">
+            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">← Back</button>
+            <button type="submit" class="btn btn-success">Confirm Booking</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 4: Confirmation -->
+      <div class="step" id="confirmation">
+        <h4 class="mb-3 text-success">Booking Confirmed ✅</h4>
+        <p>Thank you! This is a demo—no payment was taken. In a live system, a confirmation email would be sent.</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Mini-Cart -->
+    <div class="col-lg-4">
+      <div class="card cart-box shadow-sm p-3">
+        <h5 class="mb-3">🛒 Your Booking</h5>
+        <ul id="cartSummary" class="list-unstyled mb-3"></ul>
+        <p class="fw-bold">Total: £<span id="cartTotal">0</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Stripe Setup
+  const stripe = Stripe('pk_test_12345'); // Replace with your Stripe test key
+  const elements = stripe.elements();
+  const card = elements.create('card');
+  card.mount('#card-element');
+
+  // Start Page -> Wizard
+  function goToBookingWizard() {
+    localStorage.setItem('bookingAdults', document.getElementById('startAdults').value);
+    localStorage.setItem('bookingChildren', document.getElementById('startChildren').value);
+    localStorage.setItem('bookingDate', document.getElementById('startDate').value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Load saved values
+  window.addEventListener('DOMContentLoaded', () => {
+    if(localStorage.getItem('bookingAdults')) document.getElementById('adults').value = localStorage.getItem('bookingAdults');
+    if(localStorage.getItem('bookingChildren')) document.getElementById('children').value = localStorage.getItem('bookingChildren');
+    if(localStorage.getItem('bookingDate')) document.getElementById('travelDate').value = localStorage.getItem('bookingDate');
+    updateTravelPrice();
+    updateTicketPrice();
+  });
+
+  // Pricing / Cart
+  let travelCost = 0, ticketCost = 0;
+  function updateTravelPrice() {
+    const adults = parseInt(document.getElementById('adults').value) || 0;
+    const children = parseInt(document.getElementById('children').value) || 0;
+    travelCost = (adults + children) * 79;
+    document.getElementById('travelPrice').textContent = travelCost;
+    updateCart();
+  }
+  function updateTicketPrice() {
+    const ticketSelect = document.getElementById('ticketType');
+    const price = parseInt(ticketSelect.value) || 0;
+    const label = ticketSelect.options[ticketSelect.selectedIndex].dataset.label;
+    const participants = parseInt(document.getElementById('participants').value) || 0;
+    ticketCost = price * participants;
+    document.getElementById('ticketPrice').textContent = ticketCost;
+    updateCart();
+  }
+  function updateCart() {
+    const cart = document.getElementById('cartSummary');
+    cart.innerHTML = '';
+    if(travelCost > 0) cart.innerHTML += `<li>Travel: £${travelCost}</li>`;
+    const ticketSelect = document.getElementById('ticketType');
+    const ticketLabel = ticketSelect.options[ticketSelect.selectedIndex].dataset.label;
+    if(ticketCost > 0) cart.innerHTML += `<li>${ticketLabel}: £${ticketCost}</li>`;
+    document.getElementById('cartTotal').textContent = travelCost + ticketCost;
+  }
+
+  // Step Wizard Navigation
+  let currentStep = 1;
+  function nextStep(step) {
+    document.getElementById('step'+currentStep).classList.remove('active');
+    currentStep = step;
+    document.getElementById('step'+currentStep).classList.add('active');
+    document.getElementById('progressBar').style.width = (currentStep/4*100)+'%';
+    document.getElementById('progressBar').textContent = `Step ${currentStep} of 4`;
+  }
+  function prevStep(step) {
+    document.getElementById('step'+currentStep).classList.remove('active');
+    currentStep = step;
+    document.getElementById('step'+currentStep).classList.add('active');
+    document.getElementById('progressBar').style.width = (currentStep/4*100)+'%';
+    document.getElementById('progressBar').textContent = `Step ${currentStep} of 4`;
+  }
+
+  // Payment Toggle
+  document.getElementById('card').addEventListener('change', ()=>{ document.getElementById('stripeContainer').style.display='block'; document.getElementById('paypalContainer').style.display='none';});
+  document.getElementById('paypal').addEventListener('change', ()=>{ document.getElementById('stripeContainer').style.display='none'; document.getElementById('paypalContainer').style.display='block';});
+
+  // Simulate PayPal Payment
+  function simulatePayPal() { alert('Simulated PayPal Payment Success!'); nextStep(4); }
+
+  // Confirm Booking
+  document.getElementById('detailsForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Demo Payment Processed (Stripe/PayPal). Booking Confirmed!');
+    nextStep(4);
+  });
+
+  // Update prices on dropdown change
+  document.getElementById('adults').addEventListener('change', updateTravelPrice);
+  document.getElementById('children').addEventListener('change', updateTravelPrice);
+  document.getElementById('travelDate').addEventListener('change', ()=>{ localStorage.setItem('bookingDate', document.getElementById('travelDate').value); });
+  document.getElementById('ticketType').addEventListener('change', updateTicketPrice);
+  document.getElementById('participants').addEventListener('change', updateTicketPrice);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
