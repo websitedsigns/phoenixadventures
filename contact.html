@@ -81,69 +81,88 @@
     </header>
 
     <!-- Contact Section -->
-    <section class="container py-5">
-      <div class="row">
-        <!-- Contact Form -->
-        <div class="col-md-7">
-          <h2 class="fw-bold mb-4">Send us a message</h2>
-          <form id="contactForm">
-            <div class="mb-3">
-              <label for="name" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="name" required />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" required />
-            </div>
-            <div class="mb-3">
-              <label for="subject" class="form-label">Subject</label>
-              <input type="text" class="form-control" id="subject" required />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-phoenix">Submit</button>
-          </form>
-          <div id="formAlert" class="mt-3"></div>
+<section class="container py-5">
+  <div class="row">
+    <!-- Contact Form -->
+    <div class="col-md-7">
+      <h2 class="fw-bold mb-4">Send us a message</h2>
+      <form id="contactForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" required />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" required />
+        </div>
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" required />
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" required></textarea>
         </div>
 
-        <!-- Contact Info -->
-        <div class="col-md-5">
-          <h2 class="fw-bold mb-4">Our Contact Details</h2>
-          <p><b>Email:</b> info@phoenixadventures.co.uk</p>
-          <p><b>Phone:</b> +44 1284 598069</p>
-          <p><b>Address:</b> 
-            <br>Phoenix Adventures LTD,
-            <br>Unit A 
-            <br>82 James Carter Road
-            <br>Mildenhall Ind Est 
-            <br>Mildenhall 
-            <br>IP28 7DE</p>
+        <!-- ✅ GDPR Consent Checkbox -->
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="consent" required />
+          <label class="form-check-label" for="consent">
+            I hereby agree that this data will be stored and processed for the purpose of establishing contact.  
+            I am aware that I can revoke my consent at any time. <span class="text-danger">*</span>
+          </label>
         </div>
-      </div>
-    </section>
 
-    <!-- Optional Map -->
-    <section class="container mb-5">
-      <div class="ratio ratio-16x9">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19801.03753426144!2d-0.1277584!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzI2LjUiTiAwwrAwNyc0Ni4wIlc!5e0!3m2!1sen!2suk!4v1699999999999"
-          width="600" height="450" style="border:0;" allowfullscreen=""
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-    </section>
+        <button type="submit" class="btn btn-phoenix">Submit</button>
+      </form>
+      <div id="formAlert" class="mt-3"></div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Contact form handling
-      document.getElementById("contactForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        document.getElementById("formAlert").innerHTML =
-          '<div class="alert alert-success">✅ Thank you for your message! We’ll get back to you shortly.</div>';
-        this.reset();
-      });
-    </script>
-  </body>
+    <!-- Contact Info -->
+    <div class="col-md-5">
+      <h2 class="fw-bold mb-4">Our Contact Details</h2>
+      <p><b>Email:</b> info@phoenixadventures.co.uk</p>
+      <p><b>Phone:</b> +44 1284 598069</p>
+      <p><b>Address:</b> 
+        <br>Phoenix Adventures LTD,
+        <br>Unit A 
+        <br>82 James Carter Road
+        <br>Mildenhall Ind Est 
+        <br>Mildenhall 
+        <br>IP28 7DE</p>
+    </div>
+  </div>
+</section>
+
+<!-- Optional Map -->
+<section class="container mb-5">
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19801.03753426144!2d-0.1277584!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzI2LjUiTiAwwrAwNyc0Ni4wIlc!5e0!3m2!1sen!2suk!4v1699999999999"
+      width="600" height="450" style="border:0;" allowfullscreen=""
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Contact form handling
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Check if consent is ticked
+    if (!document.getElementById("consent").checked) {
+      document.getElementById("formAlert").innerHTML =
+        '<div class="alert alert-danger">⚠️ Please accept the consent to proceed.</div>';
+      return;
+    }
+
+    // Show success message
+    document.getElementById("formAlert").innerHTML =
+      '<div class="alert alert-success">✅ Thank you for your message! We’ll get back to you shortly.</div>';
+    this.reset();
+  });
+</script>
+</body>
 </html>
