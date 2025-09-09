@@ -16,103 +16,19 @@
       Book today from just £1 deposit — Flexible payment plans available
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-          <img
-            src="/img/logo/logo.png"
-            alt="Phoenix Adventures"
-            height="40"
-            class="me-2"
-          />Phoenix Adventures
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse text-center" id="navMenu">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <!-- Trips Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="tripsDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Trips
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="tours.html">2025 Tour List</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="themeparks.html"
-                    >Theme Park Trips</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="halloween.html"
-                    >Europe Halloween Trips</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="../twistedtracks.html"
-                    >Multipark Trips</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="holidays.html">Holidays</a>
-                </li>
-              </ul>
-            </li>
+     <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
 
-            <!-- Info Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="infoDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Info
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="themepark-info.html"
-                    >Theme Park Info</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="insanity.html"
-                    >Theme Park Insanity</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="about.html">Find Out More</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#reviews">Reviews</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#faq">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-phoenix ms-lg-3" href="#book">Book Now</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
 
     <main>
       <!-- Hero Section -->
