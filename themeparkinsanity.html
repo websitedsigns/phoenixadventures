@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Theme Park Insanity | Phoenix Adventures Partnership</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Hero styling */
+      .hero {
+        position: relative;
+        min-height: 60vh;
+        background-size: cover;
+        background-position: center;
+      }
+      .hero .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .hero h1, .hero p.lead {
+        z-index: 1;
+        position: relative;
+      }
+
+      /* Horizontal scroll for mobile embedded videos */
+      .video-scroll {
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        scroll-behavior: smooth;
+      }
+      .video-scroll .video-wrapper {
+        flex: 0 0 80%;
+      }
+
+      /* Mobile hero text sizing */
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+        .hero p.lead {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <header class="hero d-flex align-items-center text-white text-center" style="background-image: url('img/rides/fly.png');">
+      <div class="overlay"></div>
+      <div class="container position-relative py-5">
+        <img src="img/tpi/TPILOGO.png" alt="Theme Park Insanity Logo" class="mb-4" style="max-width:200px;">
+        <h1 class="display-4 fw-bold mb-3">Theme Park Insanity x Phoenix Adventures</h1>
+        <p class="lead mb-4">Exploring the UK's & Europe's most thrilling theme parks</p>
+        <a href="https://themeparkinsanity.co.uk" target="_blank" class="btn btn-lg btn-phoenix">Visit Website</a>
+        
+      </div>
+    </header>
+    <!-- Mobile Horizontal Scroll -->
+        <div class="video-scroll d-lg-none m-3">
+          <div class="video-wrapper ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/eJNNiY4NdOc" title="Video 1" allowfullscreen></iframe>
+          </div>
+          <div class="video-wrapper ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/3dTQ5sjOdMY" title="Video 2" allowfullscreen></iframe>
+          </div>
+          <div class="video-wrapper ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/cIu6lDOqjd0" title="Video 3" allowfullscreen></iframe>
+          </div>
+          <div class="video-wrapper ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/vdYSl1Nht2A" title="Video 4" allowfullscreen></iframe>
+          </div>
+        </div>
+
+    <!-- Introduction Section -->
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p>We are thrilled to announce our exciting partnership with the renowned vlogger <strong>Theme Park Insanity</strong></p>
+            <p>A name synonymous with adventure and excitement within the UK and Europe’s thrilling theme parks.</p>
+            <p>This collaboration aims to bring an immersive and engaging experience to fans and thrill-seekers alike who are eager to explore the vast world of theme parks.</p>
+            <p>Through this partnership, we will be showcasing not only the iconic attractions of Britain’s finest theme parks, such as <strong>Alton Towers</strong> and <strong>Thorpe Park</strong>.</p>
+            <p>Also delving into the enchanting realms of Europe’s best amusement destinations, including <strong>Disneyland Paris</strong>, <strong>Efteling</strong>, <strong>Walibi</strong> & <strong>Toverland</strong> to name a few.</p>
+            <p>Theme Park Insanity will be at the forefront, documenting every exhilarating moment, ride, and attraction.</p>
+            <p>Our goal is to create content that captures the essence of what makes these theme parks so special. With Theme Park Insanity's creative vision and engaging storytelling, viewers can look forward to in-depth reviews, tips for making the most of their visits, and behind-the-scenes insights that bring the magic of these parks to life right from their screens.</p>
+            <p>Stay tuned for upcoming videos, live streams, and special events as we unveil what this partnership with Theme Park Insanity has in store. Together, we will inspire a new generation of theme park enthusiasts and create unforgettable memories for all!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Media Section with Embedded YouTube Videos -->
+    <section id="socials" class="py-5 text-center">
+      <div class="container">
+        <h2 class="fw-bold mb-4">Follow Theme Park Insanity</h2>
+
+        <!-- Social Buttons -->
+        <div class="mb-4">
+          <a href="https://www.tiktok.com/@themeparkinsanity" target="_blank" class="btn btn-dark me-2 mb-2">
+            TikTok <span class="badge bg-light text-dark">28.9k</span>
+          </a>
+          <a href="https://www.youtube.com/@themeparkinsanity" target="_blank" class="btn btn-danger me-2 mb-2">
+            YouTube <span class="badge bg-light text-dark">90.6K</span>
+          </a>
+        </div>
+
+        
+
+        <!-- Desktop Grid -->
+        <div class="row g-3 justify-content-center d-none d-lg-flex">
+          <div class="col-md-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/eJNNiY4NdOc" title="Walibi Belgium" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/3dTQ5sjOdMY" title="DisneyLand Paris" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/cIu6lDOqjd0" title="Walibi Holland" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/vdYSl1Nht2A" title="We have to talk about PhantasiaLand" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white py-4 footer bg-dark">
+      <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Phoenix Adventures. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
