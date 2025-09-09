@@ -3,486 +3,328 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Phoenix Adventures | 2025 Tour List</title>
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" />
+    <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
 
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet" />
+
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <style></style>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .tour-box {
+  position: relative;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  padding: 1.5rem;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+.tour-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* dark overlay */
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.tour-box h5,
+.tour-box p,
+.tour-box a {
+  position: relative;
+  z-index: 1;
+}
+
+    .btn-phoenix {
+      background-color: #ff4500;
+      color: white;
+      font-weight: bold;
+    }
+    .btn-phoenix:hover {
+      background-color: #e63900;
+      color: white;
+    }
+
+    .hero {
+  position: relative;
+  height: 70vh; /* adjust height */
+  background: url('img/FraGer/image-35.jpg') no-repeat center center/cover;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* darkens the background */
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+  </style>
   </head>
   <body>
     <!-- Announcement Bar -->
-    <div class="text-center text-white py-2 announcement">
+    <div class="text-center text-white py-sm-0 announcement">
       Book today from just £1 deposit — Flexible payment plans available
     </div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
-          <img
-            src="img/logo/logo.png"
-            alt="Phoenix Adventures"
-            height="40"
-            class="me-2"
-          />Phoenix Adventures
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="themeparks.html">Theme Parks</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halloween.html">Halloween Trips</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#book">Book Now</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Header -->
-    <header
-      class="herotour d-flex align-items-center text-white text-center"
-      style="
-        background: url('img/rides/RTH.png') center/cover no-repeat;
-        height: 300px;
-      "
-    >
-      <div
-        class="overlay"
-        style="
-          background-color: rgba(0, 0, 0, 0.5);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        "
-      ></div>
+     <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+
+    <!-- Hero Section -->
+    <header class="hero d-flex align-items-center text-white text-center">
+      <div class="overlay"></div>
       <div class="container position-relative py-5">
-        <h1 class="display-4 fw-bold mb-3">2025 Tour List</h1>
-        <p class="lead mb-4">Embark on Incredible Adventures Across Europe</p>
+        <h1 class="display-4 fw-bold mb-3">Theme Park Trips</h1>
+        <a href="#toursAccordion" class="btn btn-lg btn-phoenix">Search our Tours</a>
       </div>
     </header>
+  
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Search box -->
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for a park or tour..." />
+    </div>
 
-    <!-- Search + Calendar -->
+    <!-- Tours Accordion -->
     <section class="container py-4">
-      <div class="row mb-4">
-        <div class="col-md-6 mb-2">
-          <label for="searchInput" class="form-label"
-            >Search specific parks
-          </label>
-          <input
-            type="text"
-            id="searchInput"
-            class="form-control"
-            placeholder="Search..."
-          />
+      <div class="accordion" id="toursAccordion">
+
+        <!-- AUGUST -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingAugust">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAugust" aria-expanded="true" aria-controls="collapseAugust">
+              August 2025
+            </button>
+          </h2>
+          <div id="collapseAugust" class="accordion-collapse collapse show" aria-labelledby="headingAugust" data-bs-parent="#toursAccordion">
+            <div class="accordion-body">
+              <div class="tour-box" style="background-image: url('img/parks/disney.png');">
+                <h5>Sat 30th – Disneyland Paris</h5>
+                <p>Disneyland Paris is a magical theme park offering enchanting attractions, shows, and characters.</p>
+                <a href="eventpage/disneySept.html" class="btn btn-phoenix">More Information</a>
+              </div>
+            </div>
+          </div>
         </div>
-       
+
+        <!-- SEPTEMBER -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSeptember">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeptember" aria-expanded="false" aria-controls="collapseSeptember">
+              September 2025
+            </button>
+          </h2>
+          <div id="collapseSeptember" class="accordion-collapse collapse" aria-labelledby="headingSeptember" data-bs-parent="#toursAccordion">
+            <div class="accordion-body">
+              <div class="tour-box" style="background-image: url('img/rides/kondaa.png');">
+                <h5>Sat 6th – Walibi Belgium</h5>
+                <p>Thrilling rides and attractions for all ages in Belgium.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/rides/Goudrix.png');">
+                <h5>Sat 13th – Parc Asterix</h5>
+                <p>Celebrating the beloved characters from the famous French comic series.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/disney.png');">
+                <h5>Sat 20th – Disneyland Paris</h5>
+                <p>Disney magic with enchanting attractions and shows.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/moviepark.png');">
+                <h5>Sat 27th – Movie Park, Germany</h5>
+                <p><b>Halloween Horror Nights:</b> Thrilling haunted houses and spine-chilling attractions.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OCTOBER -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOctober">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOctober" aria-expanded="false" aria-controls="collapseOctober">
+              October 2025
+            </button>
+          </h2>
+          <div id="collapseOctober" class="accordion-collapse collapse" aria-labelledby="headingOctober" data-bs-parent="#toursAccordion">
+            <div class="accordion-body">
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/toverlandhorror.png');">
+                <h5>Sat 4th – Toverland, Netherlands</h5>
+                <p><b>Halloween Nights:</b> Spooky attractions and live entertainment.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/parkasterixhalloween.png');">
+                <h5>Sat 11th – Parc Asterix</h5>
+                <p><b>Fear on the Park:</b> Haunted attractions and spine-chilling shows.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/EuropaHallow.png');">
+                <h5>Sat & Sun 18th–19th – Europa Park, Germany</h5>
+                <p><b>Traumatica:</b> Immersive Halloween experience with mazes and shows.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/rides/kondaa.png');">
+                <h5>Sat 25th – Walibi Belgium</h5>
+                <p><b>Ibilaw Experience:</b> Halloween Nights with terrifying attractions.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/disneyspook.png');">
+                <h5>Tue 28th – Disneyland Paris</h5>
+                <p><b>Halloween Season:</b> Whimsical fun and spooky decorations.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/waliibihallholland.png');">
+                <h5>Fri 31st – Walibi Holland</h5>
+                <p><b>Fright Nights:</b> Haunted houses and scare zones.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOVEMBER -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingNovember">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNovember" aria-expanded="false" aria-controls="collapseNovember">
+              November 2025
+            </button>
+          </h2>
+          <div id="collapseNovember" class="accordion-collapse collapse" aria-labelledby="headingNovember" data-bs-parent="#toursAccordion">
+            <div class="accordion-body">
+              <div class="tour-box" style="background-image: url('img/rides/RTH.png');">
+                <h5>Sat 22nd – Plopsaland, Belgium</h5>
+                <p><b>Magical Winter:</b> Enchanting attractions inspired by Studio 100.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/rides/fly.png');">
+                <h5>Sat 29th – Phantasialand, Germany</h5>
+                <p><b>Wintertraum:</b> A magical winter wonderland with festive decorations.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DECEMBER -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDecember">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDecember" aria-expanded="false" aria-controls="collapseDecember">
+              December 2025
+            </button>
+          </h2>
+          <div id="collapseDecember" class="accordion-collapse collapse" aria-labelledby="headingDecember" data-bs-parent="#toursAccordion">
+            <div class="accordion-body">
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/eftelingwinter.png');">
+                <h5>Sat 13th – Efteling, Netherlands</h5>
+                <p><b>Winter Efteling:</b> Magical wonderland with lights and festive attractions.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/disneyxmas.png');">
+                <h5>Sat & Sun 20th–21st – Disneyland Paris</h5>
+                <p><b>Christmas Season:</b> Twinkling lights, festive decorations, and beloved Disney characters.</p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+              <div class="tour-box" style="background-image: url('img/parks/themedparks/eftelingnewyears.png');">
+                <h5>Wed 31st – Efteling, Netherlands</h5>
+                <p>New Year Celebrations 🍾🥂 – Families enjoy spectacular light displays, shows, and thrilling rides.</p>
+                <p><b>Sleeper Coach Service!</b></p>
+                <a href="booking.html" class="btn btn-phoenix">More Information</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
+  </div>
 
-    <!-- Tours Section -->
-    <section class="container py-4">
-      <!-- AUGUST -->
-      <div class="mb-3 bg-tripmonth shadow-sm">
-        <h3
-          class="month-header bg-dark text-white p-2"
-          data-bs-toggle="collapse"
-          href="#augustCollapse"
-          role="button"
-        >
-          August 2025
-        </h3>
-        <div class="collapse show" id="augustCollapse">
-          <div
-            class="tour-box"
-            data-park="Disneyland Paris"
-            data-date="2025-08-30"
-            style="
-              background-image: url('img/parks/disney.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 30th – Disneyland Paris</h5>
-            <p>
-              Disneyland Paris is a magical theme park offering enchanting
-              attractions, shows, and characters against the French countryside
-              backdrop.
-            </p>
-            <a href="eventpage/disneySept.html" class="btn btn-phoenix"
-              >More Information</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- SEPTEMBER -->
-      <div class="mb-3 bg-tripmonth shadow-sm">
-        <h3
-          class="month-header bg-dark text-white p-2"
-          data-bs-toggle="collapse"
-          href="#septemberCollapse"
-          role="button"
-        >
-          September 2025
-        </h3>
-        <div class="collapse show" id="septemberCollapse">
-          <div
-            class="tour-box"
-            data-park="Walibi Belgium"
-            data-date="2025-09-06"
-            style="
-              background-image: url('img/rides/kondaa.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 6th – Walibi Belgium</h5>
-            <p>Thrilling rides and attractions for all ages in Belgium.</p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Parc Asterix"
-            data-date="2025-09-13"
-            style="
-              background-image: url('img/rides/Goudrix.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 13th – Parc Asterix</h5>
-            <p>
-              Celebrating the beloved characters from the famous French comic
-              series.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Disneyland Paris"
-            data-date="2025-09-20"
-            style="
-              background-image: url('img/parks/disney.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 20th – Disneyland Paris</h5>
-            <p>
-              Disneyland Paris is a magical theme park offering enchanting
-              attractions and shows.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Movie Park Germany"
-            data-date="2025-09-27"
-            style="
-              background-image: url('img/parks/moviepark.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 27th – Movie Park, Germany</h5>
-            <p>
-              <b>Halloween Horror Nights:</b> Thrilling haunted houses and
-              spine-chilling attractions.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- OCTOBER -->
-      <div class="mb-3 bg-tripmonth shadow-sm">
-        <h3
-          class="month-header bg-dark text-white p-2"
-          data-bs-toggle="collapse"
-          href="#octoberCollapse"
-          role="button"
-        >
-          October 2025
-        </h3>
-        <div class="collapse show" id="octoberCollapse">
-          <div
-            class="tour-box"
-            data-park="Toverland"
-            data-date="2025-10-04"
-            style="
-              background-image: url('img/parks/themedparks/toverlandhorror.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 4th – Toverland, Netherlands</h5>
-            <p>
-              <b>Halloween Nights:</b> Spooky attractions and live
-              entertainment.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Parc Asterix"
-            data-date="2025-10-11"
-            style="
-              background-image: url('img/parks/themedparks/parkasterixhalloween.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 11th – Parc Asterix</h5>
-            <p>
-              <b>Fear on the Park:</b> Haunted attractions and spine-chilling
-              shows.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Europa Park"
-            data-date="2025-10-18"
-            style="
-              background-image: url('img/parks/themedparks/EuropaHallow.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat & Sun 18th-19th – Europa Park, Germany</h5>
-            <p>
-              <b>Traumatica:</b> Immersive Halloween experience with mazes and
-              shows.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Walibi Belgium"
-            data-date="2025-10-25"
-            style="
-              background-image: url('img/rides/kondaa.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 25th – Walibi Belgium</h5>
-            <p>
-              <b>Ibilaw Experience:</b> Halloween Nights with terrifying
-              attractions.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Disneyland Paris"
-            data-date="2025-10-28"
-            style="
-              background-image: url('img/parks/themedparks/disneyspook.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Tue 28th – Disneyland Paris</h5>
-            <p>
-              <b>Halloween Season:</b> Whimsical fun and spooky decorations.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Walibi Holland"
-            data-date="2025-10-31"
-            style="
-              background-image: url('img/parks/waliibihallholland.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Fri 31st – Walibi Holland</h5>
-            <p><b>Fright Nights:</b> Haunted houses and scare zones.</p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- NOVEMBER -->
-      <div class="mb-3 bg-tripmonth shadow-sm">
-        <h3
-          class="month-header bg-dark text-white p-2"
-          data-bs-toggle="collapse"
-          href="#novemberCollapse"
-          role="button"
-        >
-          November 2025
-        </h3>
-        <div class="collapse show" id="novemberCollapse">
-          <div
-            class="tour-box"
-            data-park="Plopsaland Belgium"
-            data-date="2025-11-22"
-            style="
-              background-image: url('img/rides/RTH.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 22nd – Plopsaland, Belgium</h5>
-            <p>
-              <b>Magical Winter:</b> Enchanting attractions inspired by Studio
-              100.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Phantasialand"
-            data-date="2025-11-29"
-            style="
-              background-image: url('img/rides/fly.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 29th – Phantasialand, Germany</h5>
-            <p>
-              <b>Wintertraum:</b> A magical winter wonderland with festive
-              decorations.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- DECEMBER -->
-      <div class="mb-3 bg-tripmonth shadow-sm">
-        <h3
-          class="month-header bg-dark text-white p-2"
-          data-bs-toggle="collapse"
-          href="#decemberCollapse"
-          role="button"
-        >
-          December 2025
-        </h3>
-        <div class="collapse show" id="decemberCollapse">
-          <div
-            class="tour-box"
-            data-park="Efteling"
-            data-date="2025-12-13"
-            style="
-              background-image: url('img/parks/themedparks/eftelingwinter.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat 13th – Efteling, Netherlands</h5>
-            <p>
-              <b>Winter Efteling:</b> Magical wonderland with lights and festive
-              attractions.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Disneyland Paris"
-            data-date="2025-12-20"
-            style="
-              background-image: url('img/parks/themedparks/disneyxmas.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Sat & Sun 20th-21st – Disneyland Paris</h5>
-            <p>
-              <b>Christmas Season:</b> Twinkling lights, festive decorations,
-              and beloved Disney characters.
-            </p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-          <div
-            class="tour-box"
-            data-park="Efteling"
-            data-date="2025-12-31"
-            style="
-              background-image: url('img/parks/themedparks/eftelingnewyears.png');
-              background-size: cover;
-              background-position: center;
-            "
-          >
-            <h5>Wed 31st – Efteling, Netherlands</h5>
-            <p>
-              New Year Celebrations 🍾🥂 – Families enjoy spectacular light
-              displays, shows, and thrilling rides.
-            </p>
-            <p><b>Sleeper Coach Service!</b></p>
-            <a href="booking.html" class="btn btn-phoenix">More Information</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Filter Script -->
-    <script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
       const searchInput = document.getElementById("searchInput");
-      const tourItems = document.querySelectorAll(".tour-box");
+      const accordion = document.getElementById("toursAccordion");
+      const accordionItems = accordion.querySelectorAll(".accordion-item");
 
-     
-      function filterTours() {
-        const searchValue = searchInput.value.toLowerCase();
-        const dateValue = dateInput.value;
+      searchInput.addEventListener("input", function () {
+        const searchValue = this.value.toLowerCase();
 
-        tourItems.forEach((item) => {
-          const parkName = item.dataset.park.toLowerCase();
-          const tourDate = item.dataset.date;
+        accordionItems.forEach((item, index) => {
+          const tours = item.querySelectorAll(".tour-box");
+          let hasMatch = false;
 
-          if (
-            (parkName.includes(searchValue) || searchValue === "") &&
-            (tourDate === dateValue || dateValue === "")
-          ) {
-            item.style.display = "";
+          tours.forEach((tour) => {
+            const text = tour.textContent.toLowerCase();
+            if (text.includes(searchValue)) {
+              tour.style.display = "block";
+              hasMatch = true;
+            } else {
+              tour.style.display = "none";
+            }
+          });
+
+          const collapse = item.querySelector(".accordion-collapse");
+          const button = item.querySelector(".accordion-button");
+
+          if (hasMatch) {
+            collapse.classList.add("show");
+            button.classList.add("bg-warning", "text-dark");
           } else {
-            item.style.display = "none";
+            collapse.classList.remove("show");
+            button.classList.remove("bg-warning", "text-dark");
+          }
+
+          if (!searchValue) {
+            tours.forEach((tour) => (tour.style.display = "block"));
+            if (index === 0) {
+              collapse.classList.add("show");
+            } else {
+              collapse.classList.remove("show");
+            }
+            button.classList.remove("bg-warning", "text-dark");
           }
         });
-      }
-
-      searchInput.addEventListener("input", filterTours);
-      dateInput.addEventListener("change", filterTours);
-
-      dateInput.min = tripDates[0];
-      dateInput.max = tripDates[tripDates.length - 1];
-    </script>
-  </body>
+      });
+    });
+  </script>
+</body>
 </html>
