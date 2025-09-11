@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phoenix Adventures | Theme Parks</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Announcement Bar -->
+    <div class="text-center text-white py-sm-0 announcement">
+      Book today from just £1 deposit — Flexible payment plans available
+    </div>
+
+     <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+
+  <!-- Hero Section -->
+    <header class="hero d-flex align-items-center text-white text-center" style="background-image: url('img/rides/kondaa.png');">
+      <div class="overlay"></div>
+      <div class="container position-relative py-5">
+    <h1 class="display-4 fw-bold mb-3">Theme Parks We Visit across Europe</h1>
+    <p class="lead mb-0">Discover the best theme parks we explore on our trips, from thrilling coasters to magical experiences.</p>
+      </div>
+    </header>
+
+      <section class="container my-5">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/dlp.jpg"
+                class="card-img-top"
+                alt="Disneyland Paris Castle"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Disneyland Paris</h5>
+                <p class="card-text">
+                  The magical kingdom in Marne-la-Vallée, France, featuring
+                  classic Disney characters, fairytale castles, and thrilling
+                  rides for all ages.
+                </p>
+                <a
+                  href="https://www.disneylandparis.com/"
+                  class="btn btn-primary mt-auto me-2"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/efteling.jpg"
+                class="card-img-top"
+                alt="Efteling"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Efteling</h5>
+                <p class="card-text">
+                  A unique fantasy-themed park in the Netherlands, known for its
+                  focus on folklore, myths, and legends with immersive rides and
+                  shows.
+                </p>
+
+                <a
+                  href="https://www.efteling.com/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/europa.jpg"
+                class="card-img-top"
+                alt="Europa-Park"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Europa-Park</h5>
+                <p class="card-text">
+                  Germany's largest theme park, divided into themed areas
+                  representing European countries. It's famous for its world-class
+                  coasters and meticulous attention to detail.
+                </p>
+                <a
+                  href="https://www.europapark.de/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/moviepark.jpg"
+                class="card-img-top"
+                alt="Movie Park Germany"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Movie Park Germany</h5>
+                <p class="card-text">
+                  Get a taste of Hollywood in Bottrop, Germany. This park is all
+                  about movies, TV shows, and stunts, with plenty of action-packed
+                  rides.
+                </p>
+                <a
+                  href="https://www.movieparkgermany.de/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="img/parkentry/parkast.jpg"
+                class="card-img-top"
+                alt="Parc Astérix"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Parc Astérix</h5>
+                <p class="card-text">
+                  Located near Paris, this French park is based on the comic book
+                  series Astérix. It features a great mix of family-friendly
+                  attractions and intense roller coasters.
+                </p>
+                <a
+                  href="https://www.parcasterix.fr/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="img/parkentry/phantasialand.jpg"
+                class="card-img-top"
+                alt="Phantasialand"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Phantasialand</h5>
+                <p class="card-text">
+                  A fantastically themed park in Germany with some of the best
+                  immersive theming and compact thrill rides in the world. Each
+                  area is its own unique world.
+                </p>
+                <a
+                  href="https://www.phantasialand.de/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/plopsa.jpg"
+                class="card-img-top"
+                alt="Plopsaland De Panne"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Plopsaland De Panne</h5>
+                <p class="card-text">
+                  A family-friendly park in Belgium based on popular Belgian
+                  children's characters. It offers a variety of rides and
+                  attractions perfect for younger guests.
+                </p>
+                <a
+                  href="https://www.plopsalanddepanne.be/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/toverland.jpg"
+                class="card-img-top"
+                alt="Toverland"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Toverland</h5>
+                <p class="card-text">
+                  A park in the Netherlands famous for its indoor and outdoor
+                  areas, offering a blend of magic, thrilling coasters, and
+                  family fun, no matter the weather.
+                </p>
+                <a
+                  href="https://www.toverland.com/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/walibibel.jpg"
+                class="card-img-top"
+                alt="Walibi Belgium"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Walibi Belgium</h5>
+                <p class="card-text">
+                  A popular Belgian park offering a wide range of thrilling rides
+                  and a large waterpark, Aqualibi, making it a great destination
+                  for an action-packed day.
+                </p>
+                <a
+                  href="https://www.walibi.be/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/walibiholl.jpg"
+                class="card-img-top"
+                alt="Walibi Holland"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Walibi Holland</h5>
+                <p class="card-text">
+                  Known as "the number one rollercoaster park" in the
+                  Netherlands, this park is home to several major thrill rides
+                  that attract coaster enthusiasts from all over Europe.
+                </p>
+                <a
+                  href="https://www.walibi.nl/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/bellewaerde.jpg"
+                class="card-img-top"
+                alt="Walibi Holland"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Bellewaerde</h5>
+                <p class="card-text">
+                  Known as "the number one rollercoaster park" in the
+                  Netherlands, this park is home to several major thrill rides
+                  that attract coaster enthusiasts from all over Europe.
+                </p>
+                <a
+                  href="https://www.walibi.nl/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img
+                src="./img/parkentry/tripsdrill.jpg"
+                class="card-img-top"
+                alt="Walibi Holland"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Erlebnispark Tripsdrill</h5>
+                <p class="card-text">
+                  Known as "the number one rollercoaster park" in the
+                  Netherlands, this park is home to several major thrill rides
+                  that attract coaster enthusiasts from all over Europe.
+                </p>
+                <a
+                  href="https://www.walibi.nl/"
+                  class="btn btn-primary mt-auto"
+                  target="_blank"
+                  >Visit Official Website</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
