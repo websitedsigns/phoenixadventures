@@ -26,32 +26,40 @@
       Book today from just £1 deposit — Flexible payment plans available
     </div>
 
-     <!-- Navbar -->
+    <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-      fetch("/navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-        document.getElementById("navbar-placeholder").innerHTML = data;
-        })
-        .catch((error) => console.error("Error loading navbar:", error));
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
       });
     </script>
 
-
-  <!-- Hero Section -->
-    <header class="hero d-flex align-items-center text-white text-center" style="background-image: url('img/rides/kondaa.png');">
+    <!-- Hero Section -->
+    <header
+      class="hero d-flex align-items-center text-white text-center"
+      style="background-image: url('img/rides/kondaa.png');"
+    >
       <div class="overlay"></div>
       <div class="container position-relative py-5">
-    <h1 class="display-4 fw-bold mb-3">Theme Parks We Visit across Europe</h1>
-    <p class="lead mb-0">Discover the best theme parks we explore on our trips, from thrilling coasters to magical experiences.</p>
+        <h1 class="display-4 fw-bold mb-3">Theme Parks We Visit across Europe</h1>
+        <p class="lead mb-0">
+          Discover the best theme parks in Europe on our trips, from thrilling coasters to magical experiences.
+          We're sure you will find something for everyone!
+        </p>
       </div>
     </header>
 
+    <main>
+      <!-- Theme Park Cards Section -->
       <section class="container my-5">
         <div class="row g-4">
+          <!-- Example Card -->
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
               <img
@@ -62,13 +70,15 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Disneyland Paris</h5>
                 <p class="card-text">
-                  The magical kingdom in Marne-la-Vallée, France, featuring
-                  classic Disney characters, fairytale castles, and thrilling
-                  rides for all ages.
+                  <strong>Disneyland Paris</strong> is a place where magic comes to life.
+                </p>
+                <p>
+                  From the moment you step foot into the park, you are transported into a world of enchantment and wonder.
+                  The iconic <strong>Sleeping Beauty Castle</strong> stands tall, welcoming visitors to a place where dreams really do come true.
                 </p>
                 <a
                   href="https://www.disneylandparis.com/"
-                  class="btn btn-primary mt-auto me-2"
+                  class="btn btn-primary mt-auto"
                   target="_blank"
                   >Visit Official Website</a
                 >
@@ -86,9 +96,11 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Efteling</h5>
                 <p class="card-text">
-                  A unique fantasy-themed park in the Netherlands, known for its
-                  focus on folklore, myths, and legends with immersive rides and
-                  shows.
+                  <strong>Efteling Theme Park </strong> is a magical destination where 
+                  families can create unforgettable memories together. 
+                  This enchanting park offers a wide range of thrilling rides, 
+                  captivating shows, and whimsical attractions that cater 
+                  to visitors of all ages.
                 </p>
 
                 <a
@@ -111,9 +123,10 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Europa-Park</h5>
                 <p class="card-text">
-                  Germany's largest theme park, divided into themed areas
-                  representing European countries. It's famous for its world-class
-                  coasters and meticulous attention to detail.
+                 <strong>Europa Park</strong> is a thrilling and enchanting theme park located in Rust, Germany. 
+                 Spanning across a vast area, it offers an unforgettable experience for visitors of all ages.
+                With over <strong>100</strong> attractions and shows, 
+                 <strong>Europa Park</strong> is known for its diverse range of entertainment.
                 </p>
                 <a
                   href="https://www.europapark.de/"
@@ -135,9 +148,13 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Movie Park Germany</h5>
                 <p class="card-text">
-                  Get a taste of Hollywood in Bottrop, Germany. This park is all
-                  about movies, TV shows, and stunts, with plenty of action-packed
-                  rides.
+                  <strong>Movie Park Germany</strong> is a popular theme park located in Bottrop, Germany. 
+                  It offers a wide range of attractions and rides 
+                  inspired by famous <strong>movies and TV shows.</strong>
+
+                  Visitors can experience thrilling roller coasters, interactive shows, 
+                  and meet their favorite movie characters. 
+                  <strong>Movie Park Germany</strong> is a must-visit destination for movie lovers of all ages.
                 </p>
                 <a
                   href="https://www.movieparkgermany.de/"
@@ -159,9 +176,11 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Parc Astérix</h5>
                 <p class="card-text">
-                  Located near Paris, this French park is based on the comic book
-                  series Astérix. It features a great mix of family-friendly
-                  attractions and intense roller coasters.
+                  <strong>Parc Asterix</strong> is a well-known theme park situated in Plailly, France. 
+                  The park is inspired by the renowned French <strong>comic book series Asterix </strong>
+                  and offers exciting rides, 
+                  entertaining live shows, and various attractions that immerse visitors 
+                  in the world of the beloved characters.
                 </p>
                 <a
                   href="https://www.parcasterix.fr/"
@@ -183,9 +202,10 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Phantasialand</h5>
                 <p class="card-text">
-                  A fantastically themed park in Germany with some of the best
-                  immersive theming and compact thrill rides in the world. Each
-                  area is its own unique world.
+                  <strong>Phantasialand</strong> the ultimate theme park experience! Get ready to embark 
+                  on a thrilling adventure filled with excitement, magic, and unforgettable 
+                  memories. From heart-pounding roller coasters to enchanting fairy tale lands, 
+                  there is something for everyone at <strong>Phantasialand.</strong>
                 </p>
                 <a
                   href="https://www.phantasialand.de/"
@@ -207,9 +227,10 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Plopsaland De Panne</h5>
                 <p class="card-text">
-                  A family-friendly park in Belgium based on popular Belgian
-                  children's characters. It offers a variety of rides and
-                  attractions perfect for younger guests.
+                 <strong>Plopsaland</strong> is a fantastic family theme park that offers endless fun and 
+                 excitement for all ages. Located in the heart of <strong>Belgium</strong> this enchanting park is 
+                 inspired by the beloved characters from Studio 100, making 
+                 it a magical experience for the whole family. 
                 </p>
                 <a
                   href="https://www.plopsalanddepanne.be/"
@@ -231,9 +252,11 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Toverland</h5>
                 <p class="card-text">
-                  A park in the Netherlands famous for its indoor and outdoor
-                  areas, offering a blend of magic, thrilling coasters, and
-                  family fun, no matter the weather.
+                  <strong>Toverland</strong>is a magical theme park located in the Netherlands 
+                  that offers a wide range of attractions for visitors of all ages. 
+                  From thrilling roller coasters to enchanting shows, 
+                  <strong>Tovelrand</strong> has something for everyone to enjoy and 
+                  create unforgettable memories with family and friends.
                 </p>
                 <a
                   href="https://www.toverland.com/"
@@ -255,9 +278,10 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Walibi Belgium</h5>
                 <p class="card-text">
-                  A popular Belgian park offering a wide range of thrilling rides
-                  and a large waterpark, Aqualibi, making it a great destination
-                  for an action-packed day.
+                  <strong>Walibi Belgium</strong> is a popular theme park located in Wavre, <strong>Belgium</strong> 
+                  It offers a wide range of thrilling rides and attractions for visitors 
+                  of all ages.From roller coasters to 
+                  water rides, there is something for everyone to enjoy at Walibi Belgium. 
                 </p>
                 <a
                   href="https://www.walibi.be/"
@@ -279,9 +303,13 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Walibi Holland</h5>
                 <p class="card-text">
-                  Known as "the number one rollercoaster park" in the
-                  Netherlands, this park is home to several major thrill rides
-                  that attract coaster enthusiasts from all over Europe.
+                <strong>Walibi Holland</strong> is a thrilling theme park located in the <strong>Netherlands</strong>
+                It offers a wide range of exciting rides and attractions for visitors of all ages to enjoy.
+
+                From heart-pounding roller coasters to family-friendly shows and games, 
+                <strong>Walibi Holland</strong> has something for everyone. Whether you're a thrill-seeker 
+                looking for an adrenaline rush or just want to have a fun day out with your family, 
+                this theme park has it all.
                 </p>
                 <a
                   href="https://www.walibi.nl/"
@@ -303,9 +331,13 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Bellewaerde</h5>
                 <p class="card-text">
-                  Known as "the number one rollercoaster park" in the
-                  Netherlands, this park is home to several major thrill rides
-                  that attract coaster enthusiasts from all over Europe.
+                  <strong>Bellewaerde</strong>is a popular theme park located in <strong>Belgium</strong> 
+                  that offers a wide range of attractions 
+                  for visitors of all ages. From thrilling roller coasters to interactive shows and animal exhibits, 
+                  there is something for everyone to enjoy at Bellewaerde. 
+
+                  Whether you're looking for a day of adrenaline-fueled fun or a relaxing stroll through beautifully 
+                  landscaped gardens, this theme park has it all. So come and experience the magic of <strong>Bellawaerde</strong>for yourself!
                 </p>
                 <a
                   href="https://www.walibi.nl/"
@@ -327,12 +359,19 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Erlebnispark Tripsdrill</h5>
                 <p class="card-text">
-                  Known as "the number one rollercoaster park" in the
-                  Netherlands, this park is home to several major thrill rides
-                  that attract coaster enthusiasts from all over Europe.
+                 <strong>Erlebnispark Tripsdrill</strong> is a unique destination that offers 
+                 visitors the best of both worlds. The theme park boasts thrilling 
+                 rides and attractions that are sure to get your adrenaline pumping. 
+                 From roller coasters to water slides, there is something for 
+                 everyone to enjoy. In addition to the excitement of the theme park, 
+                 <strong>Erlebnispark Tripsdrill</strong> is also home to a beautiful wildlife nature 
+                 reserve. Here, visitors can explore the natural beauty of the area and 
+                 observe a variety of animals in their natural habitats. 
+                 Whether you're looking for thrills or relaxation, <strong>Erlebnispark Tripsdrill </strong>
+                 has something for everyone to enjoy.
                 </p>
                 <a
-                  href="https://www.walibi.nl/"
+                  href="https://tripsdrill.de/en"
                   class="btn btn-primary mt-auto"
                   target="_blank"
                   >Visit Official Website</a
@@ -341,9 +380,11 @@
             </div>
           </div>
         </div>
+       
       </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
