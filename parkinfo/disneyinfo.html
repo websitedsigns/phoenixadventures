@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phoenix Adventures | Disneyland Paris</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      /* Announcement bar */
+      .announcement {
+        background-color: #ff4500;
+        color: white;
+        padding: 0.5rem 0;
+        font-weight: bold;
+      }
+
+      /* Hero section */
+      .hero {
+        position: relative;
+        height: 70vh;
+        background: url("/img/parks/disney.png") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+      .hero .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
+      .hero .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Phoenix button */
+      .btn-phoenix {
+        background-color: #ff4500;
+        color: white;
+        font-weight: bold;
+      }
+      .btn-phoenix:hover {
+        background-color: #e63900;
+        color: white;
+      }
+
+      /* Accordion thumbnails */
+      .accordion-thumb {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 6px;
+        transition: transform 0.3s;
+        margin-right: 0.75rem;
+      }
+      .accordion-button:not(.collapsed) .accordion-thumb {
+        transform: scale(1.2);
+      }
+
+      .accordion-large-img {
+        width: 200px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        transition: all 0.3s;
+      }
+
+      /* Tour Boxes */
+      .tour-box {
+        position: relative;
+        border-radius: 12px;
+        background-size: cover;
+        background-position: center;
+        padding: 1.5rem;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .tour-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        z-index: 0;
+      }
+      .tour-box h5,
+      .tour-box p,
+      .tour-box a {
+        position: relative;
+        z-index: 1;
+      }
+
+        .map-section {
+      text-align: center;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    .map-section h3 {
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .map-card {
+      display: inline-block;
+      width: 200px;
+      margin: 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .map-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Announcement Bar -->
+    <div class="text-center announcement">
+      Book today from just £1 deposit — Flexible payment plans available
+    </div>
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="overlay"></div>
+      <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Disneyland Paris</h1>
+        <p>
+          A magical theme park that will transport you to a world of enchantment
+          and wonder. From iconic Disney characters to dazzling attractions,
+          create memories that last a lifetime.
+        </p>
+        <a href="#toursAccordion" class="btn btn-lg btn-phoenix"
+          >Park Information</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+      <!-- Introduction Section -->
+      <section class="mb-5">
+        <h2 class="fw-bold">Disneyland Paris - Sleeping Beauty Castle</h2>
+        <p>
+          Experience the wonder of Disneyland Paris, from iconic castles to
+          thrilling rides and beloved characters.
+        </p>
+      </section>
+      <!-- Travel Comfort -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Comfortable Travel</h3>
+        <p>
+          Experience the ultimate convenience and comfort of traveling on an
+          executive coach to your favourite theme parks. Sit back, relax, and
+          enjoy the scenic views as you make your way to an unforgettable
+          adventure. With plush seats, onboard entertainment, and rest stops
+          along the way, your journey will be just as enjoyable as the
+          destination. Say goodbye to the hassle of driving and parking or
+          public transport, and hello to a stress-free and exciting trip to the
+          theme parks of your dreams!
+        </p>
+      </section>
+
+      <!-- Conveneint boarding points -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Convenient Boarding Points</h3>
+        <p>
+          All our tours will have easy to reach boarding points. Boarding Points
+          available will be listed on each tour page. For you convenience we
+          have compiled a list of all boarding points we use with pinpoint
+          locations to help you find where you will be picked up.
+        </p>
+      </section>
+
+      <!-- Annual Pass Holder? -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Annual Pass Holder?</h3>
+        <p>
+          Disneyland Paris annual pass holders only need to book travel in order
+          to enjoy the magical experiences offered at the park. With their
+          annual pass, holders can embark on countless adventures and create
+          unforgettable memories. Whether it's exploring the iconic Sleeping
+          Beauty Castle, meeting beloved Disney characters, or experiencing
+          thrilling rides, the possibilities are endless. By booking travel to
+          Disneyland Paris with us, they can make the most of their annual
+          passes.
+        </p>
+      </section>
+
+      <!-- Amazing Price -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Amazing Price</h3>
+        <p>
+          Looking for a convenient way to travel to Disneyland Paris? Look no
+          further! With our Coach Travel service, you can travel in style direct
+          to Park from pick up. With our tours you really get "more bang for
+          your buck"!
+        </p>
+      </section>
+
+      <!-- Low Deposit Scheme-->
+      <section class="mb-5">
+        <h3 class="fw-bold">Low Deposit Scheme</h3>
+        <p>
+          With our Low Deposit Scheme, you can now secure your booking with just
+          *£1! This means that you only need to pay a small fraction of the
+          total cost upfront, making it easier and more affordable to plan your
+          trip. Whether you're traveling with a group or going solo, this low
+          deposit option allows you to reserve your seat without breaking the
+          bank. So, why wait? Take advantage of this fantastic offer and book
+          your coach travel today with just *£1!
+        </p>
+      </section>
+
+      <!-- £1-->
+      <section class="mb-5">
+        <h3 class="fw-bold">£1 Low deposit and full deposit</h3>
+        <p>
+          £1 Deposit is required at time of booking. Full Deposit of 10% of
+          booking total is required to confirm your booking and can be included
+          in your monthly payments. In the event of cancellation, the difference
+          between the low deposit and the full deposit applicable to your
+          holiday will be payable (if not already paid) and belongs to us the
+          moment your booking is confirmed.
+        </p>
+      </section>
+
+      <!-- LD Scheme-->
+      <section class="mb-5">
+        <h3 class="fw-bold">Low Deposit Scheme</h3>
+        <p>
+          With our Low Deposit Scheme, you can now secure your booking with just
+          *£1! This means that you only need to pay a small fraction of the
+          total cost upfront, making it easier and more affordable to plan your
+          trip. Whether you're traveling with a group or going solo, this low
+          deposit option allows you to reserve your seat without breaking the
+          bank. So, why wait? Take advantage of this fantastic offer and book
+          your coach travel today with just *£1!
+        </p>
+      </section>
+
+      <!-- Available Tours Accordion -->
+      <section class="mb-5">
+        <h3 class="fw-bold mb-3">Available Tours</h3>
+        <div class="accordion" id="toursAccordion">
+          <!-- Disneyland Paris Dash Trips -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDash">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseDash"
+                aria-expanded="false"
+                aria-controls="collapseDash"
+              >
+                <img
+                  src="/img/disney/discastle.jpg"
+                  class="accordion-thumb"
+                  alt="Dash Trip Thumbnail"
+                />
+                Disneyland Paris Dash Trips
+              </button>
+            </h2>
+            <div
+              id="collapseDash"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingDash"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/disney/discastle.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Dash Trip Large"
+                />
+                <div>
+                  <p>
+                    Disneyland Paris is a theme park like no other, where dreams
+                    come true and childhood memories are made. Experience the
+                    wonder of walking down Main Street, U.S.A., with its
+                    charming shops and delightful eateries. Explore the five
+                    enchanting lands, from the fairytale castles of Fantasyland
+                    to the thrilling adventures of Frontierland. Meet your
+                    favorite Disney characters up close and personal, from
+                    Mickey Mouse to Cinderella. Whether you're young or young at
+                    heart, Disneyland Paris has something for everyone. Create
+                    memories that will last a lifetime as you immerse yourself
+                    in the enchanting world of Disney.
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Halloween Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingHalloween">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseHalloween"
+                aria-expanded="false"
+                aria-controls="collapseHalloween"
+              >
+                <img
+                  src="/img/disney/dishallloween.jpg"
+                  class="accordion-thumb"
+                  alt="Halloween Thumbnail"
+                />
+                Disneyland Paris Halloween Season
+              </button>
+            </h2>
+            <div
+              id="collapseHalloween"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingHalloween"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/disney/dishallloween.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Halloween Large"
+                />
+                <div>
+                  <p>
+                    Halloween season at Disneyland Paris is a magical time of
+                    the year when the park transforms into a spooky wonderland.
+                    From the moment you step foot inside, you are greeted with a
+                    festive atmosphere filled with pumpkins, ghosts, and eerie
+                    decorations. During this enchanting season, visitors can
+                    experience thrilling attractions with a Halloween twist.
+                    From haunted mansions to ghostly parades, there is something
+                    for everyone to enjoy. The park also hosts special shows and
+                    performances featuring beloved Disney characters dressed in
+                    their spookiest costumes
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Christmas Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+                  src="/img/disney/disxmas.jpg"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Disneyland Paris Christmas Season
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/disney/disxmas.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                    Christmas season at Disneyland Paris is a magical time of
+                    the year. The park is transformed into a winter wonderland,
+                    with dazzling lights, festive decorations, and a joyful
+                    atmosphere. Visitors can experience the enchantment of
+                    Disney characters dressed in their holiday best, spreading
+                    cheer and warmth to everyone they meet. From the moment you
+                    step foot in Disneyland Paris during the Christmas season,
+                    you are transported into a world of holiday magic. The
+                    iconic Sleeping Beauty Castle is adorned with twinkling
+                    lights, and Main Street is lined with beautifully decorated
+                    Christmas trees. The air is filled with the sweet scent of
+                    gingerbread and hot chocolate, creating a truly immersive
+                    experience.
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Years Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+                  src="/img/disney/disfireworks.jpg"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Disneyland Paris New Years Eve
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/disney/disfireworks.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                    New Year's Eve at Disneyland Paris is a magical experience
+                    like no other. As the clock strikes midnight, the park
+                    transforms into a dazzling wonderland of lights, music, and
+                    fireworks. Families and friends gather together to celebrate
+                    the arrival of the new year in the most enchanting way
+                    possible. The atmosphere is electric, with excitement
+                    filling the air as guests explore the park's various
+                    attractions and themed lands. From thrilling rides to
+                    enchanting shows, there is something for everyone to enjoy.
+                    The iconic Sleeping Beauty Castle becomes the centerpiece of
+                    the celebration, adorned with shimmering lights and
+                    decorations.
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Holidays-->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+                  src="/img/disney/disholis.png"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Disneyland Paris Holidays
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/disney/disholis.png"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                    Disneyland Paris is the ultimate holiday destination for
+                    families and Disney fans alike. This magical theme park
+                    brings the enchantment of Disney to life, creating
+                    unforgettable memories for visitors of all ages. From the
+                    moment you step foot into Disneyland Paris, you are
+                    transported into a world of fantasy and wonder. The iconic
+                    Sleeping Beauty Castle stands tall, welcoming you to a place
+                    where dreams come true.
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+ <!-- Downloadable Maps Section -->
+    <section class="map-section">
+      <h3>Downloadable Maps</h3>
+
+      <!-- Map 1 -->
+      <div class="map-card" data-bs-toggle="modal" data-bs-target="#mapModal1">
+        <img src="/img/disney/DLP-Map.pdf" alt="Disneyland Map 1">
+        <div>Download DLP Map</div>
+      </div>
+
+      <!-- Map 2 -->
+      <div class="map-card" data-bs-toggle="modal" data-bs-target="#mapModal2">
+        <img src="/img/disney/Walt-Disney-Studios-Map.pdf" alt="Disneyland Map 2">
+        <div>Download Disney Studios Map</div>
+      </div>
+
+      <!-- Map Modal 1 -->
+      <div class="modal fade" id="mapModal1" tabindex="-1" aria-labelledby="mapModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModal1Label">Disneyland Paris Map 1</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="/img/disney/DLP-Map.pdf" class="img-fluid rounded mb-3" alt="Map 1 Large">
+              <a href="/downloads/dlpmainmap.pdf" class="btn btn-phoenix" download>Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Modal 2 -->
+      <div class="modal fade" id="mapModal2" tabindex="-1" aria-labelledby="mapModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModal2Label">Disneyland Paris Map 2</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="/img/disney/Walt-Disney-Studios-Map.pdf" class="img-fluid rounded mb-3" alt="Map 2 Large">
+              <a href="/downloads/studiosmap.pdf" class="btn btn-phoenix" download>Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

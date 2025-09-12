@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phoenix Adventures | Efteling</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      /* Announcement bar */
+      .announcement {
+        background-color: #ff4500;
+        color: white;
+        padding: 0.5rem 0;
+        font-weight: bold;
+      }
+
+      /* Hero section */
+      .hero {
+        position: relative;
+        height: 70vh;
+        background: url("/img/parkentry/efteling.jpg") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+      .hero .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
+      .hero .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Phoenix button */
+      .btn-phoenix {
+        background-color: #ff4500;
+        color: white;
+        font-weight: bold;
+      }
+      .btn-phoenix:hover {
+        background-color: #e63900;
+        color: white;
+      }
+
+      /* Accordion thumbnails */
+      .accordion-thumb {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 6px;
+        transition: transform 0.3s;
+        margin-right: 0.75rem;
+      }
+      .accordion-button:not(.collapsed) .accordion-thumb {
+        transform: scale(1.2);
+      }
+
+      .accordion-large-img {
+        width: 200px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        transition: all 0.3s;
+      }
+
+      /* Tour Boxes */
+      .tour-box {
+        position: relative;
+        border-radius: 12px;
+        background-size: cover;
+        background-position: center;
+        padding: 1.5rem;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .tour-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        z-index: 0;
+      }
+      .tour-box h5,
+      .tour-box p,
+      .tour-box a {
+        position: relative;
+        z-index: 1;
+      }
+
+        .map-section {
+      text-align: center;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    .map-section h3 {
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .map-card {
+      display: inline-block;
+      width: 200px;
+      margin: 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .map-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Announcement Bar -->
+    <div class="text-center announcement">
+      Book today from just £1 deposit — Flexible payment plans available
+    </div>
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="overlay"></div>
+      <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Efteling</h1>
+        <p>
+          Efteling is a magical fairytale theme park located in the Netherlands. It is a place where dreams come true and enchantment fills the air. As you enter the park, you are transported into a world of fantasy and wonder.
+
+Based on the classic tales of Hans Christian Anderson, The Brothers Grimm & Charles Perrault you are sure to recognise the influences of this amazing park
+        </p>
+        <a href="#toursAccordion" class="btn btn-lg btn-phoenix"
+          >Park Information</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+     
+      <!-- Travel Comfort -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Comfortable Travel</h3>
+        <p>
+          
+Efteling
+Comfortable Travel
+Experience the ultimate convenience and comfort of traveling overnight on an executive coach to your favourite theme parks. Sit back, relax, and enjoy the scenic views as you make your way to an unforgettable adventure. With plush seats, onboard entertainment, and rest stops along the way, your journey will be just as enjoyable as the destination. Say goodbye to the hassle of driving and parking, and hello to a stress-free and exciting trip to the theme parks of your dreams!
+        </p>
+      </section>
+
+      <!-- Conveneint boarding points -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Convenient Boarding Points</h3>
+        <p>
+          All our tours will have easy to reach boarding points. Boarding Points
+          available will be listed on each tour page. For you convenience we
+          have compiled a list of all boarding points we use with pinpoint
+          locations to help you find where you will be picked up.
+        </p>
+      </section>
+
+      <!-- Annual Pass Holder? -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Annual Pass Holder?</h3>
+        <p>
+          Efteling annual pass holders only need to book travel in order to enjoy the magical experiences offered at the park. 
+ 
+The Efteling Annual Pass is your key to endless adventures and magical moments at the enchanting world of Efteling. With this pass, you gain unlimited access to the park throughout the year, allowing you to explore its captivating attractions, thrilling rides, and captivating shows whenever you desire.
+        </p>
+      </section>
+
+      <!-- Amazing Price -->
+      <section class="mb-5">
+        <h3 class="fw-bold">Amazing Price</h3>
+        <p>
+          Looking for a convenient way to travel to Disneyland Paris? Look no
+          further! With our Coach Travel service, you can travel in style direct
+          to Park from pick up. With our tours you really get "more bang for
+          your buck"!
+        </p>
+      </section>
+
+      <!-- Low Deposit Scheme-->
+      <section class="mb-5">
+        <h3 class="fw-bold">Low Deposit Scheme</h3>
+        <p>
+          With our Low Deposit Scheme, you can now secure your booking with just
+          *£1! This means that you only need to pay a small fraction of the
+          total cost upfront, making it easier and more affordable to plan your
+          trip. Whether you're traveling with a group or going solo, this low
+          deposit option allows you to reserve your seat without breaking the
+          bank. So, why wait? Take advantage of this fantastic offer and book
+          your coach travel today with just *£1!
+        </p>
+      </section>
+
+      <!-- £1-->
+      <section class="mb-5">
+        <h3 class="fw-bold">£1 Low deposit and full deposit</h3>
+        <p>
+          £1 Deposit is required at time of booking. Full Deposit of 10% of
+          booking total is required to confirm your booking and can be included
+          in your monthly payments. In the event of cancellation, the difference
+          between the low deposit and the full deposit applicable to your
+          holiday will be payable (if not already paid) and belongs to us the
+          moment your booking is confirmed.
+        </p>
+      </section>
+
+      <!-- LD Scheme-->
+      <section class="mb-5">
+        <h3 class="fw-bold">Low Deposit Scheme</h3>
+        <p>
+          With our Low Deposit Scheme, you can now secure your booking with just
+          *£1! This means that you only need to pay a small fraction of the
+          total cost upfront, making it easier and more affordable to plan your
+          trip. Whether you're traveling with a group or going solo, this low
+          deposit option allows you to reserve your seat without breaking the
+          bank. So, why wait? Take advantage of this fantastic offer and book
+          your coach travel today with just *£1!
+        </p>
+      </section>
+
+      <!-- Available Tours Accordion -->
+      <section class="mb-5">
+        <h3 class="fw-bold mb-3">Available Tours</h3>
+        <div class="accordion" id="toursAccordion">
+          <!-- Disneyland Paris Dash Trips -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDash">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseDash"
+                aria-expanded="false"
+                aria-controls="collapseDash"
+              >
+                <img
+                  src="/img/parkentry/efteling.jpg"
+                  class="accordion-thumb"
+                  alt="Dash Trip Thumbnail"
+                />
+                Efteling Dashes
+              </button>
+            </h2>
+            <div
+              id="collapseDash"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingDash"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img//parkentry/efteling.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Dash Trip Large"
+                />
+                <div>
+                  <p>
+                   Efteling is a magical theme park located in the Netherlands. With its enchanting fairy tale atmosphere and thrilling rides, it is a must-visit destination for both children and adults. The park is known for its iconic attractions such as the Efteling Symbolica, which serves as the park's centerpiece, and the Flying Dutchman, a thrilling roller coaster that takes you on a wild journey through the high seas.
+
+
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Halloween Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingHalloween">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseHalloween"
+                aria-expanded="false"
+                aria-controls="collapseHalloween"
+              >
+                <img
+                  src="/img/parks/themedparks/eftelingwinter.png"
+                  class="accordion-thumb"
+                  alt="Halloween Thumbnail"
+                />
+                Winter Efteling
+              </button>
+            </h2>
+            <div
+              id="collapseHalloween"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingHalloween"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/parks/themedparks/eftelingwinter.png"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Halloween Large"
+                />
+                <div>
+                  <p>
+                    Winter Efteling is a magical experience that transports visitors into a winter wonderland. As the temperature drops, Efteling transforms into a fairytale-like park filled with sparkling lights, ice-skating rinks, and enchanting decorations. The park's iconic attractions, such as the Flying Dutchman and the Fairytale Forest, take on a whole new charm in the winter months.
+
+Winter Efteling (Nov to Feb)
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Christmas Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+v                  src="/img/NBG/eftfireworks.jpg"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Efteling New Years 
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/NBG/eftfireworks.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                 New Year's Eve at Efteling is a magical experience like no other. As the clock strikes midnight, the enchanting theme park transforms into a dazzling wonderland filled with lights, music, and joy. Families and friends come together to celebrate the beginning of a new year in this enchanting setting.
+
+
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Years Season -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+                  src="/img/parkentry/efteling.jpg"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Efteling Holidays - Travel Only
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/parkentry/efteling.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                    Are you ready to enjoy an amazing holiday at Efteling? This magical theme park in the Netherlands is a must-visit destination for families and thrill-seekers alike. With its enchanting fairy tale forest, thrilling rides, and charming attractions, Efteling offers something for everyone to enjoy. From the moment you step foot in the park, you'll be transported to a world of wonder and excitement. So pack your bags, gather your loved ones, and get ready for an unforgettable adventure at Efteling
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Holidays-->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingChristmas">
+              <button
+                class="accordion-button collapsed d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseChristmas"
+                aria-expanded="false"
+                aria-controls="collapseChristmas"
+              >
+                <img
+                  src="/img/parkentry/efteling.jpg"
+                  class="accordion-thumb"
+                  alt="Christmas Thumbnail"
+                />
+                Efteling Holiday - Eurocamp & Tickets
+              </button>
+            </h2>
+            <div
+              id="collapseChristmas"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingChristmas"
+              data-bs-parent="#toursAccordion"
+            >
+              <div
+                class="accordion-body d-flex flex-column flex-md-row align-items-start"
+              >
+                <img
+                  src="/img/parkentry/efteling.jpg"
+                  class="accordion-large-img me-md-4 mb-3 mb-md-0"
+                  alt="Christmas Large"
+                />
+                <div>
+                  <p>
+                    Are you ready to enjoy an amazing holiday at Efteling? This magical theme park in the Netherlands is a must-visit destination for families and thrill-seekers alike. With its enchanting fairy tale forest, thrilling rides, and charming attractions, Efteling offers something for everyone to enjoy. From the moment you step foot in the park, you'll be transported to a world of wonder and excitement. So pack your bags, gather your loved ones, and get ready for an unforgettable adventure at Efteling.
+                  </p>
+                  <a href="#" class="btn btn-phoenix">More Info & To Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+      </section>
+
+
+ <!-- Downloadable Maps Section -->
+    <section class="map-section">
+      <h3>Downloadable Maps</h3>
+
+      <!-- Map 1 -->
+      <div class="map-card" data-bs-toggle="modal" data-bs-target="#mapModal1">
+        <img src="/img/NBG/efteling-park-map.pdf" alt="Disneyland Map 1">
+        <div>Download Park Map</div>
+      </div>
+
+
+      <!-- Map Modal 1 -->
+      <div class="modal fade" id="mapModal1" tabindex="-1" aria-labelledby="mapModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModal1Label">Efteling Map</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="/img/NBG/efteling-park-map.pdf" class="img-fluid rounded mb-3" alt="Map 1 Large">
+              <a href="/downloads/eftelingmap.pdf" class="btn btn-phoenix" download>Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+
+    </section>
+
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
