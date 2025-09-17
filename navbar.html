@@ -1,86 +1,76 @@
-<nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/index.html">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/index.html">
       <img
         src="/img/logo/logo.png"
         alt="Phoenix Adventures"
-        height="75"
-        class="me-0"
+        height="60"
+        class="me-2"
       />
+      <span class="d-none d-md-inline">Phoenix Adventures</span>
     </a>
+
+    <!-- Toggler -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse text-center" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+        
+        <!-- Trips Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle fw-semibold"
             href="#"
             id="tripsDropdown"
             role="button"
             data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
             Trips
           </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="/tours.html">2025 Tour List</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/themeparks.html"
-                >European Theme Parks</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="halloween.html"
-                >Europe Halloween Trips</a
-              >
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="./eventpage/twistedtracks.html"
-                >Multipark Trips</a
-              >
-            </li>
+          <ul class="dropdown-menu shadow-sm rounded-3 border-0 dropdown-menu-end">
+            <li><a class="dropdown-item" href="/tours.html">2025 Tour List</a></li>
+            <li><a class="dropdown-item" href="/themeparks.html">European Theme Parks</a></li>
+            <li><a class="dropdown-item" href="halloween.html">Europe Halloween Trips</a></li>
+            <li><a class="dropdown-item" href="./eventpage/twistedtracks.html">Multipark Trips</a></li>
           </ul>
         </li>
 
+        <!-- Info Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle fw-semibold"
             href="#"
             id="infoDropdown"
             role="button"
             data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
             Info
           </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="themepark-info.html"
-                >Theme Park Info</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="themeparkinsanity.html"
-                >Theme Park Insanity</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="about.html">Find Out More</a>
-            </li>
+          <ul class="dropdown-menu shadow-sm rounded-3 border-0 dropdown-menu-end">
+            <li><a class="dropdown-item" href="themepark-info.html">Theme Park Info</a></li>
+            <li><a class="dropdown-item" href="themeparkinsanity.html">Theme Park Insanity</a></li>
+            <li><a class="dropdown-item" href="about.html">Find Out More</a></li>
           </ul>
         </li>
 
+        <!-- Contact -->
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact Us</a>
+          <a class="nav-link fw-semibold" href="contact.html">Contact Us</a>
         </li>
       </ul>
     </div>
