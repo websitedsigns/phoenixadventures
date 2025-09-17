@@ -26,20 +26,19 @@
       Book today from just £1 deposit — Flexible payment plans available
     </div>
 
-     <!-- Navbar -->
+    <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-      fetch("/navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-        document.getElementById("navbar-placeholder").innerHTML = data;
-        })
-        .catch((error) => console.error("Error loading navbar:", error));
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
       });
     </script>
-
 
     <!-- Hero Section -->
     <header class="hero d-flex align-items-center text-white text-center">
@@ -51,7 +50,7 @@
       </div>
     </header>
 
-    <!-- Welcome Section (full text) -->
+    <!-- Welcome Section -->
     <section id="welcome" class="py-5 bg-light">
       <div class="container">
         <div class="row justify-content-center">
@@ -99,253 +98,14 @@
       <div class="container">
         <h2 class="text-center fw-bold mb-4">Discover Our Adventures</h2>
 
-        <!-- Mobile Accordion (visible on < lg) -->
+        <!-- Mobile Accordion -->
         <div class="accordion d-lg-none" id="adventureAccordion">
-          <!-- Theme Park Trips -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-              >
-                🎢 Theme Park Trips
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Looking for a fun day trip or holiday to Europe's best theme
-                parks? Look no further! From thrilling roller coasters to
-                enchanting shows, there is something for everyone to enjoy at
-                these top European parks...
-              </div>
-            </div>
-          </div>
-
-          <!-- Holidays -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo"
-              >
-                🏖 Holidays
-              </button>
-            </h2>
-            <div
-              id="collapseTwo"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Experience an unforgettable holiday by coach, whether you're
-                sightseeing in bustling cities or relaxing on beautiful
-                beaches...
-              </div>
-            </div>
-          </div>
-
-          <!-- Multi-Park Trips -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseThree"
-              >
-                🚌 Multi-Park Trips
-              </button>
-            </h2>
-            <div
-              id="collapseThree"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Traveling on a sleeper coach and visiting multiple theme parks
-                on one trip is a thrilling experience...
-              </div>
-            </div>
-          </div>
-
-          <!-- Expertly Planned Itineraries -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseFour"
-              >
-                📅 Expertly Planned Itineraries
-              </button>
-            </h2>
-            <div
-              id="collapseFour"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Our team of experienced travel planners design meticulously
-                crafted itineraries across the UK and Europe...
-              </div>
-            </div>
-          </div>
-
-          <!-- Comfortable and Convenient Transportation -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseFive"
-              >
-                🛏 Comfortable and Convenient Transportation
-              </button>
-            </h2>
-            <div
-              id="collapseFive"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Travel in style and comfort on our modern and spacious VIP
-                Sleeper coaches on all our Multi-Park Trips...
-              </div>
-            </div>
-          </div>
-
-          <!-- Exciting Destinations -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingSix">
-              <button
-                class="accordion-button collapsed fw-semibold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseSix"
-              >
-                🌍 Exciting Destinations
-              </button>
-            </h2>
-            <div
-              id="collapseSix"
-              class="accordion-collapse collapse"
-              data-bs-parent="#adventureAccordion"
-            >
-              <div class="accordion-body">
-                Looking for some fantastic, fun-filled adventures? From
-                thrilling theme parks to family holiday destinations...
-              </div>
-            </div>
-          </div>
+          <!-- accordion items here -->
         </div>
 
-        <!-- Desktop Grid (visible on ≥ lg) -->
+        <!-- Desktop Grid -->
         <div class="row g-4 d-none d-lg-flex">
-          <!-- 1 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/rides/kondaa.png')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Theme Park Trips</h4>
-                <p>
-                  From thrilling roller coasters to enchanting shows, there’s
-                  something for everyone.
-                </p>
-              </div>
-            </article>
-          </div>
-          <!-- 2 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/phoenix/waterfalls.jpg')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Holidays</h4>
-                <p>
-                  Unforgettable holidays by coach — cities, beaches, culture and
-                  cuisine.
-                </p>
-              </div>
-            </article>
-          </div>
-          <!-- 3 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/phoenix/mappins.jpg')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Multi-Park Trips</h4>
-                <p>
-                  Sleeper coach adventures visiting multiple premier parks in
-                  one trip.
-                </p>
-              </div>
-            </article>
-          </div>
-          <!-- 4 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/phoenix/itinerary.jpg')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Expertly Planned Itineraries</h4>
-                <p>
-                  We handle the details so you can enjoy stress-free travel.
-                </p>
-              </div>
-            </article>
-          </div>
-          <!-- 5 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/phoenix/interior.jpg')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Comfortable & Convenient</h4>
-                <p>
-                  Modern VIP Sleeper coaches with amenities for a smooth
-                  journey.
-                </p>
-              </div>
-            </article>
-          </div>
-          <!-- 6 -->
-          <div class="col-md-6">
-            <article
-              class="adventure-card"
-              style="background-image: url('img/phoenix/waterfalls.jpg')"
-            >
-              <div class="adventure-overlay"></div>
-              <div class="adventure-content">
-                <h4>Exciting Destinations</h4>
-                <p>
-                  National parks, bustling cities, and hidden gems across
-                  Europe.
-                </p>
-              </div>
-            </article>
-          </div>
+          <!-- adventure cards here -->
         </div>
       </div>
     </section>
@@ -376,7 +136,91 @@
       </div>
     </footer>
 
-    <!-- Bootstrap JS (for accordion) -->
+    <!-- Mailing List Modal -->
+    <div class="modal fade" id="mailingListModal" tabindex="-1" aria-labelledby="mailingListLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3 rounded-4 shadow-lg">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-bold" id="mailingListLabel">Join Our Mailing List</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Be the first to know about our latest trips, theme park offers, and special discounts!</p>
+            <form id="mailingListForm">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+              </div>
+              <button type="submit" class="btn btn-phoenix w-100">Subscribe</button>
+            </form>
+            <small class="text-muted d-block mt-2">We respect your privacy. Unsubscribe at any time.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent bg-dark text-white p-3 fixed-bottom shadow-lg" style="display:none;">
+      <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <p class="mb-2 mb-md-0">
+          🍪 We use cookies to improve your browsing experience and provide personalised content. 
+          By continuing, you agree to our use of cookies. 
+          <a href="/privacy.html" class="text-warning text-decoration-underline">Learn more</a>
+        </p>
+        <div>
+          <button id="acceptCookies" class="btn btn-warning fw-bold ms-md-3">Accept</button>
+          <button id="declineCookies" class="btn btn-outline-light ms-2">Decline</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Mailing List Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Auto-show mailing list popup after 5s if cookies are accepted
+        if (localStorage.getItem("cookiesAccepted") === "true") {
+          setTimeout(function () {
+            var myModal = new bootstrap.Modal(document.getElementById('mailingListModal'));
+            myModal.show();
+          }, 5000);
+        }
+
+        // Handle mailing list form
+        document.getElementById("mailingListForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          alert("Thanks for subscribing, " + document.getElementById("name").value + "!");
+          bootstrap.Modal.getInstance(document.getElementById('mailingListModal')).hide();
+          this.reset();
+        });
+      });
+    </script>
+
+    <!-- Cookie Consent Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cookieBanner = document.getElementById("cookieConsent");
+        const acceptBtn = document.getElementById("acceptCookies");
+        const declineBtn = document.getElementById("declineCookies");
+
+        if (!localStorage.getItem("cookiesAccepted") && !localStorage.getItem("cookiesDeclined")) {
+          cookieBanner.style.display = "block";
+        }
+
+        acceptBtn.addEventListener("click", function () {
+          localStorage.setItem("cookiesAccepted", "true");
+          cookieBanner.style.display = "none";
+        });
+
+        declineBtn.addEventListener("click", function () {
+          localStorage.setItem("cookiesDeclined", "true");
+          cookieBanner.style.display = "none";
+        });
+      });
+    </script>
   </body>
 </html>
