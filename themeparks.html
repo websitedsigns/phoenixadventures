@@ -34,37 +34,105 @@
       }
 
       /* Actions pinned to the bottom */
-      .card-actions {
-        margin-top: auto;
-      }
+      .card-actions { margin-top: auto; }
 
       /* Stack buttons neatly and fill width INSIDE the card (except Coming Soon) */
-      .card-actions .btn {
-        width: 100%;
+      .card-actions .btn { width: 100%; }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        height: 300px; /* desktop height */
+        color: #fff;
+        overflow: hidden;
       }
 
-      /* COMING SOON: colourful, eye-catching, not responsive (no full width) */
+      .hero .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.25) 0%,
+          rgba(0,0,0,0.35) 40%,
+          rgba(0,0,0,0.45) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Mobile: make hero fill the whole screen safely */
+      @media (max-width: 576px) { .hero { height: 95svh; } }
+      @media (max-width: 768px) and (orientation: landscape) { .hero { height: 100svh; } }
+
+      /* Smooth scroll */
+      html { scroll-behavior: smooth; }
+
+      /* Scroll-down arrow (mobile only via d-md-none on the element) */
+      .scroll-down {
+        position: absolute;
+        left: 50%;
+        bottom: 64px;              /* high enough to clear mobile browser UI */
+        transform: translateX(-50%);
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        z-index: 3;                 /* above overlay and photo */
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+
+      /* SVG arrow styling */
+      .scroll-down svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+
+      /* Pulse animation */
+      @keyframes pulse {
+        0%, 100% { transform: translateX(-50%) scale(1); }
+        50%      { transform: translateX(-50%) scale(1.08); }
+      }
+
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .scroll-down { animation: none; }
+      }
+
+      /* COMING SOON: colourful, eye-catching */
       .btn-comingsoon {
         display: inline-block;
-        width: auto;
+        width: 100%;
         padding: 0.7rem 1.15rem;
         font-weight: 700;
         letter-spacing: 0.5px;
         text-transform: uppercase;
+        text-align: center;
         border: none;
         border-radius: 999px;
         background: linear-gradient(135deg, #ff7a00, #ff1f8f);
         color: #fff;
         text-decoration: none;
-        box-shadow: 0 8px 18px rgba(255, 31, 143, 0.35);
+        box-shadow: 0 8px 18px rgba(255,31,143,0.35);
         transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.2s ease;
         cursor: default;
-        pointer-events: none; /* visually a button, but not clickable */
+        pointer-events: none; /* visually a button, not clickable */
       }
 
       .btn-comingsoon:hover {
         transform: translateY(-1px);
-        box-shadow: 0 10px 22px rgba(255, 31, 143, 0.45);
+        box-shadow: 0 10px 22px rgba(255,31,143,0.45);
         filter: brightness(1.05);
       }
     </style>
@@ -95,7 +163,8 @@
       style="background-image: url('img/rides/kondaa.png');"
     >
       <div class="overlay"></div>
-      <div class="container position-relative py-5">
+
+      <div class="container py-5">
         <h1 class="display-4 fw-bold mb-3">
           Theme Parks We Visit across Europe
         </h1>
@@ -105,11 +174,19 @@
           for everyone!
         </p>
       </div>
+
+      <!-- Scroll-down arrow (mobile only) -->
+      <a href="#parks" class="scroll-down d-md-none" aria-label="Scroll to parks">
+        <!-- Down arrow (stroke only) -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
     </header>
 
     <main>
       <!-- Theme Park Cards Section -->
-      <section class="container my-5">
+      <section id="parks" class="container my-5" tabindex="-1">
         <div class="row g-4">
           <!-- Disneyland Paris -->
           <div class="col-md-6 col-lg-4">
@@ -135,15 +212,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/disneyinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -174,15 +249,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/eftelinginfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -212,15 +285,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/europainfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -250,15 +321,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/movieparkinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -287,15 +356,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/parcasterixinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -324,15 +391,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/phantasialandinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -361,15 +426,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/plopsalandbelgiuminfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -398,15 +461,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/toverlandinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -435,15 +496,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/walibibelgiuminfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -472,15 +531,13 @@
                       class="btn btn-primary"
                       target="_blank"
                       rel="noopener"
-                      >Visit Official Website</a
-                    >
+                    >Visit Official Website</a>
                     <a
                       href="/parkinfo/walibihollandinfo.html"
                       class="btn btn-phoenix"
                       target="_blank"
                       rel="noopener"
-                      >More info</a
-                    >
+                    >More info</a>
                   </div>
                 </div>
               </div>
@@ -507,8 +564,7 @@
                     href="javascript:void(0)"
                     class="btn-comingsoon"
                     aria-disabled="true"
-                    >COMING SOON</a
-                  >
+                  >COMING SOON</a>
                 </div>
               </div>
             </div>
@@ -533,8 +589,7 @@
                     href="javascript:void(0)"
                     class="btn-comingsoon"
                     aria-disabled="true"
-                    >COMING SOON</a
-                  >
+                  >COMING SOON</a>
                 </div>
               </div>
             </div>
