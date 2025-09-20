@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Efteling Information | Phoenix Adventures</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body { font-family: "Poppins", sans-serif; background:#f9f9f9; color:#333; }
+    .page-header{
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                  url('/img/parks/efteling/eftelingmascot.jpg') center/cover no-repeat;
+      color:#fff; text-align:center; padding:5rem 1rem;
+    }
+    .page-header h1{ font-size:2.6rem; font-weight:800; margin-bottom:.5rem; }
+    .content-wrap{
+      background:#fff; border-radius:1rem; padding:2rem;
+      margin-top:-2rem; box-shadow:0 8px 24px rgba(0,0,0,.06);
+    }
+    .section-title{ font-weight:700; margin-top:2rem; margin-bottom:1rem; }
+    .lead-tight{ color:#e8eef6; max-width:820px; margin:0 auto; }
+    .feature-list{ list-style:none; padding-left:0; margin-bottom:0; }
+    .feature-list li{ margin:.35rem 0; }
+    .feature-list li::before{ content:"✔️"; margin-right:.5rem; }
+    .ride-card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:.8rem;
+      overflow:hidden; height:100%;
+      box-shadow:0 6px 16px rgba(0,0,0,.04);
+    }
+    .ride-thumb{ width:100%; height:170px; object-fit:cover; }
+    .ride-body{ padding:1rem; }
+    .tag{ display:inline-block; font-size:.8rem; padding:.2rem .55rem; border-radius:999px; background:#eef6ff; }
+    .tips-box{ background:#f1f5f9; border-radius:.8rem; padding:1rem 1.25rem; }
+    .btn-brand{ background:#2d8fdd; color:#fff; }
+    .btn-brand:hover{ background:#1b6fb8; color:#fff; }
+    .subtle{ color:#64748b; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html);
+    });
+  </script>
+
+  <!-- Hero -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Efteling (The Netherlands)</h1>
+      <p class="lead lead-tight">Fairy tales, world-class theming, and attractions for every age — a magical European classic.</p>
+    </div>
+  </header>
+
+  <main class="container content-wrap">
+    <!-- Overview -->
+    <section>
+      <h2 class="section-title">Overview</h2>
+      <p>
+        Efteling blends enchanting Fairy Tale storytelling with serious thrills. Wander the Fairytale Forest, float through dreamy dark rides, or brave headline coasters — it’s a brilliant fit for families and adrenaline seekers alike.
+      </p>
+    </section>
+
+    <!-- Quick Facts -->
+    <section>
+      <h2 class="section-title">Quick Facts</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <ul class="feature-list">
+            <li>📍 Kaatsheuvel, Netherlands</li>
+            <li>🎡 Fairy Tale Forest & immersive lands</li>
+            <li>🎢 Big coasters + iconic dark rides</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="feature-list">
+            <li>👨‍👩‍👧‍👦 Ideal for all ages</li>
+            <li>🎭 Shows, parades, and character moments</li>
+            <li>🍽️ Plenty of family dining options</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Headliners (grid) -->
+    <section>
+      <h2 class="section-title">Headliners & Must-Dos</h2>
+      <div class="row g-4">
+        <!-- Symbolica -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/symoblica.jpg" alt="Symbolica at Efteling"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Symbolica</h5>
+                <span class="tag">Dark Ride</span>
+              </div>
+              <p class="mb-2 subtle">Journey through the <em>Palace of Fantasy</em> with Pardoes — detailed sets, interactive moments, pure Efteling magic.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Baron 1898 -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/baron.jpg" alt="Baron 1898 dive coaster"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Baron 1898</h5>
+                <span class="tag">Coaster</span>
+              </div>
+              <p class="mb-2 subtle">Story-rich dive coaster with a dramatic **37.5 m** plunge into the mine — superb theming and atmosphere.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- De Vliegende Hollander -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/vlieg.jpg" alt="De Vliegende Hollander water coaster"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">De Vliegende Hollander</h5>
+                <span class="tag">Water Coaster</span>
+              </div>
+              <p class="mb-2 subtle">The legend of the Flying Dutchman brought to life — atmospheric dark-ride sections meet splashdown thrills.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Joris en de Draak -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/georgeanddragon.jpg" alt="Joris en de Draak wooden duelling coaster"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Joris en de Draak</h5>
+                <span class="tag">Wood Coaster</span>
+              </div>
+              <p class="mb-2 subtle">Duelling wooden coaster — pick a side and race through medieval dragon lore.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Python -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/python.jpg" alt="Python looping roller coaster"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Python</h5>
+                <span class="tag">Coaster</span>
+              </div>
+              <p class="mb-2 subtle">Classic looping coaster — pacey, punchy, and a park icon.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Droomvlucht -->
+        <div class="col-sm-6 col-lg-4">
+          <article class="ride-card h-100">
+            <img class="ride-thumb" src="/img/parks/efteling/droomvlucht.jpg" alt="Droomvlucht dark ride"/>
+            <div class="ride-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Droomvlucht</h5>
+                <span class="tag">Dark Ride</span>
+              </div>
+              <p class="mb-2 subtle">Float through dreamy forests and fairy realms — quintessential Efteling storytelling.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- More to Explore -->
+    <section>
+      <h2 class="section-title">More to Explore</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h6 class="mb-2">Thrill & Coasters</h6>
+          <ul class="subtle mb-0">
+            <li><strong>Vogel Rok</strong> — indoor coaster in the dark.</li>
+            <li><strong>Max &amp; Moritz</strong> — twin family coasters.</li>
+            <li><strong>Piranha</strong> — river rapids adventure.</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="mb-2">Classic Dark Rides</h6>
+          <ul class="subtle mb-0">
+            <li><strong>Fata Morgana</strong> — Arabian Nights boat ride.</li>
+            <li><strong>Carnaval Festival</strong> — colourful world tour.</li>
+            <li><strong>Sirocco</strong> — stormy spin with Sindbad.</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="mb-2">Scenic & Family</h6>
+          <ul class="subtle mb-0">
+            <li><strong>Pagode</strong> — soaring views of the park.</li>
+            <li><strong>Gondoletta</strong> — tranquil lake boats.</li>
+            <li><strong>Stoomtrein</strong> &amp; <strong>Stoomcarrousel</strong> — charming classics.</li>
+            <li><strong>Halve Maen</strong> — swinging ship.</li>
+            <li><strong>Monorail (snail)</strong> — gentle aerial tour.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fairytale Forest -->
+    <section>
+      <h2 class="section-title">Fairytale Forest</h2>
+      <p>
+        Stroll through beautifully crafted scenes from beloved stories — from Sleeping Beauty’s castle to Little Red Riding Hood’s cottage — perfect unhurried time together with photo stops galore.
+      </p>
+    </section>
+
+    <!-- Planning Tips -->
+    <section>
+      <h2 class="section-title">Planning Tips</h2>
+      <div class="tips-box">
+        <ul class="mb-0">
+          <li>Arrive early to split time between coasters and dark rides.</li>
+          <li>Use the official app for live queues and show times.</li>
+          <li>Break up the day with scenic rides (Pagode, Gondoletta).</li>
+          <li>Families: prioritise Symbolica, Droomvlucht, Fairytale Forest.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center mt-4">
+      <a href="/contact" class="btn btn-outline-secondary btn-lg">Book Efteling</a>
+    </section>
+  </main>
+
+  <footer class="mt-5 mb-3 text-center text-muted">
+    <small>Page last updated: 20 Sept 2025<br>© Phoenix Adventures LTD. All rights reserved.</small>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
