@@ -142,10 +142,16 @@
     </style>
   </head>
   <body>
-    <!-- Announcement Bar -->
-    <div class="text-center announcement">
-      Book today from just £1 deposit — Flexible payment plans available
-    </div>
+      <!-- Announcement Bar -->
+<div id="announcement-placeholder"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/announcement.html")
+      .then(r => r.text())
+      .then(html => document.getElementById("announcement-placeholder").innerHTML = html)
+      .catch(err => console.error("Error loading announcement:", err));
+  });
+</script>
 
     <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>

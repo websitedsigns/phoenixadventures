@@ -29,48 +29,24 @@
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
-      --hero-bg:url('/img/hero/home.jpg'); /* change this to your preferred image */
     }
     body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
 
-    /* Announcement */
-    .announcement{
-      background:var(--brand);
-      font-weight:600;
-      font-size:.95rem;
-      padding:.55rem 1rem;
-    }
+ 
 
-    /* Next Event Ticker */
-    .ticker{
-      background:#0b1730;
-      color:#fff;
-      line-height:1;
-    }
-    .ticker .inner{
-      display:flex; gap:.75rem; align-items:center; white-space:nowrap;
-      overflow:hidden; padding:.6rem 1rem;
-    }
+    /* Ticker */
+    .ticker{ background:#0b1730; color:#fff; line-height:1; }
+    .ticker .inner{ display:flex; gap:.75rem; align-items:center; white-space:nowrap; overflow:hidden; padding:.6rem 1rem; }
     .ticker .dot{ width:8px; height:8px; border-radius:50%; background:#39d98a; display:inline-block; }
     .ticker .label{ font-weight:700; letter-spacing:.3px; opacity:.9; }
-    .ticker .marquee{
-      overflow:hidden; position:relative; flex:1;
-    }
-    .ticker .marquee span{
-      display:inline-block; padding-left:100%;
-      animation: slide-left 14s linear infinite;
-    }
-    @keyframes slide-left{
-      0%{ transform: translateX(0); }
-      100%{ transform: translateX(-100%); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .ticker .marquee span{ animation: none; padding-left:0; }
-    }
+    .ticker .marquee{ overflow:hidden; position:relative; flex:1; }
+    .ticker .marquee span{ display:inline-block; padding-left:100%; animation: slide-left 14s linear infinite; }
+    @keyframes slide-left{ 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
+    @media (prefers-reduced-motion: reduce){ .ticker .marquee span{ animation:none; padding-left:0; } }
 
     /* Hero */
     .hero{
-      position:relative; min-height:60vh;
+      position:relative; min-height:70vh;
       background:url('img/phoenix/busindex.JPG') center/cover no-repeat;
       color:#fff; text-align:center; display:flex; align-items:center;
     }
@@ -78,34 +54,80 @@
     .hero .container{ position:relative; z-index:1; }
     .hero h1{ font-weight:800; letter-spacing:.3px; }
 
-    /* Brand button */
-    .btn-phoenix{
-      background:var(--cta); color:#fff; font-weight:700; border:none;
-      box-shadow:0 6px 16px rgba(0,0,0,.15);
-    }
+    /* Buttons */
+    .btn-phoenix{ background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }
     .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
+
+    /* Sections */
+    .section{ padding:3rem 0; }
+    .section h2{ font-weight:800; color:var(--ink); }
+
+    /* Service cards */
+    .service-card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px;
+      box-shadow:0 6px 16px rgba(0,0,0,.06); height:100%;
+      transition:.15s ease transform, .15s ease box-shadow;
+    }
+    .service-card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.14); }
+    .service-card .card-body{ padding:1.25rem 1.25rem 1.4rem; }
+
+    /* Features (Why Phoenix) */
+    .feature{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px; padding:1.25rem;
+      height:100%; box-shadow:0 6px 16px rgba(0,0,0,.06);
+    }
+    .feature h5{ font-weight:700; margin-bottom:.35rem; }
+    .feature .icon{
+      width:44px; height:44px; border-radius:10px; background:#eef6ff; display:grid; place-items:center; margin-bottom:.5rem;
+    }
+    .feature svg{ width:22px; height:22px; }
 
     /* Footer */
     .footer{ background:#0b1730; }
+    .social a{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.08);
+      margin:0 .25rem; transition:transform .15s ease, background .15s ease;
+    }
+    .social a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.18); }
+    .social svg{ width:20px; height:20px; fill:#fff; }
+
+    .feature-bg{
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  min-height: 220px;               /* adjust if needed */
+  display: flex;
+  align-items: flex-end;            /* text near bottom */
+  overflow: hidden;
+}
+.feature-bg .feature-overlay{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 75%);
+}
+.feature-bg .feature-content{
+  position: relative; z-index: 1;
+  padding: 1.25rem;
+}
+.feature-bg h5{ margin-bottom:.35rem; font-weight:700; }
+
   </style>
 </head>
 <body>
   <!-- Announcement Bar -->
-  <div class="text-center text-white announcement">
-    Book today from just £1 deposit — Flexible payment plans available
-  </div>
-
-  <!-- Next Event Ticker -->
-  <div class="ticker">
-    <div class="inner container">
-      <span class="dot" aria-hidden="true"></span>
-      <span class="label">Next Event:</span>
-      <div class="marquee">
-        <span id="tickerText">Loading next tour…</span>
-      </div>
-      <a id="tickerCta" href="/tours.html" class="btn btn-sm btn-warning fw-bold">View</a>
-    </div>
-  </div>
+<div id="announcement-placeholder"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/announcement.html")
+      .then(r => r.text())
+      .then(html => document.getElementById("announcement-placeholder").innerHTML = html)
+      .catch(err => console.error("Error loading announcement:", err));
+  });
+</script>
 
   <!-- Navbar -->
   <div id="navbar-placeholder"></div>
@@ -117,8 +139,18 @@
         .catch(err=>console.error("Error loading navbar:", err));
     });
   </script>
-
-  <!-- Hero Section -->
+<!-- Next Event Ticker -->
+  <div class="ticker">
+    <div class="inner container">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="label">Next Event:</span>
+      <div class="marquee">
+        <span id="tickerText">Loading next tour…</span>
+      </div>
+      <a id="tickerCta" href="/tours.html" class="btn btn-sm btn-warning fw-bold">View</a>
+    </div>
+  </div>
+  <!-- Hero -->
   <header class="hero d-flex align-items-center text-white text-center">
     <div class="container position-relative py-5">
       <h1 class="display-4 fw-bold mb-3">Welcome to Phoenix Adventures</h1>
@@ -127,45 +159,105 @@
     </div>
   </header>
 
-  <!-- Welcome Section -->
-  <section id="welcome" class="py-5 bg-light">
+  
+
+  <!-- Welcome + Creating Unforgettable Memories -->
+  <section id="welcome" class="section bg-light">
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mb-4">
         <div class="col-lg-8">
-          <p>
-            Looking for a fun, hassle-free break? Let us drive. Our coach trips to Europe’s best theme parks
-            mean no traffic stress, no parking faff — just sit back and enjoy the ride.
-          </p>
-          <p>
-            From big-ticket coasters to magical family attractions, our tours blend comfort, value and proper adventure.
-            <strong>Book your coach trip today and make memories that last a lifetime.</strong>
-          </p>
-          <p>
-            Not a theme park fan? No worries — we also run unique city and nature getaways across Europe.
-          </p>
-          <h4 class="mt-4 fw-bold">Creating Unforgettable Memories</h4>
-          <p>
-            With years of experience, we curate trips that balance thrills, downtime and smooth logistics —
-            so your holiday feels effortless from the first pick-up to the final drop-off.
+          <h2 class="mb-3 text-center">Creating Unforgettable Memories</h2>
+          <p class="lead text-center">
+            At Phoenix Adventures, we believe in creating unforgettable memories through our carefully curated coach tours to theme parks and other amazing destinations. With years of experience in the industry, we strive to provide exceptional service and ensure that every tour is filled with excitement, joy, and adventure.
           </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Discover Our Adventures -->
-  <section id="info" class="py-5">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-4">Discover Our Adventures</h2>
-
-      <!-- Mobile Accordion (add items as needed) -->
-      <div class="accordion d-lg-none" id="adventureAccordion">
-        <!-- accordion items here -->
+      <!-- Three service blocks (Theme Park Trips / Holidays / Multi-Park Trips) -->
+<div class="row g-4">
+  <div class="col-md-6 col-lg-4">
+    <div class="card service-card h-100 shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="fw-bold mb-2">Theme Park Trips</h5>
+        <p>
+          Looking for a fun day trip or holiday to Europe's best theme parks? From thrilling roller coasters to enchanting shows, there's something for everyone. Pack your bags, grab your tickets, and get ready for an unforgettable adventure!
+        </p>
+        <!-- button pinned to bottom -->
+        <div class="mt-auto">
+          <a href="/tours.html#toursAccordion" class="btn btn-phoenix btn-sm w-100">Browse Trips</a>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Desktop Grid (add cards as needed) -->
-      <div class="row g-4 d-none d-lg-flex">
-        <!-- adventure cards here -->
+  <div class="col-md-6 col-lg-4">
+    <div class="card service-card h-100 shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="fw-bold mb-2">Multi-Park Trips</h5>
+        <p>
+          Travel on a sleeper coach and visit multiple parks in one go. From Disney magic to the biggest coasters in Europe — a whirlwind tour packed with variety and excitement.
+        </p>
+        <!-- button pinned to bottom -->
+        <div class="mt-auto">
+          <a href="/twistedtracks.html" class="btn btn-phoenix btn-sm w-100">Twisted Tracks</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card service-card h-100 shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="fw-bold mb-2">Theme Park Info</h5>
+        <p>
+          Do you want to know more about what parks we visit?
+        </p>
+        <!-- button pinned to bottom -->
+        <div class="mt-auto">
+          <a href="/themeparks.html" class="btn btn-phoenix btn-sm w-100">Theme Parks Info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Why Phoenix: feature highlights -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-4 text-center">Why Travel with Phoenix</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+
+  <div class="feature h-100 text-white feature-bg"
+       style="background-image:url('./img/phoenix/maps.jpg');">
+    <div class="feature-overlay"></div>
+    <div class="feature-content">
+      <h5>Expertly Planned Itineraries</h5>
+      <p class="mb-0">Our experienced planners craft meticulous schedules across the UK & Europe — you focus on the fun, we handle the details.</p>
+    </div>
+  </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+        <div class="feature h-100 text-white feature-bg"
+       style="background-image:url('./img/phoenix/interior.jpg');">
+    <div class="feature-overlay"></div>
+    <div class="feature-content">
+            <h5>Comfortable & Convenient Transport</h5>
+            <p class="mb-0">Modern VIP sleeper coaches on Multi-Park Trips — bunks, lounges, and amenities for smooth overnight travel.</p>
+          </div>
+        </div>
+        </div>
+ 
+        <div class="col-md-6 col-lg-4">
+        <div class="feature h-100 text-white feature-bg"
+       style="background-image:url('./img/phoenix/mappins.jpg');">
+    <div class="feature-overlay"></div>
+    <div class="feature-content">
+            <h5>Exciting Destinations</h5>
+            <p class="mb-0">Thrilling theme parks, family favourites, and unique holidays — hand-picked for every age and interest.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -183,9 +275,24 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer with social links -->
   <footer class="text-white py-4 footer">
     <div class="container text-center">
+      <div class="mb-3 social">
+        <!-- Replace # with your actual URLs -->
+        <a href="https://www.facebook.com/" target="https://www.facebook.com/phoenixadventuresltd/" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.62.77-1.62 1.56v1.86h2.76l-.44 2.91h-2.32V22c4.78-.81 8.44-4.95 8.44-9.94Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/" target="https://www.instagram.com/phoenixadventuresltd/" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/><circle cx="12" cy="12" r="3.5"/></svg>
+        </a>
+        <a href="https://x.com/" target="https://x.com/Phoenixadve" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M14.7 10.2 21.4 2h-1.6l-5.8 6.9L9 2H2l7.1 10.3L2 22h1.6l6.2-7.4L15 22h7l-7.3-11.8Zm-2.2 2.6-.72-.99-5.7-7.9H8l4.6 6.4.72.99 6.02 8.36H16l-3.5-4.9Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/" target="https://www.youtube.com/@PhoenixAdventuresLTD" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M23 12s0-3.4-.44-5.02a3 3 0 0 0-2.12-2.12C18.81 4.4 12 4.4 12 4.4s-6.81 0-8.44.46A3 3 0 0 0 1.44 6.98C1 8.6 1 12 1 12s0 3.4.44 5.02a3 3 0 0 0 2.12 2.12C5.19 19.6 12 19.6 12 19.6s6.81 0 8.44-.46a3 3 0 0 0 2.12-2.12C23 15.4 23 12 23 12ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+        </a>
+      </div>
       <p class="mb-0">&copy; 2025 Phoenix Adventures. All rights reserved.</p>
     </div>
   </footer>
@@ -215,7 +322,7 @@
     </div>
   </div>
 
-  <!-- Cookie Consent Banner -->
+  <!-- Cookie Consent -->
   <div id="cookieConsent" class="cookie-consent bg-dark text-white p-3 fixed-bottom shadow-lg" style="display: none">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
       <p class="mb-2 mb-md-0">
@@ -232,7 +339,7 @@
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Mailing List -->
+  <!-- Mailing List JS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (localStorage.getItem("cookiesAccepted") === "true") {
@@ -255,7 +362,7 @@
     });
   </script>
 
-  <!-- Cookies -->
+  <!-- Cookies JS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const cookieBanner = document.getElementById("cookieConsent");
@@ -278,7 +385,7 @@
     });
   </script>
 
-  <!-- Next Event Ticker: reads from localStorage set by tours.html; falls back gracefully -->
+  <!-- Next Event Ticker: read from tours.html -->
   <script>
     (function(){
       try{
@@ -288,7 +395,6 @@
 
         if(raw){
           const ev = JSON.parse(raw);
-          // Format: "Sat 20 Sep — Disneyland Paris (09:30)"
           const when = new Date(ev.start);
           const opts = { weekday:"short", day:"2-digit", month:"short" };
           const dateStr = when.toLocaleDateString(undefined, opts);
