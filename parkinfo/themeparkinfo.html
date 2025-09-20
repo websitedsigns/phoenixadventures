@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Adventures | Theme Park Information</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body { font-family: "Poppins", sans-serif; }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                  url("/img/parks/parcasterix/t2z.webp") center/cover no-repeat;
+      color:#fff; text-align:center; padding:4rem 1rem;
+    }
+    .card img { height: 70px; object-fit:contain; }
+    .footer { background:#f8f9fa; text-align:center; padding:1rem 0; color:#555; font-size:.95rem; }
+    .visually-hidden-focusable:active, .visually-hidden-focusable:focus { position: static !important; width:auto; height:auto; margin:0; overflow:visible; clip:auto; }
+    .modal-header { border-bottom: 0; }
+    .modal-body p { margin-bottom: .75rem; }
+
+    /* Modern intro */
+.intro-wrap {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+.intro-kicker {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .9rem;
+  color: #6c757d;
+  margin-bottom: .5rem;
+}
+.intro-headline {
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 .75rem 0;
+}
+.intro-lead {
+  font-size: 1.05rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+.intro-list {
+  margin: 0; padding-left: 1.1rem;
+}
+.intro-list li { margin-bottom: .4rem; }
+.intro-note {
+  background: #f8fafc;
+  border: 1px dashed rgba(0,0,0,.1);
+  border-radius: .75rem;
+  padding: .85rem 1rem;
+  color: #475569;
+  font-size: .95rem;
+}
+
+/* Optional “read more” */
+details.intro-details summary {
+  cursor: pointer;
+  list-style: none;
+}
+details.intro-details summary::-webkit-details-marker { display: none; }
+details.intro-details summary span { text-decoration: underline; }
+details.intro-details[open] summary span { text-decoration: none; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Skip Links -->
+  <a href="#mainContent" class="visually-hidden-focusable">Skip to Main Content</a>
+  <a href="#footer" class="visually-hidden-focusable">Skip to Footer</a>
+  <a href="#navbar" class="visually-hidden-focusable">Skip to Navigation</a>
+
+  <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      });
+    </script>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1 class="fw-bold">Theme Park Information</h1>
+      <p class="lead mb-0">
+        Visiting a new Theme Park for the first time can sometimes feel daunting when you don’t know what it offers.
+        We’ve compiled info on rides and attractions to help you plan your adventure.
+      </p>
+    </div>
+  </header>
+
+  <!-- Intro -->
+<section class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="intro-wrap">
+        <span class="intro-kicker">Theme Park Information</span>
+        <h2 class="intro-headline">Plan your perfect first visit</h2>
+        <p class="intro-lead">
+          New park? No stress. We’ve pulled together key highlights, ride types, and tips so you can hit the ground running.
+        </p>
+
+        
+
+        <details class="intro-details mt-2">
+          <summary class="mb-2"><span>Read a little more</span></summary>
+          <p class="mb-2">
+            Europe is packed with family-friendly parks offering everything from story-driven dark rides to record-breaking coasters. Our guides highlight must-do attractions.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <main id="mainContent" class="container py-4">
+
+    <!-- European Theme Parks -->
+    <h2 class="fw-bold mb-4">European Theme Parks</h2>
+    <div class="row g-4">
+      <!-- Disneyland Paris -->
+<div class="col-md-6 col-lg-4">
+  <div class="card h-100 shadow-sm">
+    <img src="/img/parks/logos/Europe/Disneyland.png" class="card-img-top" alt="Disneyland Paris"/>
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">Disneyland Paris</h5>
+      <p class="card-text">Magic brought to life beneath the iconic Sleeping Beauty Castle.</p>
+      <a href="/parks/disneylandparis.html" class="btn btn-primary mt-auto">More Information</a>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Efteling -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/efteling.png" class="card-img-top" alt="Efteling"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Efteling</h5>
+            <p class="card-text">Fairy-tale magic, folklore, Droomvlucht, and the Fairytale Forest.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalEfteling">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plopsaland -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/plopsa.png" class="card-img-top" alt="Plopsaland"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Plopsaland</h5>
+            <p class="card-text">Studio 100 characters meet family-friendly thrills in Belgium.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalPlopsa">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Europa-Park -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/Europa Park.png" class="card-img-top" alt="Europa-Park"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Europa-Park</h5>
+            <p class="card-text">100+ attractions from Silver Star to Pirates in Batavia.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalEuropa">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parc Asterix -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/Parc Asterix.png" class="card-img-top" alt="Parc Asterix"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Parc Asterix</h5>
+            <p class="card-text">History, humour, and high-octane rides near Paris.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalAsterix">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phantasialand -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/phantasialand.jpg" class="card-img-top" alt="Phantasialand"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Phantasialand</h5>
+            <p class="card-text">Themed lands, world-class coasters, and immersive detail.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalPhantasialand">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toverland -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/Toverland.png" class="card-img-top" alt="Toverland"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Toverland</h5>
+            <p class="card-text">A Dutch favourite with coasters, shows, and indoor zones.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalToverland">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Walibi Belgium -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/Walibi Belg.jpg" class="card-img-top" alt="Walibi Belgium"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Walibi Belgium</h5>
+            <p class="card-text">Exhilarating rides and family attractions in Wavre.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalWalibiBE">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Walibi Holland -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/Europe/walibiHolland.jpg" class="card-img-top" alt="Walibi Holland"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Walibi Holland</h5>
+            <p class="card-text">Airtime machines and speed for thrill-seekers.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalWalibiNL">More Information</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UK Theme Parks -->
+    <h2 class="fw-bold mt-5 mb-4">UK Theme Parks</h2>
+    <div class="row g-4">
+      <!-- Thorpe Park -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/Thorpe Park.png" class="card-img-top" alt="Thorpe Park"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Thorpe Park</h5>
+            <p class="card-text">Surrey’s thrill capital with headline coasters.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalThorpe">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alton Towers -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/Alton Towers.png" class="card-img-top" alt="Alton Towers"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Alton Towers</h5>
+            <p class="card-text">Nemesis Reborn, scenic gardens, and family fun.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalAlton">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drayton Manor -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/drayton.png" class="card-img-top" alt="Drayton Manor"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Drayton Manor</h5>
+            <p class="card-text">From coasters to Thomas Land — a Staffordshire staple.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalDrayton">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chessington -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/cwoa.png" class="card-img-top" alt="Chessington World of Adventures"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Chessington World of Adventures</h5>
+            <p class="card-text">Rides, zoo, and wild experiences in one place.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalChessington">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flamingo Land -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/flamingoland.png" class="card-img-top" alt="Flamingo Land"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Flamingo Land</h5>
+            <p class="card-text">Theme park and zoo with a wide animal collection.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalFlamingo">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pleasure Beach Resort -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/PB.png" class="card-img-top" alt="Pleasure Beach Resort"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Pleasure Beach Resort</h5>
+            <p class="card-text">Classic woodies and modern thrills on the seafront.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalPBR">More Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legoland Windsor -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/img/parks/logos/UK/Legoland.png" class="card-img-top" alt="Legoland Windsor"/>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Legoland Windsor</h5>
+            <p class="card-text">Brick-built adventures for kids and families.</p>
+            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#modalLegoland">More Information</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      ©Copyright 2024  All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Modals (European) -->
+  <div class="modal fade" id="modalDisney" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Disneyland Paris</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Disneyland Paris is a place where magic comes to life. From the moment you step into the park you’re transported into enchantment and wonder. The iconic Sleeping Beauty Castle welcomes visitors to a place where dreams really do come true.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalEfteling" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Efteling (Netherlands)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Efteling is themed around fairy tales and folklore, with beloved attractions like <em>Droomvlucht</em> and the iconic Fairytale Forest. It’s perfect for families after a magical adventure with beautiful theming and gentle thrills.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalPlopsa" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Plopsaland (Belgium)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Plopsaland is inspired by Studio 100 characters and offers a magical family day out with a mix of gentle attractions, shows, and rides suitable for all ages.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalEuropa" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Europa-Park (Germany)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Europa-Park offers 100+ rides and shows across beautifully themed European areas. From heart-pounding coasters like Silver Star to family favourites like Pirates in Batavia, the choice is immense.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalAsterix" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Parc Asterix (France)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Parc Asterix combines history, adventure, and humour with a line-up of thrilling rides and shows for all ages, set in the world of the famous Gauls.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalPhantasialand" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Phantasialand (Germany)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Phantasialand blends immersive themed lands with top-tier coasters and dark rides, delivering an unforgettable, detail-rich experience.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalToverland" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Toverland (Netherlands)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Toverland offers an enchanting mix of indoor and outdoor themed areas, coasters, and shows — a great all-weather choice for families.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalWalibiBE" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Walibi Belgium</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Walibi Belgium features a strong coaster collection and family attractions in Wavre — expect thrills and variety for all ages.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalWalibiNL" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Walibi Holland (Netherlands)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Walibi Holland is known for speed, airtime and big-ticket thrills — one of the Netherlands’ most exhilarating parks.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Modals (UK) -->
+  <div class="modal fade" id="modalThorpe" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thorpe Park (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Thorpe Park offers a wide range of thrilling rides and attractions, from heart-pounding coasters to family experiences — something for everyone.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalAlton" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Alton Towers (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>The nation’s favourite theme park with iconic coasters (including Nemesis Reborn), beautiful gardens, and attractions for all ages.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalDrayton" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Drayton Manor (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Drayton Manor features a broad mix of rides and family attractions, including the beloved Thomas Land, making it a great all-rounder.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalChessington" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chessington World of Adventures (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Not just rides — Chessington combines theme park fun with a zoo and animal encounters for a truly varied family day out.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalFlamingo" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Flamingo Land (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Combining a theme park with a zoo, Flamingo Land features a wide variety of animals alongside coasters and family rides.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalPBR" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pleasure Beach Resort (Blackpool, UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Blackpool’s seaside icon blends classic wooden coasters with modern thrill rides and a unique coastal atmosphere.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalLegoland" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Legoland Windsor (UK)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>A park built for families with younger children — Lego-themed attractions, shows, and playful adventures near London.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

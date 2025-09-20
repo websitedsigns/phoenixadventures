@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Disneyland Paris Information | Phoenix Adventures</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body { font-family: "Poppins", sans-serif; background: #f9f9f9; color: #333; }
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                  url('/img/parks/disney.png') center/cover no-repeat;
+      color: #fff;
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+    .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: .5rem; }
+    .page-header p { font-size: 1.25rem; margin-bottom: 0; }
+    .content-wrap { background: #fff; border-radius: 1rem; padding: 2rem; margin-top: -2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+    .section-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li::before {
+      content: "✔️";
+      margin-right: .5rem;
+      color: #2d8fdd;
+    }
+    .attraction { margin-bottom: 1.25rem; }
+    .attraction h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: .35rem; }
+    .attraction p { margin: 0; }
+    .tips-box {
+      background: #f1f5f9;
+      border-radius: .75rem;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .btn-book { background: #2d8fdd; color: #fff; }
+    .btn-book:hover { background: #1b6fb8; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch("/navbar.html")
+        .then(resp => resp.text())
+        .then(html => document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(err => console.error("Error loading navbar:", err));
+    });
+  </script>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Disneyland Paris</h1>
+      <p>The ultimate blend of Disney magic, thrills & unforgettable memories.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container content-wrap">
+
+    <!-- Overview -->
+    <section>
+      <h2 class="section-title">Overview</h2>
+      <p>
+        Disneyland Paris, located just outside the French capital, is the most visited theme park in Europe. It features <strong>two unique parks</strong> — Disneyland Park and Walt Disney Studios — plus Disney Village, hotels, and year-round entertainment.
+      </p>
+      <p>
+        From fairy-tale adventures to high-octane coasters, there’s something for every type of guest.
+      </p>
+    </section>
+
+    <!-- Quick Facts -->
+    <section>
+      <h2 class="section-title">Quick Facts</h2>
+      <ul class="feature-list">
+        <li>📍 Location: Marne-la-Vallée, France (35 min from Paris by train)</li>
+        <li>🎢 Opened: 1992</li>
+        <li>🎡 2 Parks: Disneyland Park & Walt Disney Studios Park</li>
+        <li>👑 Icon: Sleeping Beauty Castle (Le Château de la Belle au Bois Dormant)</li>
+        <li>👨‍👩‍👧‍👦 Perfect for: Families, couples, thrill seekers, Disney fans</li>
+      </ul>
+    </section>
+
+    <!-- Disneyland Park -->
+    <section>
+      <h2 class="section-title">Disneyland Park Highlights</h2>
+
+      <div class="attraction">
+        <h4>Fantasyland</h4>
+        <p>Step inside classic Disney tales: “It’s a Small World”, Peter Pan’s Flight, Dumbo, and the Fairytale Castle itself.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Adventureland</h4>
+        <p>Explore exotic worlds: Pirates of the Caribbean, Indiana Jones and the Temple of Peril, and Adventure Isle.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Discoveryland</h4>
+        <p>Futuristic thrills: Hyperspace Mountain, Buzz Lightyear Laser Blast, and Star Tours.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Frontierland</h4>
+        <p>The Wild West comes alive: Big Thunder Mountain, Phantom Manor, and cowboy-themed dining.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Main Street, U.S.A.</h4>
+        <p>Shops, snacks, and the best views of parades and fireworks down the central avenue.</p>
+      </div>
+    </section>
+
+    <!-- Walt Disney Studios Park -->
+    <section>
+      <h2 class="section-title">Walt Disney Studios Park Highlights</h2>
+
+      <div class="attraction">
+        <h4>Marvel Avengers Campus</h4>
+        <p>Join Spider-Man, Iron Man, and more with rides like Spider-Man W.E.B. Adventure and Avengers Assemble: Flight Force.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Toy Story Playland</h4>
+        <p>Family-friendly fun with RC Racer, Slinky Dog Zigzag Spin, and Toy Soldiers Parachute Drop.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Ratatouille: The Adventure</h4>
+        <p>A 4D ride through Paris from Remy’s perspective — unique to Paris.</p>
+      </div>
+
+      <div class="attraction">
+        <h4>Hollywood Tower Hotel</h4>
+        <p>The Twilight Zone Tower of Terror offers free-fall thrills and spooky storytelling.</p>
+      </div>
+    </section>
+
+    <!-- Shows & Entertainment -->
+    <section>
+      <h2 class="section-title">Shows & Entertainment</h2>
+      <ul class="feature-list">
+        <li>🎆 Nighttime Fireworks & Castle Projection Show</li>
+        <li>🎭 Daily Parades featuring Disney characters</li>
+        <li>🎤 Stage shows like “Mickey and the Magician”</li>
+        <li>🎉 Seasonal events: Halloween Soirée, Disney Enchanted Christmas</li>
+      </ul>
+    </section>
+
+    <!-- Food -->
+    <section>
+      <h2 class="section-title">Food & Dining</h2>
+      <p>
+        From character dining at Plaza Gardens to quick bites at Casey’s Corner, Disneyland Paris has options for every budget.
+      </p>
+      <ul class="feature-list">
+        <li>🍔 Quick Service: Burgers, pizzas, sandwiches across both parks</li>
+        <li>🍽️ Table Service: French, Italian, Tex-Mex, and buffets</li>
+        <li>👑 Character Dining: Breakfast or dinner with Disney favourites</li>
+      </ul>
+    </section>
+
+    <!-- Planning Tips -->
+    <section>
+      <h2 class="section-title">Planning Tips</h2>
+      <div class="tips-box">
+        <ul>
+          <li>📅 Best visited over 2–3 days to cover both parks</li>
+          <li>🚆 Easy train access via RER A from Paris</li>
+          <li>🕖 Arrive early for shorter queues</li>
+          <li>📱 Use the official app for live wait times & show schedules</li>
+          <li>🏨 Staying at Disney Hotels gives Extra Magic Hours</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center mt-4">
+      <a href="/eventpage/book/bookdisneyland.html" class="btn btn-book btn-lg">Book Your Disneyland Paris Trip</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-5 mb-3 text-center text-muted">
+    <small>Page last updated: 20 Sept 2025<br>
+    © Phoenix Adventures LTD. All rights reserved.</small>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
