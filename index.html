@@ -3,6 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/logo/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/logo/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/logo/favicon-180.png" />
+    <link rel="icon" type="image/x-icon" href="/img/logo/favicon.ico" />
+    <link rel="mask-icon" href="/img/logo/favicon-safari.png" color="#2d8fdd" />
+
     <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
 
     <!-- Bootstrap CSS -->
@@ -113,7 +129,12 @@
     <!-- CPT Membership Section -->
     <section id="cpt" class="py-5 text-center bg-white">
       <div class="container">
-        <img src="img/logo/cptlogo.png" alt="CPTLogo" height="70" class="mb-3" />
+        <img
+          src="img/logo/cptlogo.png"
+          alt="CPTLogo"
+          height="70"
+          class="mb-3"
+        />
         <h4 class="fw-bold">
           Phoenix Adventures Ltd - Proud Members of The CPT
         </h4>
@@ -137,41 +158,85 @@
     </footer>
 
     <!-- Mailing List Modal -->
-    <div class="modal fade" id="mailingListModal" tabindex="-1" aria-labelledby="mailingListLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="mailingListModal"
+      tabindex="-1"
+      aria-labelledby="mailingListLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3 rounded-4 shadow-lg">
           <div class="modal-header border-0">
-            <h5 class="modal-title fw-bold" id="mailingListLabel">Join Our Mailing List</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title fw-bold" id="mailingListLabel">
+              Join Our Mailing List
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body text-center">
-            <p>Be the first to know about our latest trips, theme park offers, and special discounts!</p>
+            <p>
+              Be the first to know about our latest trips, theme park offers,
+              and special discounts!
+            </p>
             <form id="mailingListForm">
               <div class="mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  required
+                />
               </div>
               <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
               </div>
-              <button type="submit" class="btn btn-phoenix w-100">Subscribe</button>
+              <button type="submit" class="btn btn-phoenix w-100">
+                Subscribe
+              </button>
             </form>
-            <small class="text-muted d-block mt-2">We respect your privacy. Unsubscribe at any time.</small>
+            <small class="text-muted d-block mt-2"
+              >We respect your privacy. Unsubscribe at any time.</small
+            >
           </div>
         </div>
       </div>
     </div>
 
     <!-- Cookie Consent Banner -->
-    <div id="cookieConsent" class="cookie-consent bg-dark text-white p-3 fixed-bottom shadow-lg" style="display:none;">
-      <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div
+      id="cookieConsent"
+      class="cookie-consent bg-dark text-white p-3 fixed-bottom shadow-lg"
+      style="display: none"
+    >
+      <div
+        class="container d-flex flex-column flex-md-row align-items-center justify-content-between"
+      >
         <p class="mb-2 mb-md-0">
-          🍪 We use cookies to improve your browsing experience and provide personalised content. 
-          By continuing, you agree to our use of cookies. 
-          <a href="/privacy.html" class="text-warning text-decoration-underline">Learn more</a>
+          🍪 We use cookies to improve your browsing experience and provide
+          personalised content. By continuing, you agree to our use of cookies.
+          <a href="/privacy.html" class="text-warning text-decoration-underline"
+            >Learn more</a
+          >
         </p>
         <div>
-          <button id="acceptCookies" class="btn btn-warning fw-bold ms-md-3">Accept</button>
-          <button id="declineCookies" class="btn btn-outline-light ms-2">Decline</button>
+          <button id="acceptCookies" class="btn btn-warning fw-bold ms-md-3">
+            Accept
+          </button>
+          <button id="declineCookies" class="btn btn-outline-light ms-2">
+            Decline
+          </button>
         </div>
       </div>
     </div>
@@ -185,18 +250,28 @@
         // Auto-show mailing list popup after 5s if cookies are accepted
         if (localStorage.getItem("cookiesAccepted") === "true") {
           setTimeout(function () {
-            var myModal = new bootstrap.Modal(document.getElementById('mailingListModal'));
+            var myModal = new bootstrap.Modal(
+              document.getElementById("mailingListModal")
+            );
             myModal.show();
           }, 5000);
         }
 
         // Handle mailing list form
-        document.getElementById("mailingListForm").addEventListener("submit", function(e) {
-          e.preventDefault();
-          alert("Thanks for subscribing, " + document.getElementById("name").value + "!");
-          bootstrap.Modal.getInstance(document.getElementById('mailingListModal')).hide();
-          this.reset();
-        });
+        document
+          .getElementById("mailingListForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert(
+              "Thanks for subscribing, " +
+                document.getElementById("name").value +
+                "!"
+            );
+            bootstrap.Modal.getInstance(
+              document.getElementById("mailingListModal")
+            ).hide();
+            this.reset();
+          });
       });
     </script>
 
@@ -207,7 +282,10 @@
         const acceptBtn = document.getElementById("acceptCookies");
         const declineBtn = document.getElementById("declineCookies");
 
-        if (!localStorage.getItem("cookiesAccepted") && !localStorage.getItem("cookiesDeclined")) {
+        if (
+          !localStorage.getItem("cookiesAccepted") &&
+          !localStorage.getItem("cookiesDeclined")
+        ) {
           cookieBanner.style.display = "block";
         }
 
