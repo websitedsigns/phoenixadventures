@@ -1,168 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Phoenix Adventures | Contact Us</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Adventures | Contact Us</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
 
-    <style>
-      body {
-        font-family: 'Poppins', Arial, sans-serif;
-      }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
-      .btn-phoenix {
-        background-color: #ff4500;
-        color: white;
-        font-weight: bold;
-      }
-      .btn-phoenix:hover {
-        background-color: #e63900;
-        color: white;
-      }
+  <!-- Site CSS (optional, keeps your existing tokens) -->
+  <link href="css/style.css" rel="stylesheet"/>
 
-      .hero {
-        position: relative;
-        height: 50vh;
-        background: url('img/phoenix/busindex.JPG') no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-align: center;
-      }
-
-      .hero .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.6);
-        z-index: 0;
-      }
-
-      .hero .container {
-        position: relative;
-        z-index: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        fetch("/navbar.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById("navbar-placeholder").innerHTML = data;
-          })
-          .catch((error) => console.error("Error loading navbar:", error));
-      });
-    </script>
-
-    <!-- Hero Section -->
-    <header class="hero">
-      <div class="overlay"></div>
-      <div class="container">
-        <h1 class="display-4 fw-bold">Contact Us</h1>
-        <p class="lead">We’d love to hear from you! Get in touch with Phoenix Adventures</p>
-      </div>
-    </header>
-
-    <!-- Contact Section -->
-<section class="container py-5">
-  <div class="row">
-    <!-- Contact Form -->
-    <div class="col-md-7">
-      <h2 class="fw-bold mb-4">Send us a message</h2>
-      <form id="contactForm">
-        <div class="mb-3">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="name" required />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="email" required />
-        </div>
-        <div class="mb-3">
-          <label for="subject" class="form-label">Subject</label>
-          <input type="text" class="form-control" id="subject" required />
-        </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" id="message" rows="5" required></textarea>
-        </div>
-
-        <!-- ✅ GDPR Consent Checkbox -->
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" id="consent" required />
-          <label class="form-check-label" for="consent">
-            I hereby agree that this data will be stored and processed for the purpose of establishing contact.  
-            I am aware that I can revoke my consent at any time. <span class="text-danger">*</span>
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-phoenix">Submit</button>
-      </form>
-      <div id="formAlert" class="mt-3"></div>
-    </div>
-
-    <!-- Contact Info -->
-    <div class="col-md-5">
-      <h2 class="fw-bold mb-4">Our Contact Details</h2>
-      <p><b>Email:</b> info@phoenixadventures.co.uk</p>
-      <p><b>Phone:</b> +44 1284 598069</p>
-      <p><b>Address:</b> 
-        <br>Phoenix Adventures LTD,
-        <br>Unit A 
-        <br>82 James Carter Road
-        <br>Mildenhall Ind Est 
-        <br>Mildenhall 
-        <br>IP28 7DE</p>
-    </div>
-  </div>
-</section>
-
-<!-- Optional Map -->
-<section class="container mb-5">
-  <div class="ratio ratio-16x9">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19801.03753426144!2d-0.1277584!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzI2LjUiTiAwwrAwNyc0Ni4wIlc!5e0!3m2!1sen!2suk!4v1699999999999"
-      width="600" height="450" style="border:0;" allowfullscreen=""
-      loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Contact form handling
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // Check if consent is ticked
-    if (!document.getElementById("consent").checked) {
-      document.getElementById("formAlert").innerHTML =
-        '<div class="alert alert-danger">⚠️ Please accept the consent to proceed.</div>';
-      return;
+  <style>
+    :root{
+      --brand:#2d8fdd;
+      --brand-dark:#1b6fb8;
+      --cta:#ff4500;
+      --cta-dark:#e63900;
+      --ink:#0b3a66;
+      --surface:rgba(255,255,255,0.75);
+      --border:rgba(255,255,255,0.35);
+      --shadow:0 10px 30px rgba(0,0,0,.15);
     }
 
-    // Show success message
-    document.getElementById("formAlert").innerHTML =
-      '<div class="alert alert-success">✅ Thank you for your message! We’ll get back to you shortly.</div>';
-    this.reset();
-  });
-</script>
+    *{ box-sizing:border-box; }
+    body{
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#222;
+      background:
+        radial-gradient(1200px 800px at 10% -10%, #eaf4ff 0%, transparent 70%),
+        radial-gradient(1000px 600px at 110% 20%, #fff3ec 0%, transparent 65%),
+        #f7f8fb;
+    }
+
+    /* Hero */
+    .hero-modern{
+      position:relative;
+      min-height:48vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        url("img/phoenix/busindex.JPG") center/cover no-repeat;
+      color:#fff;
+    }
+    .hero-modern .heading{
+      padding:4rem 1rem 6rem;
+      z-index:1;
+    }
+    .hero-modern .heading h1{ letter-spacing:.2px; }
+    .hero-modern .blur-orb{
+      position:absolute; inset:auto -10% -40% -10%;
+      height:55vh;
+      background: radial-gradient(closest-side, rgba(45,143,221,.35), transparent 70%);
+      filter: blur(40px);
+      pointer-events:none;
+    }
+
+    /* Glass Panel */
+    .glass-wrap{
+      margin-top:-6rem;
+    }
+    .glass-card{
+      background:var(--surface);
+      backdrop-filter:saturate(120%) blur(12px);
+      -webkit-backdrop-filter:saturate(120%) blur(12px);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    /* Side brand panel */
+    .side-panel{
+      background:
+        radial-gradient(120% 120% at 10% 10%, rgba(45,143,221,.15), transparent 60%),
+        radial-gradient(120% 120% at 90% 90%, rgba(255,69,0,.12), transparent 60%),
+        linear-gradient(135deg, #ffffffCC, #ffffffAA);
+      border-right:1px solid var(--border);
+    }
+    .badge-soft{
+      background:rgba(45,143,221,.12);
+      color:var(--brand);
+      border:1px solid rgba(45,143,221,.25);
+    }
+
+    /* Inputs: floating labels + icons */
+    .form-floating>.bi{
+      position:absolute;
+      left:1rem; top:50%; transform:translateY(-50%);
+      pointer-events:none; opacity:.6;
+    }
+    .form-floating>input,
+    .form-floating>textarea{
+      padding-left:2.5rem;
+    }
+    .form-floating>label{
+      color:#666;
+    }
+    .form-control, .form-select, .form-check-input{
+      border-radius:12px !important;
+    }
+    .form-control:focus, .form-select:focus{
+      border-color:var(--brand);
+      box-shadow:0 0 0 .25rem rgba(45,143,221,.15);
+    }
+    .is-invalid{ box-shadow:0 0 0 .25rem rgba(220,53,69,.08) !important; }
+
+    /* CTA button */
+    .btn-phoenix{
+      background:linear-gradient(180deg, var(--cta), var(--cta-dark));
+      border:none; color:#fff; font-weight:700;
+      border-radius:14px; padding:.9rem 1.2rem;
+      transition:transform .08s ease;
+    }
+    .btn-phoenix:disabled{ filter:grayscale(.2) brightness(.9); }
+    .btn-phoenix:active{ transform:translateY(1px) scale(.99); }
+
+    /* Message counter */
+    .char-count{
+      font-size:.85rem; color:#6c757d;
+    }
+
+    /* Success state */
+    .success-panel{
+      text-align:center;
+      padding:3rem 1rem;
+    }
+    .tick{
+      width:76px; height:76px; border-radius:50%;
+      margin:0 auto 1rem; display:grid; place-items:center;
+      background:linear-gradient(180deg, #28a745, #1e8e3e);
+      color:#fff; box-shadow:0 8px 24px rgba(40,167,69,.35);
+    }
+    .tick i{ font-size:2rem; }
+
+    /* Responsive tweaks */
+    @media (max-width: 991.98px){
+      .side-panel{ border-right:none; border-bottom:1px solid var(--border); }
+      .hero-modern{ min-height:42vh; }
+      .glass-wrap{ margin-top:-5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar include -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/navbar.html")
+        .then(r => r.text())
+        .then(html => document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(() => {});
+    });
+  </script>
+
+  <!-- Hero -->
+  <header class="hero-modern">
+    <div class="heading container">
+      <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">We’d love to hear from you</span>
+      <h1 class="display-5 fw-bold">Contact Phoenix Adventures</h1>
+      <p class="lead mb-0">Questions, group bookings or partnership ideas — send us a message.</p>
+    </div>
+    <div class="blur-orb"></div>
+  </header>
+
+  <!-- Glass Card -->
+  <main class="container glass-wrap pb-5">
+    <div class="glass-card">
+      <div class="row g-0">
+        <!-- Left: Brand/Info -->
+        <aside class="col-lg-5 side-panel p-4 p-lg-5">
+          <h2 class="h4 fw-bold mb-3">Our details</h2>
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-envelope-fill fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Email</div>
+              <a href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a>
+            </div>
+          </div>
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-telephone-fill fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Phone</div>
+              <a href="tel:+441284598069">+44 1284 598069</a>
+            </div>
+          </div>
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <i class="bi bi-geo-alt-fill fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Address</div>
+              Phoenix Adventures LTD<br/>
+              Unit A, 82 James Carter Road<br/>
+              Mildenhall Ind Est, Mildenhall<br/>
+              IP28 7DE
+            </div>
+          </div>
+
+      
+
+          <div class="mt-4 small text-muted">
+            Opening hours vary on trip days. For urgent enquiries on travel days, please ring the number above.
+          </div>
+        </aside>
+
+        <!-- Right: Form -->
+        <section class="col-lg-7 p-4 p-lg-5">
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <input type="text" class="form-control" id="name" placeholder="Full Name" required />
+                  <label for="name">Full name</label>
+                  <div class="invalid-feedback">Please enter your full name.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <input type="email" class="form-control" id="email" placeholder="email@address.com" required />
+                  <label for="email">Email address</label>
+                  <div class="invalid-feedback">Please provide a valid email address.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <input type="text" class="form-control" id="subject" placeholder="Subject" required />
+                  <label for="subject">Subject</label>
+                  <div class="invalid-feedback">Please add a short subject.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <textarea class="form-control" placeholder="Your message" id="message" style="height: 140px;" maxlength="1200" required></textarea>
+                  <label for="message">Message</label>
+                  <div class="d-flex justify-content-between mt-1">
+                    <small class="char-count" id="charCount">0 / 1200</small>
+                    <div class="invalid-feedback d-block" style="display:none"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Optional attachment -->
+              <div class="col-12">
+                <label for="attachment" class="form-label fw-semibold">Optional attachment</label>
+                <input class="form-control" type="file" id="attachment" accept=".jpg,.jpeg,.png,.pdf"/>
+                <div class="form-text">Screenshots or PDFs up to 5MB.</div>
+              </div>
+
+              <!-- GDPR & honeypot -->
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="consent" required />
+                  <label class="form-check-label" for="consent">
+                    I agree my data may be stored and processed to respond to my enquiry. I understand I can revoke consent at any time. <span class="text-danger">*</span>
+                  </label>
+                  <div class="invalid-feedback">Please confirm consent to continue.</div>
+                </div>
+                <!-- Honeypot for bots -->
+                <input type="text" id="website" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;" />
+              </div>
+
+              <div class="col-12 d-grid d-sm-flex gap-3 align-items-center">
+                <button id="submitBtn" type="submit" class="btn btn-phoenix px-4" disabled>
+                  <span class="btn-label">Send message</span>
+                  <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                </button>
+                <div id="formAlert" class="flex-grow-1"></div>
+              </div>
+            </div>
+          </form>
+
+          <!-- Success panel (hidden initially) -->
+          <div id="successPanel" class="success-panel d-none">
+            <div class="tick"><i class="bi bi-check-lg"></i></div>
+            <h3 class="fw-bold">Message sent!</h3>
+            <p class="text-muted mb-4">Thanks for reaching out — we’ll get back to you shortly.</p>
+            <a href="/" class="btn btn-outline-primary rounded-3">Back to home</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function(){
+      const form = document.getElementById("contactForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const spinner = submitBtn.querySelector(".spinner-border");
+      const btnLabel = submitBtn.querySelector(".btn-label");
+      const formAlert = document.getElementById("formAlert");
+      const successPanel = document.getElementById("successPanel");
+      const consent = document.getElementById("consent");
+      const msg = document.getElementById("message");
+      const charCount = document.getElementById("charCount");
+
+      // Enable submit only when consent ticked
+      const toggleSubmit = () => { submitBtn.disabled = !consent.checked; };
+      consent.addEventListener("change", toggleSubmit); toggleSubmit();
+
+      // Live char counter
+      const updateCount = () => { charCount.textContent = msg.value.length + " / " + msg.maxLength; };
+      ["input","change"].forEach(e => msg.addEventListener(e, updateCount)); updateCount();
+
+      // Simple client validation
+      function validate(){
+        let ok = true;
+        ["name","email","subject","message","consent"].forEach(id=>{
+          const el = document.getElementById(id);
+          if(id==="consent"){ if(!el.checked){ el.classList.add("is-invalid"); ok=false; } else { el.classList.remove("is-invalid"); } return; }
+          if(!el.value.trim()){
+            el.classList.add("is-invalid");
+            ok = false;
+          }else{
+            el.classList.remove("is-invalid");
+          }
+        });
+        // email format
+        const email = document.getElementById("email");
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if(email.value && !re.test(email.value)){
+          email.classList.add("is-invalid"); ok=false;
+        }
+        // attachment size check (5MB)
+        const file = document.getElementById("attachment").files[0];
+        if(file && file.size > 5 * 1024 * 1024){
+          formAlert.innerHTML = '<div class="alert alert-warning mb-0">Attachment is larger than 5MB.</div>';
+          ok = false;
+        } else if(!file) {
+          formAlert.innerHTML = "";
+        }
+        return ok;
+      }
+
+      // Fake submit handler (wire to your backend later)
+      form.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        if(document.getElementById("website").value){ return; } // bot
+        if(!validate()) return;
+
+        submitBtn.disabled = true; spinner.classList.remove("d-none"); btnLabel.textContent = "Sending…";
+
+        // Simulate async call
+        await new Promise(r=>setTimeout(r, 1100));
+
+        // Reset / show success
+        form.classList.add("d-none");
+        successPanel.classList.remove("d-none");
+      });
+    })();
+  </script>
 </body>
 </html>
