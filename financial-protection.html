@@ -100,34 +100,16 @@
   </div>
 
   <!-- Navbar -->
-  <nav id="nav" class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold d-flex align-items-center" href="/index.html">
-        <img src="/img/logo/logo.png" alt="Phoenix Adventures" class="me-2"/>
-        Phoenix Adventures
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(err=>console.error("Error loading navbar:", err));
+    });
+  </script>
 
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
-          <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/tour-list-2025.html">2025 Tour List</a></li>
-          <li class="nav-item"><a class="nav-link" href="/theme-park-trips-europe.html">Theme Park Trips - Europe</a></li>
-          <li class="nav-item"><a class="nav-link" href="/halloween-trips.html">Halloween Trips</a></li>
-          <li class="nav-item"><a class="nav-link" href="/twisted-tracks.html">Multi Park Trips - Twisted Tracks</a></li>
-          <li class="nav-item"><a class="nav-link" href="/holidays.html">Holidays</a></li>
-          <li class="nav-item"><a class="nav-link" href="/theme-park-info.html">Theme Park Info</a></li>
-          <li class="nav-item"><a class="nav-link" href="/find-out-more.html">Find Out More</a></li>
-          <li class="nav-item"><a class="nav-link" href="/partners/theme-park-insanity.html">Theme Park Insanity</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="/faq.html">FAQ</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-phoenix" href="/trips.html">View Trips</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!-- Hero -->
   <section class="hero">
