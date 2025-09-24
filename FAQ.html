@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Adventures | Frequently Asked Questions</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --brand:#2d8fdd;
+      --brand-dark:#1b6fb8;
+      --cta:#ff4500;
+      --cta-dark:#e63900;
+      --ink:#0b3a66;
+    }
+    html { scroll-behavior:smooth; }
+    body{ font-family:"Poppins",sans-serif; color:#333; background:#f9fbfe; }
+
+    /* Skip links */
+    .skip-links a{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-links a:focus{
+      position:static; width:auto; height:auto; padding:.5rem .75rem; margin:.25rem;
+      background:#000; color:#fff; z-index:10000; display:inline-block; border-radius:.25rem;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative; color:#fff; background:linear-gradient(180deg, rgba(11,58,102,.7), rgba(11,58,102,.85)),
+        url('img/cards/faq.png') center/cover no-repeat;
+      min-height:220px; display:flex; align-items:center;
+    }
+    .hero .container{ padding:3rem 0; }
+    .hero h1{ font-weight:800; }
+    .hero p{ opacity:.95; }
+
+    /* Card / search */
+    .faq-tools .form-control::placeholder{ color:#6c757d; }
+    .badge-filter{
+      cursor:pointer; user-select:none;
+      background:#eef6ff; color:#0b3a66; border:1px solid #d7e9ff;
+    }
+    .badge-filter.active{ background:var(--brand); color:#fff; border-color:var(--brand-dark); }
+
+    /* Accordion */
+    .accordion-button{
+      font-weight:600;
+    }
+    .accordion-button:not(.collapsed){ color:#0b3a66; background:#e8f3ff; }
+    .accordion-item{
+      border:1px solid #e6effa; border-radius:.75rem !important; overflow:hidden; box-shadow: 0 2px 10px rgba(0,0,0,.03);
+    }
+    .accordion-item + .accordion-item{ margin-top:1rem; }
+
+    /* Sticky filters on wide screens */
+    @media (min-width:992px){
+      .sticky-col{ position:sticky; top:88px; }
+    }
+
+    /* Footer */
+    footer{ background:#0b3a66; color:#cfe6ff; }
+    footer a{ color:#fff; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    /* Utilities */
+    .small-muted{ font-size:.925rem; color:#6c757d; }
+    .link-muted{ color:#495057; text-decoration:none; }
+    .link-muted:hover{ text-decoration:underline; color:#0b3a66; }
+  </style>
+
+  <!-- JSON-LD (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type":"Question",
+        "name":"How do I book?",
+        "acceptedAnswer":{"@type":"Answer","text":"Book on our website via the \"More Info & Booking\" button on each trip. Payments are secure. If you can’t book online, email info@phoenixadventures.co.uk and we’ll assist."}
+      },
+      {
+        "@type":"Question",
+        "name":"What ages are classed as Children or Infants?",
+        "acceptedAnswer":{"@type":"Answer","text":"European Tours: Adults 12+, Children 3–11 (under 18s must be with an adult 18+). UK Tours: Adults 18+, Children 3–17 unless the tour page states otherwise. Infants are not permitted on Twisted Tracks sleeper tours."}
+      },
+      {
+        "@type":"Question",
+        "name":"Are entrance tickets included in all tours?",
+        "acceptedAnswer":{"@type":"Answer","text":"Most tours are listed as Travel Only unless stated. You can add tickets during booking. This suits Annual Pass holders or guests arranging their own tickets/accommodation."}
+      },
+      {
+        "@type":"Question",
+        "name":"What is an Executive Tour Coach?",
+        "acceptedAnswer":{"@type":"Answer","text":"A large, comfortable vehicle for group travel with reclining seats, seatbelts, air-con, lighting, curtains, entertainment (radio/CD/MP3/DVD/screens), luggage space and kneeling air suspension for easier access."}
+      },
+      {
+        "@type":"Question",
+        "name":"Will I be sat with the people on my booking?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. We operate allocated seating. To sit with another booking, email info@phoenixadventures.co.uk with details. Odd numbers may be paired; book a “spare seat” if you prefer not to be paired."}
+      },
+      {
+        "@type":"Question",
+        "name":"Which trips use a Nightliner Sleeper Coach?",
+        "acceptedAnswer":{"@type":"Answer","text":"Our Multi-Park Twisted Tracks Tours and Special Events use Nightliner Sleeper Coaches. All other trips use high-spec Executive Tour Coaches."}
+      },
+      {
+        "@type":"Question",
+        "name":"Is there a toilet and shower onboard the Nightliner?",
+        "acceptedAnswer":{"@type":"Answer","text":"There is a toilet onboard and regular comfort stops. Showers are not onboard; we arrange access to facilities each day at suitable stops."}
+      },
+      {
+        "@type":"Question",
+        "name":"Is there an age restriction on Twisted Tracks tours?",
+        "acceptedAnswer":{"@type":"Answer","text":"These extended sleeper tours are best suited to 18+, but children 3+ may join. Under-18s must be supervised by an appropriate adult at all times."}
+      },
+      {
+        "@type":"Question",
+        "name":"Are my payments protected?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Payments falling under The Package & Linked Travel Arrangements Regulations 2018 are held in trust until after you return. If a trip didn’t go ahead, the trustee would refund you."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can we bring food, drink, blankets and pillows?",
+        "acceptedAnswer":{"@type":"Answer","text":"Food and drink are fine—please keep the coach tidy. Travel-sized blankets and pillows are okay if they don’t encroach on others’ space or the aisle."}
+      },
+      {
+        "@type":"Question",
+        "name":"Smoking and vaping policy",
+        "acceptedAnswer":{"@type":"Answer","text":"No smoking or vaping is permitted on the coaches."}
+      },
+      {
+        "@type":"Question",
+        "name":"Is there a luggage allowance?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Max 18kg per case per passenger. We recommend a medium suitcase plus a small carry-on."}
+      },
+      {
+        "@type":"Question",
+        "name":"There is no boarding point near me—can you help?",
+        "acceptedAnswer":{"@type":"Answer","text":"We’ll do our best, especially for European trips where connections work well. See our Find Out More page for details."}
+      },
+      {
+        "@type":"Question",
+        "name":"When will I know departure times?",
+        "acceptedAnswer":{"@type":"Answer","text":"You’ll see approximate times when booking. Exact times are emailed 10–14 days prior once routing is confirmed. Your booking confirmation includes an estimated pick-up time."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do I need travel insurance?",
+        "acceptedAnswer":{"@type":"Answer","text":"Optional but strongly recommended for protection against unforeseen circumstances."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can solo travellers join?",
+        "acceptedAnswer":{"@type":"Answer","text":"Absolutely—solo travellers are very welcome and often join our trips."}
+      },
+      {
+        "@type":"Question",
+        "name":"I’m not sure where the coach picks up from",
+        "acceptedAnswer":{"@type":"Answer","text":"No problem—see our Boarding Points information page."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do I need a passport?",
+        "acceptedAnswer":{"@type":"Answer","text":"For European Union trips you need a valid, undamaged passport. Check validity rules before travel."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can I join from overseas?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes—ensure you have a valid passport and any required visa. We can assist with low-cost UK connections from airports and major rail stations."}
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Skip Links -->
+  <div class="skip-links" aria-label="Skip links">
+    <a href="#main">Skip to Main Content</a>
+    <a href="#footer">Skip to Footer</a>
+    <a href="#nav">Skip to Navigation</a>
+  </div>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(err=>console.error("Error loading navbar:", err));
+    });
+  </script>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="display-5 mb-2">Frequently Asked Questions</h1>
+      <p class="mb-0">First time travelling with us? We’ve answered your most common questions below.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main id="main" class="container py-5">
+    <div class="row g-4">
+      <!-- Filters / Tools -->
+      <aside class="col-lg-4">
+        <div class="sticky-col">
+          <div class="card shadow-sm border-0">
+            <div class="card-body faq-tools">
+              <h2 class="h5 mb-3">Find answers fast</h2>
+              <label for="faqSearch" class="form-label fw-semibold">Search FAQs</label>
+              <input id="faqSearch" type="search" class="form-control form-control-lg mb-3" placeholder="Type a keyword e.g. passport, luggage, seats…" aria-describedby="searchHelp">
+              <div id="searchHelp" class="small-muted mb-3">Results filter as you type.</div>
+
+              <div class="d-flex flex-wrap gap-2 mb-3" aria-label="Filter by category">
+                <span class="badge rounded-pill badge-filter" data-filter="booking">Booking</span>
+                <span class="badge rounded-pill badge-filter" data-filter="ages">Ages</span>
+                <span class="badge rounded-pill badge-filter" data-filter="tickets">Tickets</span>
+                <span class="badge rounded-pill badge-filter" data-filter="coaches">Coaches</span>
+                <span class="badge rounded-pill badge-filter" data-filter="seating">Seating</span>
+                <span class="badge rounded-pill badge-filter" data-filter="sleeper">Sleeper</span>
+                <span class="badge rounded-pill badge-filter" data-filter="facilities">Facilities</span>
+                <span class="badge rounded-pill badge-filter" data-filter="payments">Payments</span>
+                <span class="badge rounded-pill badge-filter" data-filter="luggage">Luggage</span>
+                <span class="badge rounded-pill badge-filter" data-filter="boarding">Boarding</span>
+                <span class="badge rounded-pill badge-filter" data-filter="timings">Timings</span>
+                <span class="badge rounded-pill badge-filter" data-filter="insurance">Insurance</span>
+                <span class="badge rounded-pill badge-filter" data-filter="passport">Passport</span>
+                <span class="badge rounded-pill badge-filter" data-filter="overseas">Overseas</span>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button id="btnExpandAll" class="btn btn-outline-secondary w-50">Expand all</button>
+                <button id="btnCollapseAll" class="btn btn-outline-secondary w-50">Collapse all</button>
+              </div>
+
+              <hr class="my-4" />
+              <p class="small mb-2">Still stuck?</p>
+              <a class="btn btn-phoenix w-100" href="mailto:info@phoenixadventures.co.uk">Email us: info@phoenixadventures.co.uk</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- FAQ content -->
+      <section class="col-lg-8">
+        <div id="faqIntro" class="mb-4">
+          <p>Our trips are designed for passengers of all ages and are a great way to meet others and create amazing memories.</p>
+        </div>
+
+        <div class="accordion" id="faqAccordion">
+
+          <!-- Item template -->
+          <!-- Each item has: data-tags for filtering, an id for deep-linking, and .faq-item text for searching -->
+
+          <div class="accordion-item" data-tags="booking" id="q-booking">
+            <h2 class="accordion-header" id="h-booking">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-booking" aria-expanded="false" aria-controls="c-booking">
+                How do I book?
+              </button>
+            </h2>
+            <div id="c-booking" class="accordion-collapse collapse" aria-labelledby="h-booking" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                The easiest way is on our website. On each trip you’ll see a <em>More Info &amp; Booking</em> button—click that and follow the on-screen instructions. Our site and payments are secure. If you’re unable to book online, email <a href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a> and we’ll be happy to help.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="ages" id="q-ages">
+            <h2 class="accordion-header" id="h-ages">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-ages" aria-expanded="false" aria-controls="c-ages">
+                What ages are classed as Children or Infants?
+              </button>
+            </h2>
+            <div id="c-ages" class="accordion-collapse collapse" aria-labelledby="h-ages" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                <ul>
+                  <li><strong>European Tours:</strong> Adults are 12+; Children are 3–11. Under-18s must be accompanied by an appropriate adult (18+).</li>
+                  <li><strong>UK Tours:</strong> Adults are 18+; Children are 3–17 unless the tour page states otherwise.</li>
+                  <li><strong>Infants on Twisted Tracks:</strong> Not permitted for safety reasons due to onboard bunks.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="tickets booking" id="q-tickets">
+            <h2 class="accordion-header" id="h-tickets">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-tickets" aria-expanded="false" aria-controls="c-tickets">
+                Are entrance tickets included in all tours?
+              </button>
+            </h2>
+            <div id="c-tickets" class="accordion-collapse collapse" aria-labelledby="h-tickets" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Most tours are listed with a <strong>Travel Only</strong> base cost unless stated. We do this because many guests have Annual Passes or prefer to arrange their own tickets/accommodation. You can add tickets during booking if required.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="coaches facilities" id="q-exec-coach">
+            <h2 class="accordion-header" id="h-exec-coach">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-exec-coach" aria-expanded="false" aria-controls="c-exec-coach">
+                What is an Executive Tour Coach?
+              </button>
+            </h2>
+            <div id="c-exec-coach" class="accordion-collapse collapse" aria-labelledby="h-exec-coach" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                An executive coach is a large, comfortable vehicle for group travel. Typical features include:
+                <ul class="mb-0">
+                  <li><strong>Seating:</strong> Reclining seats with armrests and footrests</li>
+                  <li><strong>Safety:</strong> Safety equipment, first-aid kit, seatbelts</li>
+                  <li><strong>Amenities:</strong> Air-con, reading lights, tinted windows, curtains</li>
+                  <li><strong>Entertainment:</strong> Radio, CD/MP3, DVD and screens</li>
+                  <li><strong>Luggage:</strong> Overhead racks and under-floor storage</li>
+                  <li><strong>Accessibility:</strong> Kneeling air suspension for easier access</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="seating booking" id="q-seating">
+            <h2 class="accordion-header" id="h-seating">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-seating" aria-expanded="false" aria-controls="c-seating">
+                Will I be sat with the people on my booking?
+              </button>
+            </h2>
+            <div id="c-seating" class="accordion-collapse collapse" aria-labelledby="h-seating" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Yes—seating is allocated. To sit with another booking, email <a href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a> with the details. If your party is an odd number you may be paired with another odd-sized group. To avoid pairing, add a <em>spare seat</em> (enter “spare seat” in the name fields when booking).
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="sleeper coaches" id="q-nightliner-which">
+            <h2 class="accordion-header" id="h-nightliner-which">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-nightliner-which" aria-expanded="false" aria-controls="c-nightliner-which">
+                Which trips use a Nightliner Sleeper Coach?
+              </button>
+            </h2>
+            <div id="c-nightliner-which" class="accordion-collapse collapse" aria-labelledby="h-nightliner-which" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Nightliner Sleeper Coaches are used on our <strong>Multi-Park Twisted Tracks</strong> tours and selected Special Events. Other trips run on high-spec Executive Tour Coaches.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="sleeper facilities" id="q-nightliner-facilities">
+            <h2 class="accordion-header" id="h-nightliner-facilities">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-nightliner-facilities" aria-expanded="false" aria-controls="c-nightliner-facilities">
+                Is there a toilet or shower onboard the Nightliner?
+              </button>
+            </h2>
+            <div id="c-nightliner-facilities" class="accordion-collapse collapse" aria-labelledby="h-nightliner-facilities" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                There is a toilet onboard and we plan comfort stops. Showers are not onboard; we arrange access to shower facilities daily (e.g. at truck stops or service stations) so you can refresh comfortably.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="ages sleeper" id="q-nightliner-age">
+            <h2 class="accordion-header" id="h-nightliner-age">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-nightliner-age" aria-expanded="false" aria-controls="c-nightliner-age">
+                Is there an age restriction on your Twisted Tracks tours?
+              </button>
+            </h2>
+            <div id="c-nightliner-age" class="accordion-collapse collapse" aria-labelledby="h-nightliner-age" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                These extended sleeper tours are best suited to those aged 18+. Children aged <strong>3+</strong> may join. Anyone under 18 must be supervised by an appropriate adult at all times.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="payments protection" id="q-protection">
+            <h2 class="accordion-header" id="h-protection">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-protection" aria-expanded="false" aria-controls="c-protection">
+                Are my payments protected?
+              </button>
+            </h2>
+            <div id="c-protection" class="accordion-collapse collapse" aria-labelledby="h-protection" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Yes—payments that fall within <em>The Package &amp; Linked Travel Arrangements Regulations 2018</em> are held in a trust account until <strong>after</strong> you return. If a trip did not go ahead, or in the unlikely event of liquidation, the trustee would promptly refund you.
+                <div class="mt-2">
+                  More details: <a class="link-muted" href="https://www.phoenixadventures.co.uk/find-out-more/financial-protection/" target="_blank" rel="noopener">Financial Protection</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="food facilities" id="q-food-drink">
+            <h2 class="accordion-header" id="h-food-drink">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-food-drink" aria-expanded="false" aria-controls="c-food-drink">
+                Can we bring food and drink on the coach?
+              </button>
+            </h2>
+            <div id="c-food-drink" class="accordion-collapse collapse" aria-labelledby="h-food-drink" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Yes—please remove any rubbish and keep the coach clean for everyone’s comfort (our drivers really appreciate it).
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="facilities" id="q-blanket">
+            <h2 class="accordion-header" id="h-blanket">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-blanket" aria-expanded="false" aria-controls="c-blanket">
+                Can we bring a blanket and pillow on the coach?
+              </button>
+            </h2>
+            <div id="c-blanket" class="accordion-collapse collapse" aria-labelledby="h-blanket" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Yes—travel-sized only, and they must not encroach on other passengers’ space or the centre aisle.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="smoking facilities" id="q-smoking">
+            <h2 class="accordion-header" id="h-smoking">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-smoking" aria-expanded="false" aria-controls="c-smoking">
+                Smoking
+              </button>
+            </h2>
+            <div id="c-smoking" class="accordion-collapse collapse" aria-labelledby="h-smoking" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                No smoking is permitted on the coaches—this includes vaping.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="luggage" id="q-luggage">
+            <h2 class="accordion-header" id="h-luggage">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-luggage" aria-expanded="false" aria-controls="c-luggage">
+                Is there a luggage allowance?
+              </button>
+            </h2>
+            <div id="c-luggage" class="accordion-collapse collapse" aria-labelledby="h-luggage" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                For safety and weight limits: <strong>maximum 18kg per case per passenger</strong>. We recommend a medium suitcase plus a carry-on bag.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="boarding connections" id="q-boarding">
+            <h2 class="accordion-header" id="h-boarding">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-boarding" aria-expanded="false" aria-controls="c-boarding">
+                There is no boarding point near me—can you help?
+              </button>
+            </h2>
+            <div id="c-boarding" class="accordion-collapse collapse" aria-labelledby="h-boarding" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                We’ll do our best. Connecting transport works best for trips heading to Europe. See <a class="link-muted" href="/find-out-more.html">Find Out More</a> for details.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="timings" id="q-timings">
+            <h2 class="accordion-header" id="h-timings">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-timings" aria-expanded="false" aria-controls="c-timings">
+                When will I know what time the coach departs?
+              </button>
+            </h2>
+            <div id="c-timings" class="accordion-collapse collapse" aria-labelledby="h-timings" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Approximate timings show during booking. Exact times are emailed once routing is confirmed—normally <strong>10–14 days</strong> prior to departure. Your confirmation includes an estimated pick-up time.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="insurance" id="q-insurance">
+            <h2 class="accordion-header" id="h-insurance">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-insurance" aria-expanded="false" aria-controls="c-insurance">
+                Do I need travel insurance?
+              </button>
+            </h2>
+            <div id="c-insurance" class="accordion-collapse collapse" aria-labelledby="h-insurance" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Travel insurance is optional but highly recommended for cover against unforeseen circumstances.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="solo booking" id="q-solo">
+            <h2 class="accordion-header" id="h-solo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-solo" aria-expanded="false" aria-controls="c-solo">
+                Solo traveller?
+              </button>
+            </h2>
+            <div id="c-solo" class="accordion-collapse collapse" aria-labelledby="h-solo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                You’re very welcome—many solo travellers join us and have a brilliant time.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="boarding" id="q-pickup-where">
+            <h2 class="accordion-header" id="h-pickup-where">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-pickup-where" aria-expanded="false" aria-controls="c-pickup-where">
+                I’ve booked, but I’m not 100% sure where the coach picks up
+              </button>
+            </h2>
+            <div id="c-pickup-where" class="accordion-collapse collapse" aria-labelledby="h-pickup-where" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                No worries—we’ve got you covered. Please see our <a class="link-muted" href="/boarding-points.html">Boarding Points</a> page.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="passport europe" id="q-passport">
+            <h2 class="accordion-header" id="h-passport">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-passport" aria-expanded="false" aria-controls="c-passport">
+                Do I need a passport?
+              </button>
+            </h2>
+            <div id="c-passport" class="accordion-collapse collapse" aria-labelledby="h-passport" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                If you’re joining a trip to the European Union you’ll need a valid, undamaged passport. Please check entry rules for the destination and ensure your passport meets any validity requirements. More information may be found on the relevant official guidance (external website).
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-tags="overseas passport connections" id="q-overseas">
+            <h2 class="accordion-header" id="h-overseas">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-overseas" aria-expanded="false" aria-controls="c-overseas">
+                I’m overseas—can I join one of your tours?
+              </button>
+            </h2>
+            <div id="c-overseas" class="accordion-collapse collapse" aria-labelledby="h-overseas" data-bs-parent="#faqAccordion">
+              <div class="accordion-body faq-item">
+                Absolutely. Ensure your passport is valid and obtain any required visa. We can help with low-cost connections from UK airports and major rail stations—just ask!
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer with social links -->
+  <footer class="text-white py-4 footer">
+    <div class="container text-center">
+      <div class="mb-3 social">
+        <!-- Replace # with your actual URLs -->
+        <a href="https://www.facebook.com/" target="https://www.facebook.com/phoenixadventuresltd/" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.62.77-1.62 1.56v1.86h2.76l-.44 2.91h-2.32V22c4.78-.81 8.44-4.95 8.44-9.94Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/" target="https://www.instagram.com/phoenixadventuresltd/" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/><circle cx="12" cy="12" r="3.5"/></svg>
+        </a>
+        <a href="https://x.com/" target="https://x.com/Phoenixadve" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M14.7 10.2 21.4 2h-1.6l-5.8 6.9L9 2H2l7.1 10.3L2 22h1.6l6.2-7.4L15 22h7l-7.3-11.8Zm-2.2 2.6-.72-.99-5.7-7.9H8l4.6 6.4.72.99 6.02 8.36H16l-3.5-4.9Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/" target="https://www.youtube.com/@PhoenixAdventuresLTD" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M23 12s0-3.4-.44-5.02a3 3 0 0 0-2.12-2.12C18.81 4.4 12 4.4 12 4.4s-6.81 0-8.44.46A3 3 0 0 0 1.44 6.98C1 8.6 1 12 1 12s0 3.4.44 5.02a3 3 0 0 0 2.12 2.12C5.19 19.6 12 19.6 12 19.6s6.81 0 8.44-.46a3 3 0 0 0 2.12-2.12C23 15.4 23 12 23 12ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+        </a>
+      </div>
+      <p class="mb-0">&copy; 2025 Phoenix Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function(){
+      const accordion = document.getElementById('faqAccordion');
+      const searchInput = document.getElementById('faqSearch');
+      const filterBadges = document.querySelectorAll('.badge-filter');
+      const btnExpandAll = document.getElementById('btnExpandAll');
+      const btnCollapseAll = document.getElementById('btnCollapseAll');
+
+      // Filter / Search
+      function normalise(s){ return (s||'').toLowerCase().trim(); }
+      let activeTag = null;
+
+      function filterFaq(){
+        const q = normalise(searchInput.value);
+        const items = accordion.querySelectorAll('.accordion-item');
+        let anyVisible = false;
+
+        items.forEach(item=>{
+          const tags = (item.getAttribute('data-tags')||'').toLowerCase();
+          const text = item.innerText.toLowerCase();
+          const matchesTag = !activeTag || tags.includes(activeTag);
+          const matchesText = !q || text.includes(q);
+          const show = matchesTag && matchesText;
+          item.style.display = show ? '' : 'none';
+          if(show) anyVisible = true;
+        });
+
+        // Auto expand if there is a search term
+        if(q){
+          expandAllVisible();
+        }else{
+          collapseAll();
+        }
+      }
+
+      filterBadges.forEach(b=>{
+        b.addEventListener('click',()=>{
+          if(b.classList.contains('active')){
+            b.classList.remove('active');
+            activeTag = null;
+          }else{
+            filterBadges.forEach(x=>x.classList.remove('active'));
+            b.classList.add('active');
+            activeTag = b.dataset.filter.toLowerCase();
+          }
+          filterFaq();
+        });
+      });
+
+      searchInput.addEventListener('input', filterFaq);
+
+      // Expand / Collapse helpers
+      function expandAllVisible(){
+        accordion.querySelectorAll('.accordion-item').forEach(item=>{
+          if(item.style.display !== 'none'){
+            const target = item.querySelector('.accordion-collapse');
+            if(target && !target.classList.contains('show')){
+              new bootstrap.Collapse(target, { show: true, toggle: false });
+              target.classList.add('show');
+            }
+          }
+        });
+      }
+      function collapseAll(){
+        accordion.querySelectorAll('.accordion-collapse.show').forEach(target=>{
+          new bootstrap.Collapse(target, { hide: true, toggle: false });
+          target.classList.remove('show');
+        });
+      }
+      btnExpandAll.addEventListener('click', expandAllVisible);
+      btnCollapseAll.addEventListener('click', collapseAll);
+
+      // Deep-link: open item if URL hash matches item id
+      function openHash(){
+        const id = location.hash.replace('#','');
+        if(!id) return;
+        const item = document.getElementById(id);
+        if(item){
+          const col = item.querySelector('.accordion-collapse');
+          if(col && !col.classList.contains('show')){
+            new bootstrap.Collapse(col, { show: true, toggle: false });
+            col.classList.add('show');
+          }
+          // Scroll into view with some offset for sticky nav
+          setTimeout(()=>item.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+        }
+      }
+      window.addEventListener('hashchange', openHash);
+      openHash();
+
+      // Update hash when user opens a question (makes shareable links easy)
+      accordion.addEventListener('shown.bs.collapse', (e)=>{
+        const item = e.target.closest('.accordion-item');
+        if(item && item.id){
+          history.replaceState(null, '', '#'+item.id);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
