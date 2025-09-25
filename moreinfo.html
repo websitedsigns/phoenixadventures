@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Phoenix Adventures | More Information</title>
+  <meta name="description" content="All the useful info in one place: FAQs, financial protection, boarding points, payments, privacy and more." />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -13,7 +14,7 @@
   <link href="css/style.css" rel="stylesheet"/>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
@@ -22,31 +23,77 @@
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
+      --bg:#f7f9fc;
     }
-    body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:"Poppins",sans-serif; background:var(--bg); color:#333; }
 
-    .section{ padding:3rem 0; }
-    .section h1, .section h2{ color:var(--ink); font-weight:800; }
+    /* Skip links */
+    .skip-links a{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-links a:focus{
+      position:static; width:auto; height:auto; padding:.5rem .75rem; margin:.25rem;
+      background:#000; color:#fff; z-index:10000; display:inline-block; border-radius:.25rem;
+    }
 
-    /* Cards with background images — improved readability */
+    /* Hero */
+    .hero{
+      position:relative; min-height:28vh;
+      background: url('/img/cards/news.jpg') center/cover no-repeat;
+      color:#fff; display:flex; align-items:center;
+      text-shadow:0 2px 16px rgba(0,0,0,.45);
+    }
+    .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.55)); }
+    .hero .container{ position:relative; z-index:1; padding:2.75rem 0; }
+    .hero h1{ font-weight:800; letter-spacing:.2px; }
+    .hero p{ opacity:.95; }
+
+    /* Inline badge version */
+.badge-top{
+  position:relative;
+  display: inline-block;
+  margin-bottom:.5rem;
+  pointer-events:auto;
+}
+
+
+    /* Toolbar (search + chips) */
+    .toolbar{
+      position:sticky; top:0; z-index:1030;
+      background:linear-gradient(#ffffffcc,#ffffffcc) padding-box, linear-gradient(90deg,#eaf4ff,#fff) border-box;
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid #e9f1fb;
+    }
+    .toolbar .container{ padding-top:1rem; padding-bottom:.8rem; }
+    #searchInput{
+      border-radius:12px; padding:.85rem 1rem;
+      border:1px solid #e5e7eb; box-shadow:0 2px 6px rgba(0,0,0,.03);
+    }
+    #searchInput:focus{ border-color:var(--brand); box-shadow:0 0 0 .2rem rgba(45,143,221,.2); }
+    .chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem; }
+    .chip{
+      border:1px solid #d7e9ff; background:#eef6ff; color:#0b3a66;
+      padding:.4rem .7rem; border-radius:999px; font-weight:700; cursor:pointer; user-select:none;
+    }
+    .chip.active{ background:var(--brand); border-color:var(--brand-dark); color:#fff; }
+    .toolbar-meta{ font-size:.95rem; color:#6c757d; }
+
+    /* Section */
+    .section{ padding:2.25rem 0 3rem; }
+    .section h2{ color:var(--ink); font-weight:800; }
+
+    /* Cards with background images */
     .info-card {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      color: #fff;
-      height: 100%;
-      min-height: 220px;
-      display: flex;
-      align-items: stretch;
+      position: relative; border-radius: 14px; overflow: hidden; color: #fff;
+      min-height: 220px; display: flex; align-items: stretch;
       box-shadow: 0 6px 16px rgba(0,0,0,.06);
       transition: .15s ease transform, .15s ease box-shadow;
-      --ov: .58; /* base overlay */
+      background-size:cover; background-position:center; --ov: .58;
     }
     .info-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,.14); }
-
     .info-card::before {
-      content: "";
-      position: absolute; inset: 0;
+      content: ""; position: absolute; inset: 0; z-index: 1;
       background:
         radial-gradient(80% 70% at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 100%),
         linear-gradient(180deg,
@@ -54,17 +101,17 @@
           rgba(0,0,0,var(--ov)) 50%,
           rgba(0,0,0,calc(var(--ov) + .18)) 100%
         );
-      z-index: 1;
     }
-
-    .info-card .card-body {
-      position: relative; z-index: 2;
-      padding: 1.5rem; display: flex; flex-direction: column;
-    }
+    .info-card .card-body { position: relative; z-index: 2; padding: 1.5rem; display: flex; flex-direction: column; }
     .info-card h5, .info-card p { text-shadow: 0 2px 10px rgba(0,0,0,.6); }
 
+    .badge-top {
+      position:absolute; top:.75rem; left:75rem; z-index:2;
+      background:#232121; color:#0b3a66; border:1px solid #101010; border-radius:999px; padding:.25rem .55rem; font-weight:800;
+    }
+
     .btn-phoenix{
-      background:var(--cta); color:#fff; font-weight:700; border:none;
+      background:var(--cta); color:#fff; font-weight:800; border:none; letter-spacing:.2px;
       box-shadow:0 6px 16px rgba(0,0,0,.15);
     }
     .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
@@ -72,37 +119,43 @@
     .breadcrumb-light a{ color:var(--brand); text-decoration:none; }
     .breadcrumb-light a:hover{ text-decoration:underline; }
 
-    /* Modal polish */
-    .modal-content{ border-radius:16px; }
-    .modal-header{ border-bottom:none; }
-    .modal-footer{ border-top:none; }
-
-    /* Overlay utilities (use on very bright images) */
+    /* Overlay utilities */
     .overlay-65 { --ov: .65; }
     .overlay-75 { --ov: .75; }
 
     /* Backgrounds for each card */
-    .bg-about    { background:url('/img/cards/aboutus.webp') center/cover no-repeat; }
-    .bg-annual   { background:url('/img/cards/annualpass.jpg') center/cover no-repeat; }
-    .bg-boarding { background:url('/img/cards/bus.png') center/cover no-repeat; }
-    .bg-protect  { background:url('/img/cards/secure.webp') center/cover no-repeat; }
-    .bg-faq      { background:url('/img/cards/faq.png') center/cover no-repeat; }
-    .bg-groups   { background:url('/img/cards/groups.png') center/cover no-repeat; }
-    .bg-deposit  { background:url('/img/cards/paymonthly.png') center/cover no-repeat; }
-    .bg-mail     { background:url('/img/cards/mailinglist.jpg') center/cover no-repeat; }
-    .bg-news     { background:url('/img/cards/news.jpg') center/cover no-repeat; }
-    .bg-payments { background:url('/img/cards/cards.png') center/cover no-repeat; }
-    .bg-privacy  { background:url('/img/cards/lock.png') center/cover no-repeat; }
-    .bg-sleeper  { background:url('/img/cards/sleeper.jpg') center/cover no-repeat; }
-    .bg-school   { background:url('/img/cards/schooltrips.jpg') center/cover no-repeat; }
-    .bg-terms    { background:url('/img/cards/contract.png') center/cover no-repeat; }
+    .bg-about    { background-image:url('/img/cards/aboutus.webp'); }
+    .bg-annual   { background-image:url('/img/cards/annualpass.jpg'); }
+    .bg-boarding { background-image:url('/img/cards/bus.png'); }
+    .bg-protect  { background-image:url('/img/cards/secure.webp'); }
+    .bg-faq      { background-image:url('/img/cards/faq.png'); }
+    .bg-groups   { background-image:url('/img/cards/groups.png'); }
+    .bg-deposit  { background-image:url('/img/cards/paymonthly.png'); }
+    .bg-mail     { background-image:url('/img/cards/mailinglist.jpg'); }
+    .bg-news     { background-image:url('/img/cards/news.jpg'); }
+    .bg-payments { background-image:url('/img/cards/cards.png'); }
+    .bg-privacy  { background-image:url('/img/cards/lock.png'); }
+    .bg-sleeper  { background-image:url('/img/cards/sleeper.jpg'); }
+    .bg-school   { background-image:url('/img/cards/schooltrips.jpg'); }
+    .bg-terms    { background-image:url('/img/cards/contract.png'); }
 
     @media (max-width: 991.98px) {
       .info-card { --ov: .68; }
     }
+
+    /* Footer */
+    footer{ background:#0b1730; color:#cfe6ff; }
+    footer a{ color:#fff; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
+  <!-- Skip Links -->
+  <div class="skip-links" aria-label="Skip links">
+    <a href="#main">Skip to Main Content</a>
+    <a href="#footer">Skip to Footer</a>
+    <a href="#nav">Skip to Navigation</a>
+  </div>
 
   <!-- Announcement Bar -->
   <div id="announcement-placeholder"></div>
@@ -111,7 +164,7 @@
       fetch("/announcement.html")
         .then(r=>r.text())
         .then(html=>document.getElementById("announcement-placeholder").innerHTML = html)
-        .catch(err=>console.error("Error loading announcement:", err));
+        .catch(()=>{});
     });
   </script>
 
@@ -122,12 +175,12 @@
       fetch("/navbar.html")
         .then(r=>r.text())
         .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
-        .catch(err=>console.error("Error loading navbar:", err));
+        .catch(()=>{});
     });
   </script>
 
-  <!-- Header -->
-  <header class="section bg-light">
+  <!-- Hero -->
+  <header class="hero">
     <div class="container">
       <nav class="mb-3 breadcrumb-light" aria-label="breadcrumb">
         <ol class="breadcrumb mb-1">
@@ -136,203 +189,225 @@
         </ol>
       </nav>
       <h1 class="mb-2">More Information</h1>
-      <p class="lead mb-0">Lots of useful information can be found here. We hope this will be very helpful for you.</p>
+      <p class="lead mb-0">Everything in one place — FAQs, protection, payments, privacy, groups, schools and more.</p>
     </div>
   </header>
 
+  
+
   <!-- Cards grid -->
-  <section class="section">
+  <main id="main" class="section">
     <div class="container">
-      <div class="row g-4">
+      <div id="cardsGrid" class="row g-4">
 
         <!-- About Us -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="About Us" data-tags="about">
           <div class="card info-card bg-about h-100">
+            <span class="badge-top">About</span>
             <div class="card-body">
               <h5 class="fw-bold">About Us</h5>
-              <p class="mb-3">Learn about us here at Phoenix Adventures</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-about">More information</button>
+              <p class="mb-3">Learn about us here at Phoenix Adventures.</p>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-about">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Annual Passes -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Annual Passes" data-tags="money travel">
           <div class="card info-card bg-annual h-100">
+            <span class="badge-top">Money</span>
             <div class="card-body">
               <h5 class="fw-bold">Annual Passes</h5>
               <p class="mb-3">Save money and visit your favourite parks more often with annual passes.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-annual">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-annual">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Boarding Points -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Boarding Points" data-tags="travel">
           <div class="card info-card bg-boarding h-100">
+            <span class="badge-top">Travel</span>
             <div class="card-body">
               <h5 class="fw-bold">Boarding Points</h5>
               <p class="mb-3">Where to meet your coach and how we share exact details after booking.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-boarding">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-boarding">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Financial Protection -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Financial Protection" data-tags="money policy">
           <div class="card info-card bg-protect h-100">
+            <span class="badge-top">Policy</span>
             <div class="card-body">
               <h5 class="fw-bold">Financial Protection</h5>
               <p class="mb-3">How we protect your money and comply with UK travel regulations.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-protection">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-protection">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- FAQs -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Frequently Asked Questions" data-tags="travel policy money">
           <div class="card info-card bg-faq h-100">
+            <span class="badge-top">Help</span>
             <div class="card-body">
               <h5 class="fw-bold">Frequently Asked Questions</h5>
               <p class="mb-3">Answers to popular questions about our trips, tickets and travel.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-faq">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-faq">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Groups -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Group Travel" data-tags="travel">
           <div class="card info-card bg-groups h-100">
+            <span class="badge-top">Travel</span>
             <div class="card-body">
               <h5 class="fw-bold">Group Travel</h5>
               <p class="mb-3">Plan a trip for friends, family, schools or clubs with tailored options.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-groups">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-groups">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Low Deposit Scheme -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Low Deposit Scheme" data-tags="money">
           <div class="card info-card bg-deposit h-100">
+            <span class="badge-top">Money</span>
             <div class="card-body">
               <h5 class="fw-bold">Low Deposit Scheme</h5>
               <p class="mb-3">Flexible payment options so you can spread the cost with ease.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-deposit">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-deposit">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Mailing List -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Mailing List" data-tags="about">
           <div class="card info-card bg-mail h-100">
+            <span class="badge-top">News</span>
             <div class="card-body">
               <h5 class="fw-bold">Mailing List</h5>
               <p class="mb-3">Get offers and latest park news straight to your inbox.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-mail">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-mail">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- News -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="News" data-tags="about">
           <div class="card info-card bg-news h-100">
+            <span class="badge-top">News</span>
             <div class="card-body">
               <h5 class="fw-bold">News</h5>
               <p class="mb-3">Latest updates from theme parks, new rides and our announcements.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-news">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-news">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Payments -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Payments" data-tags="money policy">
           <div class="card info-card bg-payments h-100">
+            <span class="badge-top">Money</span>
             <div class="card-body">
               <h5 class="fw-bold">Payments</h5>
               <p class="mb-3">Cards, Apple Pay, PayPal and more – all via secure gateways.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-payments">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-payments">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Privacy Policy -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Privacy Policy" data-tags="policy">
           <div class="card info-card bg-privacy h-100">
+            <span class="badge-top">Policy</span>
             <div class="card-body">
               <h5 class="fw-bold">Privacy Policy</h5>
               <p class="mb-3">How we collect, use and protect your personal data.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-privacy">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-privacy">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- School Trips -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="School Trips" data-tags="schools travel">
           <div class="card info-card bg-school h-100">
+            <span class="badge-top">Schools</span>
             <div class="card-body">
               <h5 class="fw-bold">School Trips</h5>
               <p class="mb-3">Tailored packages and safeguarding-led itineraries for schools and colleges.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-school">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-school">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Sleeper Coach -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Sleeper Coach" data-tags="travel">
           <div class="card info-card bg-sleeper h-100">
+            <span class="badge-top">Travel</span>
             <div class="card-body">
               <h5 class="fw-bold">Sleeper Coach</h5>
               <p class="mb-3">What to expect on our luxury overnight coaches for multi-park tours.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-sleeper">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-sleeper">More information</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Terms & Conditions -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 topic" data-name="Terms & Conditions" data-tags="policy">
           <div class="card info-card bg-terms h-100">
+            <span class="badge-top">Policy</span>
             <div class="card-body">
               <h5 class="fw-bold">Terms &amp; Conditions</h5>
               <p class="mb-3">The rules of travel and booking with Phoenix Adventures LTD.</p>
-              <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-terms">More information</button>
+              <div class="mt-auto d-grid gap-2">
+                <button class="btn btn-phoenix" data-bs-toggle="modal" data-bs-target="#modal-terms">More information</button>
               </div>
             </div>
           </div>
         </div>
 
       </div><!-- /row -->
+      <!-- Empty state -->
+      <div id="emptyState" class="text-center py-5 d-none">
+        <h3 class="fw-bold">No topics match your search</h3>
+        <p>Try clearing filters or searching a different keyword.</p>
+        <button class="btn btn-outline-primary" id="emptyClear">Clear filters</button>
+      </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="text-white py-4" style="background:#0b1730;">
+  <footer id="footer" class="text-white py-4">
     <div class="container text-center">
       <p class="mb-0">&copy; 2025 Phoenix Adventures. All rights reserved.</p>
     </div>
@@ -341,78 +416,77 @@
   <!-- ===================== Modals ===================== -->
 
   <!-- About Us -->
-<div class="modal fade" id="modal-about" tabindex="-1" aria-labelledby="label-about" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-about">About Phoenix Adventures LTD</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Welcome to our coach trips website! We are a passionate team dedicated to providing exceptional travel experiences for all our customers. With years of expertise in the industry, we aim to make your journey comfortable, enjoyable, and memorable.</p>
+  <div class="modal fade" id="modal-about" tabindex="-1" aria-labelledby="label-about" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-about">About Phoenix Adventures LTD</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Welcome to our coach trips website! We are a passionate team dedicated to providing exceptional travel experiences for all our customers. With years of expertise in the industry, we aim to make your journey comfortable, enjoyable, and memorable.</p>
 
-        <h6 class="fw-bold mt-3">Experience the thrill</h6>
-        <p>Discover our coach tours to theme parks and other destinations. Create unforgettable memories with Phoenix Adventures! We’re a premier tour operator specialising in coach tours around the UK and Europe. With expertly planned itineraries, comfortable transport, knowledgeable staff, and outstanding customer service, we make every trip amazing. Whether you’re a thrill-seeker ready to conquer roller coasters or a family planning quality time together, our tours offer something for everyone.</p>
+          <h6 class="fw-bold mt-3">Experience the thrill</h6>
+          <p>Discover our coach tours to theme parks and other destinations. Create unforgettable memories with Phoenix Adventures! We’re a premier tour operator specialising in coach tours around the UK and Europe. With expertly planned itineraries, comfortable transport, knowledgeable staff, and outstanding customer service, we make every trip amazing. Whether you’re a thrill-seeker ready to conquer roller coasters or a family planning quality time together, our tours offer something for everyone.</p>
 
-        <h6 class="fw-bold mt-3">Why choose Phoenix Adventures</h6>
-        <ul class="mb-3">
-          <li><strong>Nightliner Sleeper Coaches:</strong> Phoenix Adventures Ltd is the <em>only</em> company that uses Nightliner sleeper coaches on all multi-park tours.</li>
-          <li><strong>Theme Park experts:</strong> We specialise in Theme Park Dashes and holidays. Our directors were the original creators of the “Ultimate Thrill Seekers Holiday” (2018) visiting 7 theme parks in 7 days across 3 countries.</li>
-          <li><strong>Connected to the community:</strong> We work with theme park enthusiasts and vloggers to stay updated with the latest news and newest rides.</li>
-          <li><strong>Family-oriented:</strong> We understand the importance of quality family time, which is why we run family-focused holidays designed for shared memories.</li>
-        </ul>
+          <h6 class="fw-bold mt-3">Why choose Phoenix Adventures</h6>
+          <ul class="mb-3">
+            <li><strong>Nightliner Sleeper Coaches:</strong> Phoenix Adventures Ltd is the <em>only</em> company that uses Nightliner sleeper coaches on all multi-park tours.</li>
+            <li><strong>Theme Park experts:</strong> We specialise in Theme Park Dashes and holidays. Our directors were the original creators of the “Ultimate Thrill Seekers Holiday” (2018) visiting 7 theme parks in 7 days across 3 countries.</li>
+            <li><strong>Connected to the community:</strong> We work with theme park enthusiasts and vloggers to stay updated with the latest news and newest rides.</li>
+            <li><strong>Family-oriented:</strong> We understand the importance of quality family time, which is why we run family-focused holidays designed for shared memories.</li>
+          </ul>
 
-        <h6 class="fw-bold mt-3">Ready for an adventure?</h6>
-        <p><strong>Book your coach tour today.</strong> Don’t miss the chance to experience our trips — embark on a journey filled with excitement and unforgettable memories.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-phoenix" data-bs-dismiss="modal">Go Back</button>
+          <h6 class="fw-bold mt-3">Ready for an adventure?</h6>
+          <p><strong>Book your coach tour today.</strong> Don’t miss the chance to experience our trips — embark on a journey filled with excitement and unforgettable memories.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-phoenix" data-bs-dismiss="modal">Go Back</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
- <!-- Annual Passes -->
-<div class="modal fade" id="modal-annual" tabindex="-1" aria-labelledby="label-annual" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-annual">Annual Passes</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Thinking about an annual pass? With the right pass you can make huge savings and enjoy brilliant benefits across the year.</p>
-
-        <h6 class="fw-bold mt-3">Why get one?</h6>
-        <ul class="mb-3">
-          <li>Excellent value if you plan to visit parks multiple times.</li>
-          <li>Perks such as in-park discounts, priority access windows and special events (varies by park/tier).</li>
-          <li>Some passes include free or discounted entry to partner parks <span class="text-muted">*</span>.</li>
-        </ul>
-
-        <h6 class="fw-bold mt-3">Things to check</h6>
-        <ul class="mb-3">
-          <li>Blackout dates and peak-day surcharges.</li>
-          <li>Perks and eligibility by pass tier (Silver/Gold/Platinum, etc.).</li>
-          <li>Activation rules, ID requirements and renewal terms.</li>
-        </ul>
-
-        <div class="alert alert-success" role="alert">
-          <strong>Travel-Only option:</strong> We’re the <em>only</em> company offering Travel Only on our trips — so you won’t pay more than you need to. Use your own annual pass for park entry and just book the coach with us.
+  <!-- Annual Passes -->
+  <div class="modal fade" id="modal-annual" tabindex="-1" aria-labelledby="label-annual" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-annual">Annual Passes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <p class="small text-muted mb-0"><span class="text-muted">*</span> Partner benefits and discounts vary by park and can change without notice. Always check the latest details with the park before purchasing.</p>
-      </div>
+        <div class="modal-body">
+          <p>Thinking about an annual pass? With the right pass you can make huge savings and enjoy brilliant benefits across the year.</p>
 
-      <div class="modal-footer">
-        <a href="./annual-passes.html" class="btn btn-outline-secondary">More on Passes</a>
-        <button type="button" class="btn btn-phoenix" data-bs-dismiss="modal">Back</button>
+          <h6 class="fw-bold mt-3">Why get one?</h6>
+          <ul class="mb-3">
+            <li>Excellent value if you plan to visit parks multiple times.</li>
+            <li>Perks such as in-park discounts, priority access windows and special events (varies by park/tier).</li>
+            <li>Some passes include free or discounted entry to partner parks <span class="text-muted">*</span>.</li>
+          </ul>
+
+          <h6 class="fw-bold mt-3">Things to check</h6>
+          <ul class="mb-3">
+            <li>Blackout dates and peak-day surcharges.</li>
+            <li>Perks and eligibility by pass tier (Silver/Gold/Platinum, etc.).</li>
+            <li>Activation rules, ID requirements and renewal terms.</li>
+          </ul>
+
+          <div class="alert alert-success" role="alert">
+            <strong>Travel-Only option:</strong> We’re the <em>only</em> company offering Travel Only on our trips — so you won’t pay more than you need to. Use your own annual pass for park entry and just book the coach with us.
+          </div>
+
+          <p class="small text-muted mb-0"><span class="text-muted">*</span> Partner benefits and discounts vary by park and can change without notice. Always check the latest details with the park before purchasing.</p>
+        </div>
+
+        <div class="modal-footer">
+          <a href="./annual-passes.html" class="btn btn-outline-secondary">More on Passes</a>
+          <button type="button" class="btn btn-phoenix" data-bs-dismiss="modal">Back</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Boarding Points -->
   <div class="modal fade" id="modal-boarding" tabindex="-1" aria-labelledby="label-boarding" aria-hidden="true">
@@ -643,12 +717,60 @@
   </div>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Optional: auto open modal if hash e.g. /moreinfo.html#faq -->
+  <!-- Search + Chips + Deep-link to modals -->
   <script>
     (function(){
-      const map = {
+      const searchInput = document.getElementById("searchInput");
+      const chips = document.querySelectorAll(".chip");
+      const cards = document.querySelectorAll(".topic");
+      const resultCount = document.getElementById("resultCount");
+      const clearBtn = document.getElementById("clearFilters");
+      const emptyState = document.getElementById("emptyState");
+      const emptyClear = document.getElementById("emptyClear");
+
+      let activeFilters = new Set();
+
+      function norm(s){ return (s||"").toLowerCase().trim(); }
+
+      function runFilter(){
+        const q = norm(searchInput.value);
+        let visible = 0;
+        cards.forEach(card=>{
+          const hay = norm(card.dataset.name + " " + card.dataset.tags + " " + card.textContent);
+          const matchesText = !q || hay.includes(q);
+          const tags = (card.dataset.tags||"").split(/\s+/).filter(Boolean);
+          const matchesChips = activeFilters.size===0 || tags.some(t=>activeFilters.has(t));
+          const show = matchesText && matchesChips;
+          card.style.display = show ? "" : "none";
+          if(show) visible++;
+        });
+        resultCount.textContent = visible ? `${visible} topic${visible>1?"s":""}` : "No results";
+        emptyState.classList.toggle("d-none", visible>0);
+      }
+
+      chips.forEach(chip=>{
+        chip.addEventListener("click", ()=>{
+          const f = chip.dataset.filter.toLowerCase();
+          chip.classList.toggle("active");
+          chip.classList.contains("active") ? activeFilters.add(f) : activeFilters.delete(f);
+          runFilter();
+        });
+      });
+
+      clearBtn.addEventListener("click", ()=>{
+        searchInput.value = "";
+        activeFilters.clear();
+        chips.forEach(c=>c.classList.remove("active"));
+        runFilter();
+      });
+
+      emptyClear?.addEventListener("click", ()=>clearBtn.click());
+      searchInput.addEventListener("input", runFilter);
+
+      // Deep-link: open modal from hash (e.g., /more-information.html#faq)
+      const hashMap = {
         '#about': 'modal-about',
         '#annual': 'modal-annual',
         '#boarding': 'modal-boarding',
@@ -666,13 +788,13 @@
       };
       function openFromHash(){
         const h = window.location.hash;
-        if (map[h]) {
-          const el = document.getElementById(map[h]);
+        if (hashMap[h]) {
+          const el = document.getElementById(hashMap[h]);
           if (el) new bootstrap.Modal(el).show();
         }
       }
       window.addEventListener('hashchange', openFromHash);
-      document.addEventListener('DOMContentLoaded', openFromHash);
+      document.addEventListener('DOMContentLoaded', ()=>{ runFilter(); openFromHash(); });
     })();
   </script>
 </body>

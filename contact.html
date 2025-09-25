@@ -14,7 +14,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
-  <!-- Site CSS (optional, keeps your existing tokens) -->
+  <!-- Site CSS (tokens) -->
   <link href="css/style.css" rel="stylesheet"/>
 
   <style>
@@ -30,6 +30,7 @@
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:#222;
@@ -52,10 +53,7 @@
         url("img/phoenix/busindex.JPG") center/cover no-repeat;
       color:#fff;
     }
-    .hero-modern .heading{
-      padding:4rem 1rem 6rem;
-      z-index:1;
-    }
+    .hero-modern .heading{ padding:4rem 1rem 6rem; z-index:1; }
     .hero-modern .heading h1{ letter-spacing:.2px; }
     .hero-modern .blur-orb{
       position:absolute; inset:auto -10% -40% -10%;
@@ -66,9 +64,7 @@
     }
 
     /* Glass Panel */
-    .glass-wrap{
-      margin-top:-6rem;
-    }
+    .glass-wrap{ margin-top:-6rem; }
     .glass-card{
       background:var(--surface);
       backdrop-filter:saturate(120%) blur(12px);
@@ -79,7 +75,7 @@
       overflow:hidden;
     }
 
-    /* Side brand panel */
+    /* Left info panel */
     .side-panel{
       background:
         radial-gradient(120% 120% at 10% 10%, rgba(45,143,221,.15), transparent 60%),
@@ -93,29 +89,22 @@
       border:1px solid rgba(45,143,221,.25);
     }
 
-    /* Inputs: floating labels + icons */
+    /* Form polish */
     .form-floating>.bi{
-      position:absolute;
-      left:1rem; top:50%; transform:translateY(-50%);
+      position:absolute; left:1rem; top:50%; transform:translateY(-50%);
       pointer-events:none; opacity:.6;
     }
     .form-floating>input,
-    .form-floating>textarea{
-      padding-left:2.5rem;
-    }
-    .form-floating>label{
-      color:#666;
-    }
-    .form-control, .form-select, .form-check-input{
-      border-radius:12px !important;
-    }
+    .form-floating>textarea{ padding-left:2.5rem; }
+    .form-floating>label{ color:#666; }
+    .form-control, .form-select, .form-check-input{ border-radius:12px !important; }
     .form-control:focus, .form-select:focus{
       border-color:var(--brand);
       box-shadow:0 0 0 .25rem rgba(45,143,221,.15);
     }
     .is-invalid{ box-shadow:0 0 0 .25rem rgba(220,53,69,.08) !important; }
 
-    /* CTA button */
+    /* CTA */
     .btn-phoenix{
       background:linear-gradient(180deg, var(--cta), var(--cta-dark));
       border:none; color:#fff; font-weight:700;
@@ -126,15 +115,10 @@
     .btn-phoenix:active{ transform:translateY(1px) scale(.99); }
 
     /* Message counter */
-    .char-count{
-      font-size:.85rem; color:#6c757d;
-    }
+    .char-count{ font-size:.85rem; color:#6c757d; }
 
     /* Success state */
-    .success-panel{
-      text-align:center;
-      padding:3rem 1rem;
-    }
+    .success-panel{ text-align:center; padding:3rem 1rem; }
     .tick{
       width:76px; height:76px; border-radius:50%;
       margin:0 auto 1rem; display:grid; place-items:center;
@@ -143,7 +127,6 @@
     }
     .tick i{ font-size:2rem; }
 
-    /* Responsive tweaks */
     @media (max-width: 991.98px){
       .side-panel{ border-right:none; border-bottom:1px solid var(--border); }
       .hero-modern{ min-height:42vh; }
@@ -174,81 +157,109 @@
       <h1 class="display-5 fw-bold">Contact Phoenix Adventures</h1>
       <p class="lead mb-0">Questions, group bookings or partnership ideas — send us a message.</p>
     </div>
-    <div class="blur-orb"></div>
+    <div class="blur-orb" aria-hidden="true"></div>
   </header>
 
   <!-- Glass Card -->
-  <main class="container glass-wrap pb-5">
-    <div class="glass-card">
+  <main id="main" class="container glass-wrap pb-5">
+    <div class="glass-card" role="region" aria-label="Contact form and company details">
       <div class="row g-0">
         <!-- Left: Brand/Info -->
         <aside class="col-lg-5 side-panel p-4 p-lg-5">
           <h2 class="h4 fw-bold mb-3">Our details</h2>
+
           <div class="d-flex align-items-start gap-3 mb-3">
-            <i class="bi bi-envelope-fill fs-4 text-primary"></i>
+            <i class="bi bi-envelope-fill fs-4 text-primary" aria-hidden="true"></i>
             <div>
               <div class="fw-semibold">Email</div>
               <a href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a>
             </div>
           </div>
+
           <div class="d-flex align-items-start gap-3 mb-3">
-            <i class="bi bi-telephone-fill fs-4 text-primary"></i>
+            <i class="bi bi-telephone-fill fs-4 text-primary" aria-hidden="true"></i>
             <div>
               <div class="fw-semibold">Phone</div>
               <a href="tel:+441284598069">+44 1284 598069</a>
             </div>
           </div>
+
           <div class="d-flex align-items-start gap-3 mb-4">
-            <i class="bi bi-geo-alt-fill fs-4 text-primary"></i>
-            <div>
+            <i class="bi bi-geo-alt-fill fs-4 text-primary" aria-hidden="true"></i>
+            <address class="mb-0">
               <div class="fw-semibold">Address</div>
               Phoenix Adventures LTD<br/>
               Unit A, 82 James Carter Road<br/>
               Mildenhall Ind Est, Mildenhall<br/>
-              IP28 7DE
-            </div>
+              Suffolk, IP28 7DE
+            </address>
           </div>
-
-      
 
           <div class="mt-4 small text-muted">
             Opening hours vary on trip days. For urgent enquiries on travel days, please ring the number above.
           </div>
+
+          <hr class="my-4">
+
+          <p class="small mb-0">
+            By contacting us you agree to our <a href="/privacy.html" class="link-primary">Privacy Policy</a>.
+          </p>
         </aside>
 
         <!-- Right: Form -->
         <section class="col-lg-7 p-4 p-lg-5">
-          <form id="contactForm" novalidate>
+          <noscript>
+            <div class="alert alert-info" role="alert">
+              JavaScript is off. Please email us at
+              <a href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a>.
+            </div>
+          </noscript>
+
+          <form id="contactForm" method="post" action="#" novalidate aria-describedby="formHelp" autocomplete="on">
+            <p id="formHelp" class="visually-hidden">All fields marked with an asterisk are required.</p>
+
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-floating position-relative">
-                  <input type="text" class="form-control" id="name" placeholder="Full Name" required />
-                  <label for="name">Full name</label>
+                  <input type="text" class="form-control" id="name" name="name"
+                         placeholder="Full Name" required autocomplete="name" />
+                  <label for="name">Full name <span class="text-danger">*</span></label>
                   <div class="invalid-feedback">Please enter your full name.</div>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-floating position-relative">
-                  <input type="email" class="form-control" id="email" placeholder="email@address.com" required />
-                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email"
+                         placeholder="email@address.com" required autocomplete="email" />
+                  <label for="email">Email address <span class="text-danger">*</span></label>
                   <div class="invalid-feedback">Please provide a valid email address.</div>
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-floating position-relative">
-                  <input type="text" class="form-control" id="subject" placeholder="Subject" required />
-                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" id="subject" name="subject"
+                         placeholder="Subject" required autocomplete="on" list="subject-suggestions"/>
+                  <label for="subject">Subject <span class="text-danger">*</span></label>
+                  <datalist id="subject-suggestions">
+                    <option value="Booking enquiry"></option>
+                    <option value="Group travel"></option>
+                    <option value="Twisted Tracks"></option>
+                    <option value="Accessibility"></option>
+                    <option value="Partnerships"></option>
+                  </datalist>
                   <div class="invalid-feedback">Please add a short subject.</div>
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-floating position-relative">
-                  <textarea class="form-control" placeholder="Your message" id="message" style="height: 140px;" maxlength="1200" required></textarea>
-                  <label for="message">Message</label>
+                  <textarea class="form-control" placeholder="Your message" id="message" name="message"
+                            style="height: 140px;" maxlength="1200" required></textarea>
+                  <label for="message">Message <span class="text-danger">*</span></label>
                   <div class="d-flex justify-content-between mt-1">
-                    <small class="char-count" id="charCount">0 / 1200</small>
+                    <small class="char-count" id="charCount" aria-live="polite">0 / 1200</small>
                     <div class="invalid-feedback d-block" style="display:none"></div>
                   </div>
                 </div>
@@ -257,36 +268,38 @@
               <!-- Optional attachment -->
               <div class="col-12">
                 <label for="attachment" class="form-label fw-semibold">Optional attachment</label>
-                <input class="form-control" type="file" id="attachment" accept=".jpg,.jpeg,.png,.pdf"/>
-                <div class="form-text">Screenshots or PDFs up to 5MB.</div>
+                <input class="form-control" type="file" id="attachment" name="attachment"
+                       accept=".jpg,.jpeg,.png,.pdf" />
+                <div class="form-text">Screenshots or PDFs up to 5&nbsp;MB.</div>
               </div>
 
               <!-- GDPR & honeypot -->
               <div class="col-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="consent" required />
+                  <input class="form-check-input" type="checkbox" id="consent" name="consent" required />
                   <label class="form-check-label" for="consent">
                     I agree my data may be stored and processed to respond to my enquiry. I understand I can revoke consent at any time. <span class="text-danger">*</span>
                   </label>
                   <div class="invalid-feedback">Please confirm consent to continue.</div>
                 </div>
                 <!-- Honeypot for bots -->
-                <input type="text" id="website" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;" />
+                <input type="text" id="website" name="website" autocomplete="off" tabindex="-1" aria-hidden="true"
+                       style="position:absolute;left:-5000px;opacity:0;height:0;width:0;" />
               </div>
 
               <div class="col-12 d-grid d-sm-flex gap-3 align-items-center">
-                <button id="submitBtn" type="submit" class="btn btn-phoenix px-4" disabled>
+                <button id="submitBtn" type="submit" class="btn btn-phoenix px-4" disabled aria-live="polite">
                   <span class="btn-label">Send message</span>
                   <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
                 </button>
-                <div id="formAlert" class="flex-grow-1"></div>
+                <div id="formAlert" class="flex-grow-1" aria-live="polite"></div>
               </div>
             </div>
           </form>
 
           <!-- Success panel (hidden initially) -->
-          <div id="successPanel" class="success-panel d-none">
-            <div class="tick"><i class="bi bi-check-lg"></i></div>
+          <div id="successPanel" class="success-panel d-none" role="status" aria-live="polite">
+            <div class="tick"><i class="bi bi-check-lg" aria-hidden="true"></i></div>
             <h3 class="fw-bold">Message sent!</h3>
             <p class="text-muted mb-4">Thanks for reaching out — we’ll get back to you shortly.</p>
             <a href="/" class="btn btn-outline-primary rounded-3">Back to home</a>
@@ -323,10 +336,13 @@
         let ok = true;
         ["name","email","subject","message","consent"].forEach(id=>{
           const el = document.getElementById(id);
-          if(id==="consent"){ if(!el.checked){ el.classList.add("is-invalid"); ok=false; } else { el.classList.remove("is-invalid"); } return; }
+          if(id==="consent"){
+            if(!el.checked){ el.classList.add("is-invalid"); ok=false; }
+            else { el.classList.remove("is-invalid"); }
+            return;
+          }
           if(!el.value.trim()){
-            el.classList.add("is-invalid");
-            ok = false;
+            el.classList.add("is-invalid"); ok = false;
           }else{
             el.classList.remove("is-invalid");
           }
@@ -340,7 +356,7 @@
         // attachment size check (5MB)
         const file = document.getElementById("attachment").files[0];
         if(file && file.size > 5 * 1024 * 1024){
-          formAlert.innerHTML = '<div class="alert alert-warning mb-0">Attachment is larger than 5MB.</div>';
+          formAlert.innerHTML = '<div class="alert alert-warning mb-0">Attachment is larger than 5&nbsp;MB.</div>';
           ok = false;
         } else if(!file) {
           formAlert.innerHTML = "";
@@ -348,7 +364,7 @@
         return ok;
       }
 
-      // Fake submit handler (wire to your backend later)
+      // Fake submit handler (replace with your backend later)
       form.addEventListener("submit", async (e)=>{
         e.preventDefault();
         if(document.getElementById("website").value){ return; } // bot
@@ -364,6 +380,26 @@
         successPanel.classList.remove("d-none");
       });
     })();
+  </script>
+
+  <!-- Optional: JSON-LD for Organisation (helps local SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Phoenix Adventures LTD",
+    "url":"https://www.phoenixadventures.co.uk",
+    "email":"info@phoenixadventures.co.uk",
+    "telephone":"+44 1284 598069",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Unit A, 82 James Carter Road, Mildenhall Ind Est",
+      "addressLocality":"Mildenhall",
+      "addressRegion":"Suffolk",
+      "postalCode":"IP28 7DE",
+      "addressCountry":"GB"
+    }
+  }
   </script>
 </body>
 </html>

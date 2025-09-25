@@ -21,7 +21,17 @@
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
+
+      /* Route brand colours */
+      --route1:#2d8fdd;   /* Brand blue */
+      --route2:#1b6fb8;   /* Darker blue */
+      --route3:#0b3a66;   /* Ink navy */
+      --route4:#ff7043;   /* Warm orange tint */
+      --route5:#ff4500;   /* CTA orange */
+      --route6:#e63900;   /* Darker CTA red */
+      --connect:#6c757d;  /* Neutral for connections */
     }
+
     body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
     .section{ padding:3rem 0; }
     .lead-compact{ max-width: 75ch; }
@@ -34,36 +44,41 @@
     }
     .hero::before {
       content:""; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(1.5, 8, 8, 1.55), rgba(0,0,0,.45));
+      background: linear-gradient(180deg, rgba(1,8,8,0.55), rgba(0,0,0,.45));
     }
     .hero > .container { position: relative; z-index:1; }
 
-    /* Cards with background images + overlay for readability */
+    /* Cards – SOLID brand colours (no image overlays) */
     .info-card {
-      position: relative; border-radius: 14px; overflow: hidden; color: #100f0f;
+      position: relative; border-radius: 14px; overflow: hidden;
       height: 100%; min-height: 220px; display: flex; align-items: stretch;
       box-shadow:0 6px 16px rgba(0,0,0,.06);
       transition:.15s ease transform, .15s ease box-shadow;
-      --ov:.58;
+      color:#fff;
     }
     .info-card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.14); }
-    .info-card::before{
-      content:""; position:absolute; inset:0; z-index:1;
-      background:
-        radial-gradient(80% 70% at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 100%),
-        linear-gradient(180deg, rgba(0,0,0,calc(var(--ov)+.05)) 0%, rgba(0,0,0,var(--ov)) 50%, rgba(0,0,0,calc(var(--ov)+.18)) 100%);
-    }
-    .info-card .card-body{ position:relative; z-index:2; padding:1.5rem; display:flex; flex-direction:column; }
-    .info-card h5, .info-card p{ text-shadow:0 2px 10px rgba(0,0,0,.6); }
-    @media (max-width: 991.98px){ .info-card{ --ov:.68; } }
-    .overlay-65{ --ov:.65; } .overlay-75{ --ov:.75; }
+    .info-card::before{ display:none; }          /* kill image overlay */
+    .info-card h5, .info-card p{ text-shadow:none; }
+    .info-card .card-body{ padding:1.5rem; display:flex; flex-direction:column; }
 
-    .btn-phoenix{ background:var(--cta); color:#f6f2f2; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }
-    .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
+    /* Route backgrounds */
+    .bg-route1{ background:var(--route1); }
+    .bg-route2{ background:var(--route2); }
+    .bg-route3{ background:var(--route3); }
+    .bg-route4{ background:var(--route4); }
+    .bg-route5{ background:var(--route5); }
+    .bg-route6{ background:var(--route6); }
+    .bg-connect{ background:var(--connect); }
+
+    /* Buttons on coloured cards */
+    .btn-on-colour.btn-light{
+      font-weight:700;
+      box-shadow:0 6px 16px rgba(0,0,0,.15);
+    }
+    .btn-on-colour.btn-light:hover{ background:#f3f3f3; }
 
     .breadcrumb-light a{ color:#fff; text-decoration:underline; }
     .breadcrumb-light .breadcrumb-item+.breadcrumb-item::before { color: rgba(255,255,255,.7); }
-
 
     /* Modal polish */
     .modal-content{ border-radius:16px; }
@@ -123,7 +138,7 @@
               <h5 class="fw-bold">Route 1</h5>
               <p class="mb-3">Boarding points for Route 1.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route1">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route1">More information</button>
               </div>
             </div>
           </div>
@@ -136,7 +151,7 @@
               <h5 class="fw-bold">Route 2</h5>
               <p class="mb-3">Boarding points for Route 2.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route2">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route2">More information</button>
               </div>
             </div>
           </div>
@@ -149,7 +164,7 @@
               <h5 class="fw-bold">Route 3</h5>
               <p class="mb-3">Boarding points for Route 3.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route3">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route3">More information</button>
               </div>
             </div>
           </div>
@@ -162,7 +177,7 @@
               <h5 class="fw-bold">Route 4</h5>
               <p class="mb-3">Boarding points for Route 4.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route4">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route4">More information</button>
               </div>
             </div>
           </div>
@@ -175,7 +190,7 @@
               <h5 class="fw-bold">Route 5</h5>
               <p class="mb-3">Boarding points for Route 5.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route5">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route5">More information</button>
               </div>
             </div>
           </div>
@@ -188,7 +203,7 @@
               <h5 class="fw-bold">Route 6</h5>
               <p class="mb-3">Boarding points for Route 6.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-route6">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-route6">More information</button>
               </div>
             </div>
           </div>
@@ -196,12 +211,12 @@
 
         <!-- Coach Connections -->
         <div class="col-md-6 col-lg-4">
-          <div class="card info-card bg-connect h-100 overlay-65">
+          <div class="card info-card bg-connect h-100">
             <div class="card-body">
               <h5 class="fw-bold">Coach Connections We Offer</h5>
               <p class="mb-3">Low-cost connections if there’s no point near you — or if you’re joining from overseas.</p>
               <div class="mt-auto">
-                <button class="btn btn-phoenix w-100" data-bs-toggle="modal" data-bs-target="#modal-connections">More information</button>
+                <button class="btn btn-light btn-on-colour w-100" data-bs-toggle="modal" data-bs-target="#modal-connections">More information</button>
               </div>
             </div>
           </div>
@@ -220,227 +235,200 @@
 
   <!-- ===================== Modals ===================== -->
 
-  <!-- NOTE: Replace placeholder stops with your exact locations.
-       Keep the structure (Town, Location, Notes) for consistency. -->
-
   <!-- Route 1 -->
-<div class="modal fade" id="modal-route1" tabindex="-1" aria-labelledby="label-route1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-route1">Route 1 – Boarding Points</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p class="mb-3">Below are the pick-up locations used when the coach is operating on <strong>Route 1</strong>. Exact times appear on your booking and in your pre-trip email.</p>
-
-        <div class="table-responsive">
-          <table class="table table-sm align-middle">
-            <caption class="text-muted small">Boarding points for Route 1 (subject to demand and availability).</caption>
-            <thead class="table-light">
-              <tr>
-                <th scope="col">Town</th>
-                <th scope="col">Pick-up location</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
-              <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
-              <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
-            </tbody>
-          </table>
+  <div class="modal fade" id="modal-route1" tabindex="-1" aria-labelledby="label-route1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-route1">Route 1 – Boarding Points</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>This list shows all potential boarding points used on Route 1. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-body">
+          <p class="mb-3">Below are the pick-up locations used when the coach is operating on <strong>Route 1</strong>. Exact times appear on your booking and in your pre-trip email.</p>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <caption class="text-muted small">Boarding points for Route 1 (subject to demand and availability).</caption>
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Town</th>
+                  <th scope="col">Pick-up location</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
+                <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
+                <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>This list shows all potential boarding points used on Route 1. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-
-<!-- Route 2 -->
-<div class="modal fade" id="modal-route2" tabindex="-1" aria-labelledby="label-route2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-route2">Route 2 – Boarding Points</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 2</strong>. Exact times appear on your booking and in your pre-trip email.</p>
-
-        <div class="table-responsive">
-          <table class="table table-sm align-middle">
-            <caption class="text-muted small">Boarding points for Route 2 (subject to demand and availability).</caption>
-            <thead class="table-light">
-              <tr>
-                <th scope="col">Town</th>
-                <th scope="col">Pick-up location</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
-              <tr><td>Sheffield</td><td>Woodall Services (M1)</td><td></td></tr>
-              <tr><td>Alfreton</td><td>Tibshelf Services</td><td></td></tr>
-              <tr><td>Nottingham</td><td>Trowell Services (M1)</td><td></td></tr>
-              <tr><td>Leicester</td><td>Leicester Forest East Services (M1)</td><td></td></tr>
-              <tr><td>Northampton</td><td>Watford Gap Services (M1)</td><td></td></tr>
-              <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
-              <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
-              <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
-              <tr><td>Edgware</td><td>London Gateway Services (M1)</td><td></td></tr>
-              <tr><td>London</td><td>Victoria</td><td></td></tr>
-              <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
-              <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
-            </tbody>
-          </table>
+  <!-- Route 2 -->
+  <div class="modal fade" id="modal-route2" tabindex="-1" aria-labelledby="label-route2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-route2">Route 2 – Boarding Points</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>The coach only stops at boarding points where passengers are booked to board. Points with no bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-body">
+          <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 2</strong>. Exact times appear on your booking and in your pre-trip email.</p>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <caption class="text-muted small">Boarding points for Route 2 (subject to demand and availability).</caption>
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Town</th>
+                  <th scope="col">Pick-up location</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
+                <tr><td>Sheffield</td><td>Woodall Services (M1)</td><td></td></tr>
+                <tr><td>Alfreton</td><td>Tibshelf Services</td><td></td></tr>
+                <tr><td>Nottingham</td><td>Trowell Services (M1)</td><td></td></tr>
+                <tr><td>Leicester</td><td>Leicester Forest East Services (M1)</td><td></td></tr>
+                <tr><td>Northampton</td><td>Watford Gap Services (M1)</td><td></td></tr>
+                <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
+                <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
+                <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
+                <tr><td>Edgware</td><td>London Gateway Services (M1)</td><td></td></tr>
+                <tr><td>London</td><td>Victoria</td><td></td></tr>
+                <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
+                <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>The coach only stops at boarding points where passengers are booked to board. Points with no bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-
- <!-- Route 3 -->
-<div class="modal fade" id="modal-route3" tabindex="-1" aria-labelledby="label-route3" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-route3">Route 3 – Boarding Points</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 3</strong>. Exact times appear on your booking and in your pre-trip email.</p>
-
-        <div class="table-responsive">
-          <table class="table table-sm align-middle">
-            <caption class="text-muted small">Boarding points for Route 3 (subject to demand and availability).</caption>
-            <thead class="table-light">
-              <tr>
-                <th scope="col">Town</th>
-                <th scope="col">Pick-up location</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>London</td><td>Victoria</td><td></td></tr>
-              <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
-              <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
-            </tbody>
-          </table>
+  <!-- Route 3 -->
+  <div class="modal fade" id="modal-route3" tabindex="-1" aria-labelledby="label-route3" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-route3">Route 3 – Boarding Points</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>This list shows all potential boarding points used on Route 3. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-body">
+          <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 3</strong>. Exact times appear on your booking and in your pre-trip email.</p>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <caption class="text-muted small">Boarding points for Route 3 (subject to demand and availability).</caption>
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Town</th>
+                  <th scope="col">Pick-up location</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>London</td><td>Victoria</td><td></td></tr>
+                <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
+                <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>This list shows all potential boarding points used on Route 3. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Route 4 -->
-<div class="modal fade" id="modal-route4" tabindex="-1" aria-labelledby="label-route2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-route4">Route 4 – Boarding Points</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 4</strong>. Exact times appear on your booking and in your pre-trip email.</p>
-
-        <div class="table-responsive">
-          <table class="table table-sm align-middle">
-            <caption class="text-muted small">Boarding points for Route 4 (subject to demand and availability).</caption>
-            <thead class="table-light">
-              <tr>
-                <th scope="col">Town</th>
-                <th scope="col">Pick-up location</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
-              <tr><td>Sheffield</td><td>Woodall Services (M1)</td><td></td></tr>
-              <tr><td>Alfreton</td><td>Tibshelf Services</td><td></td></tr>
-              <tr><td>Nottingham</td><td>Trowell Services (M1)</td><td></td></tr>
-              <tr><td>Leicester</td><td>Leicester Forest East Services (M1)</td><td></td></tr>
-              <tr><td>Northampton</td><td>Watford Gap Services (M1)</td><td></td></tr>
-              <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
-              <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
-              <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
-              <tr><td>Dartford</td><td></td><td></td></tr>
-              <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
-              <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
-            </tbody>
-          </table>
+  <div class="modal fade" id="modal-route4" tabindex="-1" aria-labelledby="label-route4" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-route4">Route 4 – Boarding Points</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>The coach only stops at boarding points where passengers are booked to board. Points with no bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-body">
+          <p class="mb-3">Pick-up locations used when the coach is operating on <strong>Route 4</strong>. Exact times appear on your booking and in your pre-trip email.</p>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <caption class="text-muted small">Boarding points for Route 4 (subject to demand and availability).</caption>
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Town</th>
+                  <th scope="col">Pick-up location</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Sheffield</td><td>Meadowhall</td><td></td></tr>
+                <tr><td>Sheffield</td><td>Woodall Services (M1)</td><td></td></tr>
+                <tr><td>Alfreton</td><td>Tibshelf Services</td><td></td></tr>
+                <tr><td>Nottingham</td><td>Trowell Services (M1)</td><td></td></tr>
+                <tr><td>Leicester</td><td>Leicester Forest East Services (M1)</td><td></td></tr>
+                <tr><td>Northampton</td><td>Watford Gap Services (M1)</td><td></td></tr>
+                <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
+                <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
+                <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
+                <tr><td>Dartford</td><td></td><td></td></tr>
+                <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
+                <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>The coach only stops at boarding points where passengers are booked to board. Points with no bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Route 5 -->
   <div class="modal fade" id="modal-route5" tabindex="-1" aria-labelledby="label-route5" aria-hidden="true">
@@ -454,33 +442,28 @@
           <p class="mb-2">Pick-up locations used when the coach is operating on <strong>Route 5</strong>. Times are confirmed after booking.</p>
           <div class="table-responsive">
             <table class="table table-sm align-middle">
-            <tbody>
-              <tr><td>London Victoria</td><td></td><td></td></tr>
-                            <tr><td>ONLY</td><td></td><td></td></tr>
-
-            </tbody>
-          </table>
+              <tbody>
+                <tr><td>London Victoria</td><td></td><td></td></tr>
+                <tr><td>ONLY</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>This list shows all potential boarding points used on Route 5. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>This list shows all potential boarding points used on Route 5. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
         </div>
-
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Route 6 -->
   <div class="modal fade" id="modal-route6" tabindex="-1" aria-labelledby="label-route6" aria-hidden="true">
@@ -494,34 +477,32 @@
           <p class="mb-2">Pick-up locations used when the coach is operating on <strong>Route 6</strong>. Times are confirmed after booking.</p>
           <div class="table-responsive">
             <table class="table table-sm align-middle">
-            <tbody>
-              <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
-              <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
-              <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
-              <tr><td>Dartford</td><td></td><td></td></tr>
-              <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
-              <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
-            </tbody>
-          </table>
+              <tbody>
+                <tr><td>Northampton</td><td>Northampton Services (M1)</td><td></td></tr>
+                <tr><td>Milton Keynes</td><td>Newport Pagnell Services (M1)</td><td></td></tr>
+                <tr><td>Dunstable</td><td>Toddington Services</td><td></td></tr>
+                <tr><td>Dartford</td><td></td><td></td></tr>
+                <tr><td>Medway</td><td>Medway Services (M2)</td><td></td></tr>
+                <tr><td>Dover</td><td>Port of Dover</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-warning mt-3" role="alert">
+            <h6 class="fw-bold mb-2">Important</h6>
+            <ul class="mb-0">
+              <li>This list shows all potential boarding points used on Route 6. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
+              <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
+            </ul>
+          </div>
+          <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
         </div>
-        <div class="alert alert-warning mt-3" role="alert">
-          <h6 class="fw-bold mb-2">Important</h6>
-          <ul class="mb-0">
-            <li>This list shows all potential boarding points used on Route 5. The coach only stops at points where passengers are booked to board; any points without bookings will be omitted.</li>
-            <li>We reserve the right to provide a feeder service from any boarding point at no extra charge if it benefits timings. This could be a taxi, minibus, or a scheduled service (e.g. National Express or Megabus).</li>
-          </ul>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
         </div>
-        <p class="disclaimer mb-0">Not all points are available on all trips. Please check the route shown during booking.</p>
-      </div>
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
       </div>
     </div>
   </div>
-</div>
-
-  
 
   <!-- Return Boarding Points -->
   <div class="modal fade" id="modal-return" tabindex="-1" aria-labelledby="label-return" aria-hidden="true">
@@ -534,133 +515,125 @@
         <div class="modal-body">
           <p>These are the meeting points used at the attractions we visit when returning. Your driver/host will confirm the exact time and meeting location on the day, usually near the main coach park or a signed pick-up area.</p>
           <ul class="list-group list-group-flush">
-            <!-- Example items: replace with attraction-specific details -->
-            <!-- <li class="list-group-item">Alton Towers – Coach Park, Zone B (by signage)</li> -->
-            <!-- <li class="list-group-item">Thorpe Park – Main Coach Pick-up (after security)</li> -->
+            <!-- Add attraction-specific details here if needed -->
           </ul>
           <p class="disclaimer mt-3 mb-0">Times may vary for special events or late openings. Always follow your host’s instructions.</p>
         </div>
         <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
           <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Ask for help</a>
-          <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">View Trips</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">View Trips</a>
         </div>
       </div>
     </div>
   </div>
 
-<!-- Coach Connections -->
-<div class="modal fade" id="modal-connections" tabindex="-1" aria-labelledby="label-connections" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-0"><!-- p-0 so the hero image touches the edges -->
-      
-      <!-- Image hero -->
-      <img
-        src="/img/routes/nationalbus.png"
-        alt="Low-cost coach connections (Megabus, FlixBus, National Express)"
-        class="w-100 rounded-top"
-        style="height: 240px; object-fit:contain;"
-      />
+  <!-- Coach Connections -->
+  <div class="modal fade" id="modal-connections" tabindex="-1" aria-labelledby="label-connections" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-0">
+        <!-- Image hero -->
+        <img
+          src="/img/routes/nationalbus.png"
+          alt="Low-cost coach connections (Megabus, FlixBus, National Express)"
+          class="w-100 rounded-top"
+          style="height: 240px; object-fit:contain;"
+        />
 
-      <div class="modal-header px-3 px-sm-4">
-        <h5 class="modal-title fw-bold" id="label-connections">Coach Connections We Offer</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+        <div class="modal-header px-3 px-sm-4">
+          <h5 class="modal-title fw-bold" id="label-connections">Coach Connections We Offer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-      <div class="modal-body px-3 px-sm-4">
-        <p class="mb-3">Don’t see a boarding point near you? We can arrange low-cost coach connections <strong>at cost</strong> to link you with your tour. We can also assist travellers coming from overseas to join our trips in the UK.</p>
+        <div class="modal-body px-3 px-sm-4">
+          <p class="mb-3">Don’t see a boarding point near you? We can arrange low-cost coach connections <strong>at cost</strong> to link you with your tour. We can also assist travellers coming from overseas to join our trips in the UK.</p>
 
-        <h6 class="fw-bold mt-2">Low-cost coach connections</h6>
-        <!-- Providers in equal-height cards, aligned across -->
-        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
-          <!-- Megabus -->
-          <div class="col">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-center mb-2">
-                  <span class="badge text-bg-primary me-2">Megabus</span>
-                  <small class="text-muted">Extensive UK network</small>
+          <h6 class="fw-bold mt-2">Low-cost coach connections</h6>
+          <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex align-items-center mb-2">
+                    <span class="badge text-bg-primary me-2">Megabus</span>
+                    <small class="text-muted">Extensive UK network</small>
+                  </div>
+                  <p class="small mb-2">Connects major UK cities and towns at great value fares.</p>
+                  <ul class="small mb-0 mt-auto">
+                    <li>Comfortable seating, free Wi-Fi and power on most services.</li>
+                    <li>Ideal for reaching one of our Route boarding points.</li>
+                  </ul>
                 </div>
-                <p class="small mb-2">Connects major UK cities and towns at great value fares.</p>
-                <ul class="small mb-0 mt-auto">
-                  <li>Comfortable seating, free Wi-Fi and power on most services.</li>
-                  <li>Ideal for reaching one of our Route boarding points.</li>
-                </ul>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex align-items-center mb-2">
+                    <span class="badge text-bg-success me-2">FlixBus</span>
+                    <small class="text-muted">UK &amp; Europe coverage</small>
+                  </div>
+                  <p class="small mb-2">Wide network with frequent departures across the UK and Europe.</p>
+                  <ul class="small mb-0 mt-auto">
+                    <li>Modern coaches with onboard toilets and reclining seats.</li>
+                    <li>Handy links from many towns/cities to our boarding points.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex align-items-center mb-2">
+                    <span class="badge text-bg-secondary me-2">National Express</span>
+                    <small class="text-muted">Frequent UK departures</small>
+                  </div>
+                  <p class="small mb-2">Leading UK operator with comprehensive national coverage.</p>
+                  <ul class="small mb-0 mt-auto">
+                    <li>Comfortable coaches and competitive fares.</li>
+                    <li>Reliable connections to meet our route pick-ups.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- FlixBus -->
-          <div class="col">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-center mb-2">
-                  <span class="badge text-bg-success me-2">FlixBus</span>
-                  <small class="text-muted">UK &amp; Europe coverage</small>
-                </div>
-                <p class="small mb-2">Wide network with frequent departures across the UK and Europe.</p>
-                <ul class="small mb-0 mt-auto">
-                  <li>Modern coaches with onboard toilets and reclining seats.</li>
-                  <li>Handy links from many towns/cities to our boarding points.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <h6 class="fw-bold">How we help</h6>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+              <span class="badge bg-info-subtle text-dark border me-2">Option</span>
+              Feeder coach or alternative connection to the nearest Route stop (at cost).
+            </li>
+            <li class="list-group-item">
+              <span class="badge bg-info-subtle text-dark border me-2">Advice</span>
+              Guidance on using coaches/trains and which stops to select to meet the tour.
+            </li>
+            <li class="list-group-item">
+              <span class="badge bg-info-subtle text-dark border me-2">Support</span>
+              Timed meeting points and on-the-day contact details.
+            </li>
+          </ul>
 
-          <!-- National Express -->
-          <div class="col">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-center mb-2">
-                  <span class="badge text-bg-secondary me-2">National Express</span>
-                  <small class="text-muted">Frequent UK departures</small>
-                </div>
-                <p class="small mb-2">Leading UK operator with comprehensive national coverage.</p>
-                <ul class="small mb-0 mt-auto">
-                  <li>Comfortable coaches and competitive fares.</li>
-                  <li>Reliable connections to meet our route pick-ups.</li>
-                </ul>
-              </div>
-            </div>
+          <h6 class="fw-bold">Visitors from outside the UK</h6>
+          <p class="mb-2">Travelling to the UK to join one of our multi-park tours or holidays (e.g. Twisted Tracks)? We can:</p>
+          <ul class="small">
+            <li>Arrange low-cost connections from major UK airports and railway stations.</li>
+            <li>Assist with coach connections from major towns and cities across Europe.</li>
+            <li>Help plan timings and meeting points to seamlessly join your tour.</li>
+          </ul>
+
+          <div class="alert alert-warning mb-0" role="alert">
+            <strong>Note:</strong> Connections are subject to availability and are quoted at cost. We’ll confirm exact timings and meeting points in advance. These options are especially helpful for trips heading to Europe, but may also suit selected UK tours — please ask.
           </div>
         </div>
 
-        <h6 class="fw-bold">How we help</h6>
-        <ul class="list-group list-group-flush mb-3">
-          <li class="list-group-item">
-            <span class="badge bg-info-subtle text-dark border me-2">Option</span>
-            Feeder coach or alternative connection to the nearest Route stop (at cost).
-          </li>
-          <li class="list-group-item">
-            <span class="badge bg-info-subtle text-dark border me-2">Advice</span>
-            Guidance on using coaches/trains and which stops to select to meet the tour.
-          </li>
-          <li class="list-group-item">
-            <span class="badge bg-info-subtle text-dark border me-2">Support</span>
-            Timed meeting points and on-the-day contact details.
-          </li>
-        </ul>
-
-        <h6 class="fw-bold">Visitors from outside the UK</h6>
-        <p class="mb-2">Travelling to the UK to join one of our multi-park tours or holidays (e.g. Twisted Tracks)? We can:</p>
-        <ul class="small">
-          <li>Arrange low-cost connections from major UK airports and railway stations.</li>
-          <li>Assist with coach connections from major towns and cities across Europe.</li>
-          <li>Help plan timings and meeting points to seamlessly join your tour.</li>
-        </ul>
-
-        <div class="alert alert-warning mb-0" role="alert">
-          <strong>Note:</strong> Connections are subject to availability and are quoted at cost. We’ll confirm exact timings and meeting points in advance. These options are especially helpful for trips heading to Europe, but may also suit selected UK tours — please ask.
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end px-3 px-sm-4 pb-3">
+          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Enquire by Email</a>
+          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">Browse Tours</a>
         </div>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end px-3 px-sm-4 pb-3">
-        <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Enquire by Email</a>
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Browse Tours</a>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

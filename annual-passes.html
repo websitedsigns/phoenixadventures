@@ -16,16 +16,28 @@
 
   <style>
     :root{
-      --brand:#2d8fdd;
-      --brand-dark:#1b6fb8;
-      --cta:#ff4500;
-      --cta-dark:#e63900;
-      --ink:#0b3a66;
+      /* Core brand */
+      --brand:#2d8fdd;        /* primary blue */
+      --brand-dark:#1b6fb8;   /* darker blue */
+      --cta:#ff4500;          /* CTA orange */
+      --cta-dark:#e63900;     /* CTA orange (dark) */
+      --ink:#0b3a66;          /* deep navy */
+
+      /* Accent surfaces that align with the new format */
+      --surface-blue:#1b6fb8;        /* solid brand card */
+      --surface-ink:#0b3a66;         /* dark brand card */
+      --surface-cta:#ff4500;         /* warm CTA surface */
+      --surface-cta-dark:#e63900;    /* deeper CTA surface */
+
+      --chip-bg:#eef6ff;       /* tag background */
+      --chip-fg:#2d8fdd;       /* tag foreground */
     }
+
     body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
     .section{ padding:3rem 0; }
     .lead-compact{ max-width: 70ch; }
 
+    /* Hero (kept photo header) */
     .hero {
       position: relative;
       background: url('/img/annualpass/annualpass.png') center/cover no-repeat;
@@ -34,16 +46,17 @@
     .hero::before {
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(6, 0, 0, 0.55), rgba(0,0,0,.45));
+      background: linear-gradient(180deg, rgba(6,0,0,.55), rgba(0,0,0,.45));
     }
     .hero > .container { position: relative; z-index:1; }
 
+    /* Buttons (match boarding-points page) */
     .btn-phoenix{ background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }
     .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
 
-    .table thead th { background:#f4f8ff; color:#0b3a66; }
-    .disclaimer { font-size:.875rem; color:#666; }
+    .btn-outline-secondary{ font-weight:600; }
 
+    /* Cards */
     .pass-card {
       border:1px solid rgba(0,0,0,.06);
       border-radius:14px;
@@ -57,23 +70,37 @@
     .pass-card:hover { transform: translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.14); }
     .pass-card .card-img-top { height: 180px; object-fit: cover; }
     .pass-card .card-body { display:flex; flex-direction:column; }
+
+    /* Brand tag chips */
     .pass-card .tag {
       display:inline-block; font-size:.775rem; font-weight:700; letter-spacing:.02em;
-      padding:.25rem .6rem; border-radius:999px; background:#eef6ff; color:var(--brand);
+      padding:.25rem .6rem; border-radius:999px; background:var(--chip-bg); color:var(--chip-fg);
     }
 
-    /* Filters */
-    .filter-bar .btn { border-radius:999px; }
-    .filter-bar .btn.active { background:var(--brand); color:#fff; border-color:var(--brand-dark); }
+    /* “Travel-Only” promo block styled like a brand surface card */
+    .promo-surface {
+      border-radius:14px;
+      padding:1.25rem;
+      color:#fff;
+      background: linear-gradient(135deg, var(--surface-cta) 0%, var(--surface-cta-dark) 100%);
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+    }
+    .promo-surface .btn-phoenix{ background:#fff; color:var(--cta); }
+    .promo-surface .btn-phoenix:hover{ background:#f3f3f3; color:var(--cta-dark); }
 
-    /* Sortable headers */
-    th.th-sortable { cursor:pointer; user-select:none; position:relative; }
-    th.th-sortable .sort-indicator { margin-left:.35rem; font-size:.8rem; opacity:.6; }
+    /* Tables (if you add one later) */
+    .table thead th { background:#f4f8ff; color:var(--ink); }
+
+    .disclaimer { font-size:.875rem; color:#666; }
 
     /* Modal polish */
     .modal-content{ border-radius:16px; }
     .modal-header{ border-bottom:none; }
     .modal-footer{ border-top:none; }
+
+    /* Breadcrumb in light-on-dark areas */
+    .breadcrumb-light a{ color:#fff; text-decoration:underline; }
+    .breadcrumb-light .breadcrumb-item+.breadcrumb-item::before { color: rgba(255,255,255,.7); }
   </style>
 </head>
 <body>
@@ -100,16 +127,27 @@
     });
   </script>
 
-  
+  <!-- Hero -->
+  <header class="hero section pb-4">
+    <div class="container">
+      <nav class="mb-3 breadcrumb-light" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-1">
+          <li class="breadcrumb-item"><a class="text-white" href="/index.html">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Annual Passes</li>
+        </ol>
+      </nav>
+      <h1 class="fw-bold mb-2">Annual Passes</h1>
+      <p class="lead lead-compact mb-0">Thinking about visiting multiple times? Here’s how park passes can save you money — and how to pair them with our <strong>Travel-Only</strong> options.</p>
+    </div>
+  </header>
+
   <!-- Why + Travel-Only note -->
   <section class="section pt-4">
     <div class="container">
       <div class="row g-4 align-items-stretch">
         <div class="col-lg-8">
           <div class="p-4 bg-white rounded-4 shadow-sm h-100">
-            <h2 class="h1 fw-bold mb-3" id="why">Annual Passes</h2>
-
-            <h2 class="h4 fw-bold mb-3" id="why">Why get one?</h2>
+            <h2 class="h4 fw-bold mb-3">Why get one?</h2>
             <ul class="mb-3">
               <li>Excellent value if you plan to visit parks multiple times.</li>
               <li>Perks such as in-park discounts, parking options and special events <span class="text-muted">*</span>.</li>
@@ -125,20 +163,16 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="p-4 rounded-4 shadow-sm h-100" style="background:linear-gradient(135deg,#ffe7d8,#fff1e8)">
+          <div class="promo-surface h-100 d-flex flex-column">
             <h2 class="h5 fw-bold mb-2">Travel-Only with Phoenix</h2>
-            <p class="mb-2">Already got a pass? Book <strong>Travel-Only</strong> on our trips, use your pass for park entry, and save money.</p>
-            <a href="/tours.html" class="btn btn-phoenix w-100">View Trips</a>
-            <p class="disclaimer mt-3 mb-0"><span class="text-muted">*</span> Benefits and availability vary by park and can change without notice. Always check the official park site before purchasing.</p>
+            <p class="mb-3">Already got a pass? Book <strong>Travel-Only</strong> on our trips, use your pass for park entry, and save money.</p>
+            <a href="/tours.html" class="btn btn-phoenix w-100 mt-auto">View Trips</a>
+            <p class="disclaimer mt-3 mb-0"><span class="text-white-50">*</span> Benefits vary by park and can change without notice. Always check the official park site before purchasing.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
- 
-
-      
 
   <!-- Pass cards grid -->
   <section class="section">
@@ -312,268 +346,239 @@
 
   <!-- ===================== Modals ===================== -->
   <!-- Merlin -->
-<div class="modal fade" id="modal-merlin" tabindex="-1" aria-labelledby="label-merlin" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-merlin">Merlin Annual Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>The Merlin Annual Pass is ideal if you visit UK parks and attractions frequently. Choose a tier for the perks you value most, from fewer blackout dates to added discounts and event access.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Multi-park UK coverage under one pass (tier-dependent).</li>
-          <li>Retail/food discounts, event access windows, friend tickets (varies).</li>
-          <li>Great fit with our <strong>Travel-Only</strong> trips — just book the coach.</li>
-        </ul>
-        <p class="disclaimer mb-0">Always check the official Merlin site for the latest tiers, benefits and blackout dates.</p>
-      </div>
-
-      <!-- Neat, evenly spaced buttons -->
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.merlinannualpass.co.uk" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <div class="modal fade" id="modal-merlin" tabindex="-1" aria-labelledby="label-merlin" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-merlin">Merlin Annual Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>The Merlin Annual Pass is ideal if you visit UK parks and attractions frequently. Choose a tier for the perks you value most, from fewer blackout dates to added discounts and event access.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Multi-park UK coverage under one pass (tier-dependent).</li>
+            <li>Retail/food discounts, event access windows, friend tickets (varies).</li>
+            <li>Great fit with our <strong>Travel-Only</strong> trips — just book the coach.</li>
+          </ul>
+          <p class="disclaimer mb-0">Always check the official Merlin site for the latest tiers, benefits and blackout dates.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.merlinannualpass.co.uk" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Disneyland Paris -->
-<div class="modal fade" id="modal-dlp" tabindex="-1" aria-labelledby="label-dlp" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-dlp">Disneyland Paris (Disneyland Pass)</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Pick a tier for regular access to Disneyland Park and Walt Disney Studios Park. Perks such as parking, discounts and special event access vary.</p>
-        <h6 class="fw-bold mt-3">Tips</h6>
-        <ul>
-          <li>Check reservation rules and peak-day availability by tier.</li>
-          <li>Great pairing with our Paris trips — use Travel-Only to ride more, spend less.</li>
-        </ul>
-        <p class="disclaimer mb-0">Details change — confirm benefits and restrictions on the Disneyland Paris site.</p>
-      </div>
-
-      <!-- Match Merlin footer spacing/behaviour -->
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.disneylandparis.com/en-gb/offers/disneyland-pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <!-- Disneyland Paris -->
+  <div class="modal fade" id="modal-dlp" tabindex="-1" aria-labelledby="label-dlp" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-dlp">Disneyland Paris (Disneyland Pass)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Pick a tier for regular access to Disneyland Park and Walt Disney Studios Park. Perks such as parking, discounts and special event access vary.</p>
+          <h6 class="fw-bold mt-3">Tips</h6>
+          <ul>
+            <li>Check reservation rules and peak-day availability by tier.</li>
+            <li>Great pairing with our Paris trips — use Travel-Only to ride more, spend less.</li>
+          </ul>
+          <p class="disclaimer mb-0">Details change — confirm benefits and restrictions on the Disneyland Paris site.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.disneylandparis.com/en-gb/offers/disneyland-pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Parc Astérix -->
-<div class="modal fade" id="modal-asterix" tabindex="-1" aria-labelledby="label-asterix" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-asterix">Parc Astérix Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Perfect if you can’t get enough of Toutatis and the park’s seasonal events. Benefits and blackout dates vary by pass type.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Multiple visit value throughout the season.</li>
-          <li>In-park discounts and selected event access (by tier).</li>
-          <li>Pairs nicely with our <strong>Travel-Only</strong> coach options.</li>
-        </ul>
-        <p class="disclaimer mb-0">See Parc Astérix for current tiers, pricing and restrictions.</p>
-      </div>
-
-      <!-- Match button layout (equal gaps, mobile stack) -->
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.parcasterix.fr/en/offres/pass-saison" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <!-- Parc Astérix -->
+  <div class="modal fade" id="modal-asterix" tabindex="-1" aria-labelledby="label-asterix" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-asterix">Parc Astérix Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Perfect if you can’t get enough of Toutatis and the park’s seasonal events. Benefits and blackout dates vary by pass type.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Multiple visit value throughout the season.</li>
+            <li>In-park discounts and selected event access (by tier).</li>
+            <li>Pairs nicely with our <strong>Travel-Only</strong> coach options.</li>
+          </ul>
+          <p class="disclaimer mb-0">See Parc Astérix for current tiers, pricing and restrictions.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.parcasterix.fr/en/offres/pass-saison" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Europa-Park -->
-<div class="modal fade" id="modal-europa" tabindex="-1" aria-labelledby="label-europa" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-europa">Europa-Park Annual Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>For regular visitors to Rust, Germany, an annual pass brings excellent value and access to events, with occasional partner perks (varies).</p>
-        <h6 class="fw-bold mt-3">Good to know</h6>
-        <ul>
-          <li>Check seasonal calendars and event days for peak demand.</li>
-          <li>Combine with Travel-Only on our multi-day itineraries.</li>
-        </ul>
-        <p class="disclaimer mb-0">Confirm latest pass details with Europa-Park before purchase.</p>
-      </div>
-
-      <!-- Match button layout (equal gaps, mobile stack, right-aligned) -->
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.europapark.de/en/tickets" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <!-- Europa-Park -->
+  <div class="modal fade" id="modal-europa" tabindex="-1" aria-labelledby="label-europa" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-europa">Europa-Park Annual Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>For regular visitors to Rust, Germany, an annual pass brings excellent value and access to events, with occasional partner perks (varies).</p>
+          <h6 class="fw-bold mt-3">Good to know</h6>
+          <ul>
+            <li>Check seasonal calendars and event days for peak demand.</li>
+            <li>Combine with Travel-Only on our multi-day itineraries.</li>
+          </ul>
+          <p class="disclaimer mb-0">Confirm latest pass details with Europa-Park before purchase.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.europapark.de/en/tickets" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Efteling -->
-<div class="modal fade" id="modal-efteling" tabindex="-1" aria-labelledby="label-efteling" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-efteling">Efteling Abonnement</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>A family favourite — frequent visits become great value, with parking options and discounts depending on tier.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Flexible access across the seasons.</li>
-          <li>Discounts on shops and dining (varies).</li>
-          <li>Ideal with our Travel-Only coach seats.</li>
-        </ul>
-        <p class="disclaimer mb-0">Please check Efteling’s official site for current terms and benefits.</p>
-      </div>
-
-      <!-- Match button layout (equal gaps, mobile stack, right-aligned) -->
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.efteling.com/en/park/annual-pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <div class="modal fade" id="modal-efteling" tabindex="-1" aria-labelledby="label-efteling" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-efteling">Efteling Abonnement</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>A family favourite — frequent visits become great value, with parking options and discounts depending on tier.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Flexible access across the seasons.</li>
+            <li>Discounts on shops and dining (varies).</li>
+            <li>Ideal with our Travel-Only coach seats.</li>
+          </ul>
+          <p class="disclaimer mb-0">Please check Efteling’s official site for current terms and benefits.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="./tours.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.efteling.com/en/park/annual-pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Walibi Belgium -->
-<div class="modal fade" id="modal-walibi" tabindex="-1" aria-labelledby="label-walibi" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-walibi">Walibi Belgium Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Great for Belgium thrill-seekers. Seasonal events and tiered perks make it a solid choice if you return often.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Value grows with multiple visits across the year.</li>
-          <li>Event access and discounts by tier.</li>
-        </ul>
-        <p class="disclaimer mb-0">Check the Walibi Belgium site for the latest pass specifics.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.walibi.be/en/tickets/pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
- <!-- Plopsaland De Panne -->
-<div class="modal fade" id="modal-plopsa" tabindex="-1" aria-labelledby="label-plopsa" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-plopsa">Plopsaland De Panne / Plopsa Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Ideal for families and Ride to Happiness fans. Selected tiers offer benefits across the wider Plopsa network.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Good value for repeat visits and seasonal events.</li>
-          <li>Potential network-wide discounts (tier-dependent).</li>
-        </ul>
-        <p class="disclaimer mb-0">See Plopsa’s official site for current tiers and benefits.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.plopsa.com/en/plopsaland-belgium/annual-passes" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <div class="modal fade" id="modal-walibi" tabindex="-1" aria-labelledby="label-walibi" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-walibi">Walibi Belgium Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Great for Belgium thrill-seekers. Seasonal events and tiered perks make it a solid choice if you return often.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Value grows with multiple visits across the year.</li>
+            <li>Event access and discounts by tier.</li>
+          </ul>
+          <p class="disclaimer mb-0">Check the Walibi Belgium site for the latest pass specifics.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.walibi.be/en/tickets/pass" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-
- <!-- Thorpe Park -->
-<div class="modal fade" id="modal-thorpe" tabindex="-1" aria-labelledby="label-thorpe" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-thorpe">Thorpe Park Annual Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Perfect for UK coaster fans focused on Thorpe Park. Perks and Fright Nights access vary by tier and date.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Park-specific value if Thorpe is your go-to.</li>
-          <li>Event access, discounts and parking options (tier-dependent).</li>
-        </ul>
-        <p class="disclaimer mb-0">Confirm latest blackout dates and perks on Thorpe Park’s site.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.thorpepark.com/tickets-passes/annual-passes/" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <!-- Plopsaland De Panne -->
+  <div class="modal fade" id="modal-plopsa" tabindex="-1" aria-labelledby="label-plopsa" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-plopsa">Plopsaland De Panne / Plopsa Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Ideal for families and Ride to Happiness fans. Selected tiers offer benefits across the wider Plopsa network.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Good value for repeat visits and seasonal events.</li>
+            <li>Potential network-wide discounts (tier-dependent).</li>
+          </ul>
+          <p class="disclaimer mb-0">See Plopsa’s official site for current tiers and benefits.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.plopsa.com/en/plopsaland-belgium/annual-passes" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Thorpe Park -->
+  <div class="modal fade" id="modal-thorpe" tabindex="-1" aria-labelledby="label-thorpe" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-thorpe">Thorpe Park Annual Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Perfect for UK coaster fans focused on Thorpe Park. Perks and Fright Nights access vary by tier and date.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Park-specific value if Thorpe is your go-to.</li>
+            <li>Event access, discounts and parking options (tier-dependent).</li>
+          </ul>
+          <p class="disclaimer mb-0">Confirm latest blackout dates and perks on Thorpe Park’s site.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.thorpepark.com/tickets-passes/annual-passes/" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Alton Towers -->
-<div class="modal fade" id="modal-alton" tabindex="-1" aria-labelledby="label-alton" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="label-alton">Alton Towers Annual Pass</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <p>Great for families and coaster lovers who return to Alton Towers often. Expect tier-based perks and selected event access.</p>
-        <h6 class="fw-bold mt-3">Highlights</h6>
-        <ul>
-          <li>Value improves with multiple visits per season.</li>
-          <li>Discounts and event days by tier; parking options available.</li>
-        </ul>
-        <p class="disclaimer mb-0">See Alton Towers’ official site for current details and date restrictions.</p>
-      </div>
-
-      <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
-        <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
-        <a href="https://www.altontowers.com/tickets-passes/annual-passes/" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+  <div class="modal fade" id="modal-alton" tabindex="-1" aria-labelledby="label-alton" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="label-alton">Alton Towers Annual Pass</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Great for families and coaster lovers who return to Alton Towers often. Expect tier-based perks and selected event access.</p>
+          <h6 class="fw-bold mt-3">Highlights</h6>
+          <ul>
+            <li>Value improves with multiple visits per season.</li>
+            <li>Discounts and event days by tier; parking options available.</li>
+          </ul>
+          <p class="disclaimer mb-0">See Alton Towers’ official site for current details and date restrictions.</p>
+        </div>
+        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end">
+          <a href="/trips.html" class="btn btn-phoenix w-100 w-sm-auto">Book a Trip</a>
+          <a href="https://www.altontowers.com/tickets-passes/annual-passes/" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Buy a Pass</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Auto-open a modal via hash (e.g., /annual-passes.html#merlin) + Filters + Sorting -->
+  <!-- Auto-open a modal via hash (e.g., /annual-passes.html#merlin) -->
   <script>
     (function(){
-      // ----- Hash -> modal
       const hashMap = {
         '#merlin':'modal-merlin',
         '#dlp':'modal-dlp',
@@ -594,99 +599,6 @@
       }
       window.addEventListener('hashchange', openFromHash);
       document.addEventListener('DOMContentLoaded', openFromHash);
-
-      // ----- Filters (regions/tags) for both table rows and grid cards
-      const activeRegions = new Set();
-      const activeTags = new Set();
-      const regionBtns = document.querySelectorAll('[data-filter-region]');
-      const tagBtns = document.querySelectorAll('[data-filter-tag]');
-      const clearBtn = document.getElementById('clear-filters');
-
-      const tableRows = Array.from(document.querySelectorAll('#passes-table tbody tr'));
-      const gridItems = Array.from(document.querySelectorAll('#passes-grid .grid-item'));
-
-      function normaliseList(str){
-        return (str||'').split(',').map(s=>s.trim()).filter(Boolean);
-      }
-
-      function matchesFilters(region, tagsArr){
-        // Regions: if none selected -> pass; else must include one selected
-        const regionOk = activeRegions.size === 0 || activeRegions.has(region);
-        // Tags: if none selected -> pass; else must include at least one selected
-        const tagOk = activeTags.size === 0 || tagsArr.some(t=>activeTags.has(t));
-        return regionOk && tagOk;
-      }
-
-      function applyFilters(){
-        // Table
-        tableRows.forEach(tr=>{
-          const region = tr.getAttribute('data-region');
-          const tags = normaliseList(tr.getAttribute('data-tags'));
-          tr.style.display = matchesFilters(region, tags) ? '' : 'none';
-        });
-        // Grid
-        gridItems.forEach(item=>{
-          const region = item.getAttribute('data-region');
-          const tags = normaliseList(item.getAttribute('data-tags'));
-          item.style.display = matchesFilters(region, tags) ? '' : 'none';
-        });
-      }
-
-      function toggleBtn(btn, set, value){
-        if(set.has(value)){ set.delete(value); btn.classList.remove('active'); }
-        else { set.add(value); btn.classList.add('active'); }
-        applyFilters();
-      }
-
-      regionBtns.forEach(btn=>{
-        btn.addEventListener('click', ()=> toggleBtn(btn, activeRegions, btn.dataset.filterRegion));
-      });
-      tagBtns.forEach(btn=>{
-        btn.addEventListener('click', ()=> toggleBtn(btn, activeTags, btn.dataset.filterTag));
-      });
-      clearBtn.addEventListener('click', ()=>{
-        activeRegions.clear(); activeTags.clear();
-        [...regionBtns, ...tagBtns].forEach(b=>b.classList.remove('active'));
-        applyFilters();
-      });
-
-      // ----- Sorting for table
-      const thead = document.querySelector('#passes-table thead');
-      let currentSort = { key:null, dir:1 }; // dir: 1=asc, -1=desc
-
-      function getCellValue(tr, key){
-        // Prefer data-* for reliable sorting
-        const v = tr.getAttribute('data-' + key) || '';
-        return v.toLowerCase();
-      }
-
-      function updateIndicators(th, dir){
-        document.querySelectorAll('.sort-indicator').forEach(s=>s.textContent='');
-        const ind = th.querySelector('.sort-indicator');
-        if(ind) ind.textContent = dir===1 ? '▲' : '▼';
-        // aria-sort
-        document.querySelectorAll('th.th-sortable').forEach(h=>h.setAttribute('aria-sort', 'none'));
-        th.setAttribute('aria-sort', dir===1 ? 'ascending' : 'descending');
-      }
-
-      thead.addEventListener('click', (e)=>{
-        const th = e.target.closest('th.th-sortable');
-        if(!th) return;
-        const key = th.dataset.sortKey;
-        currentSort.dir = (currentSort.key===key) ? -currentSort.dir : 1;
-        currentSort.key = key;
-
-        const tbody = document.querySelector('#passes-table tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr')).sort((a,b)=>{
-          const av = getCellValue(a, key);
-          const bv = getCellValue(b, key);
-          if(av < bv) return -1 * currentSort.dir;
-          if(av > bv) return  1 * currentSort.dir;
-          return 0;
-        });
-        rows.forEach(r=>tbody.appendChild(r));
-        updateIndicators(th, currentSort.dir);
-      });
     })();
   </script>
 </body>
