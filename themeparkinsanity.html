@@ -225,10 +225,10 @@
             <span class="live-count" data-counter="tiktok" data-end="28.9" data-decimals="1" data-suffix="k">0</span>
           </span>
         </a>
-        <a class="btn btn-danger btn-social d-inline-flex align-items-center" target="_blank" rel="noopener" href="https://www.youtube.com/@themeparkinsanity">
+        <a class="btn btn-danger btn-social d-inline-flex align-items-center" target="_blank" rel="noopener" href="https://www.youtube.com/@TPIOfficial">
           <i class="bi bi-youtube me-2"></i> YouTube
           <span class="badge bg-light text-dark ms-1">
-            <span class="live-count" data-counter="youtube" data-end="96.5" data-decimals="1" data-suffix="k">0</span>
+            <span class="live-count" data-counter="youtube" data-end="97" data-decimals="0" data-suffix="k"></span>
           </span>
         </a>
         <a class="btn btn-primary btn-social d-inline-flex align-items-center" target="_blank" rel="noopener" href="https://themeparkinsanity.co.uk">
@@ -283,13 +283,6 @@
 
     counters.forEach(el => io.observe(el));
 
-    // Optional: wire up real API counts later and re-trigger animation
-    // fetch('/api/social-counts').then(r=>r.json()).then(({ tiktok, youtube }) => {
-    //   const t = document.querySelector('[data-counter="tiktok"]');
-    //   const y = document.querySelector('[data-counter="youtube"]');
-    //   if(t){ t.dataset.end = tiktok; t.dataset.decimals = '0'; t.dataset.suffix = ''; t.dataset.animated = ''; io.observe(t); }
-    //   if(y){ y.dataset.end = youtube; y.dataset.decimals = '0'; y.dataset.suffix = ''; y.dataset.animated = ''; io.observe(y); }
-    // });
   })();
 </script>
 </body>
