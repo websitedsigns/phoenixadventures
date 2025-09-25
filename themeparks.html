@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phoenix Adventures | Theme Parks</title>
+  <meta name="description" content="Explore the European theme parks we visit — from headline coasters to magical family days. Official links and in-depth park info pages." />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -21,68 +22,106 @@
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
+      --bg:#f9fbfe;
     }
-    body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:"Poppins",sans-serif; background:var(--bg); color:#333; }
+
+    /* Skip links */
+    .skip-links a{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-links a:focus{
+      position:static; width:auto; height:auto; padding:.5rem .75rem; margin:.25rem;
+      background:#000; color:#fff; z-index:10000; display:inline-block; border-radius:.25rem;
+    }
 
     /* Announcement */
     .announcement{
-      background:var(--brand);
-      font-weight:600;
-      font-size:.95rem;
-      padding:.55rem 1rem;
+      background:var(--brand); color:#fff; font-weight:600; font-size:.95rem; padding:.55rem 1rem; text-align:center;
     }
 
     /* Hero */
     .hero{
-      position:relative; min-height:25vh;
+      position:relative; min-height:32vh;
       background:url('img/rides/kondaa.png') center/cover no-repeat;
-      color:#fff; text-align:center; display:flex; align-items:center;
+      color:#fff; display:flex; align-items:center; text-align:center; text-shadow:0 2px 16px rgba(0,0,0,.4);
     }
-    .hero::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
-    .hero .container{ position:relative; z-index:1; }
+    .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.55)); }
+    .hero .container{ position:relative; z-index:1; padding:3rem 0; }
     .hero h1{ font-weight:800; letter-spacing:.3px; }
     .hero p.lead{ max-width:900px; margin:0 auto; opacity:.95; }
 
+    /* Toolbar (search + filters) */
+    .toolbar{
+      position:sticky; top:0; z-index:1030;
+      background:linear-gradient(#ffffffcc,#ffffffcc) padding-box, linear-gradient(90deg,#eaf4ff,#fff) border-box;
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid #e9f1fb;
+    }
+    .toolbar .container{ padding-top:1rem; padding-bottom:.75rem; }
+    #searchInput{
+      border-radius:12px; padding:.8rem 1rem;
+      border:1px solid #e5e7eb; box-shadow:0 2px 6px rgba(0,0,0,.03);
+    }
+    #searchInput:focus{ border-color:var(--brand); box-shadow:0 0 0 .2rem rgba(45,143,221,.2); }
+    .chips{ display:flex; flex-wrap:wrap; gap:.5rem; }
+    .chip{
+      border:1px solid #d7e9ff; background:#eef6ff; color:#0b3a66;
+      padding:.4rem .7rem; border-radius:999px; font-weight:600; cursor:pointer; user-select:none;
+    }
+    .chip.active{ background:var(--brand); border-color:var(--brand-dark); color:#fff; }
+    .toolbar-meta{ font-size:.95rem; color:#6c757d; }
+
     /* Cards grid */
-    .parks{ padding:2.25rem 0 3rem; }
+    .parks{ padding:2rem 0 3rem; }
     .card{
       border:1px solid rgba(0,0,0,.06);
       border-radius:14px; overflow:hidden;
       box-shadow:0 6px 16px rgba(0,0,0,.05);
       transition:transform .15s ease, box-shadow .15s ease;
       height:100%;
+      background:#fff;
     }
     .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.12); }
     .card-img-top{ height:220px; object-fit:cover; }
     .card-body{ display:flex; flex-direction:column; }
-    .card-title{ font-weight:700; }
-    .card p{ margin-bottom:1rem; }
-    .card-actions{ margin-top:auto; }
+    .card-title{ font-weight:800; color:var(--ink); }
+    .pill{
+      display:inline-block; font-size:.8rem; margin-right:.35rem; margin-bottom:.35rem;
+      background:#eef6ff; border:1px solid #d7e9ff; color:#0b3a66; padding:.15rem .5rem; border-radius:999px;
+    }
     .btn-phoenix{
-      background:var(--cta); color:#fff; font-weight:700; border:none;
-      box-shadow:0 6px 16px rgba(0,0,0,.15);
+      background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15);
     }
     .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
     .btn-comingsoon{
-      display:inline-block; width:100%;
-      padding:.75rem 1.1rem; font-weight:700; letter-spacing:.4px; text-transform:uppercase;
-      border:none; border-radius:999px; cursor:default; pointer-events:none;
-      color:#fff; text-decoration:none;
-      background:linear-gradient(135deg,#ff7a00,#ff1f8f);
-      box-shadow:0 10px 22px rgba(255,31,143,.35);
+      display:inline-block; width:100%; padding:.75rem 1.1rem; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
+      border:none; border-radius:999px; cursor:default; pointer-events:none; color:#fff; text-decoration:none;
+      background:linear-gradient(135deg,#ff7a00,#ff1f8f); box-shadow:0 10px 22px rgba(255,31,143,.35);
     }
 
     /* Section heading */
     .section-head{ text-align:center; margin:2rem 0 1.25rem; }
     .section-head h2{ font-weight:800; color:var(--ink); }
-
-    /* Responsive spacing */
     .row.g-4{ --bs-gutter-x:1.25rem; --bs-gutter-y:1.25rem; }
+
+    /* Footer */
+    footer{ background:#0b3a66; color:#cfe6ff; }
+    footer a{ color:#fff; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
+  <!-- Skip Links -->
+  <div class="skip-links" aria-label="Skip links">
+    <a href="#main">Skip to Main Content</a>
+    <a href="#footer">Skip to Footer</a>
+    <a href="#nav">Skip to Navigation</a>
+  </div>
+
   <!-- Announcement Bar -->
-  <div class="text-center text-white announcement">
+  <div class="announcement">
     Book today from just £1 deposit — Flexible payment plans available
   </div>
 
@@ -99,30 +138,52 @@
 
   <!-- Hero -->
   <header class="hero">
-    <div class="container py-5">
-      <h1 class="display-5 display-md-4 fw-bold mb-3">Theme Parks We Visit Across Europe</h1>
-      <p class="lead mb-0">
-        Discover Europe’s best theme parks — from big-ticket coasters to magical family experiences.
-      </p>
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-3">Theme Parks We Visit Across Europe</h1>
+      <p class="lead mb-0">Discover Europe’s best theme parks — from big-ticket coasters to magical family experiences.</p>
     </div>
   </header>
 
+  <!-- Sticky Toolbar -->
+  <div class="toolbar" role="region" aria-label="Search and filters">
+    <div class="container">
+      <div class="row g-2 align-items-center">
+        <div class="col-lg-7">
+          <label for="searchInput" class="visually-hidden">Search parks</label>
+          <input type="search" id="searchInput" class="form-control" placeholder="Search a park or country (e.g. ‘Disneyland’, ‘Belgium’, ‘Holland’)…" />
+        </div>
+        <div class="col-lg-5">
+          <div class="d-flex justify-content-lg-end align-items-center gap-3">
+            <div class="toolbar-meta"><span id="resultCount">All parks</span></div>
+            <button class="btn btn-outline-secondary btn-sm" id="clearFilters">Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="chips mt-2" aria-label="Quick country filters">
+        <span class="chip" data-filter="france">France</span>
+        <span class="chip" data-filter="germany">Germany</span>
+        <span class="chip" data-filter="netherlands">Netherlands</span>
+        <span class="chip" data-filter="belgium">Belgium</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Parks Grid -->
-  <main class="container parks">
+  <main id="main" class="container parks">
     <div class="section-head">
       <h2>Explore the Parks</h2>
       <p class="text-muted mb-0">Tap through for official sites or detailed info pages.</p>
     </div>
 
-    <div class="row g-4">
+    <div id="parksGrid" class="row g-4">
       <!-- Disneyland Paris -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Disneyland Paris" data-country="france">
         <div class="card h-100">
-          <img src="./img/parkentry/dlp.jpg" class="card-img-top" alt="Disneyland Paris Castle"/>
+          <img loading="lazy" src="./img/parkentry/dlp.jpg" class="card-img-top" alt="Disneyland Paris Castle"/>
           <div class="card-body">
             <h5 class="card-title">Disneyland Paris</h5>
-            <p>Iconic castle, enchanting lands, shows and parades — pure Disney magic in Europe.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">France</span> Iconic castle, enchanting lands, shows and parades — pure Disney magic in Europe.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.disneylandparis.com/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/disneyinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -131,13 +192,13 @@
       </div>
 
       <!-- Efteling -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Efteling" data-country="netherlands">
         <div class="card h-100">
-          <img src="./img/parkentry/efteling.jpg" class="card-img-top" alt="Efteling entrance"/>
+          <img loading="lazy" src="./img/parkentry/efteling.jpg" class="card-img-top" alt="Efteling entrance"/>
           <div class="card-body">
             <h5 class="card-title">Efteling</h5>
-            <p>Fairy-tale storytelling, dreamy dark rides and headline coasters — brilliant for all ages.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Netherlands</span> Fairy-tale storytelling, dreamy dark rides and headline coasters — brilliant for all ages.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.efteling.com/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/eftelinginfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -146,13 +207,13 @@
       </div>
 
       <!-- Europa-Park -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Europa-Park" data-country="germany">
         <div class="card h-100">
-          <img src="./img/parkentry/europa.jpg" class="card-img-top" alt="Europa-Park view"/>
+          <img loading="lazy" src="./img/parkentry/europa.jpg" class="card-img-top" alt="Europa-Park view"/>
           <div class="card-body">
             <h5 class="card-title">Europa-Park</h5>
-            <p>100+ attractions, stunning theming and shows across European-themed areas.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Germany</span> 100+ attractions, stunning theming and shows across European-themed areas.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.europapark.de/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/europainfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -161,13 +222,13 @@
       </div>
 
       <!-- Movie Park Germany -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Movie Park Germany" data-country="germany">
         <div class="card h-100">
-          <img src="./img/parkentry/moviepark.jpg" class="card-img-top" alt="Movie Park Germany"/>
+          <img loading="lazy" src="./img/parkentry/moviepark.jpg" class="card-img-top" alt="Movie Park Germany"/>
           <div class="card-body">
             <h5 class="card-title">Movie Park Germany</h5>
-            <p>Film & TV-inspired rides, live shows and character moments in Bottrop.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Germany</span> Film & TV-inspired rides, live shows and character moments in Bottrop.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.movieparkgermany.de/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/movieparkinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -176,13 +237,13 @@
       </div>
 
       <!-- Parc Astérix -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Parc Asterix" data-country="france">
         <div class="card h-100">
-          <img src="img/parkentry/parkast.jpg" class="card-img-top" alt="Parc Astérix entrance"/>
+          <img loading="lazy" src="img/parkentry/parkast.jpg" class="card-img-top" alt="Parc Astérix entrance"/>
           <div class="card-body">
             <h5 class="card-title">Parc Astérix</h5>
-            <p>Gaulish humour, punchy coasters and lively shows near Paris.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">France</span> Gaulish humour, punchy coasters and lively shows near Paris.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.parcasterix.fr/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/parcasterixinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -191,13 +252,13 @@
       </div>
 
       <!-- Phantasialand -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Phantasialand" data-country="germany">
         <div class="card h-100">
-          <img src="img/parkentry/phantasialand.jpg" class="card-img-top" alt="Phantasialand"/>
+          <img loading="lazy" src="img/parkentry/phantasialand.jpg" class="card-img-top" alt="Phantasialand"/>
           <div class="card-body">
             <h5 class="card-title">Phantasialand</h5>
-            <p>World-class theming and headline rides across richly crafted lands.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Germany</span> World-class theming and headline rides across richly crafted lands.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.phantasialand.de/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/phantasialandinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -206,13 +267,13 @@
       </div>
 
       <!-- Plopsaland De Panne -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Plopsaland De Panne" data-country="belgium">
         <div class="card h-100">
-          <img src="./img/parkentry/plopsa.jpg" class="card-img-top" alt="Plopsaland De Panne"/>
+          <img loading="lazy" src="./img/parkentry/plopsa.jpg" class="card-img-top" alt="Plopsaland De Panne"/>
           <div class="card-body">
             <h5 class="card-title">Plopsaland De Panne</h5>
-            <p>Studio 100 characters, bright lands and family-first attractions.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Belgium</span> Studio 100 characters, bright lands and family-first attractions.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.plopsalanddepanne.be/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/plopsalandbelgiuminfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -221,13 +282,13 @@
       </div>
 
       <!-- Toverland -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Toverland" data-country="netherlands">
         <div class="card h-100">
-          <img src="./img/parkentry/toverland.jpg" class="card-img-top" alt="Toverland"/>
+          <img loading="lazy" src="./img/parkentry/toverland.jpg" class="card-img-top" alt="Toverland"/>
           <div class="card-body">
             <h5 class="card-title">Toverland</h5>
-            <p>Indoor/outdoor areas with a great ride mix — perfect for changeable weather.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Netherlands</span> Indoor/outdoor areas with a great ride mix — perfect for changeable weather.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.toverland.com/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/toverlandinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -236,13 +297,13 @@
       </div>
 
       <!-- Walibi Belgium -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Walibi Belgium" data-country="belgium">
         <div class="card h-100">
-          <img src="./img/parkentry/walibibel.jpg" class="card-img-top" alt="Walibi Belgium"/>
+          <img loading="lazy" src="./img/parkentry/walibibel.jpg" class="card-img-top" alt="Walibi Belgium"/>
           <div class="card-body">
             <h5 class="card-title">Walibi Belgium</h5>
-            <p>Thrill-leaning line-up with solid family options in Wavre.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Belgium</span> Thrill-leaning line-up with solid family options in Wavre.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.walibi.be/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/walibibelgiuminfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -251,13 +312,13 @@
       </div>
 
       <!-- Walibi Holland -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Walibi Holland" data-country="netherlands">
         <div class="card h-100">
-          <img src="./img/parkentry/walibiholl.jpg" class="card-img-top" alt="Walibi Holland"/>
+          <img loading="lazy" src="./img/parkentry/walibiholl.jpg" class="card-img-top" alt="Walibi Holland"/>
           <div class="card-body">
             <h5 class="card-title">Walibi Holland</h5>
-            <p>High-energy Dutch thrills with big-name coasters.</p>
-            <div class="card-actions d-grid gap-2">
+            <p><span class="pill">Netherlands</span> High-energy Dutch thrills with big-name coasters.</p>
+            <div class="d-grid gap-2 mt-auto">
               <a href="https://www.walibi.nl/" class="btn btn-primary" target="_blank" rel="noopener">Visit Official Website</a>
               <a href="/parkinfo/walibihollandinfo.html" class="btn btn-phoenix" target="_blank" rel="noopener">More info</a>
             </div>
@@ -266,12 +327,12 @@
       </div>
 
       <!-- Bellewaerde (COMING SOON) -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Bellewaerde" data-country="belgium" data-status="soon">
         <div class="card h-100">
-          <img src="./img/parkentry/bellewaerde.jpg" class="card-img-top" alt="Bellewaerde"/>
+          <img loading="lazy" src="./img/parkentry/bellewaerde.jpg" class="card-img-top" alt="Bellewaerde"/>
           <div class="card-body">
             <h5 class="card-title">Bellewaerde</h5>
-            <p>Family rides, gardens and a zoo area — calm, charming day out.</p>
+            <p><span class="pill">Belgium</span> Family rides, gardens and a zoo area — calm, charming day out.</p>
             <div class="card-actions">
               <a class="btn-comingsoon" aria-disabled="true">COMING SOON</a>
             </div>
@@ -280,12 +341,12 @@
       </div>
 
       <!-- Erlebnispark Tripsdrill (COMING SOON) -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 park" data-name="Erlebnispark Tripsdrill" data-country="germany" data-status="soon">
         <div class="card h-100">
-          <img src="./img/parkentry/tripsdrill.jpg" class="card-img-top" alt="Erlebnispark Tripsdrill"/>
+          <img loading="lazy" src="./img/parkentry/tripsdrill.jpg" class="card-img-top" alt="Erlebnispark Tripsdrill"/>
           <div class="card-body">
             <h5 class="card-title">Erlebnispark Tripsdrill</h5>
-            <p>Quirky coasters plus a wildlife reserve — guide page coming soon.</p>
+            <p><span class="pill">Germany</span> Quirky coasters plus a wildlife reserve — guide page coming soon.</p>
             <div class="card-actions">
               <a class="btn-comingsoon" aria-disabled="true">COMING SOON</a>
             </div>
@@ -294,13 +355,121 @@
       </div>
 
     </div>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="text-center py-5 d-none">
+      <h3 class="fw-bold">No parks match your search</h3>
+      <p>Try clearing filters or searching a different park/country.</p>
+      <button class="btn btn-outline-primary" id="emptyClear">Clear filters</button>
+    </div>
   </main>
 
-  <footer class="mt-4 mb-3 text-center text-muted">
-    <small>© Phoenix Adventures LTD — All rights reserved</small>
+  <!-- Footer -->
+  <footer id="footer" class="py-4">
+    <div class="container">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md">
+          <div class="d-flex flex-wrap gap-3">
+            <a href="/index.html">Home</a>
+            <a href="/tour-list-2025.html">2025 Tour List</a>
+            <a href="/theme-park-trips-europe.html">Theme Park Trips - Europe</a>
+            <a href="/halloween-trips.html">Halloween Trips</a>
+            <a href="/twisted-tracks.html">Multi Park Trips - Twisted Tracks</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="col-md text-md-end small">
+          © Phoenix Adventures LTD &nbsp;|&nbsp; All rights reserved
+        </div>
+      </div>
+    </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Simple search + country chip filters with results counter and empty state
+    document.addEventListener("DOMContentLoaded", function(){
+      const searchInput = document.getElementById("searchInput");
+      const chips = document.querySelectorAll(".chip");
+      const cards = document.querySelectorAll(".park");
+      const resultCount = document.getElementById("resultCount");
+      const clearBtn = document.getElementById("clearFilters");
+      const emptyState = document.getElementById("emptyState");
+      const emptyClear = document.getElementById("emptyClear");
+
+      let activeFilters = new Set();
+
+      chips.forEach(chip=>{
+        chip.addEventListener("click", ()=>{
+          const f = chip.dataset.filter.toLowerCase();
+          chip.classList.toggle("active");
+          chip.classList.contains("active") ? activeFilters.add(f) : activeFilters.delete(f);
+          runFilter();
+        });
+      });
+
+      clearBtn.addEventListener("click", ()=>{
+        searchInput.value = "";
+        activeFilters.clear();
+        chips.forEach(c=>c.classList.remove("active"));
+        runFilter();
+      });
+
+      emptyClear?.addEventListener("click", ()=>clearBtn.click());
+      searchInput.addEventListener("input", runFilter);
+
+      function norm(s){ return (s||"").toLowerCase().trim(); }
+
+      function runFilter(){
+        const q = norm(searchInput.value);
+        let visible = 0;
+
+        cards.forEach(card=>{
+          const name = norm(card.dataset.name);
+          const country = norm(card.dataset.country);
+          const hay = (name + " " + country + " " + card.textContent.toLowerCase());
+
+          const matchesText = !q || hay.includes(q);
+          const matchesChips = activeFilters.size===0 || activeFilters.has(country);
+
+          const show = matchesText && matchesChips;
+          card.style.display = show ? "" : "none";
+          if (show) visible++;
+        });
+
+        // Counter + empty state
+        resultCount.textContent = visible ? `${visible} park${visible>1?"s":""}` : "No results";
+        emptyState.classList.toggle("d-none", visible>0);
+      }
+
+      // Initial
+      runFilter();
+    });
+  </script>
+
+  <!-- Optional SEO: ItemList of parks -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"item":{"@type":"TouristAttraction","name":"Disneyland Paris","url":"https://www.disneylandparis.com/","address":{"@type":"PostalAddress","addressCountry":"FR"}}},
+      {"@type":"ListItem","position":2,"item":{"@type":"TouristAttraction","name":"Efteling","url":"https://www.efteling.com/","address":{"@type":"PostalAddress","addressCountry":"NL"}}},
+      {"@type":"ListItem","position":3,"item":{"@type":"TouristAttraction","name":"Europa-Park","url":"https://www.europapark.de/","address":{"@type":"PostalAddress","addressCountry":"DE"}}},
+      {"@type":"ListItem","position":4,"item":{"@type":"TouristAttraction","name":"Movie Park Germany","url":"https://www.movieparkgermany.de/","address":{"@type":"PostalAddress","addressCountry":"DE"}}},
+      {"@type":"ListItem","position":5,"item":{"@type":"TouristAttraction","name":"Parc Astérix","url":"https://www.parcasterix.fr/","address":{"@type":"PostalAddress","addressCountry":"FR"}}},
+      {"@type":"ListItem","position":6,"item":{"@type":"TouristAttraction","name":"Phantasialand","url":"https://www.phantasialand.de/","address":{"@type":"PostalAddress","addressCountry":"DE"}}},
+      {"@type":"ListItem","position":7,"item":{"@type":"TouristAttraction","name":"Plopsaland De Panne","url":"https://www.plopsalanddepanne.be/","address":{"@type":"PostalAddress","addressCountry":"BE"}}},
+      {"@type":"ListItem","position":8,"item":{"@type":"TouristAttraction","name":"Toverland","url":"https://www.toverland.com/","address":{"@type":"PostalAddress","addressCountry":"NL"}}},
+      {"@type":"ListItem","position":9,"item":{"@type":"TouristAttraction","name":"Walibi Belgium","url":"https://www.walibi.be/","address":{"@type":"PostalAddress","addressCountry":"BE"}}},
+      {"@type":"ListItem","position":10,"item":{"@type":"TouristAttraction","name":"Walibi Holland","url":"https://www.walibi.nl/","address":{"@type":"PostalAddress","addressCountry":"NL"}}},
+      {"@type":"ListItem","position":11,"item":{"@type":"TouristAttraction","name":"Bellewaerde","url":"https://www.bellewaerde.be/","address":{"@type":"PostalAddress","addressCountry":"BE"}}},
+      {"@type":"ListItem","position":12,"item":{"@type":"TouristAttraction","name":"Erlebnispark Tripsdrill","url":"https://tripsdrill.de/","address":{"@type":"PostalAddress","addressCountry":"DE"}}}
+    ]
+  }
+  </script>
 </body>
 </html>
