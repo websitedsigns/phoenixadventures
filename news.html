@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Adventures | News & Updates</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --brand:#2d8fdd;
+      --brand-dark:#1b6fb8;
+      --cta:#ff4500;
+      --cta-dark:#e63900;
+      --ink:#0b3a66;
+
+      --page-bg:#f9fbfe;
+      --card-border:#e6effa;
+      --chip-bg:#eef6ff;
+      --chip-fg:#2d8fdd;
+    }
+
+    html{ scroll-behavior:smooth; }
+    body{ font-family:"Poppins",sans-serif; background:var(--page-bg); color:#333; }
+    .section-title{ scroll-margin-top:90px; }
+
+    /* Announcement (optional) */
+    .announcement{ background:var(--brand); color:#fff; font-weight:600; font-size:.95rem; }
+
+    /* Hero */
+    .hero{
+      position:relative; color:#fff; min-height:40vh; display:flex; align-items:center;
+      background:
+        linear-gradient(180deg, rgba(11,58,102,.78), rgba(11,58,102,.88)),
+        url('/img/cards/news-hero.jpg') center/cover no-repeat;
+    }
+    .hero .container{ padding:3rem 0; }
+    .hero h1{ font-weight:800; }
+    .brand-chip{
+      display:inline-block; font-size:.8rem; background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25); padding:.25rem .6rem; border-radius:999px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Layout / TOC */
+    @media (min-width:992px){ .sticky-col{ position:sticky; top:88px; } }
+    .toc a{ text-decoration:none; color:var(--ink); }
+    .toc a:hover{ text-decoration:underline; }
+    .toc a.active{ text-decoration:underline; font-weight:700; }
+
+    /* Cards */
+    .doc-card{
+      border:1px solid var(--card-border); border-radius:.75rem; background:#fff;
+      box-shadow:0 2px 10px rgba(0,0,0,.03);
+    }
+    .news-card{
+      border:1px solid var(--card-border); border-radius:14px; background:#fff;
+      box-shadow:0 6px 16px rgba(0,0,0,.06);
+      height:100%; display:flex; flex-direction:column;
+      overflow:hidden; transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .news-card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.12); }
+    .news-thumb{ width:100%; height:180px; object-fit:cover; }
+    .news-meta{ font-size:.85rem; color:#6c757d; }
+    .tag{
+      display:inline-block; font-size:.75rem; font-weight:600;
+      background:var(--chip-bg); color:var(--chip-fg);
+      padding:.2rem .55rem; border-radius:999px;
+    }
+
+    /* Buttons */
+    .btn-phoenix{ background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }
+    .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
+
+    /* Filter bar */
+    .filter-bar .form-control{ border-radius:999px; }
+    .filter-bar .btn{ border-radius:999px; }
+    .filter-bar .btn-outline-primary{ border-color:var(--brand); color:var(--brand); }
+    .filter-bar .btn-outline-primary.active,
+    .filter-bar .btn-outline-primary:hover{ background:var(--brand); color:#fff; }
+
+    /* Skeletons */
+    .skeleton{ position:relative; background:#eef3fb; border-radius:.5rem; overflow:hidden; }
+    .skeleton::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+      animation:shimmer 1.2s infinite;
+    }
+    @keyframes shimmer{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(100%);} }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement (optional) -->
+  <div class="announcement text-center py-2">
+    Latest: New 2025/26 multi-park dates are being added each week — check back soon!
+  </div>
+
+  <!-- Navbar include -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(()=>{});
+    });
+  </script>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="brand-chip mb-2">Phoenix Adventures</p>
+      <h1 class="display-6 mb-2">News & Updates</h1>
+      <p class="mb-0">The latest from Phoenix Adventures plus park & travel headlines we think you’ll care about.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="container py-5">
+    <div class="row g-4">
+
+      <!-- TOC -->
+      <aside class="col-lg-4">
+        <div class="card shadow-sm border-0 sticky-col">
+          <div class="card-body">
+            <h2 class="h5 mb-3">On this page</h2>
+            <nav class="toc small">
+              <ol class="mb-0">
+                <li><a href="#top">Top stories</a></li>
+                <li><a href="#allnews">All news</a></li>
+                <li><a href="#press">Press & media</a></li>
+              </ol>
+            </nav>
+            <hr>
+            <p class="text-muted small mb-2">Got a tip?</p>
+            <a class="btn btn-phoenix w-100" href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <section class="col-lg-8">
+
+        <!-- Filter/Search -->
+        <div class="p-3 p-sm-4 doc-card mb-4">
+          <div class="filter-bar row g-2 align-items-center">
+            <div class="col-md-7">
+              <input id="search" type="search" class="form-control" placeholder="Search news (title or summary)…" aria-label="Search news">
+            </div>
+            <div class="col-md d-flex flex-wrap gap-2">
+              <button class="btn btn-outline-primary btn-sm" data-filter="Company">Company</button>
+              <button class="btn btn-outline-primary btn-sm" data-filter="Parks">Parks</button>
+              <button class="btn btn-outline-primary btn-sm" data-filter="Travel">Travel</button>
+              <button class="btn btn-outline-primary btn-sm" data-filter="UK">UK</button>
+              <button class="btn btn-outline-primary btn-sm" data-filter="Europe">Europe</button>
+              <button id="clearFilters" class="btn btn-outline-secondary btn-sm">Clear</button>
+            </div>
+            <div class="col-12 col-md-auto ms-auto">
+              <select id="sortBy" class="form-select form-select-sm" aria-label="Sort news">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Stories -->
+        <div id="top" class="section-title mb-3">
+          <h2 class="h4 fw-bold mb-3">Top stories</h2>
+          <div id="topGrid" class="row g-4">
+            <!-- Skeletons while loading -->
+            <div class="col-md-6">
+              <div class="news-card">
+                <div class="skeleton" style="height:180px;"></div>
+                <div class="p-3">
+                  <div class="skeleton mb-2" style="height:20px; width:70%;"></div>
+                  <div class="skeleton mb-2" style="height:14px; width:90%;"></div>
+                  <div class="skeleton" style="height:14px; width:60%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-none d-md-block">
+              <div class="news-card">
+                <div class="skeleton" style="height:180px;"></div>
+                <div class="p-3">
+                  <div class="skeleton mb-2" style="height:20px; width:70%;"></div>
+                  <div class="skeleton mb-2" style="height:14px; width:90%;"></div>
+                  <div class="skeleton" style="height:14px; width:60%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- All News -->
+        <div id="allnews" class="section-title mt-4">
+          <h2 class="h4 fw-bold mb-3">All news</h2>
+          <div id="newsGrid" class="row g-4">
+            <!-- Cards injected here -->
+          </div>
+          <div class="text-center mt-3">
+            <button id="loadMore" class="btn btn-outline-secondary btn-sm">Load more</button>
+          </div>
+        </div>
+
+        <!-- Press -->
+        <div id="press" class="section-title mt-5">
+          <h2 class="h5 fw-bold mb-2">Press & media</h2>
+          <div class="p-3 p-sm-4 doc-card">
+            <p class="mb-2">For press enquiries, logos, and interviews:</p>
+            <ul class="mb-0">
+              <li>Email: <a href="mailto:press@phoenixadventures.co.uk">press@phoenixadventures.co.uk</a></li>
+              <li>Media kit: <a href="/media-kit.html">phoenixadventures.co.uk/media-kit</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background:#0b3a66; color:#cfe6ff;">
+    <div class="container">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md">
+          <div class="d-flex flex-wrap gap-3">
+            <a href="/index.html" class="text-white text-decoration-none">Home</a>
+            <a href="/tour-list-2025.html" class="text-white text-decoration-none">2025 Tour List</a>
+            <a href="/theme-park-trips-europe.html" class="text-white text-decoration-none">Theme Park Trips - Europe</a>
+            <a href="/halloween-trips.html" class="text-white text-decoration-none">Halloween Trips</a>
+            <a href="/twisted-tracks.html" class="text-white text-decoration-none">Twisted Tracks</a>
+          </div>
+        </div>
+        <div class="col-md text-md-end small">
+          © Copyright 2025 &nbsp;All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reader Modal -->
+  <div class="modal fade" id="readerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="readerTitle">Story</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <img id="readerImg" src="" alt="" class="w-100" style="max-height:320px; object-fit:cover;">
+        <div class="modal-body">
+          <p class="news-meta mb-2"><span id="readerDate"></span> · <span id="readerTags"></span></p>
+          <p id="readerBody" class="mb-0"></p>
+        </div>
+        <div class="modal-footer border-0 d-grid gap-2 d-sm-flex justify-content-end">
+          <a id="readerLink" href="#" target="_blank" rel="noopener" class="btn btn-outline-secondary w-100 w-sm-auto">Open original</a>
+          <button class="btn btn-phoenix w-100 w-sm-auto" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // -------- News data loader --------
+    // Expected /data/news.json format:
+    // [
+    //   {
+    //     "id":"slug-or-id",
+    //     "title":"Headline",
+    //     "summary":"Short summary…",
+    //     "date":"2025-09-24",
+    //     "tags":["Company","UK"],
+    //     "image":"/img/news/example.jpg",
+    //     "url":"https://original-article"
+    //   }, ...
+    // ]
+
+    const fallbackArticles = [
+      {
+        id:"phoenix-autumn-dates",
+        title:"Autumn & Winter multi-park dates added",
+        summary:"We’ve added late-season dates including select Halloween events and winter openings across Europe.",
+        date:"2025-09-20",
+        tags:["Company","Europe"],
+        image:"/img/news/autumn-winter.jpg",
+        url:"/trips.html"
+      },
+      {
+        id:"coach-upgrade",
+        title:"Nightliner coach upgrades complete",
+        summary:"Fresh mattresses, USB-C power at every bunk, and quieter ride thanks to new insulation.",
+        date:"2025-09-12",
+        tags:["Company","Travel","UK"],
+        image:"/img/news/coach-upgrades.jpg",
+        url:"/twisted-tracks.html"
+      },
+      {
+        id:"parks-calendar-roundup",
+        title:"Park calendars: late openings & scare events",
+        summary:"A handy roundup of extended hours and headline scare events across UK & EU parks.",
+        date:"2025-09-10",
+        tags:["Parks","UK","Europe"],
+        image:"/img/news/calendars.jpg",
+        url:"/halloween-trips.html"
+      },
+      {
+        id:"dlp-rail-tip",
+        title:"Travel tip: easy rail link to Disneyland Paris pick-ups",
+        summary:"If you’re joining in London, here’s the simplest rail connection to make the coach comfortably.",
+        date:"2025-09-05",
+        tags:["Travel","Europe"],
+        image:"/img/news/dlp-rail.jpg",
+        url:"/theme-park-trips-europe.html"
+      },
+      {
+        id:"efteling-winter",
+        title:"Efteling announces winter highlights",
+        summary:"Cosy lights, shows and seasonal sweets—perfect timing for our winter mini tour.",
+        date:"2025-09-02",
+        tags:["Parks","Europe"],
+        image:"/img/news/efteling-winter.jpg",
+        url:"/twisted-tracks.html#tours"
+      },
+      {
+        id:"safety-update",
+        title:"Safety update: new boarding reminders",
+        summary:"Five-minute pre-departure headcount and in-app push reminders now live on select trips.",
+        date:"2025-08-28",
+        tags:["Company","Travel","UK"],
+        image:"/img/news/safety-reminders.jpg",
+        url:"/boarding-points.html"
+      }
+    ];
+
+    let articles = [];
+    let filtered = [];
+    const activeTags = new Set();
+    let renderIndex = 0;
+    const PAGE_SIZE = 9;
+
+    const topGrid = document.getElementById('topGrid');
+    const newsGrid = document.getElementById('newsGrid');
+    const loadMoreBtn = document.getElementById('loadMore');
+    const sortBy = document.getElementById('sortBy');
+    const searchInput = document.getElementById('search');
+
+    // Fetch live JSON if present, else fallback
+    async function loadArticles(){
+      try{
+        const res = await fetch('/data/news.json', {cache:'no-store'});
+        if(!res.ok) throw new Error('No news.json');
+        const data = await res.json();
+        if(Array.isArray(data) && data.length) {
+          articles = data;
+        } else {
+          articles = fallbackArticles;
+        }
+      }catch{
+        articles = fallbackArticles;
+      }
+      normaliseAndRender();
+    }
+
+    function normaliseAndRender(){
+      // Ensure required fields & sort newest
+      articles = articles.map(a=>({
+        id: a.id || crypto.randomUUID(),
+        title: a.title || 'Untitled',
+        summary: a.summary || '',
+        date: a.date || new Date().toISOString().slice(0,10),
+        tags: Array.isArray(a.tags) ? a.tags : [],
+        image: a.image || '/img/news/placeholder.jpg',
+        url: a.url || '#'
+      }));
+      applyFiltersAndSort();
+      renderTop();
+      renderMore(true);
+    }
+
+    function applyFiltersAndSort(){
+      const q = searchInput.value.trim().toLowerCase();
+      filtered = articles.filter(a=>{
+        const matchesQuery = !q || (a.title.toLowerCase().includes(q) || a.summary.toLowerCase().includes(q));
+        const matchesTags = activeTags.size===0 || a.tags.some(t=>activeTags.has(t));
+        return matchesQuery && matchesTags;
+      });
+      filtered.sort((a,b)=>{
+        if(sortBy.value==='oldest') return a.date.localeCompare(b.date);
+        return b.date.localeCompare(a.date);
+      });
+      renderIndex = 0;
+      newsGrid.innerHTML = '';
+    }
+
+    function renderTop(){
+      // Use first two from filtered (or articles if filtered is empty)
+      const src = (filtered.length ? filtered : articles).slice().sort((a,b)=>b.date.localeCompare(a.date));
+      const topTwo = src.slice(0,2);
+      topGrid.innerHTML = topTwo.map(cardHTML).map((html,i)=>`<div class="col-md-6 ${i>0?'':'mb-0'}">${html}</div>`).join('');
+      attachCardHandlers();
+    }
+
+    function renderMore(reset=false){
+      const slice = filtered.slice(renderIndex, renderIndex + PAGE_SIZE);
+      const frag = document.createDocumentFragment();
+      slice.forEach(a=>{
+        const col = document.createElement('div');
+        col.className = 'col-sm-6';
+        col.innerHTML = cardHTML(a);
+        frag.appendChild(col);
+      });
+      newsGrid.appendChild(frag);
+      renderIndex += slice.length;
+      loadMoreBtn.style.display = renderIndex < filtered.length ? '' : 'none';
+      attachCardHandlers();
+    }
+
+    function cardHTML(a){
+      const date = new Date(a.date+'T00:00:00');
+      const dateStr = date.toLocaleDateString('en-GB',{year:'numeric', month:'short', day:'numeric'});
+      const tags = a.tags.map(t=>`<span class="tag me-1">${t}</span>`).join('');
+      return `
+        <article class="news-card" data-id="${a.id}">
+          <img class="news-thumb" src="${a.image}" alt="">
+          <div class="p-3">
+            <h3 class="h6 fw-bold mb-1">${a.title}</h3>
+            <p class="news-meta mb-2"><time datetime="${a.date}">${dateStr}</time> · ${tags || '<span class="text-muted">—</span>'}</p>
+            <p class="mb-3">${a.summary}</p>
+            <div class="d-grid gap-2 d-sm-flex">
+              <button class="btn btn-phoenix btn-sm" data-open="${a.id}">Read story</button>
+              <a class="btn btn-outline-secondary btn-sm" href="${a.url}" target="_blank" rel="noopener">Original</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function attachCardHandlers(){
+      document.querySelectorAll('[data-open]').forEach(btn=>{
+        btn.onclick = (e)=>{
+          const id = e.currentTarget.getAttribute('data-open');
+          const a = articles.find(x=>x.id===id);
+          if(!a) return;
+          openReader(a);
+        };
+      });
+    }
+
+    function openReader(a){
+      const modal = new bootstrap.Modal('#readerModal');
+      document.getElementById('readerTitle').textContent = a.title;
+      document.getElementById('readerImg').src = a.image;
+      const date = new Date(a.date+'T00:00:00').toLocaleDateString('en-GB',{year:'numeric', month:'long', day:'numeric'});
+      document.getElementById('readerDate').textContent = date;
+      document.getElementById('readerTags').innerHTML = a.tags.map(t=>`<span class="tag me-1">${t}</span>`).join('');
+      document.getElementById('readerBody').textContent = a.summary;
+      const link = document.getElementById('readerLink');
+      link.href = a.url || '#';
+      modal.show();
+      history.replaceState(null, '', '#'+a.id);
+    }
+
+    // Filters
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const tag = btn.getAttribute('data-filter');
+        btn.classList.toggle('active');
+        if(btn.classList.contains('active')) activeTags.add(tag); else activeTags.delete(tag);
+        applyFiltersAndSort(); renderTop(); renderMore(true);
+      });
+    });
+    document.getElementById('clearFilters').addEventListener('click', ()=>{
+      activeTags.clear();
+      document.querySelectorAll('[data-filter].active').forEach(b=>b.classList.remove('active'));
+      applyFiltersAndSort(); renderTop(); renderMore(true);
+    });
+
+    // Search + Sort
+    searchInput.addEventListener('input', ()=>{ applyFiltersAndSort(); renderTop(); renderMore(true); });
+    sortBy.addEventListener('change', ()=>{ applyFiltersAndSort(); renderTop(); renderMore(true); });
+
+    // Load more
+    loadMoreBtn.addEventListener('click', ()=> renderMore());
+
+    // Hash -> open specific story if present (#id)
+    function openFromHash(){
+      const id = location.hash.replace('#','').trim();
+      if(!id) return;
+      const a = articles.find(x=>x.id===id);
+      if(a) openReader(a);
+    }
+
+    // TOC highlight
+    (function(){
+      const links = Array.from(document.querySelectorAll('.toc a'));
+      const map = new Map(links.map(a=>[a.getAttribute('href'), a]));
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          const id = '#'+entry.target.id;
+          const link = map.get(id);
+          if(!link) return;
+          if(entry.isIntersecting){
+            links.forEach(l=>l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin:'0px 0px -70% 0px', threshold: 0.1 });
+      ['top','allnews','press'].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) obs.observe(el);
+      });
+    })();
+
+    // Init
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      await loadArticles();
+      openFromHash();
+    });
+  </script>
+</body>
+</html>

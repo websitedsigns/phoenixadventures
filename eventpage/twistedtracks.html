@@ -7,7 +7,6 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="css/style.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
@@ -17,8 +16,15 @@
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
+
+      --page-bg:#f9fbfe;
+      --card-border:#e6effa;
+      --chip-bg:#eef6ff;
+      --chip-fg:#2d8fdd;
     }
-    body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
+
+    html{ scroll-behavior:smooth; }
+    body{ font-family:"Poppins",sans-serif; background:var(--page-bg); color:#333; }
 
     /* Announcement */
     .announcement{
@@ -27,447 +33,481 @@
       font-size:.95rem;
     }
 
+    /* Navbar include container (optional) */
+    .navbar-placeholder{ min-height:60px; }
+
     /* Hero */
     .hero{
-  position: relative;
-  min-height: 50vh;                     /* adjust as you like */
-  background: url('../img/parks/white.jpg') center/cover no-repeat;
-  color:#fff; text-align:center; display:flex; align-items:center; overflow:hidden;
-}
-.hero::after{
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); /* overlay */
-}
-.hero .container{ position:relative; z-index:1; }
+      position:relative; min-height:48vh; display:flex; align-items:center; color:#fff;
+      background:
+        linear-gradient(180deg, rgba(249, 250, 251, 0.78), rgba(169, 47, 47, 0.88)),
+        url('../img/parks/white.jpg') center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero .container{ padding:3rem 0; text-align:center; }
+    .hero h1{ font-weight:800; }
+    .hero .brand-chip{
+      display:inline-block; font-size:.8rem; background:rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.25); padding:.25rem .6rem; border-radius:999px;
+      backdrop-filter: blur(2px);
+    }
 
+    /* Layout / TOC */
+    @media (min-width:992px){ .sticky-col{ position:sticky; top:88px; } }
+    .toc a{ text-decoration:none; color:var(--ink); }
+    .toc a:hover{ text-decoration:underline; }
+    .toc a.active{ text-decoration:underline; font-weight:700; }
+    .section-title{ scroll-margin-top:90px; }
 
+    /* Cards + polish */
+    .doc-card{
+      border:1px solid var(--card-border); border-radius:.75rem; background:#fff;
+      box-shadow:0 2px 10px rgba(0,0,0,.03);
+    }
+    .tour-card{
+      border:1px solid var(--card-border); border-radius:.9rem; background:#fff;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+      height:100%; display:flex; flex-direction:column;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .tour-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
+    .tour-card .card-body{ display:flex; flex-direction:column; }
+    .tour-card .card-title{ font-weight:700; }
+    .tour-card .price{ font-size:1.1rem; font-weight:700; color:#111; margin:.15rem 0 .5rem; }
+    .card-actions{ margin-top:auto; }
+
+    .tag{
+      display:inline-block; font-size:.75rem; font-weight:600;
+      background:var(--chip-bg); color:var(--chip-fg);
+      padding:.25rem .6rem; border-radius:999px;
+    }
+
+    /* Buttons */
     .btn-phoenix{
       background:var(--cta); color:#fff; font-weight:700; border:none;
       box-shadow:0 6px 16px rgba(0,0,0,.15);
     }
     .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
 
-    /* Sections */
-    .section{ padding:3rem 0; }
-    .section h2{ font-weight:800; color:var(--ink); }
-
-    /* Accordion polish */
+    /* Accordion */
     .accordion-item{
       border:1px solid rgba(0,0,0,.06);
       border-radius:12px; overflow:hidden; margin-bottom:1rem;
-      box-shadow:0 6px 16px rgba(0,0,0,.04);
-      background:#fff;
+      box-shadow:0 6px 16px rgba(0,0,0,.04); background:#fff;
     }
     .accordion-button{ font-weight:700; }
     .accordion-button:not(.collapsed){ background:#eef6ff; color:var(--ink); box-shadow:none; }
 
-    /* Cards */
-    .card{
-      border:1px solid rgba(0,0,0,.06);
-      border-radius:14px; overflow:hidden; height:100%;
-      box-shadow:0 6px 16px rgba(0,0,0,.06);
-      transition:transform .15s ease, box-shadow .15s ease;
-      background:#fff;
-    }
-    .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.14); }
-    .card-body{ display:flex; flex-direction:column; }
-    .card-title{ font-weight:700; }
-    .card .price{ font-size:1.1rem; font-weight:700; color:#111; margin:.15rem 0 .5rem; }
-    .card-actions{ margin-top:auto; }
-
     /* Round map thumbnail */
     .map-thumb{
-      max-width:100px; border:5px solid #ddd; cursor:pointer;
+      width:110px; height:110px; object-fit:cover;
+      border-radius:50%; border:5px solid #e9eef7; cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
     }
 
     /* Grid spacing */
     .row.g-4{ --bs-gutter-x:1.25rem; --bs-gutter-y:1.25rem; }
+
+    /* Footer */
+    footer{ background:#0b3a66; color:#cfe6ff; }
+    footer a{ color:#fff; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
+
   <!-- Announcement Bar -->
   <div class="text-center text-white py-2 announcement">
     Book today from just £1 deposit — Flexible payment plans available
   </div>
 
-  <!-- Navbar -->
-  <div id="navbar-placeholder"></div>
+  <!-- Navbar include -->
+  <div id="navbar-placeholder" class="navbar-placeholder"></div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       fetch("/navbar.html")
         .then(r=>r.text())
         .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
-        .catch(err=>console.error("Error loading navbar:", err));
+        .catch(()=>{});
     });
   </script>
 
   <!-- Hero -->
-<header class="align-items-center text-white text-center">
-  <div class="container py-3">
-    <img src="../img/twistedtracks/twistedtracklogo.png"
-         alt="Twisted Tracks Logo"
-         class="img-fluid mb-3"
-         style="max-height: 250px;" />
-  </div>
-</header>
-
-
-  <!-- Intro -->
-  <section class="container section">
-    <h2 class="mb-3 text-center">Embark on a Thrilling Adventure</h2>
-    <p class="lead text-center">
-      Travel through Europe on a luxury sleeper coach and experience multiple theme parks in one trip.
-      Ride headline coasters and enjoy an unforgettable journey filled with adrenaline, fun, and lasting memories!
-    </p>
-  </section>
-
-  <!-- Useful Info Accordion -->
-  <section class="container section pt-0">
-    <h2 class="mb-4 text-center">Useful Info</h2>
-    <div class="accordion" id="infoAccordion">
-      <!-- Age Recommendation -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingAge">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAge">
-            Age Recommendation
-          </button>
-        </h2>
-        <div id="collapseAge" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            The recommended age is 16+, but children aged 3+ are accepted when accompanied by an appropriate adult.
-            Children must be able to sleep unaccompanied in a bunk.
-          </div>
-        </div>
-      </div>
-
-      <!-- Parks -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingParks">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseParks">
-            Parks
-          </button>
-        </h2>
-        <div id="collapseParks" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Experience multiple parks over several days — from family favourites to Europe’s biggest roller coasters.
-          </div>
-        </div>
-      </div>
-
-      <!-- Travel -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTravel">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTravel">
-            Travel
-          </button>
-        </h2>
-        <div id="collapseTravel" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Travel in style on a VIP luxury sleeper coach with bunk beds, comfy couches, kitchen facilities, and entertainment.
-          </div>
-        </div>
-      </div>
-
-      <!-- Accommodation -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingAccommodation">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAccommodation">
-            Accommodation
-          </button>
-        </h2>
-        <div id="collapseAccommodation" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Rest in private, comfortable bunks with soft bedding as you travel overnight between parks.
-          </div>
-        </div>
-      </div>
-
-      <!-- Tickets -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTickets">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTickets">
-            Tickets
-          </button>
-        </h2>
-        <div id="collapseTickets" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Tickets are not included — this allows flexibility for annual pass holders.
-            Packages will be available ~8 weeks prior to travel if required.
-          </div>
-        </div>
-      </div>
-
-      <!-- Nightliner Coach Travel -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingCoach">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoach">
-            Nightliner Coach Travel
-          </button>
-        </h2>
-        <div id="collapseCoach" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Sleep in your own bunk, wake up at a new park, socialise in lounges, and travel like a celebrity on a band bus.
-          </div>
-        </div>
-      </div>
+  <section class="hero">
+    <div class="container">
+      <img src="../img/twistedtracks/twistedtracklogo.png" alt="Twisted Tracks Logo" class="img-fluid mb-3" style="max-height: 220px;" />
+      <br><p class="brand-chip mb-2">Phoenix Adventures • Multi-Park Coach Tours</p>
+      <br><h1 class="display-6 mt-2 mb-2">Twisted Tracks</h1>
+      <p class="mb-0">Travel through Europe on a luxury sleeper coach and experience multiple theme parks in one trip.</p>
     </div>
   </section>
 
-  <!-- Tours Grid -->
-  <section class="container section pt-0">
-    <h2 class="fw-bold mb-4 text-center">Upcoming Tours</h2>
+  <!-- Main -->
+  <main class="container py-5">
     <div class="row g-4">
 
-      <!-- ENG Family Friendly Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
+      <!-- On this page (TOC) -->
+      <aside class="col-lg-4">
+        <div class="card shadow-sm border-0 sticky-col">
           <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/gbrfammap.jpg" alt="GBR Family Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/gbrfammap.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">ENG Family Friendly Tour</h5>
-            <p class="card-text mb-1">6 Theme Parks in 6 Days across <b><span style="color: darkblue;">England</span></b> — Travel Only</p>
-            <div class="price">£299</div>
-            <ul>
-              <li>Chessington</li>
-              <li>Flamingo Land</li>
-              <li>Alton Towers</li>
-              <li>Drayton Manor</li>
-              <li>Paultons Park</li>
-              <li>Legoland Windsor</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/ENG.html" class="btn btn-phoenix">More Information</a>
-            </div>
+            <nav class="toc small">
+              <ul class="mb-0 list-unstyled ">
+                <li><a href="#intro">What is Twisted Tracks?</a></li>
+                <li><a href="#info">Useful Info</a></li>
+                <li><a href="#tours">Upcoming Tours</a></li>
+              </ul>
+            </nav>
+            <hr>
+            <p class="text-muted small mb-2">Questions?</p>
+            <a class="btn btn-phoenix w-100" href="mailto:info@phoenixadventures.co.uk">info@phoenixadventures.co.uk</a>
           </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- ENG-IRE Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/EngIreland.jpg" alt="ENG-IRE Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/EngIreland.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">ENG-IRE Tour</h5>
-            <p class="card-text mb-1">6 Theme Parks in 6 Days across <b><span style="color: darkblue;">England &amp; Ireland</span></b> — Travel Only</p>
-            <div class="price">£399</div>
-            <ul>
-              <li>Thorpe Park</li>
-              <li>Fantasy Island</li>
-              <li>Flamingo Land</li>
-              <li>Pleasure Beach Resort</li>
-              <li>Emerald Park</li>
-              <li>Alton Towers</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/ENGIRE.html" class="btn btn-phoenix">More Information</a>
-            </div>
+      <!-- Content -->
+      <section class="col-lg-8">
+
+        <!-- Intro -->
+        <div id="intro" class="p-4 doc-card section-title mb-4">
+          <h2 class="h4 fw-bold mb-3">Embark on a thrilling adventure</h2>
+          <p class="lead">
+            Ride headline coasters and wake up in a new destination each day. Our VIP sleeper coach has bunks,
+            lounges and kitchen facilities so you can rest, socialise and arrive fresh for rope-drop.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">Travel-Only</span>
+            <span class="tag">Annual-Pass Friendly</span>
+            <span class="tag">Multi-Park</span>
           </div>
         </div>
-      </div>
 
-      <!-- N-B-G Euro MINI Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/NBG Min.jpg" alt="N-B-G Mini Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/NBG Min.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
+        <!-- Useful Info -->
+        <div id="info" class="p-4 doc-card section-title mb-4">
+          <h2 class="h4 fw-bold mb-3">Useful Info</h2>
+          <div class="accordion" id="infoAccordion">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingAge">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAge" aria-expanded="false" aria-controls="collapseAge">
+                  Age Recommendation
+                </button>
+              </h2>
+              <div id="collapseAge" class="accordion-collapse collapse" aria-labelledby="headingAge" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  The recommended age is 16+, but children aged 3+ are accepted when accompanied by an appropriate adult.
+                  Children must be able to sleep unaccompanied in a bunk.
+                </div>
+              </div>
             </div>
-            <h5 class="card-title">N-B-G Euro MINI Tour</h5>
-            <p class="card-text mb-1">5 Theme Parks in 5 Days — <b style="color: darkblue;">Netherlands, Belgium &amp; Germany</b> — Travel Only</p>
-            <div class="price">£699</div>
-            <ul>
-              <li>Toverland — Netherlands</li>
-              <li>Efteling — Netherlands</li>
-              <li>Movie Park — Germany</li>
-              <li>Phantasialand — Germany</li>
-              <li>Plopsaland — Belgium</li>
-            </ul>
-            <div class="card-actions">
-              <a href="twistedtracksevents/NBGmini.html" class="btn btn-phoenix">More Information</a>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingParks">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseParks" aria-expanded="false" aria-controls="collapseParks">
+                  Parks
+                </button>
+              </h2>
+              <div id="collapseParks" class="accordion-collapse collapse" aria-labelledby="headingParks" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  Experience multiple parks over several days — from family favourites to Europe’s biggest roller coasters.
+                </div>
+              </div>
             </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTravel">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTravel" aria-expanded="false" aria-controls="collapseTravel">
+                  Travel
+                </button>
+              </h2>
+              <div id="collapseTravel" class="accordion-collapse collapse" aria-labelledby="headingTravel" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  Travel in style on a VIP luxury sleeper coach with bunk beds, comfy lounges, kitchen facilities and entertainment.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingAccommodation">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAccommodation" aria-expanded="false" aria-controls="collapseAccommodation">
+                  Accommodation
+                </button>
+              </h2>
+              <div id="collapseAccommodation" class="accordion-collapse collapse" aria-labelledby="headingAccommodation" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  Rest in private, comfortable bunks with soft bedding as you travel overnight between parks.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTickets">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTickets" aria-expanded="false" aria-controls="collapseTickets">
+                  Tickets
+                </button>
+              </h2>
+              <div id="collapseTickets" class="accordion-collapse collapse" aria-labelledby="headingTickets" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  Tickets are not included — perfect for Annual Pass holders. Packages may be offered ~8 weeks prior to travel if required.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingCoach">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoach" aria-expanded="false" aria-controls="collapseCoach">
+                  Nightliner Coach Travel
+                </button>
+              </h2>
+              <div id="collapseCoach" class="accordion-collapse collapse" aria-labelledby="headingCoach" data-bs-parent="#infoAccordion">
+                <div class="accordion-body">
+                  Sleep in your own bunk, wake up at a new park, socialise in lounges and travel like a touring band on a nightliner coach.
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>
 
-      <!-- N-B-G Euro MINI Winter Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/miniwinter.jpg" alt="N-B-G Mini Winter Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/miniwinter.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
+        <!-- Upcoming Tours -->
+        <div id="tours" class="p-4 doc-card section-title">
+          <h2 class="h4 fw-bold mb-4">Upcoming Tours</h2>
+          <div class="row g-4">
+
+            <!-- ENG Family Friendly Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/gbrfammap.jpg" alt="GBR Family Map"
+                         class="map-thumb" data-img="../img/maps/gbrfammap.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">ENG Family Friendly Tour</h5>
+                  <p class="mb-1">6 Parks in 6 Days — <b class="text-primary">England</b> — Travel-Only</p>
+                  <div class="price">£299</div>
+                  <ul class="mb-3">
+                    <li>Chessington</li><li>Flamingo Land</li><li>Alton Towers</li>
+                    <li>Drayton Manor</li><li>Paultons Park</li><li>LEGOLAND Windsor</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/ENG.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h5 class="card-title">N-B-G Euro MINI <span style="color: rgb(115,143,208);">WINTER</span> Tour</h5>
-            <p class="card-text mb-1">5 Theme Parks in 5 Days — <b style="color: darkblue;">Netherlands, Belgium &amp; Germany</b> — Travel Only</p>
-            <div class="price">£699</div>
-            <ul>
-              <li>Efteling</li>
-              <li>Toverland</li>
-              <li>Phantasialand</li>
-              <li>Movie Park</li>
-              <li>Plopsaland Belgium</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/NBGwinterMini.html" class="btn btn-phoenix">More Information</a>
+
+            <!-- ENG-IRE Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/EngIreland.jpg" alt="ENG-IRE Map"
+                         class="map-thumb" data-img="../img/maps/EngIreland.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">ENG-IRE Tour</h5>
+                  <p class="mb-1">6 Parks in 6 Days — <b class="text-primary">England &amp; Ireland</b> — Travel-Only</p>
+                  <div class="price">£399</div>
+                  <ul class="mb-3">
+                    <li>Thorpe Park</li><li>Fantasy Island</li><li>Flamingo Land</li>
+                    <li>Pleasure Beach Resort</li><li>Emerald Park</li><li>Alton Towers</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/ENGIRE.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- N-B-G Euro MINI Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/NBG Min.jpg" alt="N-B-G Mini Map"
+                         class="map-thumb" data-img="../img/maps/NBG Min.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">N-B-G Euro MINI Tour</h5>
+                  <p class="mb-1">5 Parks in 5 Days — <b class="text-primary">Netherlands, Belgium &amp; Germany</b> — Travel-Only</p>
+                  <div class="price">£699</div>
+                  <ul class="mb-3">
+                    <li>Toverland (NL)</li><li>Efteling (NL)</li><li>Movie Park (DE)</li>
+                    <li>Phantasialand (DE)</li><li>Plopsaland (BE)</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="twistedtracksevents/NBGmini.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- N-B-G Euro MINI Winter Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/miniwinter.jpg" alt="N-B-G Mini Winter Map"
+                         class="map-thumb" data-img="../img/maps/miniwinter.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">N-B-G Euro MINI <span class="text-primary">WINTER</span> Tour</h5>
+                  <p class="mb-1">5 Parks in 5 Days — <b class="text-primary">Netherlands, Belgium &amp; Germany</b> — Travel-Only</p>
+                  <div class="price">£699</div>
+                  <ul class="mb-3">
+                    <li>Efteling</li><li>Toverland</li><li>Phantasialand</li>
+                    <li>Movie Park</li><li>Plopsaland Belgium</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/NBGwinterMini.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- N-B-G Euro Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/NBG Euro.jpg" alt="N-B-G Euro Map"
+                         class="map-thumb" data-img="../img/maps/NBG Euro.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">N-B-G Euro Tour</h5>
+                  <p class="mb-1">7 Parks in 7 Days — <b class="text-primary">Netherlands, Belgium &amp; Germany</b> — Travel-Only</p>
+                  <div class="price">£849</div>
+                  <ul class="mb-3">
+                    <li>Efteling (NL)</li><li>Walibi Holland (NL)</li><li>Movie Park (DE)</li>
+                    <li>Toverland (NL)</li><li>Phantasialand (DE)</li><li>Walibi Belgium (BE)</li><li>Plopsaland (BE)</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/NBG.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- F-G Euro Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/fg euro.jpg" alt="F-G Euro Map"
+                         class="map-thumb" data-img="../img/maps/fg euro.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">F-G Euro Tour</h5>
+                  <p class="mb-1">7 Parks in 7 Days — <b class="text-primary">France &amp; Germany</b> — Travel-Only</p>
+                  <div class="price">£949</div>
+                  <ul class="mb-3">
+                    <li>Parc Astérix (FR)</li><li>Walygator Grand Est (FR)</li><li>Plopsaland Deutschland (DE)</li>
+                    <li>Tripsdrill (DE)</li><li>Europa-Park (DE)</li><li>Nigloland (FR)</li><li>Parc Saint Paul (FR)</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/FGEuro.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- F-S Euro Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/fs euro.png" alt="F-S Euro Map"
+                         class="map-thumb" data-img="../img/maps/fs euro.png"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">F-S Euro Tour</h5>
+                  <p class="mb-1">8 Parks in 8 Days — <b class="text-primary">France &amp; Spain</b> — Travel-Only</p>
+                  <div class="price">£1099</div>
+                  <ul class="mb-3">
+                    <li>Disneyland Paris</li><li>Walygator Sud-Ouest</li><li>Parque de Atracciones</li>
+                    <li>Parque Warner</li><li>PortAventura</li><li>Tibidabo</li>
+                    <li>Walibi Rhône-Alpes</li><li>Futuroscope</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="./twistedtracksevents/FGEuro.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- B-G-D-S-N Euro Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/bgdsn.jpg" alt="B-G-D-S-N Euro Map"
+                         class="map-thumb" data-img="../img/maps/bgdsn.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">B-G-D-S-N Euro Tour</h5>
+                  <p class="mb-1">8 Parks in 8 Days — <b class="text-primary">Belgium, Germany, Denmark, Sweden &amp; Netherlands</b> — Travel-Only</p>
+                  <div class="price">£1099</div>
+                  <ul class="mb-3">
+                    <li>Bobbejaanland (BE)</li><li>Heide Park (DE)</li><li>Tivoli Gardens (DK)</li>
+                    <li>Kolmården (SE)</li><li>Gröna Lund (SE)</li><li>Liseberg (SE)</li>
+                    <li>Hansa-Park (DE)</li><li>Hellendoorn (NL)</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="disneybooking.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- G-P-I-F Euro Tour -->
+            <div class="col-md-6 col-lg-4">
+              <div class="tour-card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center mb-3">
+                    <img src="../img/maps/gpif.jpg" alt="G-P-I-F Euro Map"
+                         class="map-thumb" data-img="../img/maps/gpif.jpg"
+                         data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                  </div>
+                  <h5 class="card-title">G-P-I-F Euro Tour</h5>
+                  <p class="mb-1">8 Parks in 8 Days — <b class="text-primary">Germany, Poland, Italy &amp; France</b> — Travel-Only</p>
+                  <div class="price">£1199</div>
+                  <ul class="mb-3">
+                    <li>Phantasialand (DE)</li><li>Belantis (DE)</li><li>Energylandia (PL)</li><li>Bayern-Park (DE)</li>
+                    <li>Gardaland (IT)</li><li>Mirabilandia (IT)</li><li>Walibi Rhône-Alpes (FR)</li><li>Parc Astérix (FR)</li>
+                  </ul>
+                  <div class="card-actions">
+                    <a href="disneybooking.html" class="btn btn-phoenix w-100">More Information</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>
 
-      <!-- N-B-G Euro Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/NBG Euro.jpg" alt="N-B-G Euro Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/NBG Euro.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">N-B-G Euro Tour</h5>
-            <p class="card-text mb-1">7 Theme Parks in 7 Days — <b><span style="color: darkblue;">Netherlands, Belgium &amp; Germany</span></b> — Travel Only</p>
-            <div class="price">£849</div>
-            <ul>
-              <li>Efteling — Netherlands</li>
-              <li>Walibi Holland — Netherlands</li>
-              <li>Movie Park — Germany</li>
-              <li>Toverland — Netherlands</li>
-              <li>Phantasialand — Germany</li>
-              <li>Walibi Belgium — Belgium</li>
-              <li>Plopsaland — Belgium</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/NBG.html" class="btn btn-phoenix">More Information</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- F-G Euro Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/fg euro.jpg" alt="F-G Euro Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/fg euro.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">F-G Euro Tour</h5>
-            <p class="card-text mb-1">7 Theme Parks in 7 Days — <b><span style="color: darkblue;">France &amp; Germany</span></b> — Travel Only</p>
-            <div class="price">£949</div>
-            <ul>
-              <li>Parc Astérix — France</li>
-              <li>Walygator Grand Est — France</li>
-              <li>Plopsaland Deutschland — Germany</li>
-              <li>Erlebnispark Tripsdrill — Germany</li>
-              <li>Europa-Park — Germany</li>
-              <li>Nigloland — France</li>
-              <li>Parc Saint Paul — France</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/FGEuro.html" class="btn btn-phoenix">More Information</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- F-S Euro Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/fs euro.png" alt="F-S Euro Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/fs euro.png" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">F-S Euro Tour</h5>
-            <p class="card-text mb-1">8 Theme Parks in 8 Days — <b><span style="color: darkblue;">France &amp; Spain</span></b> — Travel Only</p>
-            <div class="price">£1099</div>
-            <ul>
-              <li>Disneyland Paris — France</li>
-              <li>Walygator Sud-Ouest — France</li>
-              <li>Parque de Atracciones — Spain</li>
-              <li>Parque Warner — Spain</li>
-              <li>PortAventura — Spain</li>
-              <li>Tibidabo — Spain</li>
-              <li>Walibi Rhône-Alpes — France</li>
-              <li>Futuroscope — France</li>
-            </ul>
-            <div class="card-actions">
-              <a href="./twistedtracksevents/FGEuro.html" class="btn btn-phoenix">More Information</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- B-G-D-S-N Euro Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/bgdsn.jpg" alt="B-G-D-S-N Euro Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/bgdsn.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">B-G-D-S-N Euro Tour</h5>
-            <p class="card-text mb-1">8 Theme Parks in 8 Days — <b><span style="color: darkblue;">Belgium, Germany, Denmark, Sweden &amp; Netherlands</span></b> — Travel Only</p>
-            <div class="price">£1099</div>
-            <ul>
-              <li>Bobbejaanland — Belgium</li>
-              <li>Heide Park — Germany</li>
-              <li>Tivoli Gardens — Denmark</li>
-              <li>Kolmården — Sweden</li>
-              <li>Gröna Lund — Sweden</li>
-              <li>Liseberg — Sweden</li>
-              <li>Hansa Park — Germany</li>
-              <li>Avonturenpark Hellendoorn — Netherlands</li>
-            </ul>
-            <div class="card-actions">
-              <a href="disneybooking.html" class="btn btn-phoenix">More Information</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- G-P-I-F Euro Tour -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-center mb-3">
-              <img src="../img/maps/gpif.jpg" alt="G-P-I-F Euro Map"
-                   class="rounded-circle img-fluid map-thumb"
-                   data-img="../img/maps/gpif.jpg" data-bs-toggle="modal" data-bs-target="#imageModal"/>
-            </div>
-            <h5 class="card-title">G-P-I-F Euro Tour</h5>
-            <p class="card-text mb-1">8 Theme Parks in 8 Days — <b><span style="color: darkblue;">Germany, Poland, Italy &amp; France</span></b> — Travel Only</p>
-            <div class="price">£1199</div>
-            <ul>
-              <li>Phantasialand — Germany</li>
-              <li>Belantis — Germany</li>
-              <li>Energylandia — Poland</li>
-              <li>Bayern-Park — Germany</li>
-              <li>Gardaland — Italy</li>
-              <li>Mirabilandia — Italy</li>
-              <li>Walibi Rhône-Alpes — France</li>
-              <li>Parc Astérix — France</li>
-            </ul>
-            <div class="card-actions">
-              <a href="disneybooking.html" class="btn btn-phoenix">More Information</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      </section>
     </div>
-  </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md">
+          <div class="d-flex flex-wrap gap-3">
+            <a href="/index.html">Home</a>
+            <a href="/tour-list-2025.html">2025 Tour List</a>
+            <a href="/theme-park-trips-europe.html">Theme Park Trips - Europe</a>
+            <a href="/halloween-trips.html">Halloween Trips</a>
+            <a href="/twisted-tracks.html">Twisted Tracks</a>
+          </div>
+        </div>
+        <div class="col-md text-md-end small">
+          © Copyright 2025 &nbsp;All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Reusable Image Modal -->
   <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
@@ -481,14 +521,38 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    // Reusable modal: show clicked thumbnail larger
+    // Image modal: click circle map to preview larger
     document.addEventListener('click', function(e){
       const img = e.target.closest('.map-thumb');
       if(!img) return;
       const src = img.getAttribute('data-img') || img.src;
       document.getElementById('modalImage').src = src;
     });
+
+    // TOC auto-highlight
+    (function(){
+      const links = Array.from(document.querySelectorAll('.toc a'));
+      const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          const id = '#' + entry.target.id;
+          const link = map.get(id);
+          if(!link) return;
+          if(entry.isIntersecting){
+            links.forEach(l=>l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '0px 0px -70% 0px', threshold: 0.1 });
+
+      ['intro','info','tours'].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) obs.observe(el);
+      });
+    })();
   </script>
 </body>
 </html>
