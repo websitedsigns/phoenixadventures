@@ -1,0 +1,25 @@
+/* Sleeper page styles */
+
+.sleeper-hero{
+  background: linear-gradient(180deg, #0b1730, #0b3a66), url('/img/phoenix/interior.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+  color:#fff;
+}
+
+.sleeper-article{ padding: .25rem; }
+.sleeper-section + .sleeper-section{ margin-top: 1.25rem; }
+
+.sleeper-aside{
+    border:1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+
+
+.sticky-on-lg{
+  position: sticky;
+  top: 90px; /* keeps it below navbar */
+}
+
+/* images */
+img.rounded-3{ border-radius: 14px !important; }
