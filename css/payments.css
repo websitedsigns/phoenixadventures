@@ -1,0 +1,21 @@
+/* Payments page extras (reuses variables from style.css/legal.css) */
+
+.payments-hero{
+  background: linear-gradient(180deg, #0b1730, #0b3a66);
+  color:#fff;
+}
+
+.payment-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:1rem;
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+}
+
+.payment-card h3{ font-weight:700; color:#0b3a66; }
+.payment-card p{ margin:0; color:#334155; }
+
+/* Tweak article spacing on this page */
+.legal-article{ padding: 1.25rem 1.25rem 1.25rem; }
+.legal-section + .legal-section{ margin-top:1rem; }

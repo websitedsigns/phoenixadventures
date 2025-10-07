@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Payments | Phoenix Adventures</title>
+  <meta name="description" content="Ways to pay Phoenix Adventures: pay in full, monthly card payments, weekly bank transfer, debit/credit card, PayPal, bank transfer. Safe and secure options." />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/logo/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/logo/favicon-16.png"/>
+  <link rel="apple-touch-icon" href="/img/logo/favicon-180.png"/>
+  <link rel="icon" type="image/x-icon" href="/img/logo/favicon.ico"/>
+  <link rel="mask-icon" href="/img/logo/favicon-safari.png" color="#2d8fdd"/>
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/css/style.css" rel="stylesheet"/>
+  <link href="/css/legal.css" rel="stylesheet"/><!-- reuses cards/spacing -->
+  <link href="/css/payments.css" rel="stylesheet"/>
+
+  <style>
+    :root{ --brand:#2d8fdd; --brand-dark:#1b6fb8; --ink:#0b3a66; }
+  </style>
+
+  <!-- JSON-LD: WebPage + Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"https://phoenixadventures.co.uk/payments.html#webpage",
+        "url":"https://phoenixadventures.co.uk/payments.html",
+        "name":"Payments",
+        "description":"Payment options for Phoenix Adventures."
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://phoenixadventures.co.uk/payments.html#breadcrumbs",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://phoenixadventures.co.uk/"},
+          {"@type":"ListItem","position":2,"name":"Payments","item":"https://phoenixadventures.co.uk/payments.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="legal-page">
+ 
+
+  <!-- Announcement include -->
+  <div id="announcement-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/announcement.html").then(r=>r.text()).then(html=>{
+        document.getElementById("announcement-placeholder").innerHTML = html;
+      }).catch(()=>{});
+    });
+  </script>
+
+  <!-- Navbar include -->
+  <div id="nav"></div>
+  <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html").then(r=>r.text()).then(html=>{
+        document.getElementById("navbar-placeholder").innerHTML = html;
+      }).catch(()=>{});
+    });
+  </script>
+
+  <!-- Hero -->
+  <header class="payments-hero py-5 text-white">
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-2">Payments</h1>
+      <p class="lead mb-0">Flexible ways to pay for your trip.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-light border-bottom" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb py-2 mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Payments</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main id="main" class="container my-4 my-lg-5">
+    <div class="row g-4">
+      <div class="col-lg-8 col-xl-9">
+        <article class="legal-article">
+
+          <!-- Intro (kept wording, with bold + breaks) -->
+          <section class="legal-section" id="overview">
+            <h2 class="h4">Overview</h2>
+            <p><strong>We accept many payment options</strong> for your convenience. You can choose to <strong>pay in full</strong> at the time of booking, allowing you to secure your purchase instantly.</p>
+            <p>If paying the full amount upfront is not feasible, we also offer <strong>monthly card payments</strong>. This option allows you to spread the cost over several months, making it easier on your budget.</p>
+            <p>Furthermore, we provide the option to <strong>pay weekly by bank transfer</strong>. This flexible payment method allows you to make smaller, regular payments, ensuring you can manage your finances effectively. <strong>Please get in contact</strong> if you want more info on payment options.</p>
+          </section>
+
+          <!-- Payment Methods (headings kept; laid out as cards) -->
+          <section class="legal-section" id="methods">
+            <h2 class="h4">Payment Methods</h2>
+
+            <div class="row g-3 row-cols-1 row-cols-md-3">
+              <div class="col">
+                <div class="payment-card h-100">
+                  <img src="/img/payments/cards.jpg" alt="Debit and Credit Card Payments" class="img-fluid mb-2">
+                  <h3 class="h6 mb-1">Debit &amp; Credit card payments</h3>
+                  <p class="mb-0"><strong>Secure Card Payments</strong></p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="payment-card h-100">
+                <img src="/img/payments/paypal.png" alt="Paypal Payments" class="img-fluid mb-2">
+
+                  <h3 class="h6 mb-1">Paypal Accepted</h3>
+                  <p class="mb-0">Pay easily with your PayPal account.</p>
+                </div>
+              </div>
+              
+            </div>
+          </section>
+
+          <!-- “Our payment options” block (wording preserved, opened up + bolded) -->
+          <section class="legal-section" id="options">
+            <h2 class="h4">Our payment options</h2>
+
+            <p><strong>We offer multiple convenient payment options</strong> to make your experience hassle-free. You can choose to pay using either <strong>debit or credit card</strong>, <strong>PayPal</strong>, or <strong>bank transfer</strong>.</p>
+
+            <p>If you prefer using your <strong>debit or credit card</strong>, simply provide the necessary card details during checkout, and your payment will be <strong>securely processed</strong>.</p>
+
+            <p>Alternatively, you can opt for <strong>PayPal</strong>, a widely trusted online payment platform. By selecting this option, you will be <strong>redirected to the PayPal website</strong> to complete your transaction.</p>
+
+            <p>For those who prefer <strong>bank transfers</strong>, we also accept payments directly to our bank account. Upon selecting this option, you will receive our <strong>bank account details</strong>, and you can transfer the payment using your online banking service or by visiting your nearest bank branch.</p>
+
+            <p><strong>Rest assured that all our payment methods are safe and secure</strong>, ensuring the confidentiality of your personal and financial information. Choose the payment option that suits you best, and enjoy a seamless shopping experience with us!</p>
+          </section>
+
+          <!-- Low deposit section (your exact line, plus a helpful button) -->
+          <section class="legal-section" id="low-deposit">
+            <h2 class="h4">Book with our low deposit scheme</h2>
+            <p><strong>Here you will find more information on our low deposit scheme</strong></p>
+            <p>
+              <a class="btn btn-primary btn-sm" href="/terms.html#deposits">See deposit &amp; payments terms</a>
+            </p>
+          </section>
+
+          <!-- Safeguarding section (your exact line, plus optional CTA) -->
+          <section class="legal-section" id="safeguarding">
+            <h2 class="h4">How we look after your money</h2>
+            <p><strong>Here you will find the information on how we look after your money</strong></p>
+            <p><a class="btn btn-primary btn-sm" href="/money-safeguarding.html">Read our safeguarding policy</a></p>
+          </section>
+
+        </article>
+      </div>
+
+      
+    </div>
+  </main>
+
+  <!-- Footer include -->
+  <div id="footer-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/footer.html").then(r=>r.text()).then(html=>{
+        document.getElementById("footer-placeholder").innerHTML = html;
+      }).catch(err=>console.error("Error loading footer:", err));
+    });
+  </script>
+
+  <!-- JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
