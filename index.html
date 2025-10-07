@@ -406,8 +406,8 @@
           const dateStr = when.toLocaleDateString(undefined, { weekday:"short", day:"2-digit", month:"short" });
           const timeStr = when.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
           tickerText.textContent = `${dateStr} — ${ev.title}${ev.location ? " @ " + ev.location : ""} (${timeStr})`;
-          if (ev.url) tickerCta.href = ev.url;
-        } else {
+// when rendering the ticker:
+tickerCta.href = nextEvent.url || "/tours.html#toursAccordion";        } else {
           tickerText.textContent = "See our upcoming tours and special departures.";
         }
       }catch(e){

@@ -25,7 +25,6 @@
     }
     body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
 
-
     html{ scroll-behavior:smooth; }
     body{ font-family:"Poppins",sans-serif; background:var(--bg); color:#333; }
 
@@ -196,7 +195,6 @@
     <section class="py-2 px-0">
       <div class="accordion" id="toursAccordion">
 
-        
         <!-- OCTOBER -->
         <div class="accordion-item" data-month="2025-10">
           <h2 class="accordion-header" id="headingOctober">
@@ -206,6 +204,25 @@
           </h2>
           <div id="collapseOctober" class="accordion-collapse collapse" aria-labelledby="headingOctober" data-bs-parent="#toursAccordion">
             <div class="accordion-body">
+              <!-- Toverland -->
+              <article class="tour-card tour"
+                style="background-image:url('img/parks/themedparks/toverlandhorror.png');"
+                data-title="Toverland — Halloween Nights"
+                data-location="netherlands"
+                data-tags="toverland netherlands halloween"
+                data-theme="halloween"
+                data-event-url="booking.html"
+                data-event-start="2025-10-04T08:00:00">
+                <h3 class="tour-title">Sat 4th – Toverland, Netherlands</h3>
+                <p class="tour-desc"><strong>Halloween Nights:</strong> Spooky attractions and live entertainment.</p>
+                <div class="d-flex flex-wrap gap-1">
+                  <span class="pill">Netherlands</span>
+                  <span class="pill">Halloween</span>
+                </div>
+                <div class="tour-actions">
+                  <a class="btn btn-ghost btn-sm" href="booking.html">More Information</a>
+                </div>
+              </article>
 
               <!-- Parc Astérix -->
               <article class="tour-card tour"
@@ -499,9 +516,8 @@
       function runFilter(resetMonths=false){
         const q = normalise(searchInput.value);
         let visibleCardCount = 0;
-        let visibleMonthCount = 0;
 
-        items.forEach((monthItem, idx) => {
+        items.forEach((monthItem) => {
           const collapse = monthItem.querySelector(".accordion-collapse");
           const button = monthItem.querySelector(".accordion-button");
           const cards = monthItem.querySelectorAll(".tour-card");
@@ -537,7 +553,6 @@
               button.classList.remove("bg-warning","text-dark");
             }
             monthItem.style.display = "";
-            visibleMonthCount++;
           } else {
             monthItem.style.display = "none";
             button.classList.remove("bg-warning","text-dark");
@@ -578,7 +593,7 @@
           ? next.node.closest('.accordion-item')
           : items[0];
 
-        items.forEach((item, idx)=>{
+        items.forEach((item)=>{
           const collapse = item.querySelector('.accordion-collapse');
           if (item === targetMonthItem){
             if (!collapse.classList.contains('show')){
@@ -599,32 +614,69 @@
       // Initial pass
       runFilter(true);
 
-      // ========= NEXT EVENT TICKER FEED =========
+      // ========= NEXT EVENT TICKER FEED (Deep-link to exact card) =========
       (function(){
         const nodes = document.querySelectorAll('.tour[data-event-start]');
         const now = new Date();
         const events = [];
+        const usedIds = new Set();
+
+        const slug = (s) =>
+          (s||"")
+            .toLowerCase()
+            .normalize('NFKD')            // handle accents
+            .replace(/[\u0300-\u036f]/g,'')
+            .replace(/[^a-z0-9]+/g,'-')
+            .replace(/^-+|-+$/g,'')
+            .slice(0,70);                 // keep it tidy
+
         nodes.forEach(node => {
           const startStr = node.getAttribute('data-event-start');
           const start = new Date(startStr);
           if (isNaN(start)) return;
-          if (start >= now){
-            events.push({
-              start: start.toISOString(),
-              title: node.getAttribute('data-title') || (node.querySelector('.tour-title')?.textContent?.trim() || 'Tour'),
-              url: node.getAttribute('data-event-url') || (node.querySelector('a[href]')?.getAttribute('href') || '/trips.html'),
-              location: node.getAttribute('data-location') || '',
-            });
+
+          const title =
+            node.getAttribute('data-title')
+            || (node.querySelector('.tour-title')?.textContent?.trim())
+            || 'tour';
+
+          const yyyymmdd = (startStr || '').slice(0,10).replace(/-/g,'');
+          let baseId = `evt-${yyyymmdd}-${slug(title)}` || `evt-${yyyymmdd}`;
+          let id = baseId, n = 2;
+          while (usedIds.has(id) || document.getElementById(id)) {
+            id = `${baseId}-${n++}`;
           }
+          usedIds.add(id);
+
+          // Assign anchor id to the card (so /tours.html#id scrolls right to it)
+          if (!node.id) node.id = id;
+
+          // Always save deep link to the exact card (ignore data-event-url)
+          events.push({
+            start: start.toISOString(),
+            title,
+            location: node.getAttribute('data-location') || '',
+            url: `/tours.html#${id}`
+          });
         });
+
+        // Sort by date ascending and store the full list
         events.sort((a,b) => new Date(a.start) - new Date(b.start));
-        if (events[0]){
-          localStorage.setItem('phoenix_next_event', JSON.stringify(events[0]));
+        if (events.length){
+          localStorage.setItem('phoenix_events_all', JSON.stringify(events));
+        } else {
+          localStorage.removeItem('phoenix_events_all');
+        }
+
+        // Preselect the next upcoming event for convenience
+        const next = events.find(ev => new Date(ev.start) >= now);
+        if (next){
+          localStorage.setItem('phoenix_next_event', JSON.stringify(next));
         } else {
           localStorage.removeItem('phoenix_next_event');
         }
       })();
-      // ==========================================
+      // ====================================================================
     });
   </script>
 
