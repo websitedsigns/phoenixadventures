@@ -226,12 +226,19 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-white py-4" style="background:#0b1730;">
-    <div class="container text-center">
-      <p class="mb-0">&copy; 2025 Phoenix Adventures. All rights reserved.</p>
-    </div>
-  </footer>
+   <!-- Footer include -->
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
 
   <!-- ===================== Modals ===================== -->
 
@@ -627,10 +634,34 @@
           </div>
         </div>
 
-        <div class="modal-footer d-grid gap-2 d-sm-flex justify-content-end px-3 px-sm-4 pb-3">
-          <a href="mailto:info@phoenixadventures.co.uk" class="btn btn-outline-secondary w-100 w-sm-auto">Enquire by Email</a>
-          <a href="/trips.html" class="btn btn-primary w-100 w-sm-auto">Browse Tours</a>
-        </div>
+  <!-- Footer include -->
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
+
+
       </div>
     </div>
   </div>

@@ -305,6 +305,21 @@
             <a href="/" class="btn btn-outline-primary rounded-3">Back to home</a>
           </div>
         </section>
+          <!-- Footer include -->
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
+
+
       </div>
     </div>
   </main>
