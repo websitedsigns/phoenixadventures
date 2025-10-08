@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Phoenix Adventures | Group Bookings</title>
+  <meta name="description" content="Enquire about group bookings with Phoenix Adventures LTD. Perfect for large families, friends, or organisations looking to travel together." />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Site CSS -->
+  <link href="css/style.css" rel="stylesheet"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --brand:#2d8fdd;
+      --brand-dark:#1b6fb8;
+      --cta:#ff4500;
+      --cta-dark:#e63900;
+      --ink:#0b3a66;
+      --bg:#f7f9fc;
+    }
+    body{ font-family:"Poppins",sans-serif; background:var(--bg); color:#333; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(to bottom right, rgba(45,143,221,.8), rgba(11,58,102,.85)),
+                  url('/img/hero/groups-hero.jpg') center/cover no-repeat;
+      color:#fff;
+      padding:5rem 0;
+      text-align:center;
+    }
+    .hero h1 { font-weight:800; margin-bottom:1rem; }
+    .hero p { font-size:1.15rem; max-width:700px; margin:auto; }
+
+    /* Form Card */
+    .card-elevated {
+      border:0;
+      border-radius:1rem;
+      box-shadow:0 8px 25px rgba(0,0,0,0.08);
+      background:#fff;
+    }
+
+    .btn-phoenix {
+      background:var(--cta);
+      color:#fff;
+      border:none;
+      border-radius:.75rem;
+      font-weight:600;
+      padding:.75rem 1.25rem;
+    }
+    .btn-phoenix:hover { background:var(--cta-dark); }
+
+    .form-label.required::after {
+      content:" *";
+      color:#dc3545;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  
+  <!-- Navbar include target (HTML fragment loaded by JS) -->
+  <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        fetch("/navbar.html")
+            .then(resp => resp.text())
+            .then(html => document.getElementById("navbar-placeholder").innerHTML = html)
+            .catch(err => console.error("Error loading navbar:", err));
+        });
+    </script>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Group Bookings</h1>
+      <p>Looking to travel as a large group of family or friends? Are you a group leader?  
+      Travel together with Phoenix Adventures LTD — we make group travel easy and enjoyable.</p>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8">
+          <div class="card card-elevated p-4">
+            <div class="card-body">
+              <p class="lead">Please provide a little more information and we’ll be in contact to arrange this for you.</p>
+
+              <form name="Group Bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="Group Bookings">
+                <div class="mb-3 d-none">
+                  <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+                </div>
+
+                <div class="mb-3">
+                  <label for="name" class="form-label required">Name</label>
+                  <input type="text" class="form-control" id="name" name="Name" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label required">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="E-mail" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="destination" class="form-label">Destination</label>
+                  <input type="text" class="form-control" id="destination" name="Destination">
+                </div>
+
+                <div class="mb-3">
+                  <label for="date" class="form-label">Travel date</label>
+                  <input type="date" class="form-control" id="date" name="Travel Date">
+                </div>
+
+                <div class="mb-3">
+                  <label for="passengers" class="form-label required">Number of passengers</label>
+                  <input type="text" class="form-control" id="passengers" name="Passengers" placeholder="e.g. 8 adults, 4 children" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="info" class="form-label">Any extra information</label>
+                  <textarea class="form-control" id="info" name="Extra Information" rows="5" placeholder="Tell us about special requests, pick-up points or flexibility in travel dates."></textarea>
+                </div>
+
+                <div class="form-check mb-4">
+                  <input class="form-check-input" type="checkbox" id="consent" name="Consent" required>
+                  <label class="form-check-label required" for="consent">
+                    I hereby agree that this data will be stored and processed for the purpose of establishing contact.
+                    I am aware that I can revoke my consent at any time.
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-phoenix">Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
