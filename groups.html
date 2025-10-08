@@ -3,167 +3,563 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Phoenix Adventures | Group Bookings</title>
-  <meta name="description" content="Enquire about group bookings with Phoenix Adventures LTD. Perfect for large families, friends, or organisations looking to travel together." />
+  <title>Phoenix Adventures | Group & School Bookings</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!-- Site CSS -->
-  <link href="css/style.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
+  <!-- Site CSS (tokens) -->
+  <link href="css/style.css" rel="stylesheet"/>
+
   <style>
-    :root {
+    :root{
       --brand:#2d8fdd;
       --brand-dark:#1b6fb8;
       --cta:#ff4500;
       --cta-dark:#e63900;
       --ink:#0b3a66;
-      --bg:#f7f9fc;
+      --surface:rgba(255,255,255,0.75);
+      --border:rgba(255,255,255,0.35);
+      --shadow:0 10px 30px rgba(0,0,0,.15);
     }
-    body{ font-family:"Poppins",sans-serif; background:var(--bg); color:#333; }
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(to bottom right, rgba(45,143,221,.8), rgba(11,58,102,.85)),
-                  url('/img/hero/groups-hero.jpg') center/cover no-repeat;
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#222;
+      background:
+        radial-gradient(1200px 800px at 10% -10%, #eaf4ff 0%, transparent 70%),
+        radial-gradient(1000px 600px at 110% 20%, #fff3ec 0%, transparent 65%),
+        #f7f8fb;
+    }
+
+    /* Hero (matches contact) */
+    .hero-modern{
+      position:relative;
+      min-height:48vh; display:grid; place-items:center; text-align:center; overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        url("img/phoenix/busindex.JPG") center/cover no-repeat;
       color:#fff;
-      padding:5rem 0;
-      text-align:center;
     }
-    .hero h1 { font-weight:800; margin-bottom:1rem; }
-    .hero p { font-size:1.15rem; max-width:700px; margin:auto; }
-
-    /* Form Card */
-    .card-elevated {
-      border:0;
-      border-radius:1rem;
-      box-shadow:0 8px 25px rgba(0,0,0,0.08);
-      background:#fff;
+    .hero-modern .heading{ padding:4rem 1rem 6rem; z-index:1; }
+    .hero-modern .heading h1{ letter-spacing:.2px; }
+    .hero-modern .blur-orb{
+      position:absolute; inset:auto -10% -40% -10%; height:55vh;
+      background: radial-gradient(closest-side, rgba(45,143,221,.35), transparent 70%);
+      filter: blur(40px); pointer-events:none;
     }
 
-    .btn-phoenix {
-      background:var(--cta);
-      color:#fff;
-      border:none;
-      border-radius:.75rem;
-      font-weight:600;
-      padding:.75rem 1.25rem;
-    }
-    .btn-phoenix:hover { background:var(--cta-dark); }
-
-    .form-label.required::after {
-      content:" *";
-      color:#dc3545;
+    /* Glass card */
+    .glass-wrap{ margin-top:-6rem; }
+    .glass-card{
+      background:var(--surface);
+      backdrop-filter:saturate(120%) blur(12px);
+      -webkit-backdrop-filter:saturate(120%) blur(12px);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    
+    /* Left info panel */
+    .side-panel{
+      background:
+        radial-gradient(120% 120% at 10% 10%, rgba(45,143,221,.15), transparent 60%),
+        radial-gradient(120% 120% at 90% 90%, rgba(255,69,0,.12), transparent 60%),
+        linear-gradient(135deg, #ffffffCC, #ffffffAA);
+      border-right:1px solid var(--border);
+    }
+    .badge-soft{
+      background:rgba(45,143,221,.12);
+      color:var(--brand);
+      border:1px solid rgba(45,143,221,.25);
+    }
+
+    /* Form polish (same as contact) */
+    .form-floating>.bi{
+      position:absolute; left:1rem; top:50%; transform:translateY(-50%);
+      pointer-events:none; opacity:.6;
+    }
+    .form-floating>input,
+    .form-floating>textarea,
+    .form-floating>.form-select{ padding-left:2.5rem; }
+    .form-floating>label{ color:#666; }
+    .form-control, .form-select, .form-check-input{ border-radius:12px !important; }
+    .form-control:focus, .form-select:focus{
+      border-color:var(--brand);
+      box-shadow:0 0 0 .25rem rgba(45,143,221,.15);
+    }
+    .is-invalid{ box-shadow:0 0 0 .25rem rgba(220,53,69,.08) !important; }
+
+    /* CTA */
+    .btn-phoenix{
+      background:linear-gradient(180deg, var(--cta), var(--cta-dark));
+      border:none; color:#fff; font-weight:700;
+      border-radius:14px; padding:.9rem 1.2rem;
+      transition:transform .08s ease;
+    }
+    .btn-phoenix:disabled{ filter:grayscale(.2) brightness(.9); }
+    .btn-phoenix:active{ transform:translateY(1px) scale(.99); }
+
+    /* Success */
+    .success-panel{ text-align:center; padding:3rem 1rem; }
+    .tick{
+      width:76px; height:76px; border-radius:50%;
+      margin:0 auto 1rem; display:grid; place-items:center;
+      background:linear-gradient(180deg, #28a745, #1e8e3e);
+      color:#fff; box-shadow:0 8px 24px rgba(40,167,69,.35);
+    }
+    .tick i{ font-size:2rem; }
+
+    /* Hide helper */
+    .d-none-important{ display:none !important; }
+
+    @media (max-width: 991.98px){
+      .side-panel{ border-right:none; border-bottom:1px solid var(--border); }
+      .hero-modern{ min-height:42vh; }
+      .glass-wrap{ margin-top:-5rem; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+    }
   </style>
 </head>
 <body>
 
-  
-  <!-- Navbar include target (HTML fragment loaded by JS) -->
-  <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        fetch("/navbar.html")
-            .then(resp => resp.text())
-            .then(html => document.getElementById("navbar-placeholder").innerHTML = html)
-            .catch(err => console.error("Error loading navbar:", err));
-        });
-    </script>
+  <!-- Navbar include -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/navbar.html").then(r=>r.text()).then(html => {
+        document.getElementById("navbar-placeholder").innerHTML = html;
+      }).catch(()=>{});
+    });
+  </script>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Group Bookings</h1>
-      <p>Looking to travel as a large group of family or friends? Are you a group leader?  
-      Travel together with Phoenix Adventures LTD — we make group travel easy and enjoyable.</p>
+  <!-- Hero -->
+  <header class="hero-modern">
+    <div class="heading container">
+      <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">Travel together, the easy way</span>
+      <h1 class="display-5 fw-bold">Group & School Bookings</h1>
+      <p class="lead mb-0">Choose Group or School and tell us your details — we’ll get back to you with options.</p>
     </div>
-  </section>
+    <div class="blur-orb" aria-hidden="true"></div>
+  </header>
 
-  <!-- FORM SECTION -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xl-8">
-          <div class="card card-elevated p-4">
-            <div class="card-body">
-              <p class="lead">Please provide a little more information and we’ll be in contact to arrange this for you.</p>
+  <!-- Glass Card -->
+  <main id="main" class="container glass-wrap pb-5">
+    <div class="glass-card" role="region" aria-label="Booking type and enquiry forms">
+      <div class="row g-0">
+        <!-- Left: Info -->
+        <aside class="col-lg-5 side-panel p-4 p-lg-5">
+          <h2 class="h4 fw-bold mb-3">How would you like to travel?</h2>
 
-              <form name="Group Bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="Group Bookings">
-                <div class="mb-3 d-none">
-                  <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
-                </div>
-
-                <div class="mb-3">
-                  <label for="name" class="form-label required">Name</label>
-                  <input type="text" class="form-control" id="name" name="Name" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="email" class="form-label required">E-mail</label>
-                  <input type="email" class="form-control" id="email" name="E-mail" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="destination" class="form-label">Destination</label>
-                  <input type="text" class="form-control" id="destination" name="Destination">
-                </div>
-
-                <div class="mb-3">
-                  <label for="date" class="form-label">Travel date</label>
-                  <input type="date" class="form-control" id="date" name="Travel Date">
-                </div>
-
-                <div class="mb-3">
-                  <label for="passengers" class="form-label required">Number of passengers</label>
-                  <input type="text" class="form-control" id="passengers" name="Passengers" placeholder="e.g. 8 adults, 4 children" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="info" class="form-label">Any extra information</label>
-                  <textarea class="form-control" id="info" name="Extra Information" rows="5" placeholder="Tell us about special requests, pick-up points or flexibility in travel dates."></textarea>
-                </div>
-
-                <div class="form-check mb-4">
-                  <input class="form-check-input" type="checkbox" id="consent" name="Consent" required>
-                  <label class="form-check-label required" for="consent">
-                    I hereby agree that this data will be stored and processed for the purpose of establishing contact.
-                    I am aware that I can revoke my consent at any time.
-                  </label>
-                </div>
-
-                <button type="submit" class="btn btn-phoenix">Send</button>
-              </form>
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-people-fill fs-4 text-primary" aria-hidden="true"></i>
+            <div>
+              <div class="fw-semibold">Groups</div>
+              Families, friends, clubs — flexible itineraries and theme park days out.
             </div>
           </div>
-        </div>
+
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-mortarboard fs-4 text-primary" aria-hidden="true"></i>
+            <div>
+              <div class="fw-semibold">Schools / Coach hire</div>
+              Fully scoped quotes with pick-up locations, dates and headcount.
+            </div>
+          </div>
+
+          <hr class="my-4">
+          <p class="small mb-0">By submitting you agree to our <a href="/privacy.html" class="link-primary">Privacy Policy</a>.</p>
+        </aside>
+
+        <!-- Right: Forms -->
+        <section class="col-lg-7 p-4 p-lg-5">
+          <!-- Toggle -->
+          <div class="mb-4">
+            <div class="btn-group" role="group" aria-label="Booking type">
+              <input type="radio" class="btn-check" name="bookingType" id="typeGroup" autocomplete="off" checked>
+              <label class="btn btn-outline-primary" for="typeGroup"><i class="bi bi-people me-1"></i> Group</label>
+
+              <input type="radio" class="btn-check" name="bookingType" id="typeSchool" autocomplete="off">
+              <label class="btn btn-outline-primary" for="typeSchool"><i class="bi bi-mortarboard me-1"></i> School</label>
+            </div>
+          </div>
+
+          <noscript>
+            <div class="alert alert-info" role="alert">JavaScript is off. If you can’t switch forms, please email <a href="mailto:bookings@phoenixadventures.co.uk">bookings@phoenixadventures.co.uk</a>.</div>
+          </noscript>
+
+          <!-- GROUP FORM (Netlify) -->
+          <form id="groupsForm" name="Group Bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="Group Bookings" />
+            <input type="text" name="bot-field" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;" />
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-person"></i>
+                  <input type="text" class="form-control" id="g-name" name="Name" placeholder="Your full name" required autocomplete="name" />
+                  <label for="g-name">Name <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-at"></i>
+                  <input type="email" class="form-control" id="g-email" name="E-mail" placeholder="you@example.com" required autocomplete="email" />
+                  <label for="g-email">E-mail <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Please provide a valid e-mail address.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-geo-alt"></i>
+                  <input type="text" class="form-control" id="g-destination" name="Destination" placeholder="Destination" list="destinations" />
+                  <label for="g-destination">Destination</label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-calendar-event"></i>
+                  <input type="date" class="form-control" id="g-date" name="Travel date" placeholder="YYYY-MM-DD" />
+                  <label for="g-date">Travel date</label>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-person-badge"></i>
+                  <input type="number" class="form-control" id="g-adults" name="Adults" placeholder="Adults" min="0" step="1" required />
+                  <label for="g-adults">Adults <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Enter number of adults.</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-emoji-smile"></i>
+                  <input type="number" class="form-control" id="g-children" name="Children" placeholder="Children" min="0" step="1" required />
+                  <label for="g-children">Children <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Enter number of children (0 if none).</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-chat-square-text"></i>
+                  <textarea class="form-control" id="g-extra" name="Any extra information" placeholder="Any extra information" style="height:140px;" maxlength="1200"></textarea>
+                  <label for="g-extra">Any extra information</label>
+                  <small class="text-muted d-block mt-1" id="g-charCount" aria-live="polite">0 / 1200</small>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="g-consent" name="Consent" required />
+                  <label class="form-check-label" for="g-consent">
+                    I hereby agree that this data will be stored and processed for the purpose of establishing contact. I am aware that I can revoke my consent at any time. <span class="text-danger">*</span>
+                  </label>
+                  <div class="invalid-feedback">Please confirm consent to continue.</div>
+                </div>
+              </div>
+
+              <div class="col-12 d-grid d-sm-flex gap-3 align-items-center">
+                <button id="g-submitBtn" type="submit" class="btn btn-phoenix px-4" disabled aria-live="polite">
+                  <span class="btn-label">Send group enquiry</span>
+                  <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                </button>
+                <div id="g-formAlert" class="flex-grow-1" aria-live="polite"></div>
+              </div>
+            </div>
+          </form>
+
+          <!-- SCHOOL FORM (Netlify) -->
+          <form id="schoolForm" name="School Bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="d-none-important" novalidate>
+            <input type="hidden" name="form-name" value="School Bookings" />
+            <input type="text" name="bot-field" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;" />
+
+            <p class="text-muted mb-3">To request a quotation, please complete the enquiry form below with your travel requirements — we’ll be in contact as soon as possible.</p>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-person"></i>
+                  <input type="text" class="form-control" id="s-name" name="Name" placeholder="Your full name" required autocomplete="name" />
+                  <label for="s-name">Name <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-building"></i>
+                  <input type="text" class="form-control" id="s-org" name="School / Organisation" placeholder="School / College / University or Organisation name" />
+                  <label for="s-org">School / College / University or Organisation name</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-geo"></i>
+                  <input type="text" class="form-control" id="s-address" name="Address" placeholder="Address" />
+                  <label for="s-address">Address</label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-at"></i>
+                  <input type="email" class="form-control" id="s-email" name="E-mail" placeholder="you@example.com" required autocomplete="email" />
+                  <label for="s-email">E-mail <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Please provide a valid e-mail address.</div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-telephone"></i>
+                  <input type="tel" class="form-control" id="s-phone" name="Phone number" placeholder="+44 ..." />
+                  <label for="s-phone">Phone number</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-signpost"></i>
+                  <textarea class="form-control" id="s-pickups" name="Pick up location(s)" placeholder="Pick up location(s)" style="height:120px;"></textarea>
+                  <label for="s-pickups">Pick up location(s) <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Please add at least one pick up location.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-geo-alt"></i>
+                  <input type="text" class="form-control" id="s-destination" name="Destination" placeholder="Destination" list="destinations" required />
+                  <label for="s-destination">Destination <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Destination is required.</div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-calendar-event"></i>
+                  <input type="date" class="form-control" id="s-outbound" name="Travel date (Outbound)" placeholder="YYYY-MM-DD" required />
+                  <label for="s-outbound">Travel date (Outbound) <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Outbound date required.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-calendar2-check"></i>
+                  <input type="date" class="form-control" id="s-return" name="Travel date (Return)" placeholder="YYYY-MM-DD" />
+                  <label for="s-return">Travel date (Return, if required)</label>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-person-badge"></i>
+                  <input type="number" class="form-control" id="s-adults" name="Adults" placeholder="Adults" min="0" step="1" required />
+                  <label for="s-adults">Adults <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Enter number of adults.</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-emoji-smile"></i>
+                  <input type="number" class="form-control" id="s-children" name="Children" placeholder="Children" min="0" step="1" required />
+                  <label for="s-children">Children <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">Enter number of children (0 if none).</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating position-relative">
+                  <i class="bi bi-chat-square-text"></i>
+                  <textarea class="form-control" id="s-extra" name="Any extra information" placeholder="Any extra information" style="height:140px;" maxlength="1500"></textarea>
+                  <label for="s-extra">Any extra information</label>
+                  <small class="text-muted d-block mt-1" id="s-charCount" aria-live="polite">0 / 1500</small>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="s-consent" name="Consent" required />
+                  <label class="form-check-label" for="s-consent">
+                    I hereby agree that this data will be stored and processed for the purpose of establishing contact. I am aware that I can revoke my consent at any time. <span class="text-danger">*</span>
+                  </label>
+                  <div class="invalid-feedback">Please confirm consent to continue.</div>
+                </div>
+              </div>
+
+              <div class="col-12 d-grid d-sm-flex gap-3 align-items-center">
+                <button id="s-submitBtn" type="submit" class="btn btn-phoenix px-4" disabled aria-live="polite">
+                  <span class="btn-label">Send school enquiry</span>
+                  <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                </button>
+                <div id="s-formAlert" class="flex-grow-1" aria-live="polite"></div>
+              </div>
+            </div>
+          </form>
+
+          <!-- Shared success panel -->
+          <div id="successPanel" class="success-panel d-none" role="status" aria-live="polite">
+            <div class="tick"><i class="bi bi-check-lg" aria-hidden="true"></i></div>
+            <h3 class="fw-bold">Enquiry sent!</h3>
+            <p class="text-muted mb-4">Thanks — a member of the team will contact you shortly.</p>
+            <a href="/" class="btn btn-outline-primary rounded-3">Back to home</a>
+          </div>
+
+          <!-- Destinations suggestions -->
+          <datalist id="destinations">
+            <option value="Alton Towers"></option>
+            <option value="Thorpe Park"></option>
+            <option value="Chessington World of Adventures"></option>
+            <option value="Drayton Manor"></option>
+            <option value="Parc Astérix"></option>
+            <option value="Europa-Park"></option>
+            <option value="Efteling"></option>
+            <option value="Walibi Belgium"></option>
+          </datalist>
+        </section>
       </div>
     </div>
-  </section>
+  </main>
 
-
-<div id="footer-placeholder"></div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("/footer.html")
-      .then(response => response.text())
-      .then(html => {
+  <!-- Footer include -->
+  <div id="footer-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/footer.html").then(r=>r.text()).then(html=>{
         document.getElementById("footer-placeholder").innerHTML = html;
-      })
-      .catch(err => console.error("Error loading footer:", err));
-  });
-</script>
+      }).catch(()=>{});
+    });
+  </script>
 
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function(){
+      // Toggle forms
+      const typeGroup = document.getElementById("typeGroup");
+      const typeSchool = document.getElementById("typeSchool");
+      const groupForm = document.getElementById("groupsForm");
+      const schoolForm = document.getElementById("schoolForm");
+      const successPanel = document.getElementById("successPanel");
+
+      function showForm(form){
+        [groupForm, schoolForm].forEach(f=>{
+          if(f===form){ f.classList.remove("d-none-important"); }
+          else{ f.classList.add("d-none-important"); }
+        });
+        successPanel.classList.add("d-none");
+      }
+      typeGroup.addEventListener("change", ()=> showForm(groupForm));
+      typeSchool.addEventListener("change", ()=> showForm(schoolForm));
+      // initial
+      showForm(groupForm);
+
+      // Enable submit only when consent ticked; live counters; simple validation
+      function wireForm(prefix){
+        const form = document.getElementById(prefix+"Form");
+        const submitBtn = document.getElementById(prefix+"-submitBtn");
+        const spinner = submitBtn.querySelector(".spinner-border");
+        const btnLabel = submitBtn.querySelector(".btn-label");
+        const formAlert = document.getElementById(prefix+"-formAlert");
+        const consent = document.getElementById(prefix+"-consent");
+        const extra = document.getElementById(prefix+"-extra");
+        const charCount = document.getElementById(prefix+"-charCount");
+
+        // May not exist on group (handled)
+        if(extra && charCount){
+          const updateCount = () => { charCount.textContent = (extra.value.length) + " / " + (extra.maxLength || 1200); };
+          ["input","change"].forEach(e => extra.addEventListener(e, updateCount));
+          updateCount();
+        }
+
+        const toggleSubmit = () => { submitBtn.disabled = !consent.checked; };
+        consent.addEventListener("change", toggleSubmit); toggleSubmit();
+
+        function validate(){
+          let ok = true;
+          const idsRequired = prefix==="g"
+            ? ["g-name","g-email","g-adults","g-children","g-consent"]
+            : ["s-name","s-email","s-pickups","s-destination","s-outbound","s-adults","s-children","s-consent"];
+          idsRequired.forEach(id=>{
+            const el = document.getElementById(id);
+            if(!el) return;
+            if(el.type==="checkbox"){
+              if(!el.checked){ el.classList.add("is-invalid"); ok=false; } else { el.classList.remove("is-invalid"); }
+            } else if(!el.value || (el.type==="number" && Number(el.value) < 0)){
+              el.classList.add("is-invalid"); ok=false;
+            } else {
+              el.classList.remove("is-invalid");
+            }
+          });
+          // email format
+          const emailId = prefix==="g" ? "g-email" : "s-email";
+          const email = document.getElementById(emailId);
+          const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+          if(email && email.value && !re.test(email.value)){
+            email.classList.add("is-invalid"); ok=false;
+          }
+          return ok;
+        }
+
+        // Submit via AJAX to Netlify (stay on page). Remove preventDefault to use native redirect.
+        form.addEventListener("submit", async (e)=>{
+          e.preventDefault();
+          if(!validate()) return;
+
+          submitBtn.disabled = true; spinner.classList.remove("d-none"); btnLabel.textContent = "Sending…";
+          const data = new FormData(form);
+          try{
+            await fetch("/", { method:"POST", body:data });
+            form.classList.add("d-none-important");
+            successPanel.classList.remove("d-none");
+            form.reset();
+            toggleSubmit();
+          }catch(err){
+            formAlert.innerHTML = '<div class="alert alert-warning mb-0">Something went wrong. Please try again or email us directly.</div>';
+          }finally{
+            spinner.classList.add("d-none"); btnLabel.textContent = (prefix==="g" ? "Send group enquiry" : "Send school enquiry");
+            submitBtn.disabled = false;
+          }
+        });
+      }
+
+      wireForm("g");  // group
+      wireForm("s");  // school
+    })();
+  </script>
+
+  <!-- Optional: JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Phoenix Adventures LTD",
+    "url":"https://www.phoenixadventures.co.uk",
+    "email":"bookings@phoenixadventures.co.uk",
+    "department":[
+      {"@type":"Organization","name":"Group Bookings"},
+      {"@type":"Organization","name":"School Bookings / Coach Hire"}
+    ],
+    "address":{"@type":"PostalAddress","addressRegion":"Suffolk","addressCountry":"GB"}
+  }
+  </script>
 </body>
 </html>
