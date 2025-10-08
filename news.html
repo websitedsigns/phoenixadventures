@@ -75,28 +75,16 @@
 
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-white sticky-top border-bottom shadow-sm-sm">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="/index.html">
-        <img src="/img/logo/logo.png" alt="Phoenix Adventures" class="me-2"/>
-        <span class="fw-bold" style="color:var(--ink)">Phoenix Adventures</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navMenu" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="/trips.html">Trips</a></li>
-          <li class="nav-item"><a class="nav-link" href="/boarding.html">Boarding Points</a></li>
-          <li class="nav-item"><a class="nav-link" href="/moreinfo.html">More Info</a></li>
-          <li class="nav-item ms-lg-2">
-            <a class="btn btn-phoenix fw-bold px-3" href="/contact.html"><i class="bi bi-envelope-fill me-1"></i>Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(()=>{});
+    });
+  </script>
 
   <!-- Page header -->
   <header class="page-hero py-4">
@@ -188,12 +176,19 @@
     <div id="status" class="text-center text-muted py-5 d-none"></div>
   </main>
 
-  <footer class="py-4 bg-white">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
-      <div class="small">© <span id="year"></span> Phoenix Adventures LTD</div>
-      <div class="small">Made with 🧡 for coaster nerds — follow our trips and updates.</div>
-    </div>
-  </footer>
+  <!-- Footer include -->
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
 
   <script>
     const API = "news.php";
