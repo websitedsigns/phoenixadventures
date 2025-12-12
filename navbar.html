@@ -1,9 +1,9 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg site-navbar sticky-top nav-glass">
+<nav class="navbar navbar-expand-lg site-navbar sticky-top nav-glass no-rounded">
   <div class="container">
+
     <!-- Brand -->
-    <a class="navbar-brand fw-bold d-flex align-items-center" href="/index.html">
-      
+    <a class="navbar-brand fw-bold d-flex align-items-center text-white" href="/index.html">
       <span class="d-none d-md-inline">Phoenix Adventures</span>
     </a>
 
@@ -23,57 +23,121 @@
     <!-- Links -->
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-        
+
         <!-- Trips Dropdown -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle fw-semibold"
             href="#"
-            id="tripsDropdown"
-            role="button"
             data-bs-toggle="dropdown"
-            aria-expanded="false"
           >
             Trips
           </a>
-          <ul class="dropdown-menu shadow-sm rounded-3 border-0 dropdown-menu-end">
-
-            <li><a class="dropdown-item" href="/tours.html">2025 Tour List</a></li>
+          <ul class="dropdown-menu shadow-sm border-0 dropdown-menu-end">
             <li><a class="dropdown-item" href="/tours2026.html">2026 Tour List</a></li>
-
             <li><a class="dropdown-item" href="/themeparks.html">European Theme Parks</a></li>
             <li><a class="dropdown-item" href="halloween.html">Europe Halloween Trips</a></li>
             <li><a class="dropdown-item" href="./eventpage/twistedtracks.html">Multipark Trips</a></li>
           </ul>
         </li>
 
+        <!-- Info Dropdown -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle fw-semibold"
             href="#"
-            id="tripsDropdown"
-            role="button"
             data-bs-toggle="dropdown"
-            aria-expanded="false"
           >
             Information
           </a>
-          <ul class="dropdown-menu shadow-sm rounded-3 border-0 dropdown-menu-end">
-
+          <ul class="dropdown-menu shadow-sm border-0 dropdown-menu-end">
             <li><a class="dropdown-item" href="/themeparks.html">Theme Park Information</a></li>
             <li><a class="dropdown-item" href="/moreinfo.html">More Information</a></li>
             <li><a class="dropdown-item" href="/themeparkinsanity.html">Theme Park Insanity</a></li>
-
           </ul>
         </li>
-
-         
 
         <!-- Contact -->
         <li class="nav-item">
           <a class="nav-link fw-semibold" href="contact.html">Contact Us</a>
         </li>
+
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+/* NAVBAR MODERNISED — FLAT, NO RADIUS, WHITE BURGER ICON */
+
+.no-rounded,
+.no-rounded * {
+  border-radius: 0 !important;
+}
+
+/* Background style (match your modern indexalternate style) */
+.site-navbar.nav-glass {
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+/* Make nav links white */
+.navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+  color: var(--cta) !important; /* orange hover */
+}
+
+/* -------------------------
+   WHITE HAMBURGER ICON
+-------------------------- */
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important;
+  width: 26px;
+  height: 3px;
+  background-color: #fff;
+  position: relative;
+  display: inline-block;
+  transition: 0.25s ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 26px;
+  height: 3px;
+  background-color: #fff;
+  transition: 0.25s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  top: 8px;
+}
+
+/* Dropdown styling (still modern but square) */
+.navbar .dropdown-menu {
+  border-radius: 6px !important;
+  background: #fff !important;
+}
+
+.navbar .dropdown-item:hover {
+  background: #f5f5f5;
+  color: var(--cta);
+}
+</style>
