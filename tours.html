@@ -1,388 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
-  <meta name="description" content="Search and filter Phoenix Adventures coach trips to Europe’s best theme parks. Halloween, Winter and Sleeper Coach tours. Book with a £1 deposit." />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
+    <meta
+      name="description"
+      content="Search and filter Phoenix Adventures coach trips to Europe’s best theme parks. Halloween, Winter and Sleeper Coach tours. Book with a £1 deposit."
+    />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Global CSS (your site-wide styles) -->
-  <link href="css/style.css" rel="stylesheet" />
+    <!-- Global CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/tours.css" rel="stylesheet" />
+    <link href="css/phoenix-modern.css" rel="stylesheet" />
 
-  <!-- Page CSS (moved from inline styles) -->
-  <link href="css/tours.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-  <link href="css/phoenix-modern.css" rel="stylesheet"/>
-</head>
-<body>
-
-  <!-- Skip Links -->
-  <div class="skip-links" aria-label="Skip links">
-    <a href="#main">Skip to Main Content</a>
-    <a href="#footer">Skip to Footer</a>
-    <a href="#nav">Skip to Navigation</a>
-  </div>
-
-  <!-- Announcement Bar -->
-  <div class="text-center announcement">
-    Book today from just £1 deposit — Flexible payment plans available
-  </div>
-
-  <!-- Anchor for skip-link target -->
-  <div id="nav"></div>
-
-  <!-- Navbar include target (filled by JS) -->
-  <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
-
-  <!-- Hero -->
-  <header class="hero">
-    <div class="container">
-      <h1 class="display-5 fw-bold mb-2">Theme Park Trips</h1>
-      <p class="lead mb-3">Halloween nights, winter magic, and weekend blasts across Europe.</p>
-      <a href="#toursAccordion" class="btn btn-lg btn-phoenix">Browse Tours</a>
+  <body>
+    <!-- Skip Links -->
+    <div class="skip-links" aria-label="Skip links">
+      <a href="#main">Skip to Main Content</a>
+      <a href="#footer">Skip to Footer</a>
+      <a href="#nav">Skip to Navigation</a>
     </div>
-  </header>
 
-  <!-- Sticky Toolbar -->
-  <div class="toolbar" role="region" aria-label="Search and filters">
-    <div class="container">
-      <div class="row g-2 align-items-center">
-        <div class="col-lg-7">
-          <label for="searchInput" class="visually-hidden">Search tours</label>
-          <input type="search" id="searchInput" class="form-control" placeholder="Search a park, country or theme (e.g. Halloween, Disney, Belgium)…" />
-        </div>
-        <div class="col-lg-5">
-          <div class="d-flex justify-content-lg-end align-items-center gap-3">
-            <div class="toolbar-meta"><span id="resultCount">All tours</span></div>
-            <button class="btn btn-outline-secondary btn-sm" id="clearFilters">Clear</button>
+    <!-- Announcement Bar -->
+    <div class="text-center announcement">
+      Book today from just £1 deposit — Flexible payment plans available
+    </div>
+
+    <div id="nav"></div>
+
+    <!-- Navbar include target (filled by JS) -->
+    <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <h1 class="display-5 fw-bold mb-2">Theme Park Trips</h1>
+        <p class="lead mb-3">
+          Halloween nights, winter magic, and weekend blasts across Europe.
+        </p>
+        <a href="#toursAccordion" class="btn btn-lg btn-phoenix"
+          >Browse Tours</a
+        >
+      </div>
+    </header>
+
+    <!-- Sticky Toolbar -->
+    <div class="toolbar" role="region" aria-label="Search and filters">
+      <div class="container">
+        <div class="row g-2 align-items-center">
+          <div class="col-lg-7">
+            <label for="searchInput" class="visually-hidden"
+              >Search tours</label
+            >
+            <input
+              type="search"
+              id="searchInput"
+              class="form-control"
+              placeholder="Search a park, country or theme (e.g. Halloween, Disney, Belgium)…"
+            />
           </div>
-        </div>
-      </div>
-      <div class="chips mt-2" aria-label="Quick filters">
-        <!-- Countries -->
-        <span class="chip" data-filter="france">France</span>
-        <span class="chip" data-filter="germany">Germany</span>
-        <span class="chip" data-filter="netherlands">Netherlands</span>
-        <span class="chip" data-filter="belgium">Belgium</span>
-        <!-- Themes -->
-        <span class="chip" data-filter="halloween">Halloween</span>
-        <span class="chip" data-filter="winter">Winter</span>
-        <span class="chip" data-filter="christmas">Christmas</span>
-        <span class="chip" data-filter="sleeper">Sleeper Coach</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main -->
-  <main id="main" class="container my-4">
-    <!-- Tours Accordion -->
-    <section class="py-2 px-0">
-      <div class="accordion" id="toursAccordion">
-
-
-              
-
-        <!-- DECEMBER -->
-        <div class="accordion-item" data-month="2025-12">
-          <h2 class="accordion-header" id="headingDecember">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDecember" aria-expanded="false" aria-controls="collapseDecember">
-              December 2025
-            </button>
-          </h2>
-          <div id="collapseDecember" class="accordion-collapse collapse" aria-labelledby="headingDecember" data-bs-parent="#toursAccordion">
-            <div class="accordion-body">
-              <!-- Efteling Winter -->
-              <article class="tour-card tour"
-                style="background-image:url('img/parks/themedparks/eftelingwinter.png');"
-                data-title="Efteling — Winter Efteling"
-                data-location="netherlands"
-                data-tags="efteling netherlands winter"
-                data-theme="winter"
-                data-event-url="booking.html"
-                data-event-start="2025-12-13T08:00:00">
-                <h3 class="tour-title">Sat 13th – Efteling, Netherlands</h3>
-                <p class="tour-desc"><strong>Winter Efteling:</strong> Magical wonderland with lights and festive attractions.</p>
-                <div class="d-flex flex-wrap gap-1">
-                  <span class="pill">Netherlands</span>
-                  <span class="pill">Winter</span>
-                </div>
-                <div class="tour-actions">
-                  <a class="btn btn-ghost btn-sm" href="booking.html">More Information</a>
-                </div>
-              </article>
-
-              <!-- Disneyland Paris Christmas (two-day) -->
-              <article class="tour-card tour"
-                style="background-image:url('img/parks/themedparks/disneyxmas.png');"
-                data-title="Disneyland Paris — Christmas Season"
-                data-location="france"
-                data-tags="disneyland paris france christmas"
-                data-theme="christmas winter"
-                data-event-url="booking.html"
-                data-event-start="2025-12-20T08:00:00">
-                <h3 class="tour-title">Sat &amp; Sun 20th–21st – Disneyland Paris</h3>
-                <p class="tour-desc"><strong>Christmas Season:</strong> Twinkling lights, festive decor and beloved characters.</p>
-                <div class="d-flex flex-wrap gap-1">
-                  <span class="pill">France</span>
-                  <span class="pill">Christmas</span>
-                </div>
-                <div class="tour-actions">
-                  <a class="btn btn-ghost btn-sm" href="booking.html">More Information</a>
-                </div>
-              </article>
-
-              <!-- Efteling New Year (Sleeper) -->
-              <article class="tour-card tour"
-                style="background-image:url('img/parks/themedparks/eftelingnewyears.png');"
-                data-title="Efteling — New Year Celebrations"
-                data-location="netherlands"
-                data-tags="efteling netherlands new year winter sleeper"
-                data-theme="winter sleeper"
-                data-event-url="booking.html"
-                data-event-start="2025-12-31T08:00:00">
-                <h3 class="tour-title">Wed 31st – Efteling, Netherlands</h3>
-                <p class="tour-desc">New Year Celebrations 🍾🥂 — spectacular light displays, shows and thrilling rides.</p>
-                <div class="d-flex flex-wrap gap-1">
-                  <span class="pill">Netherlands</span>
-                  <span class="pill">New Year</span>
-                  <span class="pill">Sleeper Coach</span>
-                </div>
-                <div class="tour-actions">
-                  <a class="btn btn-ghost btn-sm" href="booking.html">More Information</a>
-                </div>
-              </article>
+          <div class="col-lg-5">
+            <div class="d-flex justify-content-lg-end align-items-center gap-3">
+              <div class="toolbar-meta">
+                <span id="resultCount">All tours</span>
+              </div>
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                id="clearFilters"
+              >
+                Clear
+              </button>
             </div>
           </div>
         </div>
 
+        <div class="chips mt-2" aria-label="Quick filters">
+          <!-- Countries -->
+          <span class="chip" data-filter="france">France</span>
+          <span class="chip" data-filter="germany">Germany</span>
+          <span class="chip" data-filter="netherlands">Netherlands</span>
+          <span class="chip" data-filter="belgium">Belgium</span>
+          <!-- Themes -->
+          <span class="chip" data-filter="halloween">Halloween</span>
+          <span class="chip" data-filter="winter">Winter</span>
+          <span class="chip" data-filter="christmas">Christmas</span>
+          <span class="chip" data-filter="sleeper">Sleeper Coach</span>
+        </div>
       </div>
+    </div>
 
-      <!-- January 2026 -->
-        <div class="accordion-item" data-month="2025-12">
-          <h2 class="accordion-header" id="headingDecember">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDecember" aria-expanded="false" aria-controls="collapseDecember">
-              January 2026
-            </button>
-          </h2>
-          <div id="collapseDecember" class="accordion-collapse collapse" aria-labelledby="headingDecember" data-bs-parent="#toursAccordion">
-            <div class="accordion-body">
-              
+    <!-- Main -->
+    <main id="main" class="container my-4">
+      <section class="py-2 px-0">
+        <div class="accordion" id="toursAccordion">
+          <!-- January 2026 -->
+          <div class="accordion-item" data-month="2026-01">
+            <h2 class="accordion-header" id="headingJanuary">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseJanuary"
+                aria-expanded="false"
+                aria-controls="collapseJanuary"
+              >
+                January 2026
+              </button>
+            </h2>
 
-      </div><div class="accordion-body">
-                <!-- Parc Asterix -->
-                <article
-                  class="tour-card tour"
-                  style="
-                    background-image: url('img/parks/parcasterix/ParkAstXmas.png');
-                  "
-                  data-title="Parc Asterix - Christmas Season"
-                  data-location="france"
-                  data-tags="asterix france christmas"
-                  data-theme="christmas"
-                  data-event-url="booking.html"
-                  data-event-start="2026-01-03T11:00:00"
-                >
-                                  <h3 class="tour-title">FULLY BOOKED</h3>
-
-                  <h3 class="tour-title">Sat 3rd – Parc Asterix, France</h3>
-                  <p class="tour-desc">
-                    <strong>Christmas Event</strong>
-                  </p>
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">France</span>
-                    <span class="pill">Christmas</span>
-                  </div>
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html">
-                      More Information
-                    </a>
-                  </div>
-
-                  <!-- Custom modal content for Parc Asterix -->
-                  <div class="tour-modal-content d-none">
-
-                    <h3 class="h6">About this trip</h3>
-                    <hr><strong><class="small mb-0">
-                      <h1>FULLY BOOKED</h1>
-                      <ul><li>Park Opening Times 11:00 - 20:00 </li>
-                      <li>Price includes Travel & Entry</li>
-                      </ul>
-                      <hr>
-                   
-
-                    <h3 class="h6">Prices</h3>
-                    <ul>
-                      <li>Adult (12+) £89</li>
-                      <li>Child (3-11) £85</li>
-                      <li>Infants/ Travel Only £59</li>
-                      </ul>
-                      <hr>
-
-                      <h3 class="h6">Itinerary</h3>
-                       <h3 class="h6">Friday 2nd January 2026</h3>
-                    <ul>
-                     
-                      <li>Pick up at your selected boarding point</li>
-                      <li>Travel to Dover</li>
-                      </ul>
-                     
-                      <h3 class="h6">Saturday 3rd January 2026</h3>
-                    
-                      <ul>  
-                      <li>Arrive at Dover Early Morning</li>
-                      <li>Sail Dover - Calais (90mins)</li>
-                      <li>Arrive before Opening</li>
-                      <li>Full day in Parc Asterix</li>
-                      <li>Arrive before Opening</li>
-                      <li>Return to Coach after parx close</li>
-                      <li>Travel back to Calais</li>
-                    </ul>
-
-                      <h3 class="h6">Sunday 4th January 2026</h3>
-                      <ul>
-                      <li>Arrive at Calais Early Morning</li>
-                      <li>Sail Calais - Dover (90mins)</li>
-                      <li>Drop off back at original pickup point</li>
-                      </ul>
-
-<hr>
- <h3 class="h6">Boarding Points</h3>
-                    <ul>
-                      <li>Sheffield - Meadowhall</li>
-                      <li>Sheffield (Woodall Services M1)</li>
-                      <li>Alfreton (Tibshelf Services M1)</li>
-                      <li>Nottingham (Trowell Services M1)</li>
-                      <li>Leicester (Forest East Services M1)</li>
-                      <li>Northampton (Watford Gap Services M1)</li>
-                      <li>Northampton (Northampton Services)</li>
-                      <li>Milton Keynes (Newport Pagnell Services M1)</li>
-                      <li>Dunstable (Toddington Service M1)</li>
-                      <li>London – Edgware</li>
-                      <li>London – Victoria</li>
-                      <li>Medway (Medway Service M2)</li>
-                      <li>Dover</li>
-                      </ul>
-                      <hr>
-
-
-
-
-            
-                      
-
-                    </ul>
-                  </div>
-                </article>
-
-                <!-- Disneyland Paris -->
-                <article
-                  class="tour-card tour"
-                  style="
-                    background-image: url('img/parks/themedparks/mickeyxmas.png');
-                  "
-                  data-title="Disneyland Paris - Christmas"
-                  data-location="france"
-                  data-tags="disneyland paris france christmas"
-                  data-theme="christmas"
-                  data-event-url="booking.html"
-                  data-event-start="2026-01-10T09:30:00"
-                >
-                                                  <h3 class="tour-title">LIMITED AVAILABILITY</h3>
-
-                  <h3 class="tour-title">Sat 10th – Disneyland Paris</h3>
-                  <p class="tour-desc">
-                    <strong>Disney Christmas</strong>
-                  </p>
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">France</span>
-                    <span class="pill">Christmas</span>
-                  </div>
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html">
-                      More Information
-                    </a>
-                  </div>
-
-                  <!-- Custom modal content for DLP-->
-                  <div class="tour-modal-content d-none">
-
-                    <h3 class="h6">About this trip</h3>
-                    <hr><strong><class="small mb-0">
-                      <ul><li>Park Opening Times 09:30 - 22:00 </li>
-                      <li>Price includes Travel & Entry - 1 PARK</li>
-                      </ul>
-                      <hr>
-                   
-
-                    <h3 class="h6">Prices</h3>
-                    <ul>
-                      <li>Adult (12+) £99</li>
-                      <li>Child (3-11) £95</li>
-                      <li>Infants/ Travel Only £59</li>
-                      <li>2 Park Upgrade £20</li>
-
-                      </ul>
-                      <hr>
-
-                      <h3 class="h6">Itinerary</h3>
-                       <h3 class="h6">Friday 8th January 2026</h3>
-                    <ul>
-                     
-                      <li>Pick up at your selected boarding point</li>
-                      <li>Travel to Dover</li>
-                      </ul>
-                     
-                      <h3 class="h6">Saturday 9th January 2026</h3>
-                    
-                      <ul>  
-                      <li>Arrive at Dover Early Morning</li>
-                      <li>Sail Dover - Calais (90mins)</li>
-                      <li>Arrive before Opening</li>
-                      <li>Full day in DisneyLand Paris</li>
-                      <li>Return to Coach after parx close</li>
-                      <li>Travel back to Calais</li>
-                    </ul>
-
-                      <h3 class="h6">Sunday 10th January 2026</h3>
-                      <ul>
-                      <li>Arrive at Calais Early Morning</li>
-                      <li>Sail Calais - Dover (90mins)</li>
-                      <li>Drop off back at original pickup point</li>
-                      </ul>
-
-<hr>
- <h3 class="h6">Boarding Points</h3>
-                    <ul>
-                      <li>Sheffield - Meadowhall</li>
-                      <li>Sheffield (Woodall Services M1)</li>
-                      <li>Alfreton (Tibshelf Services M1)</li>
-                      <li>Nottingham (Trowell Services M1)</li>
-                      <li>Leicester (Forest East Services M1)</li>
-                      <li>Northampton (Watford Gap Services M1)</li>
-                      <li>Northampton (Northampton Services)</li>
-                      <li>Milton Keynes (Newport Pagnell Services M1)</li>
-                      <li>Dunstable (Toddington Service M1)</li>
-                      <li>London – Edgware</li>
-                      <li>London – Victoria</li>
-                      <li>Medway (Medway Service M2)</li>
-                      <li>Dover</li>
-                      </ul>
-                      <hr> 
-
-                    </ul>
-                  </div>
-                </article>
-
-
-
+            <div
+              id="collapseJanuary"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingJanuary"
+              data-bs-parent="#toursAccordion"
+            >
+              <div class="accordion-body">
                 <!-- Winter Efteling (Jan 17th) -->
-                 <br>
                 <article
                   class="tour-card tour"
                   style="
@@ -396,112 +143,291 @@
                   data-event-start="2026-01-17T11:00:00"
                 >
                   <h3 class="tour-title">Sat 17th – Efteling, Netherlands</h3>
-                  <p class="tour-desc">
-                    <strong>Winter Event</strong>
-                  </p>
+                  <p class="tour-desc"><strong>Winter Event</strong></p>
+
                   <div class="d-flex flex-wrap gap-1">
                     <span class="pill">Netherlands</span>
                     <span class="pill">Christmas</span>
                   </div>
+
                   <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html">
-                      More Information
-                    </a>
+                    <a class="btn btn-ghost btn-sm" href="booking.html"
+                      >More Information</a
+                    >
                   </div>
 
-                  <!-- Custom modal content for Winter Efteling -->
-                  
                   <div class="tour-modal-content d-none">
-
                     <h3 class="h6">About this trip</h3>
-                    <hr><strong><class="small mb-0">
-                      <ul><li>Park Opening Times 10:00 - 19:00 </li>
+                    <ul>
+                      <li>Park Opening Times 10:00 - 19:00</li>
                       <li>Price includes Travel & Entry</li>
-                      </ul>
-                      <hr>
-                   
-
-                    <h3 class="h6">Prices</h3>
-                    <ul>
-                      <li>Adult (12+) £79</li>
-                      <li>Child (3-11) £75</li>
-                      <li>Infants/ Travel Only £59</li>
-
-                      </ul>
-                      <hr>
-
-                      <h3 class="h6">Itinerary</h3>
-                       <h3 class="h6">Friday 16th January 2026</h3>
-                    <ul>
-                     
-                      <li>Pick up at your selected boarding point</li>
-                      <li>Travel to Dover</li>
-                      </ul>
-                     
-                      <h3 class="h6">Saturday 17th January 2026</h3>
-                    
-                      <ul>  
-                      <li>Arrive at Dover Early Morning</li>
-                      <li>Sail Dover - Calais (90mins)</li>
-                      <li>Arrive before Opening</li>
-                      <li>Full day in efteling/li>
-                      <li>Return to Coach after parx close</li>
-                      <li>Travel back to Calais</li>
-                    </ul>
-
-                      <h3 class="h6">Sunday 18th January 2026</h3>
-                      <ul>
-                      <li>Arrive at Calais Early Morning</li>
-                      <li>Sail Calais - Dover (90mins)</li>
-                      <li>Drop off back at original pickup point</li>
-                      </ul>
-
-<hr>
- <h3 class="h6">Boarding Points</h3>
-                    <ul>
-                      <li>Sheffield - Meadowhall</li>
-                      <li>Sheffield (Woodall Services M1)</li>
-                      <li>Alfreton (Tibshelf Services M1)</li>
-                      <li>Nottingham (Trowell Services M1)</li>
-                      <li>Leicester (Forest East Services M1)</li>
-                      <li>Northampton (Watford Gap Services M1)</li>
-                      <li>Northampton (Northampton Services)</li>
-                      <li>Milton Keynes (Newport Pagnell Services M1)</li>
-                      <li>Dunstable (Toddington Service M1)</li>
-                      <li>London – Edgware</li>
-                      <li>London – Victoria</li>
-                      <li>Medway (Medway Service M2)</li>
-                      <li>Dover</li>
-                      </ul>
-                      <hr> 
-
                     </ul>
                   </div>
                 </article>
-              
+
+                <!-- Disneyland Paris (Jan 31st) -->
+                <article
+                  class="tour-card tour"
+                  style="background-image: url('img/parkentry/dlp.jpg')"
+                  data-title="Disneyland Paris"
+                  data-location="france"
+                  data-tags="disney paris france winter january"
+                  data-theme="january"
+                  data-event-url="booking.html"
+                  data-event-start="2026-01-31T11:00:00"
+                >
+                  <h3 class="tour-title">Sat 31st – Disneyland Paris</h3>
+                  <p class="tour-desc"><strong>Winter Event</strong></p>
+
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="pill">France</span>
+                    <span class="pill">January</span>
+                  </div>
+
+                  <div class="tour-actions">
+                    <a class="btn btn-ghost btn-sm" href="booking.html"
+                      >More Information</a
+                    >
+                  </div>
+
+                  <div class="tour-modal-content d-none">
+                    <h3 class="h6">About this trip</h3>
+                    <ul>
+                      <li>Park Opening Times 09:30 - 22:00</li>
+                      <li>Price includes Travel & Entry to 1 Park</li>
+                    </ul>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
 
-          
+          <!-- February 2026 -->
+          <div class="accordion-item" data-month="2026-02">
+            <h2 class="accordion-header" id="headingFebruary">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFebruary"
+                aria-expanded="false"
+                aria-controls="collapseFebruary"
+              >
+                February 2026
+              </button>
+            </h2>
+            <div
+              id="collapseFebruary"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFebruary"
+              data-bs-parent="#toursAccordion"
+            >
+              <div class="accordion-body">
+                <article
+                  class="tour-card tour"
+                  style="background-image: url('img/NBG/efteling1.jpg')"
+                  data-title="Efteling"
+                  data-location="netherlands"
+                  data-tags="efteling netherlands half term"
+                  data-theme="half term"
+                  data-event-url="booking.html"
+                  data-event-start="2026-02-15T11:00:00"
+                >
+                  <h3 class="tour-title">Sun 15th – Efteling, Netherlands</h3>
+                  <p class="tour-desc"><strong>Half Term Dash</strong></p>
+
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="pill">Netherlands</span>
+                    <span class="pill">Half Term</span>
+                  </div>
+
+                  <div class="tour-actions">
+                    <a class="btn btn-ghost btn-sm" href="booking.html"
+                      >More Information</a
+                    >
+                  </div>
+
+                  <div class="tour-modal-content d-none">
+                    <h3 class="h6">About this trip</h3>
+                    <ul>
+                      <li>Park Opening Times 10:00 - 19:00</li>
+                      <li>Price includes Travel & Entry</li>
+                      <li>From just £74</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- April 2026 -->
+          <div class="accordion-item" data-month="2026-04">
+            <h2 class="accordion-header" id="headingApril">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseApril"
+                aria-expanded="false"
+                aria-controls="collapseApril"
+              >
+                April 2026
+              </button>
+            </h2>
+            <div
+              id="collapseApril"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingApril"
+              data-bs-parent="#toursAccordion"
+            >
+              <div class="accordion-body">
+                <article
+                  class="tour-card tour"
+                  style="
+                    background-image: url('img/parks/parcasterix/toutatis.webp');
+                  "
+                  data-title="Parc Astérix"
+                  data-location="france"
+                  data-tags="parc asterix france spring april"
+                  data-theme="spring"
+                  data-event-url="booking.html"
+                  data-event-start="2026-04-07T11:00:00"
+                >
+                  <h3 class="tour-title">Sat 7th – Parc Astérix, France</h3>
+                  <p class="tour-desc"><strong>Spring Thrills</strong></p>
+                  <p class="tour-desc">
+                    <strong>SPECIAL OFFER: Free Child with every Adult </strong>
+                  </p>
+
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="pill">France</span>
+                    <span class="pill">Spring</span>
+                  </div>
+
+                  <div class="tour-actions">
+                    <a class="btn btn-ghost btn-sm" href="booking.html"
+                      >More Information</a
+                    >
+                  </div>
+
+                  <div class="tour-modal-content d-none">
+                    <h3 class="h6">About this trip</h3>
+                    <ul>
+                      <li>Return coach travel</li>
+                      <li>
+                        Take advantage of this amazing special opening week
+                        offer! Purchase 1 Adult Ticket, get 1 Free Child
+                        Entrance!
+                      </li>
+                      <li>£79</li>
+                      <li>Park Entrance: £60 One Free child with every paying Adult</li>
+                      <li>Additional Child £52</li>
+                      
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- July 2026 -->
+          <div class="accordion-item" data-month="2026-07">
+            <h2 class="accordion-header" id="headingJuly">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseJuly"
+                aria-expanded="false"
+                aria-controls="collapseJuly"
+              >
+                July 2026
+              </button>
+            </h2>
+            <div
+              id="collapseJuly"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingJuly"
+              data-bs-parent="#toursAccordion"
+            >
+              <div class="accordion-body">
+                <article
+                  class="tour-card tour"
+                  style="
+                    background-image: url('img/parks/europa/EuropaMouse.jpg');
+                  "
+                  data-title="Europa-Park"
+                  data-location="germany"
+                  data-tags="europa park germany summer july"
+                  data-theme="summer"
+                  data-event-url="booking.html"
+                  data-event-start="2026-07-11T11:00:00"
+                >
+                  <h3 class="tour-title">Sat 18th – Europa-Park, Germany</h3>
+                  <p class="tour-desc">
+                    <strong>Summer Night Party Trip</strong>
+                  </p>
+
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="pill">Germany</span>
+                    <span class="pill">Summer</span>
+                  </div>
+
+                  <div class="tour-actions">
+                    <a class="btn btn-ghost btn-sm" href="booking.html"
+                      >More Information</a
+                    >
+                  </div>
+
+                  <div class="tour-modal-content d-none">
+                    <h3 class="h6">About this trip</h3>
+                    <ul>
+                      <li>
+                        Return coach travel + entry included (unless stated
+                        otherwise)
+                      </li>
+                      <li>Price from £149</li>
+                      <li>2 Day Trip</li>
+                      <li>Hotel and Park Tickets Not Included</li>
+                      <li>
+                        Hotel: Each room must have 1 Adult 18+ occupying:
+
+                        <ul>
+                          Single Occupancy Room (sleeps 1) from £89
+                        </ul>
+                        <ul>
+                          Twin/Double Room (sleeps 2) from £129.00
+                        </ul>
+                        <ul>
+                          Triple Room (sleeps 3) from £169.00
+                        </ul>
+                        <ul>
+                          Quad Room (sleeps 4) from £229.00
+                        </ul>
+                      </li>
+
+                      <li>Tickets Adult 2 Day: £125</li>
+                      <li>Tickets child 2 Day: £105</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
         </div>
-
       </section>
-      
 
-        <!-- Empty state -->
-        <div id="emptyState" class="text-center py-5 d-none">
-          <h3 class="fw-bold">No tours match your search</h3>
-          <p>Try clearing filters or searching a different park/country.</p>
-          <button class="btn btn-outline-primary" id="emptyClear">
-            Clear filters
-          </button>
-        </div>
-      </section>
+      <!-- Empty state -->
+      <div id="emptyState" class="text-center py-5 d-none">
+        <h3 class="fw-bold">No tours match your search</h3>
+        <p>Try clearing filters or searching a different park/country.</p>
+        <button class="btn btn-outline-primary" id="emptyClear">
+          Clear filters
+        </button>
+      </div>
     </main>
 
-    <!-- Tour Info & Booking Modal -->
+    <!-- Tour Info & Booking Modal (SINGLE INSTANCE ONLY) -->
     <div
       class="modal fade"
       id="tourModal"
@@ -527,6 +453,7 @@
               aria-label="Close"
             ></button>
           </div>
+
           <div class="modal-body pt-3">
             <div class="row g-4">
               <div class="col-lg-5">
@@ -540,10 +467,9 @@
                 </div>
                 <ul class="list-unstyled small mb-3" id="tourModalMeta"></ul>
               </div>
+
               <div class="col-lg-7">
-                <div id="tourModalDetails" class="mb-3 small">
-                  <!-- filled dynamically -->
-                </div>
+                <div id="tourModalDetails" class="mb-3 small"></div>
 
                 <h3 class="h6 mb-3">Request to book</h3>
                 <form
@@ -565,9 +491,7 @@
                       name="name"
                       required
                     />
-                    <div class="invalid-feedback">
-                      Please enter your name.
-                    </div>
+                    <div class="invalid-feedback">Please enter your name.</div>
                   </div>
 
                   <div class="mb-3">
@@ -582,53 +506,6 @@
                     <div class="invalid-feedback">
                       Please enter a valid email address.
                     </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label" for="phoneInput">Phone</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phoneInput"
-                      name="phone"
-                    />
-                  </div>
-
-                  <div class="row g-3 mb-3">
-                    <div class="col-sm-6">
-                      <label class="form-label" for="pickupInput"
-                        >Preferred pick-up point</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="pickupInput"
-                        name="pickup"
-                        placeholder="e.g. Birmingham, Leeds"
-                      />
-                    </div>
-                    <div class="col-sm-6">
-                      <label class="form-label" for="guestsInput">Guests</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value="1"
-                        class="form-control"
-                        id="guestsInput"
-                        name="guests"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label" for="notesInput">Any notes?</label>
-                    <textarea
-                      class="form-control"
-                      id="notesInput"
-                      name="notes"
-                      rows="3"
-                      placeholder="Tell us about your group, dates flexibility, or accessibility needs"
-                    ></textarea>
                   </div>
 
                   <div class="d-flex flex-wrap gap-2 justify-content-end">
@@ -651,27 +528,20 @@
       </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer include -->
     <footer id="footer" class="py-4">
       <div class="container">
-       
-
-          <!-- Footer include -->
-          <div id="footer-placeholder"></div>
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              fetch("/footer.html")
-                .then((response) => response.text())
-                .then((html) => {
-                  document.getElementById("footer-placeholder").innerHTML =
-                    html;
-                })
-                .catch((err) =>
-                  console.error("Error loading footer:", err)
-                );
-            });
-          </script>
-        </div>
+        <div id="footer-placeholder"></div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            fetch("/footer.html")
+              .then((response) => response.text())
+              .then((html) => {
+                document.getElementById("footer-placeholder").innerHTML = html;
+              })
+              .catch((err) => console.error("Error loading footer:", err));
+          });
+        </script>
       </div>
     </footer>
 
@@ -691,10 +561,9 @@
 
         let activeFilters = new Set();
 
-        // Toggle chips
         chips.forEach((chip) => {
           chip.addEventListener("click", () => {
-            const tag = chip.dataset.filter.toLowerCase();
+            const tag = (chip.dataset.filter || "").toLowerCase();
             if (chip.classList.contains("active")) {
               chip.classList.remove("active");
               activeFilters.delete(tag);
@@ -706,14 +575,13 @@
           });
         });
 
-        clearFilters.addEventListener("click", () => {
+        clearFilters?.addEventListener("click", () => {
           searchInput.value = "";
           chips.forEach((c) => c.classList.remove("active"));
           activeFilters.clear();
           runFilter(true);
         });
         emptyClear?.addEventListener("click", () => clearFilters.click());
-
         searchInput.addEventListener("input", runFilter);
 
         function normalise(s) {
@@ -732,7 +600,7 @@
             let monthHasVisible = false;
 
             cards.forEach((card) => {
-              const text = card.textContent.toLowerCase();
+              const text = (card.textContent || "").toLowerCase();
               const title = (card.dataset.title || "").toLowerCase();
               const location = (card.dataset.location || "").toLowerCase();
               const tags = (
@@ -744,9 +612,9 @@
               const matchesText = !q || text.includes(q) || title.includes(q);
               const matchesFilters =
                 activeFilters.size === 0 ||
-                [...activeFilters].every((f) => {
-                  return location.includes(f) || tags.includes(f);
-                });
+                [...activeFilters].every(
+                  (f) => location.includes(f) || tags.includes(f)
+                );
 
               const show = matchesText && matchesFilters;
               card.style.display = show ? "" : "none";
@@ -756,34 +624,21 @@
               }
             });
 
+            // ✅ ONLY SHOW MONTHS THAT HAVE AT LEAST 1 VISIBLE TOUR CARD
             if (monthHasVisible) {
+              monthItem.style.display = "";
               if (resetMonths || q || activeFilters.size > 0) {
-                if (!collapse.classList.contains("show")) {
-                  new bootstrap.Collapse(collapse, {
-                    show: true,
-                    toggle: false,
-                  });
-                  collapse.classList.add("show");
-                }
                 button.classList.add("bg-warning", "text-dark");
               } else {
                 button.classList.remove("bg-warning", "text-dark");
               }
-              monthItem.style.display = "";
             } else {
               monthItem.style.display = "none";
               button.classList.remove("bg-warning", "text-dark");
-              if (collapse.classList.contains("show")) {
-                new bootstrap.Collapse(collapse, {
-                  hide: true,
-                  toggle: false,
-                });
-                collapse.classList.remove("show");
-              }
+              collapse?.classList.remove("show");
             }
           });
 
-          // Results counter + empty state
           if (visibleCardCount === 0) {
             resultCount.textContent = "No results";
             emptyState.classList.remove("d-none");
@@ -792,74 +647,16 @@
               visibleCardCount + " tour" + (visibleCardCount > 1 ? "s" : "");
             emptyState.classList.add("d-none");
           }
-
-          // If nothing typed and no chips, open next upcoming month
-          if (!q && activeFilters.size === 0 && !resetMonths) {
-            openNextMonth();
-          }
-        }
-
-        // Auto-open month with soonest future event; fallback to first month
-        function openNextMonth() {
-          const now = new Date();
-          let next = null;
-          accordion
-            .querySelectorAll(".tour[data-event-start]")
-            .forEach((node) => {
-              const d = new Date(node.getAttribute("data-event-start"));
-              if (!isNaN(d) && d >= now) {
-                if (!next || d < next.date) {
-                  next = { date: d, node };
-                }
-              }
-            });
-
-          const targetMonthItem = next
-            ? next.node.closest(".accordion-item")
-            : items[0];
-
-          items.forEach((item) => {
-            const collapse = item.querySelector(".accordion-collapse");
-            if (item === targetMonthItem) {
-              if (!collapse.classList.contains("show")) {
-                new bootstrap.Collapse(collapse, {
-                  show: true,
-                  toggle: false,
-                });
-                collapse.classList.add("show");
-              }
-            } else {
-              collapse.classList.remove("show");
-            }
-          });
-
-          if (targetMonthItem && targetMonthItem !== items[0]) {
-            setTimeout(
-              () =>
-                targetMonthItem.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                }),
-              50
-            );
-          }
         }
 
         // ===== Tour modal hookup =====
         const tourModalEl = document.getElementById("tourModal");
-        const tourModal = tourModalEl
-          ? new bootstrap.Modal(tourModalEl)
-          : null;
+        const tourModal = tourModalEl ? new bootstrap.Modal(tourModalEl) : null;
 
         const defaultDetailsHtml = `
-          <h3 class="h6">About this trip</h3>
-          <p>Join us on this Phoenix Adventures coach trip. Full detailed itinerary and timings will be confirmed in your booking pack.</p>
-          <ul class="small mb-0">
-            <li>Return coach travel from selected pick-up points</li>
-            <li>Entry to the advertised park or event (unless stated otherwise)</li>
-            <li>Friendly Phoenix Adventures host and support before you travel</li>
-          </ul>
-        `;
+        <h3 class="h6">About this trip</h3>
+        <p>Join us on this Phoenix Adventures coach trip. Full detailed itinerary and timings will be confirmed in your booking pack.</p>
+      `;
 
         function capitalise(word) {
           if (!word) return "";
@@ -880,9 +677,8 @@
               card.querySelector(".tour-desc")?.textContent?.trim() || "";
             const location = (card.dataset.location || "").toLowerCase();
             const startStr = card.dataset.eventStart || "";
-            const tags = (card.dataset.tags || "")
-              .split(" ")
-              .filter(Boolean);
+            const tags = (card.dataset.tags || "").split(" ").filter(Boolean);
+
             const imgStyle = card.style.backgroundImage || "";
             const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/i);
             const imgUrl = match ? match[1] : "";
@@ -951,67 +747,16 @@
 
             if (detailsEl) {
               const customBlock = card.querySelector(".tour-modal-content");
-              if (customBlock) {
-                detailsEl.innerHTML = customBlock.innerHTML;
-              } else {
-                detailsEl.innerHTML = defaultDetailsHtml;
-              }
+              detailsEl.innerHTML = customBlock
+                ? customBlock.innerHTML
+                : defaultDetailsHtml;
             }
 
             tourModal.show();
           });
         });
 
-        const bookingForm = document.getElementById("tourBookingForm");
-        if (bookingForm) {
-          bookingForm.addEventListener("submit", function (e) {
-            if (!bookingForm.checkValidity()) {
-              e.preventDefault();
-              e.stopPropagation();
-            }
-            bookingForm.classList.add("was-validated");
-          });
-        }
-        // ==============================
-
-        // Initial pass
         runFilter(true);
-
-        // ========= NEXT EVENT TICKER FEED =========
-        (function () {
-          const nodes = document.querySelectorAll(".tour[data-event-start]");
-          const now = new Date();
-          const events = [];
-          nodes.forEach((node) => {
-            const startStr = node.getAttribute("data-event-start");
-            const start = new Date(startStr);
-            if (isNaN(start)) return;
-            if (start >= now) {
-              events.push({
-                start: start.toISOString(),
-                title:
-                  node.getAttribute("data-title") ||
-                  node.querySelector(".tour-title")?.textContent?.trim() ||
-                  "Tour",
-                url:
-                  node.getAttribute("data-event-url") ||
-                  node.querySelector("a[href]")?.getAttribute("href") ||
-                  "/trips.html",
-                location: node.getAttribute("data-location") || "",
-              });
-            }
-          });
-          events.sort((a, b) => new Date(a.start) - new Date(b.start));
-          if (events[0]) {
-            localStorage.setItem(
-              "phoenix_next_event",
-              JSON.stringify(events[0])
-            );
-          } else {
-            localStorage.removeItem("phoenix_next_event");
-          }
-        })();
-        // ==========================================
       });
     </script>
   </body>
