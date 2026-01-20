@@ -1,763 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
-    <meta
-      name="description"
-      content="Search and filter Phoenix Adventures coach trips to Europe’s best theme parks. Halloween, Winter and Sleeper Coach tours. Book with a £1 deposit."
-    />
+    <title>Phoenix Adventures | 2026 Schedule</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <style>
+        :root {
+            --phoenix-orange: #ff6b00;
+            --dark-bg: #121212;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --card-radius: 20px;
+        }
 
-    <!-- Global CSS -->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/tours.css" rel="stylesheet" />
-    <link href="css/phoenix-modern.css" rel="stylesheet" />
+        body { background-color: #f0f2f5; font-family: 'Poppins', sans-serif; color: #333; }
+        
+        /* Hero & Countdown */
+        .hero { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 50px 0; text-align: center; }
+        #countdown-box { background: rgba(255,255,255,0.05); display: inline-block; padding: 20px 40px; border-radius: 20px; border: 1px solid rgba(255,107,0,0.4); backdrop-filter: blur(5px); }
+        .timer-unit { font-size: 2rem; font-weight: 800; color: var(--phoenix-orange); line-height: 1; }
+        .timer-label { font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-top: 5px; }
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+        /* Urgency Badge */
+        .urgency-badge { 
+            position: absolute; top: 20px; left: 20px; background: #e74c3c; color: white; 
+            padding: 5px 15px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; 
+            z-index: 10; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-  <body>
-    <!-- Skip Links -->
-    <div class="skip-links" aria-label="Skip links">
-      <a href="#main">Skip to Main Content</a>
-      <a href="#footer">Skip to Footer</a>
-      <a href="#nav">Skip to Navigation</a>
-    </div>
+        .toolbar { position: sticky; top: 0; z-index: 1000; background: var(--glass-bg); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 15px 0; }
+        .chip { padding: 8px 18px; background: #fff; border: 1px solid #ddd; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: inline-block; margin: 0 5px 5px 0; transition: 0.2s; }
+        .chip.active { background: var(--phoenix-orange); color: white; border-color: var(--phoenix-orange); }
 
-    <!-- Announcement Bar -->
-    <div class="text-center announcement">
-      Book today from just £1 deposit — Flexible payment plans available
-    </div>
+        /* Cards */
+        .accordion-body { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; padding: 20px 0; }
+        .tour-card { position: relative; height: 420px; border-radius: var(--card-radius); background-size: cover; background-position: center; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: none; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .tour-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.9) 100%); z-index: 1; }
+        .tour-price-tag { display: inline-block; background: rgba(0, 0, 0, 0.8); padding: 5px 15px; border-radius: 8px; border-left: 4px solid var(--phoenix-orange); color: var(--phoenix-orange); font-weight: 800; font-size: 1.1rem; margin-bottom: 12px; position: relative; z-index: 2; }
+        .tour-content { position: relative; z-index: 2; color: white; }
+        
+        .close-x { background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
-    <div id="nav"></div>
+        #pdfTemplate { display: none; }
+        footer { background: var(--dark-bg); color: white; padding: 40px 0; margin-top: 60px; }
+    </style>
+</head>
+<body>
 
-    <!-- Navbar include target (filled by JS) -->
-    <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
+    <header class="hero no-print">
+        <div class="container">
+            <h1 class="fw-bold mb-3">Phoenix Adventures 2026</h1>
+            
+            <div id="countdown-box">
+                <div class="small mb-2 text-uppercase fw-bold" style="color:var(--phoenix-orange); letter-spacing: 2px;">Next Departure</div>
+                <div class="d-flex gap-4 justify-content-center">
+                    <div><div id="days" class="timer-unit">00</div><div class="timer-label">Days</div></div>
+                    <div><div id="hours" class="timer-unit">00</div><div class="timer-label">Hours</div></div>
+                    <div><div id="mins" class="timer-unit">00</div><div class="timer-label">Mins</div></div>
+                </div>
+                <div id="next-trip-name" class="mt-3 fw-bold text-white">Loading...</div>
+            </div>
 
-    <!-- Hero -->
-    <header class="hero">
-      <div class="container">
-        <h1 class="display-5 fw-bold mb-2">Theme Park Trips</h1>
-        <p class="lead mb-3">
-          Halloween nights, winter magic, and weekend blasts across Europe.
-        </p>
-        <a href="#toursAccordion" class="btn btn-lg btn-phoenix"
-          >Browse Tours</a
-        >
-      </div>
+            <div class="mt-4">
+                <button class="btn btn-outline-light btn-sm px-4" onclick="exportToPDF()">Download Full Price List (PDF)</button>
+            </div>
+        </div>
     </header>
 
-    <!-- Sticky Toolbar -->
-    <div class="toolbar" role="region" aria-label="Search and filters">
-      <div class="container">
-        <div class="row g-2 align-items-center">
-          <div class="col-lg-7">
-            <label for="searchInput" class="visually-hidden"
-              >Search tours</label
-            >
-            <input
-              type="search"
-              id="searchInput"
-              class="form-control"
-              placeholder="Search a park, country or theme (e.g. Halloween, Disney, Belgium)…"
-            />
-          </div>
-          <div class="col-lg-5">
-            <div class="d-flex justify-content-lg-end align-items-center gap-3">
-              <div class="toolbar-meta">
-                <span id="resultCount">All tours</span>
-              </div>
-              <button
-                class="btn btn-outline-secondary btn-sm"
-                id="clearFilters"
-              >
-                Clear
-              </button>
+    <div class="toolbar no-print">
+        <div class="container text-center">
+            <div class="chips">
+                <span class="chip" data-filter="france">France</span>
+                <span class="chip" data-filter="netherlands">Netherlands</span>
+                <span class="chip" data-filter="disney">Disney Dash</span>
+                <span class="chip" data-filter="mystery">Mystery Tour</span>
             </div>
-          </div>
         </div>
-
-        <div class="chips mt-2" aria-label="Quick filters">
-          <!-- Countries -->
-          <span class="chip" data-filter="france">France</span>
-          <span class="chip" data-filter="germany">Germany</span>
-          <span class="chip" data-filter="netherlands">Netherlands</span>
-          <span class="chip" data-filter="belgium">Belgium</span>
-          <!-- Themes -->
-          <span class="chip" data-filter="halloween">Halloween</span>
-          <span class="chip" data-filter="winter">Winter</span>
-          <span class="chip" data-filter="christmas">Christmas</span>
-          <span class="chip" data-filter="sleeper">Sleeper Coach</span>
-        </div>
-      </div>
     </div>
 
-    <!-- Main -->
-    <main id="main" class="container my-4">
-      <section class="py-2 px-0">
+    <div id="pdfTemplate" class="p-5">
+        <h2 style="color:#ff6b00">Phoenix Adventures 2026 Price List</h2>
+        <table class="table mt-4">
+            <thead><tr><th>Date</th><th>Tour Name</th><th>Price From</th></tr></thead>
+            <tbody id="pdfTableBody"></tbody>
+        </table>
+    </div>
+
+    <main class="container my-5 no-print">
         <div class="accordion" id="toursAccordion">
-          <!-- January 2026 -->
-          <div class="accordion-item" data-month="2026-01">
-            <h2 class="accordion-header" id="headingJanuary">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseJanuary"
-                aria-expanded="false"
-                aria-controls="collapseJanuary"
-              >
-                January 2026
-              </button>
-            </h2>
-
-            <div
-              id="collapseJanuary"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingJanuary"
-              data-bs-parent="#toursAccordion"
-            >
-              <div class="accordion-body">
-                <!-- Winter Efteling (Jan 17th) -->
-                <article
-                  class="tour-card tour"
-                  style="
-                    background-image: url('img/parks/themedparks/eftelingwinter.png');
-                  "
-                  data-title="Winter Efteling"
-                  data-location="netherlands"
-                  data-tags="efteling netherlands winter christmas"
-                  data-theme="christmas"
-                  data-event-url="booking.html"
-                  data-event-start="2026-01-17T11:00:00"
-                >
-                  <h3 class="tour-title">Sat 17th – Efteling, Netherlands</h3>
-                  <p class="tour-desc"><strong>Winter Event</strong></p>
-
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">Netherlands</span>
-                    <span class="pill">Christmas</span>
-                  </div>
-
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html"
-                      >More Information</a
-                    >
-                  </div>
-
-                  <div class="tour-modal-content d-none">
-                    <h3 class="h6">About this trip</h3>
-                    <ul>
-                      <li>Park Opening Times 10:00 - 19:00</li>
-                      <li>Price includes Travel & Entry</li>
-                    </ul>
-                  </div>
-                </article>
-
-                <!-- Disneyland Paris (Jan 31st) -->
-                <article
-                  class="tour-card tour"
-                  style="background-image: url('img/parkentry/dlp.jpg')"
-                  data-title="Disneyland Paris"
-                  data-location="france"
-                  data-tags="disney paris france winter january"
-                  data-theme="january"
-                  data-event-url="booking.html"
-                  data-event-start="2026-01-31T11:00:00"
-                >
-                  <h3 class="tour-title">Sat 31st – Disneyland Paris</h3>
-                  <p class="tour-desc"><strong>Winter Event</strong></p>
-
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">France</span>
-                    <span class="pill">January</span>
-                  </div>
-
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html"
-                      >More Information</a
-                    >
-                  </div>
-
-                  <div class="tour-modal-content d-none">
-                    <h3 class="h6">About this trip</h3>
-                    <ul>
-                      <li>Park Opening Times 09:30 - 22:00</li>
-                      <li>Price includes Travel & Entry to 1 Park</li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
+            
+            <div class="accordion-item" data-month="2026-01">
+                <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#jan">January</button></h2>
+                <div id="jan" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <article class="tour-card" data-next-up="true" style="background-image: url('img/dlp.jpg');" 
+                                 data-title="Disneyland Paris Dash" data-tags="france disney dash" 
+                                 data-event-start="2026-01-31" data-price="£89.00">
+                            <div class="tour-content"><p class="pill">France</p><h3 class="tour-title">Jan 31st – Disney Dash</h3><div class="tour-price-tag">£89.00</div><button class="btn-ghost more-info-btn">More Info</button></div>
+                        </article>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <!-- February 2026 -->
-          <div class="accordion-item" data-month="2026-02">
-            <h2 class="accordion-header" id="headingFebruary">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseFebruary"
-                aria-expanded="false"
-                aria-controls="collapseFebruary"
-              >
-                February 2026
-              </button>
-            </h2>
-            <div
-              id="collapseFebruary"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingFebruary"
-              data-bs-parent="#toursAccordion"
-            >
-              <div class="accordion-body">
-                <article
-                  class="tour-card tour"
-                  style="background-image: url('img/NBG/efteling1.jpg')"
-                  data-title="Efteling"
-                  data-location="netherlands"
-                  data-tags="efteling netherlands half term"
-                  data-theme="half term"
-                  data-event-url="booking.html"
-                  data-event-start="2026-02-15T11:00:00"
-                >
-                  <h3 class="tour-title">Sun 15th – Efteling, Netherlands</h3>
-                  <p class="tour-desc"><strong>Half Term Dash</strong></p>
-
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">Netherlands</span>
-                    <span class="pill">Half Term</span>
-                  </div>
-
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html"
-                      >More Information</a
-                    >
-                  </div>
-
-                  <div class="tour-modal-content d-none">
-                    <h3 class="h6">About this trip</h3>
-                    <ul>
-                      <li>Park Opening Times 10:00 - 19:00</li>
-                      <li>Price includes Travel & Entry</li>
-                      <li>From just £74</li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
+            <div class="accordion-item" data-month="2026-03">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#mar">March</button></h2>
+                <div id="mar" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <article class="tour-card" style="background-image: url('img/frozen.jpg');" data-title="Frozen Land Opening Dash" data-tags="france disney frozen" data-event-start="2026-03-29" data-price="£79.00">
+                            <div class="tour-content"><p class="pill">France</p><h3 class="tour-title">Mar 29th – Frozen Land</h3><div class="tour-price-tag">£79.00</div><button class="btn-ghost more-info-btn">More Info</button></div>
+                        </article>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <!-- April 2026 -->
-          <div class="accordion-item" data-month="2026-04">
-            <h2 class="accordion-header" id="headingApril">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseApril"
-                aria-expanded="false"
-                aria-controls="collapseApril"
-              >
-                April 2026
-              </button>
-            </h2>
-            <div
-              id="collapseApril"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingApril"
-              data-bs-parent="#toursAccordion"
-            >
-              <div class="accordion-body">
-                <article
-                  class="tour-card tour"
-                  style="
-                    background-image: url('img/parks/parcasterix/toutatis.webp');
-                  "
-                  data-title="Parc Astérix"
-                  data-location="france"
-                  data-tags="parc asterix france spring april"
-                  data-theme="spring"
-                  data-event-url="booking.html"
-                  data-event-start="2026-04-07T11:00:00"
-                >
-                  <h3 class="tour-title">Sat 7th – Parc Astérix, France</h3>
-                  <p class="tour-desc"><strong>Spring Thrills</strong></p>
-                  <p class="tour-desc">
-                    <strong>SPECIAL OFFER: Free Child with every Adult </strong>
-                  </p>
-
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">France</span>
-                    <span class="pill">Spring</span>
-                  </div>
-
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html"
-                      >More Information</a
-                    >
-                  </div>
-
-                  <div class="tour-modal-content d-none">
-                    <h3 class="h6">About this trip</h3>
-                    <ul>
-                      <li>Return coach travel</li>
-                      <li>
-                        Take advantage of this amazing special opening week
-                        offer! Purchase 1 Adult Ticket, get 1 Free Child
-                        Entrance!
-                      </li>
-                      <li>£79</li>
-                      <li>Park Entrance: £60 One Free child with every paying Adult</li>
-                      <li>Additional Child £52</li>
-                      
-                    </ul>
-                  </div>
-                </article>
-              </div>
+            <div class="accordion-item" data-month="2026-04">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#apr">April</button></h2>
+                <div id="apr" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <article class="tour-card mystery-card" style="background-image: url('img/mystery.jpg');" 
+                                 data-title="Magical Mystery Tour" data-tags="mystery europe" 
+                                 data-event-start="2026-04-25" data-price="£74.00">
+                            <div class="tour-content"><p class="pill">Secret Destination</p><h3 class="tour-title">Apr 25th – Mystery Tour</h3><div class="tour-price-tag">From £74.00</div><button class="btn-ghost more-info-btn">Reveal Details</button></div>
+                        </article>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <!-- July 2026 -->
-          <div class="accordion-item" data-month="2026-07">
-            <h2 class="accordion-header" id="headingJuly">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseJuly"
-                aria-expanded="false"
-                aria-controls="collapseJuly"
-              >
-                July 2026
-              </button>
-            </h2>
-            <div
-              id="collapseJuly"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingJuly"
-              data-bs-parent="#toursAccordion"
-            >
-              <div class="accordion-body">
-                <article
-                  class="tour-card tour"
-                  style="
-                    background-image: url('img/parks/europa/EuropaMouse.jpg');
-                  "
-                  data-title="Europa-Park"
-                  data-location="germany"
-                  data-tags="europa park germany summer july"
-                  data-theme="summer"
-                  data-event-url="booking.html"
-                  data-event-start="2026-07-11T11:00:00"
-                >
-                  <h3 class="tour-title">Sat 18th – Europa-Park, Germany</h3>
-                  <p class="tour-desc">
-                    <strong>Summer Night Party Trip</strong>
-                  </p>
-
-                  <div class="d-flex flex-wrap gap-1">
-                    <span class="pill">Germany</span>
-                    <span class="pill">Summer</span>
-                  </div>
-
-                  <div class="tour-actions">
-                    <a class="btn btn-ghost btn-sm" href="booking.html"
-                      >More Information</a
-                    >
-                  </div>
-
-                  <div class="tour-modal-content d-none">
-                    <h3 class="h6">About this trip</h3>
-                    <ul>
-                      <li>
-                        Return coach travel + entry included (unless stated
-                        otherwise)
-                      </li>
-                      <li>Price from £149</li>
-                      <li>2 Day Trip</li>
-                      <li>Hotel and Park Tickets Not Included</li>
-                      <li>
-                        Hotel: Each room must have 1 Adult 18+ occupying:
-
-                        <ul>
-                          Single Occupancy Room (sleeps 1) from £89
-                        </ul>
-                        <ul>
-                          Twin/Double Room (sleeps 2) from £129.00
-                        </ul>
-                        <ul>
-                          Triple Room (sleeps 3) from £169.00
-                        </ul>
-                        <ul>
-                          Quad Room (sleeps 4) from £229.00
-                        </ul>
-                      </li>
-
-                      <li>Tickets Adult 2 Day: £125</li>
-                      <li>Tickets child 2 Day: £105</li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
+            <div class="accordion-item" data-month="2026-06">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#jun">June</button></h2>
+                <div id="jun" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <article class="tour-card" style="background-image: url('img/efteling.jpg');" data-title="Efteling Dash" data-tags="netherlands dash" data-event-start="2026-06-13" data-price="£74.00">
+                            <div class="tour-content"><p class="pill">Netherlands</p><h3 class="tour-title">June 13th – Efteling Dash</h3><div class="tour-price-tag">£74.00</div><button class="btn-ghost more-info-btn">More Info</button></div>
+                        </article>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="accordion-item" data-month="2026-12">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#dec">December</button></h2>
+                <div id="dec" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <article class="tour-card mystery-card" style="background-image: url('img/mystery.jpg');" 
+                                 data-title="Magical Mystery Tour" data-tags="mystery europe winter" 
+                                 data-event-start="2026-12-05" data-price="£74.00">
+                            <div class="tour-content"><p class="pill">Secret Destination</p><h3 class="tour-title">Dec 5th – Mystery Tour</h3><div class="tour-price-tag">From £74.00</div><button class="btn-ghost more-info-btn">Reveal Details</button></div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </section>
-
-      <!-- Empty state -->
-      <div id="emptyState" class="text-center py-5 d-none">
-        <h3 class="fw-bold">No tours match your search</h3>
-        <p>Try clearing filters or searching a different park/country.</p>
-        <button class="btn btn-outline-primary" id="emptyClear">
-          Clear filters
-        </button>
-      </div>
     </main>
 
-    <!-- Tour Info & Booking Modal (SINGLE INSTANCE ONLY) -->
-    <div
-      class="modal fade"
-      id="tourModal"
-      tabindex="-1"
-      aria-labelledby="tourModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 rounded-4 shadow-lg">
-          <div class="modal-header border-0 pb-0">
-            <div>
-              <span
-                class="badge bg-primary-subtle text-primary mb-2"
-                id="tourModalTag"
-              ></span>
-              <h2 class="h5 mb-0" id="tourModalLabel"></h2>
-              <p class="small text-muted mb-0" id="tourModalSub"></p>
-            </div>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div class="modal-body pt-3">
-            <div class="row g-4">
-              <div class="col-lg-5">
-                <div class="ratio ratio-4x3 rounded-4 overflow-hidden mb-3">
-                  <img
-                    src=""
-                    alt=""
-                    id="tourModalImage"
-                    class="w-100 h-100 object-fit-cover"
-                  />
+    <div class="modal fade" id="tourModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button type="button" class="close-x" data-bs-dismiss="modal">×</button></div>
+                <div class="modal-body p-4 pt-2">
+                    <h2 class="fw-bold" id="modalTitle"></h2>
+                    <p id="modalDate" class="fw-bold" style="color:var(--phoenix-orange)"></p>
+                    <div id="modalDesc" class="mt-3"></div>
+                    <hr>
+                    <button class="btn btn-phoenix w-100">Request Booking Details</button>
                 </div>
-                <ul class="list-unstyled small mb-3" id="tourModalMeta"></ul>
-              </div>
-
-              <div class="col-lg-7">
-                <div id="tourModalDetails" class="mb-3 small"></div>
-
-                <h3 class="h6 mb-3">Request to book</h3>
-                <form
-                  class="needs-validation"
-                  novalidate
-                  id="tourBookingForm"
-                  action="booking.html"
-                  method="get"
-                >
-                  <input type="hidden" name="tour" id="tourInput" />
-                  <input type="hidden" name="date" id="dateInput" />
-
-                  <div class="mb-3">
-                    <label class="form-label" for="nameInput">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="nameInput"
-                      name="name"
-                      required
-                    />
-                    <div class="invalid-feedback">Please enter your name.</div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label" for="emailInput">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="emailInput"
-                      name="email"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please enter a valid email address.
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-wrap gap-2 justify-content-end">
-                    <button
-                      type="button"
-                      class="btn btn-outline-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="submit" class="btn btn-phoenix">
-                      Request to book
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- Footer include -->
-    <footer id="footer" class="py-4">
-      <div class="container">
-        <div id="footer-placeholder"></div>
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            fetch("/footer.html")
-              .then((response) => response.text())
-              .then((html) => {
-                document.getElementById("footer-placeholder").innerHTML = html;
-              })
-              .catch((err) => console.error("Error loading footer:", err));
-          });
-        </script>
-      </div>
+    <footer class="no-print text-center">
+        <div class="container"><p>© 2026 Phoenix Adventures LTD | info@phoenixadventures.co.uk</p></div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById("searchInput");
-        const accordion = document.getElementById("toursAccordion");
-        const items = accordion.querySelectorAll(".accordion-item");
-        const chips = document.querySelectorAll(".chip");
-        const resultCount = document.getElementById("resultCount");
-        const clearFilters = document.getElementById("clearFilters");
-        const emptyState = document.getElementById("emptyState");
-        const emptyClear = document.getElementById("emptyClear");
+        document.addEventListener("DOMContentLoaded", () => {
+            const now = new Date();
+            let nextTripDate = null;
+            let nextTripElement = null;
 
-        let activeFilters = new Set();
-
-        chips.forEach((chip) => {
-          chip.addEventListener("click", () => {
-            const tag = (chip.dataset.filter || "").toLowerCase();
-            if (chip.classList.contains("active")) {
-              chip.classList.remove("active");
-              activeFilters.delete(tag);
-            } else {
-              chip.classList.add("active");
-              activeFilters.add(tag);
-            }
-            runFilter();
-          });
-        });
-
-        clearFilters?.addEventListener("click", () => {
-          searchInput.value = "";
-          chips.forEach((c) => c.classList.remove("active"));
-          activeFilters.clear();
-          runFilter(true);
-        });
-        emptyClear?.addEventListener("click", () => clearFilters.click());
-        searchInput.addEventListener("input", runFilter);
-
-        function normalise(s) {
-          return (s || "").toLowerCase().trim();
-        }
-
-        function runFilter(resetMonths = false) {
-          const q = normalise(searchInput.value);
-          let visibleCardCount = 0;
-
-          items.forEach((monthItem) => {
-            const collapse = monthItem.querySelector(".accordion-collapse");
-            const button = monthItem.querySelector(".accordion-button");
-            const cards = monthItem.querySelectorAll(".tour-card");
-
-            let monthHasVisible = false;
-
-            cards.forEach((card) => {
-              const text = (card.textContent || "").toLowerCase();
-              const title = (card.dataset.title || "").toLowerCase();
-              const location = (card.dataset.location || "").toLowerCase();
-              const tags = (
-                (card.dataset.tags || "") +
-                " " +
-                (card.dataset.theme || "")
-              ).toLowerCase();
-
-              const matchesText = !q || text.includes(q) || title.includes(q);
-              const matchesFilters =
-                activeFilters.size === 0 ||
-                [...activeFilters].every(
-                  (f) => location.includes(f) || tags.includes(f)
-                );
-
-              const show = matchesText && matchesFilters;
-              card.style.display = show ? "" : "none";
-              if (show) {
-                monthHasVisible = true;
-                visibleCardCount++;
-              }
+            // 1. AUTO-EXPIRY AND FIND NEXT TRIP
+            document.querySelectorAll(".tour-card").forEach(card => {
+                const tripDate = new Date(card.dataset.eventStart);
+                if (tripDate < now.setHours(0,0,0,0)) {
+                    card.remove(); 
+                } else {
+                    if (!nextTripDate || tripDate < nextTripDate) {
+                        nextTripDate = tripDate;
+                        nextTripElement = card;
+                    }
+                }
             });
 
-            // ✅ ONLY SHOW MONTHS THAT HAVE AT LEAST 1 VISIBLE TOUR CARD
-            if (monthHasVisible) {
-              monthItem.style.display = "";
-              if (resetMonths || q || activeFilters.size > 0) {
-                button.classList.add("bg-warning", "text-dark");
-              } else {
-                button.classList.remove("bg-warning", "text-dark");
-              }
-            } else {
-              monthItem.style.display = "none";
-              button.classList.remove("bg-warning", "text-dark");
-              collapse?.classList.remove("show");
+            // Clean Empty Months
+            document.querySelectorAll(".accordion-item").forEach(item => {
+                if (item.querySelectorAll(".tour-card").length === 0) item.remove();
+            });
+
+            // 2. ADD URGENCY BADGE TO NEXT TRIP
+            if (nextTripElement) {
+                const badge = document.createElement("div");
+                badge.className = "urgency-badge";
+                badge.innerText = "LAST FEW SEATS!";
+                nextTripElement.prepend(badge);
+
+                document.getElementById("next-trip-name").innerText = nextTripElement.dataset.title + " (" + nextTripElement.dataset.eventStart + ")";
+                
+                // Countdown Timer
+                const timer = setInterval(() => {
+                    const diff = nextTripDate - new Date();
+                    if (diff <= 0) { clearInterval(timer); return; }
+                    document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                    document.getElementById("hours").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+                    document.getElementById("mins").innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+                }, 1000);
             }
-          });
 
-          if (visibleCardCount === 0) {
-            resultCount.textContent = "No results";
-            emptyState.classList.remove("d-none");
-          } else {
-            resultCount.textContent =
-              visibleCardCount + " tour" + (visibleCardCount > 1 ? "s" : "");
-            emptyState.classList.add("d-none");
-          }
-        }
+            // 3. CHIP FILTERING
+            document.querySelectorAll(".chip").forEach(chip => {
+                chip.addEventListener("click", () => {
+                    chip.classList.toggle("active");
+                    const activeFilters = Array.from(document.querySelectorAll(".chip.active")).map(c => c.dataset.filter);
+                    
+                    document.querySelectorAll(".tour-card").forEach(card => {
+                        const tags = card.dataset.tags.toLowerCase();
+                        const show = activeFilters.length === 0 || activeFilters.every(f => tags.includes(f));
+                        card.style.display = show ? "flex" : "none";
+                    });
+                });
+            });
 
-        // ===== Tour modal hookup =====
-        const tourModalEl = document.getElementById("tourModal");
-        const tourModal = tourModalEl ? new bootstrap.Modal(tourModalEl) : null;
-
-        const defaultDetailsHtml = `
-        <h3 class="h6">About this trip</h3>
-        <p>Join us on this Phoenix Adventures coach trip. Full detailed itinerary and timings will be confirmed in your booking pack.</p>
-      `;
-
-        function capitalise(word) {
-          if (!word) return "";
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        }
-
-        document.querySelectorAll(".tour-card .btn-ghost").forEach((btn) => {
-          btn.addEventListener("click", (ev) => {
-            ev.preventDefault();
-            if (!tourModal) return;
-
-            const card = btn.closest(".tour-card");
-            if (!card) return;
-
-            const title =
-              card.querySelector(".tour-title")?.textContent?.trim() || "Tour";
-            const desc =
-              card.querySelector(".tour-desc")?.textContent?.trim() || "";
-            const location = (card.dataset.location || "").toLowerCase();
-            const startStr = card.dataset.eventStart || "";
-            const tags = (card.dataset.tags || "").split(" ").filter(Boolean);
-
-            const imgStyle = card.style.backgroundImage || "";
-            const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/i);
-            const imgUrl = match ? match[1] : "";
-
-            const labelEl = document.getElementById("tourModalLabel");
-            const subEl = document.getElementById("tourModalSub");
-            const tagEl = document.getElementById("tourModalTag");
-            const metaEl = document.getElementById("tourModalMeta");
-            const imgEl = document.getElementById("tourModalImage");
-            const tourInput = document.getElementById("tourInput");
-            const dateInput = document.getElementById("dateInput");
-            const detailsEl = document.getElementById("tourModalDetails");
-
-            if (labelEl) labelEl.textContent = title;
-            if (subEl) subEl.textContent = desc;
-            if (tagEl)
-              tagEl.textContent = location
-                ? capitalise(location)
-                : "Phoenix Adventures";
-
-            if (metaEl) {
-              metaEl.innerHTML = "";
-              if (location) {
-                const li = document.createElement("li");
-                li.innerHTML =
-                  "<strong>Location:</strong> " + capitalise(location);
-                metaEl.appendChild(li);
-              }
-              if (startStr) {
-                const d = new Date(startStr);
-                if (!isNaN(d)) {
-                  const opts = {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  };
-                  const li = document.createElement("li");
-                  li.innerHTML =
-                    "<strong>Date:</strong> " +
-                    d.toLocaleDateString("en-GB", opts);
-                  metaEl.appendChild(li);
+            // 4. MODAL LOGIC
+            const tourModal = new bootstrap.Modal(document.getElementById('tourModal'));
+            document.addEventListener("click", (e) => {
+                if(e.target.classList.contains("more-info-btn")) {
+                    const card = e.target.closest(".tour-card");
+                    document.getElementById("modalTitle").innerText = card.dataset.title;
+                    document.getElementById("modalDate").innerText = "Trip Date: " + card.dataset.eventStart;
+                    document.getElementById("modalDesc").innerHTML = card.querySelector(".tour-modal-content")?.innerHTML || "Contact us for pricing and itinerary.";
+                    tourModal.show();
                 }
-              }
-              if (tags && tags.length) {
-                const li = document.createElement("li");
-                li.innerHTML =
-                  "<strong>Theme:</strong> " +
-                  tags.map((t) => capitalise(t)).join(", ");
-                metaEl.appendChild(li);
-              }
-            }
-
-            if (imgEl) {
-              if (imgUrl) {
-                imgEl.src = imgUrl;
-                imgEl.alt = title;
-              } else {
-                imgEl.src = "/img/phoenix/busindex.JPG";
-                imgEl.alt = "Phoenix Adventures tour coach";
-              }
-            }
-
-            if (tourInput) tourInput.value = title;
-            if (dateInput) dateInput.value = startStr;
-
-            if (detailsEl) {
-              const customBlock = card.querySelector(".tour-modal-content");
-              detailsEl.innerHTML = customBlock
-                ? customBlock.innerHTML
-                : defaultDetailsHtml;
-            }
-
-            tourModal.show();
-          });
+            });
         });
 
-        runFilter(true);
-      });
+        function exportToPDF() {
+            const tableBody = document.getElementById('pdfTableBody');
+            tableBody.innerHTML = '';
+            document.querySelectorAll('.tour-card:not([style*="display: none"])').forEach(card => {
+                tableBody.innerHTML += `<tr><td>${card.dataset.eventStart}</td><td>${card.dataset.title}</td><td>${card.dataset.price}</td></tr>`;
+            });
+            const element = document.getElementById('pdfTemplate');
+            element.style.display = 'block';
+            html2pdf().from(element).set({ margin: 1, filename: 'Phoenix_2026_Schedule.pdf' }).save().then(() => element.style.display = 'none');
+        }
     </script>
-  </body>
+</body>
 </html>
