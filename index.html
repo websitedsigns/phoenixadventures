@@ -54,14 +54,36 @@
     @media (prefers-reduced-motion: reduce){ .ticker .marquee span{ animation:none; padding-left:0; } }
 
     /* Hero */
-    .hero{
-      position:relative; min-height:70vh;
-      background:url('img/phoenix/busindex.JPG') center/cover no-repeat;
-      color:#fff; text-align:center; display:flex; align-items:center;
-    }
-    .hero::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
-    .hero .container{ position:relative; z-index:1; }
-    .hero h1{ font-weight:800; letter-spacing:.3px; }
+    /* HERO (match main site) */
+.hero{
+  border-bottom: 3px solid var(--phoenix-orange);
+  position:relative;
+  min-height:70vh;
+  background:url('img/phoenix/busindex.JPG') center/cover no-repeat;
+  color:#fff;
+  text-align:center;
+  display:flex;
+  align-items:center;
+}
+
+/* overlay */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.5);
+}
+
+/* keep text above overlay */
+.hero .container{
+  position:relative;
+  z-index:1;
+}
+
+.hero h1{
+  font-weight:800;
+  letter-spacing:.3px;
+}
 
     /* Buttons */
     .btn-phoenix{ background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }

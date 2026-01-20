@@ -88,12 +88,35 @@
       }
 
       /* HERO & SEARCH */
-      .hero {
-        background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-        color: white;
-        padding: 50px 0;
-        text-align: center;
-      }
+      .hero{
+  position:relative;
+  min-height:15vh;
+  background-color: #741e1e;
+  color:#fff;
+  text-align:center;
+  display:flex;
+  align-items:center;
+}
+
+/* overlay */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.5);
+}
+
+/* keep text above overlay */
+.hero .container{
+  position:relative;
+  z-index:1;
+}
+
+.hero h1{
+  font-weight:800;
+  letter-spacing:.3px;
+}
+
       .search-container {
         max-width: 600px;
         margin: -30px auto 30px;
