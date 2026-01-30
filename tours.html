@@ -1,980 +1,1075 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Phoenix Adventures | 2026 Schedule</title>
+<head>
+<meta charset="UTF-8">
+<title>Phoenix Adventures | Theme Park Tours 2026</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Executive coach tours to Europe’s best theme parks. Luxury travel, family-friendly experiences, and special events throughout 2026.">
 
-    <style>
-      :root {
-        --phoenix-orange: #ff6b00;
-        --dark-bg: #121212;
-        --ticker-bg: #1e1e1e;
-        --emergency-red: #d63031;
-      }
-      body {
-        background-color: #f8f9fa;
-        font-family: "Poppins", sans-serif;
-        color: #333;
-      }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      /* TICKER BOX */
-      .countdown-ticker {
-        background: var(--ticker-bg);
-        color: white;
-        padding: 10px 0;
-        border-bottom: 3px solid var(--phoenix-orange);
-        position: sticky;
-        top: 0;
-        z-index: 1100;
-        transition: all 0.5s ease;
-      }
-      .countdown-ticker.urgent {
-        background: var(--emergency-red);
-        border-bottom: 3px solid #fff;
-      }
-      .ticker-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        font-weight: 600;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-      .ticker-badge {
-        background: var(--phoenix-orange);
-        color: white;
-        padding: 4px 15px;
-        border-radius: 50px;
-        font-size: 1rem;
-        text-transform: uppercase;
-        animation: glow 2s infinite;
-        white-space: nowrap;
-      }
-      .urgent .ticker-badge {
-        background: white;
-        color: var(--emergency-red);
-        animation: fast-glow 1s infinite;
-      }
-      @keyframes glow {
-        50% {
-          box-shadow: 0 0 10px var(--phoenix-orange);
-        }
-      }
-      @keyframes fast-glow {
-        50% {
-          box-shadow: 0 0 15px #fff;
-        }
-      }
-      .timer-days {
-        font-size: 1.1rem;
-        font-weight: 800;
-        color: var(--phoenix-orange);
-        white-space: nowrap;
-      }
-      .urgent .timer-days {
-        color: white;
-      }
+<style>
+  body { background:#f6f7f9; padding-top:70px; }
 
-      /* HERO & SEARCH */
-      .hero{
-  position:relative;
-  min-height:15vh;
-  background-color: #741e1e;
-  color:#fff;
-  text-align:center;
-  display:flex;
-  align-items:center;
+  .dynamic-badge {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  background:#28a745;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+  animation: badgePulse 2s infinite;
 }
 
-/* overlay */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.5);
+/* Pulse animation reused */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
 }
 
-/* keep text above overlay */
-.hero .container{
-  position:relative;
-  z-index:1;
+/* Collapsed accordion header when sold out */
+.accordion-button.collapsed.sold-out {
+  background: linear-gradient(90deg, #e6133d, #ff4b6e);
+  color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
 }
 
-.hero h1{
-  font-weight:800;
-  letter-spacing:.3px;
+/* Slight hover effect */
+.accordion-button.collapsed.sold-out:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-      .search-container {
-        max-width: 600px;
-        margin: -30px auto 30px;
-        position: relative;
-        z-index: 10;
-        padding: 0 12px;
-      }
-      .search-bar {
-        border-radius: 50px;
-        padding: 15px 30px;
-        border: none;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        width: 100%;
-      }
+/* The badge inside */
+.dynamic-badge-soldout {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.2); /* blended into header */
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  animation: badgePulse 2s infinite;
+}
 
-      /* TOUR CARDS */
-      .tour-card {
-        position: relative;
-        height: 450px;
-        border-radius: 25px;
-        background-size: cover;
-        background-position: center;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 30px;
-        border: none;
-        transition: 0.4s;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        margin-bottom: 30px;
-      }
-      .tour-card:hover {
-        transform: translateY(-8px);
-      }
-      .tour-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0) 20%,
-          rgba(0, 0, 0, 0.9) 100%
-        );
-        z-index: 1;
-      }
-      .tour-content {
-        position: relative;
-        z-index: 2;
-        color: white;
-      }
-      .tour-price-tag {
-        display: inline-block;
-        background: var(--phoenix-orange);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 8px;
-        font-weight: 800;
-        margin-bottom: 10px;
-      }
-      .btn-glass {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        color: white;
-        font-weight: 700;
-        padding: 12px;
-        border-radius: 15px;
-        width: 100%;
-        margin-top: 15px;
-        transition: 0.3s;
-        cursor: pointer;
-      }
-      .btn-glass:hover {
-        background: white;
-        color: black;
-      }
-      .sold-out-ribbon {
-        position: absolute;
-        top: 20px;
-        right: -40px;
-        background: #2d3436;
-        color: white;
-        padding: 8px 50px;
-        transform: rotate(45deg);
-        font-weight: 800;
-        font-size: 0.8rem;
-        z-index: 3;
-      }
+/* Collapsed accordion header when coming soon */
+.accordion-button.collapsed.coming-soon {
+  background: linear-gradient(90deg, #1e90ff, #4db8ff); /* blue gradient */
+  color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+}
 
-      /* MODALS */
-      .modal-content {
-        border-radius: 30px;
-        border: none;
-        overflow: hidden;
-      }
-      .modal-header-img {
-        height: 220px;
-        background-size: cover;
-        background-position: center;
-      }
-      .itinerary-step {
-        border-left: 3px solid var(--phoenix-orange);
-        padding-left: 20px;
-        margin-bottom: 20px;
-        position: relative;
-      }
-      .itinerary-step::before {
-        content: "";
-        position: absolute;
-        left: -9px;
-        top: 0;
-        width: 15px;
-        height: 15px;
-        background: var(--phoenix-orange);
-        border-radius: 50%;
-      }
+/* Hover effect */
+.accordion-button.collapsed.coming-soon:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
 
-      .accordion-body {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-        gap: 25px;
-        align-items: start;
-      }
-      @media (max-width: 420px) {
-        .accordion-body {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
+/* Badge inside Coming Soon header */
+.dynamic-badge-coming-soon {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.2); /* semi-transparent to blend */
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  animation: badgePulse 2s infinite;
+}
 
-  <body>
-    <div class="countdown-ticker" id="mainTicker">
-      <div class="container ticker-content">
-        <span class="ticker-badge" id="badgeText">Next</span>
-        <span id="ticker-trip-name">Scanning 2026 Schedule...</span>
-        <span class="timer-days" id="ticker-days">0 Days</span>
-      </div>
+/* Collapsed accordion header for Special Offer */
+.accordion-button.collapsed.special-offer {
+  background: #a3b6e4; /* Bright yellow gradient */
+  color: #000;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+}
+
+/* Hover effect */
+.accordion-button.collapsed.special-offer:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+/* Special Offer badge */
+.dynamic-badge-special {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  background: #1a65c1;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: badgeBounce 1.5s infinite alternate;
+}
+
+/* Bounce animation */
+@keyframes badgeBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* Pulse animation reused */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+
+
+/* Collapsed accordion header for Halloween */
+.accordion-button.collapsed.halloween {
+  background: linear-gradient(90deg, #ff7f00, #ffb347); /* Orange gradient */
+  color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect with glow */
+.accordion-button.collapsed.halloween:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+/* Spooky “glow” animation for the badge */
+.dynamic-badge-halloween {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  background: #ff4500; /* deep orange/red */
+  color: #fff;
+  box-shadow: 0 0 10px #ff4500, 0 0 20px #ff7f00;
+  animation: badgeGlow 1.5s infinite alternate;
+}
+
+/* Glow pulse animation */
+@keyframes badgeGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #ff4500, 0 0 16px #ff7f00;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px #ff4500, 0 0 24px #ffb347;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #ff4500, 0 0 16px #ff7f00;
+  }
+}
+
+.dynamic-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  filter: brightness(1.1);
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { opacity:1; }
+    50% { opacity:.6; }
+    100% { opacity:1; }
+  }
+
+  .accordion-item { border:0; }
+  .accordion-button:not(.collapsed) { box-shadow:none; }
+</style>
+</head>
+
+<body>
+
+<!-- COUNTDOWN BAR -->
+<section id="countdownBar" class="d-none">  </section>
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-white"
+    style="position:fixed; top:0; left:0; right:0; z-index:1060; background:#06283D; padding:.5rem 1rem; border-radius:0;">
+    <strong id="countdownTitle" class="fw-bold">Next adventure departs in</strong>
+
+    <div class="fw-bold fs-5">
+      <span id="cdDays">00</span>d
+      <span id="cdHours">00</span>h
+      <span id="cdMinutes">00</span>m
+      <span id="cdSeconds">00</span>s
     </div>
 
-    <header class="hero">
-      <div class="container">
-        <h1 class="fw-bold">Phoenix Adventures 2026</h1>
-        <p class="opacity-75">Explore Our 2026 Tour Schedule</p>
-      </div>
-    </header>
+    <span id="seatWarning" class="badge bg-light text-dark d-none pulse">
+      Last seats remaining
+    </span>
+  </div>
+</section>
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm" style="top:80px; z-index:1040;">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img src="img/logo/logo.jpg" alt="Phoenix Adventures logo" height="80" class="d-inline-block me-2">
+      <span class="fs-5"></span>
+    </a></a>
 
-    <div class="container search-container">
-      <input
-        type="text"
-        id="tourSearch"
-        class="form-control search-bar"
-        placeholder="Search by name or month..."
-      />
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavCollapse" aria-controls="mainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+
+    <div class="collapse navbar-collapse" id="mainNavCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="tours.html">Tours</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/themeparks.html">Destinations</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/eventpage/twistedtracks.html">Multipark trips</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="more.html">About</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="moreMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="moreMenu">
+            <li><a class="dropdown-item" href="FAQ.html">FAQs</a></li>
+            <li><a class="dropdown-item" href="info.html">Terms &amp; Info</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <form class="d-flex" role="search" style="max-width:360px;">
+        <input class="form-control me-2" type="search" placeholder="Find a tour" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+
+      <a class="btn btn-warning ms-3 fw-bold" href="#" role="button">Book now</a>
     </div>
+  </div>
+</nav>
+<main class="container my-5">
 
-    <main class="container mb-5">
-      <div class="accordion" id="toursAccordion">
+<!-- ================= JANUARY ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">January 2026</h2>
+<div class="accordion">
 
-        <!-- JANUARY -->
-        <div class="accordion-item" data-month="January">
-          <h2 class="accordion-header" id="headingJan">
-            <button
-              class="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#jan"
-              aria-expanded="true"
-              aria-controls="jan"
-            >
-              January
-            </button>
-          </h2>
-          <div id="jan" class="accordion-collapse collapse show" aria-labelledby="headingJan">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-01-31"
-                data-title="Disneyland Paris Dash"
-                data-price="£89.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£89.00</div>
-                  <h3 class="mb-0">Jan 31st – Disney Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">View Itinerary</button>
-                </div>
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
 
-                <div class="tour-modal-content d-none">
-                  <div class="itinerary-step">
-                    <strong>Friday:</strong> Overnight travel via Ferry Crossing.
-                  </div>
-                  <div class="itinerary-step">
-                    <strong>Saturday:</strong> Full day access to 1 park
-                    <em> (Opening Hours: 09:30 - 22:00)</em>
-                  </div>
-                  <div class="itinerary-step">
-                    <strong>Sunday:</strong> Morning arrival home.
-                  </div>
-                  <strong>Price</strong>
-                  <ul>
-                    <li>Adults 12+ - £99</li>
-                    <li>Children 3-11 - £95</li>
-                    <li>Infants/Travel Only - £59</li>
-                    <li>2 Park Upgrade - £20</li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
+<h3 class="accordion-header">
+<button class="accordion-button collapsed fw-semibold"
+data-bs-toggle="collapse" data-bs-target="#janDisney">
+<div class="d-flex justify-content-between w-100">
+<span class="fw-bold text-primary-emphasis">Sat 31st</span>
+<span itemprop="name">Disney Land Paris</span>
+</div>
+</button>
+</h3>
 
-        <!-- MARCH -->
-        <div class="accordion-item" data-month="March">
-          <h2 class="accordion-header" id="headingMar">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#mar"
-              aria-expanded="false"
-              aria-controls="mar"
-            >
-              March
-            </button>
-          </h2>
-          <div id="mar" class="accordion-collapse collapse" aria-labelledby="headingMar">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-03-07"
-                data-title="Disneyland Paris Dash"
-                data-price="£79.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">March 7th – Disney Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">View Itinerary</button>
-                </div>
+<div id="janDisney" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/disney.png" class="img-fluid rounded-4"
+alt="Efteling Winter" itemprop="image">
+</div>
 
-                <div class="tour-modal-content d-none">
-                  <div class="itinerary-step">
-                    <strong>Friday:</strong> Overnight travel via Ferry Crossing.
-                  </div>
-                  <div class="itinerary-step">
-                    <strong>Saturday:</strong> 1 full day to spend in Disneyland Paris.
-                  </div>
-                  <div class="itinerary-step">
-                    <strong>Sunday:</strong> Morning arrival home.
-                  </div>
-                </div>
-              </article>
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-01-30T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="99">
+<strong>£99 per person TRAVEL AND ONE PARK ENTRY)</strong>
+</div>
+<p itemprop="description">
+Embark on a magical adventure with a coach trip to Disneyland Paris! 
+Travel overnight in comfort on an executive touring coach and arrive 
+at the park ready to explore. Spend a full day experiencing all the wonders of 
+Disneyland, from thrilling rides to enchanting shows. Create unforgettable 
+memories with your family and friends on this exciting journey to the happiest 
+place on earth. After closing, head back to the coach for a restful journey back to the UK.
 
-              <article
-                class="tour-card sold-out"
-                data-is-sold-out="true"
-                data-event-start="2026-03-29"
-                data-title="Frozen Land Opening Dash"
-                data-price="£79.00"
-                style="background-image: url('img/disney/olaf.png');"
-              >
-                <div class="sold-out-ribbon">SOLD OUT</div>
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">Mar 29th – Frozen Land Opening Day DLP</h3>
-                  <button class="btn-glass more-info-btn" type="button">Join Waitlist</button>
-                </div>
 
-                <div class="tour-modal-content d-none">
-                  <p>
-                    Witness the opening of Arendelle! Join the waitlist for priority notification on cancellations.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
+</p>
 
-        <!-- APRIL -->
-        <div class="accordion-item" data-month="April">
-          <h2 class="accordion-header" id="headingApr">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#apr"
-              aria-expanded="false"
-              aria-controls="apr"
-            >
-              April
-            </button>
-          </h2>
-          <div id="apr" class="accordion-collapse collapse" aria-labelledby="headingApr">
-            <div class="accordion-body">
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
 
-              <article
-                class="tour-card"
-                data-event-start="2026-04-04"
-                data-title="Parc Asterix Opening Day"
-                data-price="£79.00"
-                style="background-image: url('img/parks/parcasterix/toutatis.webp');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">Parc Asterix - Opening Day</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
+<div class="mt-3"></div>
+  <h4 class="mb-2">Disneyland Paris Dash</h4>
 
-                <div class="tour-modal-content d-none">
-                  <strong>Parc Asterix</strong>
-                  <p>Embark on an adventure like no other with a coach trip to the comic book world of Parc Asterix!</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Parc Asterix, from thrilling rides to enchanting shows.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Parc Asterix. After closing, head back to the coach for a restful journey back to the UK.</p>
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    31 Jan 2026 → 2 Feb 2026
+  </p>
 
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li>Adult – £60.00</li>
-                    <li><strong>1 Child free for each full paying Adult Ticket</strong></li>
-                    <li>Additional Child - £52.00</li>
-                  </ul>
-                </div>
-              </article>
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Friday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Saturday:</strong> Full day access to 1 park (09:30–22:00)</li>
+    <li><strong>Sunday:</strong> Morning arrival home</li>
+  </ul>
 
-              <article
-                class="tour-card"
-                data-event-start="2026-04-25"
-                data-title="Magical Mystery Tour"
-                data-price="£74.00"
-                style="background-image: url('img/parks/mysteryimg.png');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£74.00</div>
-                  <h3 class="mb-0">Apr 25th – Mystery Tour</h3>
-                  <button class="btn-glass more-info-btn" type="button">Reveal Plan</button>
-                </div>
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Adults 12+  <strong>£99</strong></li>
+    <li>Children 3–11  <strong>£95</strong></li>
+    <li>Infants / Travel only <strong>£59</strong></li>
+    <li>2 Park Upgrade  <strong>£20</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
 
-                <div class="tour-modal-content d-none">
-                  <div class="itinerary-step">
-                    <strong>The Mystery:</strong> Friday boarding, Saturday secret park dash, Sunday journey home.
-                  </div>
-                </div>
-              </article>
+</div>
+</section>
 
-            </div>
-          </div>
-        </div>
+<!-- ================= February ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">February 2026</h2>
+<div class="accordion">
 
-        <!-- MAY -->
-        <div class="accordion-item" data-month="May">
-          <h2 class="accordion-header" id="headingMay">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#may"
-              aria-expanded="false"
-              aria-controls="may"
-            >
-              May
-            </button>
-          </h2>
-          <div id="may" class="accordion-collapse collapse" aria-labelledby="headingMay">
-            <div class="accordion-body">
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
 
+<!-- Efteling 16th  -->
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold sold-out"
+          data-bs-toggle="collapse" data-bs-target="#febEfteling">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-white">Mon 16th</span>
+      <span class="dynamic-badge-soldout">SOLD OUT</span>
+      <span itemprop="name" class="fw-bold text-white">Efteling</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="febEfteling" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks//efteling/eftelingmascot.jpg" class="img-fluid rounded-4"
+alt="Efteling Winter" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-01-30T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="74">
+<strong>£74 per person TRAVEL only</strong>
+</div>
+<p itemprop="description">
+Efteling is a magical fairytale theme park located in the Netherlands. 
+It is a place where dreams come true and enchantment fills the air. 
+As you enter the park, you are transported into a world of fantasy and wonder.
+
+Based on the classic tales of Hans Christian Anderson, 
+The Brothers Grimm & Charles Perrault you are sure to recognise the 
+influences of this amazing park
+
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Efteling Half Term Dash</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    Monday 16th February 2026 
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Sunday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Monday:</strong> Full day access to the Park</li>
+    <li><strong>Tuesday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Everyone aged 4 years 
+<br>Entrance Ticket  <strong>£42.00</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Join Waiting List</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+
+<!-- Efteling Wednesday 18th -->
+<div class="accordion">
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
+
+<!-- Efteling 16th  -->
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold coming-soon"
+          data-bs-toggle="collapse" data-bs-target="#febEfteling2">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-white">Wed 18th</span>
+      <span class="dynamic-badge-coming-soon">COMING SOON</span>
+      <span itemprop="name" class="fw-bold text-white">Efteling</span>
+    </div>
+  </button>
+</h3>
+
+
+</h3>
+
+<div id="febEfteling2" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks//efteling/eftelingmascot.jpg" class="img-fluid rounded-4"
+alt="Efteling Winter" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-01-30T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="74">
+<strong>£74 per person TRAVEL only</strong>
+</div>
+<p itemprop="description">
+Efteling is a magical fairytale theme park located in the Netherlands. 
+It is a place where dreams come true and enchantment fills the air. 
+As you enter the park, you are transported into a world of fantasy and wonder.
+
+Based on the classic tales of Hans Christian Anderson, 
+The Brothers Grimm & Charles Perrault you are sure to recognise the 
+influences of this amazing park
+
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Efteling Half Term Dash</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    Wednesday 18th February 2026 
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Tuesday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Wednesday:</strong> Full day access to the Park</li>
+    <li><strong>Thursday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Everyone aged 4 years 
+<br>Entrance Ticket  <strong>£42.00</strong></li>
+  </ul>
+</div>
+
+
+
+
+<button class="btn btn-red w-100 mt-4 fw-bold">Coming Soon</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+
+</section>
+
+<!-- ================= March ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">March 2026</h2>
+<div class="accordion">
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
+
+<h3 class="accordion-header">
+<button class="accordion-button collapsed fw-semibold"
+data-bs-toggle="collapse" data-bs-target="#MarchDLP">
+<div class="d-flex justify-content-between w-100">
+<span class="fw-bold text-primary-emphasis">Sat 7th</span>
+<span itemprop="name">Disney Land Paris</span>
+</div>
+</button>
+</h3>
+
+<div id="MarchDLP" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/disney.png" class="img-fluid rounded-4"
+alt="DLP Dash" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-03-07T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£99 per person TRAVEL AND ONE PARK ENTRY)</strong>
+</div>
+<p itemprop="description">
+Embark on a magical adventure with a coach trip to Disneyland Paris! 
+Travel overnight in comfort on an executive touring coach and arrive 
+at the park ready to explore. Spend a full day experiencing all the wonders of 
+Disneyland, from thrilling rides to enchanting shows. Create unforgettable 
+memories with your family and friends on this exciting journey to the happiest 
+place on earth. After closing, head back to the coach for a restful journey back to the UK.
+
+
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Disneyland Paris Dash</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    6 March 2026 → 8 March 2026
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Friday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Saturday:</strong> Full day access to 1 park (09:30–22:00)</li>
+    <li><strong>Sunday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Adults 12+  <strong>£99</strong></li>
+    <li>Children 3–11  <strong>£95</strong></li>
+    <li>Infants / Travel only <strong>£59</strong></li>
+    <li>2 Park Upgrade  <strong>£20</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
+
+</div>
+
+
+<section class="mb-5">
+<div class="accordion">
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold sold-out"
+          data-bs-toggle="collapse" data-bs-target="#MarchDLPFrozen">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-white">Mon 16th</span>
+      <span class="dynamic-badge-soldout">SOLD OUT</span>
+      <span itemprop="name" class="fw-bold text-white">Disney</span>
+    </div>
+  </button>
+</h3>
+
+<div id="MarchDLPFrozen" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/disney/olaf.png" class="img-fluid rounded-4"
+alt="DLP Dash" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-03-29T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£79 per person TRAVEL AND ONE PARK ENTRY)</strong>
+</div>
+<p itemprop="description">
+Embark on a magical adventure with a coach trip to Disneyland Paris for the Opening of the Frozen area! 
+Travel overnight in comfort on an executive touring coach and arrive 
+at the park ready to explore. Spend a full day experiencing all the wonders of 
+Disneyland, from thrilling rides to enchanting shows. Create unforgettable 
+memories with your family and friends on this exciting journey to the happiest 
+place on earth. After closing, head back to the coach for a restful journey back to the UK.
+
+
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Disneyland Paris Dash</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    28 March 2026 → 30 March 2026
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Friday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Saturday:</strong> Full day access to 1 park for the 
+      opening of the Frozen Land (09:30–22:00)</li>
+    <li><strong>Sunday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Adults 12+  <strong>£99</strong></li>
+    <li>Children 3–11  <strong>£95</strong></li>
+    <li>Infants / Travel only <strong>£59</strong></li>
+    <li>2 Park Upgrade  <strong>£20</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
+
+</div>
+</section>
+</div>
+
+<!-- ================= April ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">April 2026</h2>
+<div class="accordion">
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold special-offer"
+          data-bs-toggle="collapse" data-bs-target="#AprilAst">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-dark">Tue 7th</span>
+      <span class="dynamic-badge-special">Offer</span>
+      <span itemprop="name" class="fw-bold text-dark">Parc Asterix</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="AprilAst" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/parcasterix/toutatis.webp" class="img-fluid rounded-4"
+alt="DLP Dash" itemprop="image">
+</div>
+
+
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-03-07T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£79 per person TRAVEL ONLY</strong>
+<p>
+  <br>
+<strong>April Special Offer - 1 Free Child Ticket with every Full Paying Adult</strong>
+</p>
+</div>
+<p itemprop="description">
+Parc Asterix is home to some of the most thrilling rides in all of France. From the heart-pounding twists and turns of Goudurix to the exhilarating drops of OzIris, there is something for everyone at this much-loved theme park. Whether you're a thrill-seeker looking for an adrenaline rush or just looking to have some fun with friends and family, Parc Asterix has it all.
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Parc Asterix</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    6 April 2026 → 8 April 2026
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Monday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Tuesday:</strong> Full day access to thepark</li>
+    <li><strong>Wednesday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Adults <strong>£79</strong> with 1 free child per adult</li>
+    <li>Additional Children - <strong>£52</strong></li>
+    <li>Park Ticket <strong>£60</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</article>
+
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold special-offer"
+          data-bs-toggle="collapse" data-bs-target="#AprilAst2">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-dark">Sat 10th</span>
+      <span class="dynamic-badge-special">Offer</span>
+      <span itemprop="name" class="fw-bold text-dark">Parc Asterix</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="AprilAst2" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/parcasterix/Disco.webp" class="img-fluid rounded-4"
+alt="DLP Dash" itemprop="image">
+</div>
+
+
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-03-07T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£79 per person TRAVEL ONLY</strong>
+<p>
+  <br>
+<strong>April Special Offer - 1 Free Child Ticket with every Full Paying Adult</strong>
+</p>
+</div>
+<p itemprop="description">
+Parc Asterix is home to some of the most thrilling rides in all of France. From the heart-pounding twists and turns of Goudurix to the exhilarating drops of OzIris, there is something for everyone at this much-loved theme park. Whether you're a thrill-seeker looking for an adrenaline rush or just looking to have some fun with friends and family, Parc Asterix has it all.
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  <h4 class="mb-2">Parc Asterix</h4>
+
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-01-31T22:00">
+    <meta itemprop="endDate" content="2026-02-02T10:00">
+    6 April 2026 → 8 April 2026
+  </p>
+
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Friday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Saturday:</strong> Full day access to thepark</li>
+    <li><strong>Sunday:</strong> Morning arrival home</li>
+  </ul>
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+    <li>Adults <strong>£79</strong> with 1 free child per adult</li>
+    <li>Additional Children - <strong>£52</strong></li>
+    <li>Park Ticket <strong>£60</strong></li>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
+
+
+<div class="accordion">
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="18" data-capacity="50">
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold "
+          data-bs-toggle="collapse" data-bs-target="#MysteryTour">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-dark">Sat 25th</span>
+      <span class="dynamic-badge-special">???</span>
+      <span itemprop="name" class="fw-bold text-dark">Mystery Tour</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="MysteryTour" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/mysteryimg.png" class="img-fluid rounded-4"
+alt="DLP Dash" itemprop="image">
+</div>
+
+
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-03-07T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£74 per person TRAVEL and TICKET Included</strong>
+<p>
+  <br>
+<strong>MYSTERY LOCATION ❓❓❓</strong>
+</p>
+</div>
+<p itemprop="description">
+Are you ready for a heart-pounding escapade? Join us at Phoenix Adventures, where we dare to be different! Our Magical Mystery Tour is not just any ordinary journey; it’s an adventure shrouded in enchantment and surprises. Picture this: you hop aboard our comfortable coach, and as you settle in, you have no idea where you’re headed! Will it be a whimsical theme park in the shadow of the Alps, or perhaps a magical wonderland nestled somewhere in the heart of Europe? Whatever the destination, our goal is to ensure your experience is filled with laughter, excitement, and unforgettable moments. With Phoenix Adventures, you can count on travelling in style with all the comforts you deserve, as we unveil each mystery step by step. So, pack your sense of adventure, and let’s discover the wonders that await behind the curtain of the unknown!</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
   
 
-              <article
-                class="tour-card"
-                data-event-start="2026-05-09"
-                data-title="Disneyland Dash"
-                data-price="£79.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">May 9th – Disneyland Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
+  <p class="mb-2">
+    <strong>Dates:</strong>
+    <meta itemprop="startDate" content="2026-05-24T22:00">
+    <meta itemprop="endDate" content="2026-05-26T10:00">
+    24 April 2026 → 26 April 2026
+  </p>
 
-                <div class="tour-modal-content d-none">
-                  <strong>Disneyland Dash</strong>
-                  <p>Price is for full coach travel ONLY in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Disneyland Paris.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Disneyland Paris.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
+  <h5 class="mb-1">Itinerary</h5>
+  <ul>
+    <li><strong>Friday:</strong> Overnight travel via Ferry Crossing</li>
+    <li><strong>Saturday:</strong> Full day access to the park</li>
+    <li><strong>Monday:</strong> Morning arrival home</li>
+  </ul>
 
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li><strong>Adult 1 Day 1 Park</strong> – £60 Low Season to £83 High Season</li>
-                    <li><strong>Child 1 Day 1 Park</strong> – £55 Low Season to £77 High Season</li>
-                    <li><strong>Adult 1 Day 2 Park</strong> – £75 Low Season to £115 High Season</li>
-                    <li><strong>Child 1 Day 2 Park</strong> – £72 Low Season to £108 High Season</li>
-                  </ul>
-                </div>
-              </article>
+  <h5 class="mb-1">Price : travel and park entry</h5>
+  <ul>
+    <li>Adults <strong>£74</strong></li>
+    <li>Children 3 - 11 <strong>£69</strong></li>
+    <li>Children 0 - 2 <strong>£59</strong></li>
 
-              <article
-                class="tour-card"
-                data-event-start="2026-05-16"
-                data-title="Walibi Belgium Dash"
-                data-price="£74.00"
-                style="background-image: url('img/NBG/kondaa.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£74.00</div>
-                  <h3 class="mb-0">May 16th – Walibi Belgium</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</article>
 
-                <div class="tour-modal-content d-none">
-                  <strong>Walibi Belgium!</strong>
-                  <p>Travel Only Price for just £74</p>
-                  <p>Price is for full coach travel in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Walibi Belgium, from thrilling rides to enchanting shows.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Walibi Belgium.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
 
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li>1.4m and above: £43.50</li>
-                    <li>1m - 1.4m: £39.50</li>
-                    <li>Children under 1m: Free</li>
-                  </ul>
-                </div>
-              </article>
 
-            </div>
-          </div>
-        </div>
 
-        <!-- JUNE -->
-        <div class="accordion-item" data-month="June">
-          <h2 class="accordion-header" id="headingJun">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#jun"
-              aria-expanded="false"
-              aria-controls="jun"
-            >
-              June
-            </button>
-          </h2>
-          <div id="jun" class="accordion-collapse collapse" aria-labelledby="headingJun">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-06-13"
-                data-title="Efteling Dash"
-                data-price="£74.00"
-                style="background-image: url('img/parks/efteling/baron.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£74.00</div>
-                  <h3 class="mb-0">June 13th – Efteling Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">Details</button>
-                </div>
 
-                <div class="tour-modal-content d-none">
-                  <p>
-                    Experience the Netherlands' Fairytale Forest and the dive-coaster Baron 1898.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
 
-        <!-- JULY -->
-        <div class="accordion-item" data-month="July">
-          <h2 class="accordion-header" id="headingJul">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#jul"
-              aria-expanded="false"
-              aria-controls="jul"
-            >
-              July
-            </button>
-          </h2>
-          <div id="jul" class="accordion-collapse collapse" aria-labelledby="headingJul">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-07-11"
-                data-title="Disney Dash"
-                data-price="£89.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£89.00</div>
-                  <h3 class="mb-0">July 11th – Disney Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
 
-                <div class="tour-modal-content d-none">
-                  <p>Summer holiday magic with full park hopper access.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
 
-        <!-- SEPTEMBER -->
-        <div class="accordion-item" data-month="September">
-          <h2 class="accordion-header" id="headingSep">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#sep"
-              aria-expanded="false"
-              aria-controls="sep"
-            >
-              September
-            </button>
-          </h2>
-          <div id="sep" class="accordion-collapse collapse" aria-labelledby="headingSep">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-09-12"
-                data-title="Disney Dash"
-                data-price="£89.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£89.00</div>
-                  <h3 class="mb-0">Sept 12th – Disney Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
+<!-- ================= OCTOBER ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">October 2026</h2>
+<div class="accordion">
 
-                <div class="tour-modal-content d-none">
-                  <p>Perfect autumn escape to the Disneyland Paris parks.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="4" data-capacity="50">
 
-        <!-- OCTOBER -->
-        <div class="accordion-item" data-month="October">
-          <h2 class="accordion-header" id="headingOct">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#oct"
-              aria-expanded="false"
-              aria-controls="oct"
-            >
-              October
-            </button>
-          </h2>
-          <div id="oct" class="accordion-collapse collapse" aria-labelledby="headingOct">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-10-03"
-                data-title="Toverland"
-                data-price="£79.00"
-                style="background-image: url('img/parkentry/toverland.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£129.00</div>
-                  <h3 class="mb-0">Oct 3rd – Toverland</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
-
-                <div class="tour-modal-content d-none">
-                  <strong>Toverland</strong>
-                  <p>Price is for full coach travel ONLY in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Toverland.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Toverland.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
-
-                  <strong>Travel Prices</strong>
-                  <ul>
-                    <li>1.4m and above: £129.00</li>
-                    <li>90cm - 1.4m: £125.00</li>
-                    <li>Children under 1m: £84</li>
-                  </ul>
-
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li>Adult and children 90cm and over: From £29.00</li>
-                    <li>Children up to 90cm: Free</li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-
-        <!-- NOVEMBER -->
-        <div class="accordion-item" data-month="November">
-          <h2 class="accordion-header" id="headingNov">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#nov"
-              aria-expanded="false"
-              aria-controls="nov"
-            >
-              November
-            </button>
-          </h2>
-          <div id="nov" class="accordion-collapse collapse" aria-labelledby="headingNov">
-            <div class="accordion-body">
-
-              <article
-                class="tour-card"
-                data-event-start="2026-11-14"
-                data-title="Disneyland Dash"
-                data-price="£79.00"
-                style="background-image: url('img/disney/discastle.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">Nov 14th – Disneyland Dash</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
-
-                <div class="tour-modal-content d-none">
-                  <strong>Disneyland Dash</strong>
-                  <p>Price is for full coach travel ONLY in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Disneyland Paris.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Disneyland Paris.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
-
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li><strong>Adult 1 Day 1 Park</strong> – £60 Low Season to £83 High Season</li>
-                    <li><strong>Child 1 Day 1 Park</strong> – £55 Low Season to £77 High Season</li>
-                    <li><strong>Adult 1 Day 2 Park</strong> – £75 Low Season to £115 High Season</li>
-                    <li><strong>Child 1 Day 2 Park</strong> – £72 Low Season to £108 High Season</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article
-                class="tour-card"
-                data-event-start="2026-11-21"
-                data-title="Plopsaland Belgium"
-                data-price="£69.00"
-                style="background-image: url('img/NBG/plopsa.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£69.00</div>
-                  <h3 class="mb-0">Nov 21st – Plopsaland Belgium</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
-
-                <div class="tour-modal-content d-none">
-                  <strong>Plopsaland Belgium</strong>
-                  <p>Price is for full coach travel ONLY in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Plopsaland Belgium.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Plopsaland Belgium.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
-
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li>1m tall and above: £37.25 - £40.75 depending on season</li>
-                    <li>Under 1m tall: £15.50</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article
-                class="tour-card"
-                data-event-start="2026-11-28"
-                data-title="Phantasialand"
-                data-price="£79.00"
-                style="background-image: url('img/parks/phantasialand/taron.jpg');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£79.00</div>
-                  <h3 class="mb-0">Nov 28th – Phantasialand</h3>
-                  <button class="btn-glass more-info-btn" type="button">Itinerary</button>
-                </div>
-
-                <div class="tour-modal-content d-none">
-                  <strong>Phantasialand</strong>
-                  <p>Price is for full coach travel ONLY in an executive touring coach and return Channel Crossing.</p>
-                  <p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore.</p>
-                  <p>Spend a full day experiencing all the wonders of Phantasialand.</p>
-                  <p>Create unforgettable memories with your family and friends on this exciting journey to Phantasialand.</p>
-                  <p>After closing, head back to the coach for a restful journey back to the UK.</p>
-
-                  <strong>Park Prices</strong>
-                  <ul>
-                    <li>Adult from £39</li>
-                    <li>Children from £37</li>
-                  </ul>
-                </div>
-              </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- DECEMBER -->
-        <div class="accordion-item" data-month="December">
-          <h2 class="accordion-header" id="headingDec">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#dec"
-              aria-expanded="false"
-              aria-controls="dec"
-            >
-              December
-            </button>
-          </h2>
-          <div id="dec" class="accordion-collapse collapse" aria-labelledby="headingDec">
-            <div class="accordion-body">
-              <article
-                class="tour-card"
-                data-event-start="2026-12-05"
-                data-title="Magical Mystery Tour"
-                data-price="£74.00"
-                style="background-image: url('img/parks/mysteryimg.png');"
-              >
-                <div class="tour-content">
-                  <div class="tour-price-tag">£74.00</div>
-                  <h3 class="mb-0">Dec 5th – Mystery Tour</h3>
-                  <button class="btn-glass more-info-btn" type="button">Reveal Plan</button>
-                </div>
-
-                <div class="tour-modal-content d-none">
-                  <p>
-                    A festive mystery dash to close out the year! Includes the snoring championship return leg.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </main>
-
-    <div class="modal fade" id="tourModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div id="modalImg" class="modal-header-img"></div>
-          <div class="modal-body p-4">
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <h2 class="fw-bold mb-0" id="modalTitle"></h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <p id="modalDate" class="fw-bold small" style="color: var(--phoenix-orange)"></p>
-            <hr />
-            <div id="modalDesc"></div>
-            <button
-              id="modalActionBtn"
-              class="btn btn-dark w-100 py-3 mt-4 fw-bold shadow-sm"
-              style="border-radius: 15px; background: #ff6b00; border: none"
-              type="button"
-            >
-              BOOK NOW
-            </button>
-          </div>
-        </div>
-      </div>
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold halloween"
+          data-bs-toggle="collapse" data-bs-target="#octAsterix">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-white">Sat 10th</span>
+      <span class="dynamic-badge-halloween">Halloween</span>
+      <span itemprop="name" class="fw-bold text-white">Parc Astérix</span>
     </div>
+  </button>
+</h3>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const now = new Date();
-        let nextTrip = null;
-        let minDiff = Infinity;
 
-        // 1. TICKER LOGIC
-        document.querySelectorAll(".tour-card").forEach((card) => {
-          const tripDate = new Date(card.dataset.eventStart);
-          const diff = tripDate - now;
-          if (diff > 0 && diff < minDiff) {
-            minDiff = diff;
-            nextTrip = { name: card.dataset.title, date: tripDate };
-          }
-        });
+<div id="octAsterix" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/parcasterix/parcasthallow.jpg"
+class="img-fluid rounded-4" alt="Parc Astérix Halloween" itemprop="image">
+</div>
 
-        if (nextTrip) {
-          const ticker = document.getElementById("mainTicker");
-          const badge = document.getElementById("badgeText");
-          const diffMs = nextTrip.date - now;
-          const diffDays = Math.ceil(diffMs / 86400000);
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-10-10T19:00">
+<meta itemprop="endDate" content="2026-10-11T01:00">
 
-          document.getElementById("ticker-trip-name").innerText = nextTrip.name;
+<p itemprop="description">
+Enjoy a full day at Parc Astérix followed by the legendary
+<strong>Fear on the Park</strong> Halloween event, with the park open until 1am.
+</p>
 
-          if (diffMs < 24 * 60 * 60 * 1000) {
-            ticker.classList.add("urgent");
-            badge.innerText = "LAST CALL";
-            document.getElementById("ticker-days").innerText = "Departing Tomorrow!";
-          } else if (diffMs < 48 * 60 * 60 * 1000) {
-            ticker.classList.add("urgent");
-            badge.innerText = "DEPARTING SOON";
-            document.getElementById("ticker-days").innerText = "2 Days to go";
-          } else {
-            document.getElementById("ticker-days").innerText = `${diffDays} Days to go`;
-          }
-        }
+<ul>
+<li>Executive return coach travel</li>
+<li>Day & night park admission</li>
+<li>Return Channel crossing</li>
+</ul>
 
-        // 2. SEARCH
-        document.getElementById("tourSearch").addEventListener("input", (e) => {
-          const term = e.target.value.toLowerCase();
-          document.querySelectorAll(".tour-card").forEach((card) => {
-            const month = card.closest(".accordion-item")?.dataset.month || "";
-            const match =
-              (card.dataset.title || "").toLowerCase().includes(term) ||
-              month.toLowerCase().includes(term);
-            card.style.display = match ? "flex" : "none";
-          });
-        });
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="174">
+<strong>£174 adult · £84 infant</strong>
+</div>
 
-        // 3. MODALS
-        const modal = new bootstrap.Modal(document.getElementById("tourModal"));
-        document.addEventListener("click", (e) => {
-          const btn = e.target.closest(".more-info-btn");
-          if (!btn) return;
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
 
-          const card = btn.closest(".tour-card");
-          const soldOut = card.dataset.isSoldOut === "true";
+</div>
+</section>
 
-          document.getElementById("modalTitle").innerText =
-            (soldOut ? "WAITLIST: " : "") + (card.dataset.title || "");
+</main>
 
-          document.getElementById("modalDate").innerText =
-            "Departure: " + (card.dataset.eventStart || "");
+<footer class="bg-dark text-white py-4 text-center">
+© Phoenix Adventures · Executive Theme Park Travel
+</footer>
 
-          document.getElementById("modalDesc").innerHTML =
-            card.querySelector(".tour-modal-content")?.innerHTML || "";
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-          document.getElementById("modalImg").style.backgroundImage =
-            card.style.backgroundImage || "";
+<!-- COUNTDOWN LOGIC -->
+<script>
+(function(){
+  const events = [...document.querySelectorAll('[itemscope][itemtype*="Event"]')]
+    .map(e => {
+      const date = e.querySelector('[itemprop="startDate"]')?.content;
+      return {
+        el: e,
+        date: new Date(date),
+        seats: +e.dataset.seats
+      };
+    })
+    .filter(e => e.date > new Date())
+    .sort((a,b) => a.date - b.date);
 
-          const actionBtn = document.getElementById("modalActionBtn");
-          actionBtn.innerText = soldOut ? "JOIN THE WAITLIST" : "BOOK THIS ADVENTURE";
-          actionBtn.style.background = soldOut ? "#2d3436" : "#ff6b00";
+  if (!events.length) return;
 
-          modal.show();
-        });
-      });
-    </script>
-  </body>
+  const next = events[0];
+  const bar = document.getElementById('countdownBar');
+  const seatWarning = document.getElementById('seatWarning');
+
+  bar.classList.remove('d-none');
+
+  if (next.seats <= 8) seatWarning.classList.remove('d-none');
+
+  function tick(){
+    const diff = next.date - new Date();
+    if (diff <= 0) return;
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000 % 24);
+    const m = Math.floor(diff / 60000 % 60);
+    const s = Math.floor(diff / 1000 % 60);
+
+    cdDays.textContent = String(d).padStart(2,'0');
+    cdHours.textContent = String(h).padStart(2,'0');
+    cdMinutes.textContent = String(m).padStart(2,'0');
+    cdSeconds.textContent = String(s).padStart(2,'0');
+  }
+
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
+
+</body>
 </html>
