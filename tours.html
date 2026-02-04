@@ -60,6 +60,18 @@
   animation: badgePulse 2s infinite;
 }
 
+.dynamic-badge-winter {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  background: rgba(17, 63, 190, 0.2); /* blended into header */
+  color: #f7f7fa;
+  box-shadow: 0 2px 6px rgba(214, 71, 71, 0.1);
+  animation: badgePulse 2s infinite;
+}
+
 /* Collapsed accordion header when coming soon */
 .accordion-button.collapsed.coming-soon {
   background: linear-gradient(90deg, #1e90ff, #4db8ff); /* blue gradient */
@@ -113,13 +125,16 @@
 }
 
 /* Collapsed accordion header for Special Offer */
-.accordion-button.collapsed.mystery {
-  background: #d8f136; /* Bright yellow gradient */
-  color: #000;
+
+
+.accordion-button.collapsed.winter {
+  background: #42b1ec; 
+  color: #040303;
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   font-weight: 600;
   transition: background 0.3s, transform 0.3s;
+  
 }
 
 /* Collapsed accordion header for Special Offer */
@@ -1374,12 +1389,74 @@ itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 <h2 class="fw-bold mb-3">August 2026</h2>
 <div class="accordion">
 
-
-<!-- Efteling Aug Dash Trip -->
+<!-- Parc Asterix Aug Dash Trip -->
 <div class="accordion">
 <article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
 itemscope itemtype="https://schema.org/Event"
 data-seats="18" data-capacity="50">
+
+<h3 class="accordion-header">
+<button class="accordion-button collapsed fw-semibold"
+data-bs-toggle="collapse" data-bs-target="#AugAsterix">
+<div class="d-flex justify-content-between w-100">
+<span class="fw-bold text-primary-emphasis">Sat 1st</span>
+<span itemprop="name">Parc Asterix</span>
+</div>
+</button>
+</h3>
+
+</h3>
+
+<div id="AugAsterix" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/FraGer/image-34.jpg" class="img-fluid rounded-4"
+alt="Efteling" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-06-13T22:00">
+<div class="bg-light p-3 rounded-3 mt-3"
+itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="priceCurrency" content="GBP">
+<meta itemprop="price" content="79">
+<strong>£79 per person TRAVEL only</strong>
+</div>
+<p itemprop="description">
+<p>Embark on an adventure like no other with a coach trip to the comic book world of Parc Asterix! </p>
+<p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore. </p>
+Spend a full day experiencing all the wonders of Parc Asterix, from thrilling rides to enchanting shows. </p>
+<p>Create unforgettable memories with your family and friends on this exciting journey to Parc Asterix.</p>
+<p>After closing, head back to the coach for a restful journey back to the UK.</p>
+
+<p>Trip consists of:-</p>
+<ul>
+  <li>Overnight coach travel from your chosen boarding point to Parc Asterix with early Ferry Channel crossing.</li>
+  <li>1 full day to spend in Parc Asterix.</li>
+  <li>Overnight coach travel from Parc Asterix back to your chosen boarding point with early Ferry Channel crossing.</li>
+</ul>
+
+<strong>Rules</strong>
+This departure will go ahead subject to meeting the minimum number of passengers to make the tour viable.
+
+<p>If the minimum number of passengers is not reached we will issue full refunds.</p> 
+
+</p>
+
+<p>Price</p>
+  <ul>
+   
+    <li>Travel Only (Annual Pass Holders or sourcing Tickets elsewhere) - £79</li>
+    <li>Park Ticket: £49 (Ages 3-11)</li>
+    <li>Park Ticket: Under 3 - FREE</li>
+  </ul>
+
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+
+</div>
+</div>
+</div>
+</article>
 
 
 <!-- Efteling Aug Dash Trip -->
@@ -1646,8 +1723,146 @@ itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 </div>
 </article>
 
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="4" data-capacity="50">
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold halloween"
+          data-bs-toggle="collapse" data-bs-target="#octibilaw">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-white">Sat 25th</span>
+      <span class="dynamic-badge-halloween">Halloween</span>
+      <span itemprop="name" class="fw-bold text-white">Walibi Belgium: IBILAW</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="octibilaw" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/walibiBelgium/ibilaw.jpg"
+class="img-fluid rounded-4" alt="ibilaw" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-10-25T19:00">
+<meta itemprop="endDate" content="2026-10-26T01:00">
+
+<p itemprop="description"></p>
+<p>This Halloween, Walibi Belgium transforms into a spine-chilling spectacle for thrill-seekers and scare enthusiasts alike. </p>
+<p>With its renowned 'Halloween Ibilaw' event, the park offers an array of haunted houses, terrifying mazes, and frightful performances that send shivers down the spine.</p>
+<p>From ghoulish creatures lurking in the shadows to heart-pounding rides that take on a sinister twist, visitors can embrace the spooky season in a truly electrifying atmosphere.</p>
+<p>Whether you're seeking thrills or chills, Walibi Belgium's Halloween Ibilaw promises an unforgettable experience filled with laughter, screams, and the eerie excitement that makes this time of year so special.</p>
+
+</p>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Return Channel crossing</li>
+<li>Full day park admission</li>
+</ul>
+
+<div class="mt-3"></div>
+  
+
+
+  <h5 class="mb-1">Price</h5>
+  <ul>
+<li>Travel and Entrance Ticket: Adult and Children over 1.4m: <strong>£139</strong></li>
+<li>Travel and Entrance Ticket: Child under 1.4m: <strong>£134</strong></li>
+<li>Child under 1m / or Travel Only: <strong>£84</strong></li>
+</ul>
+
+  </ul>
+</div>
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+</div>
+</div>
+</div>
+</article>
 </div>
 </section>
+
+<!-- ================= November ================= -->
+<section class="mb-5">
+<h2 class="fw-bold mb-3">November 2026</h2>
+<div class="accordion">
+
+<article class="accordion-item mb-4 rounded-4 shadow-sm overflow-hidden"
+itemscope itemtype="https://schema.org/Event"
+data-seats="4" data-capacity="50">
+
+<h3 class="accordion-header">
+  <button class="accordion-button collapsed fw-semibold winter"
+          data-bs-toggle="collapse" data-bs-target="#novPhan">
+    <div class="d-flex justify-content-between w-100 align-items-center">
+      <span class="fw-bold text-black">Sat 28th</span>
+      <span class="dynamic-badge-winter">Winter</span>
+      <span itemprop="name" class="fw-bold text-black">Phantasialand</span>
+    </div>
+  </button>
+</h3>
+
+
+<div id="novPhan" class="accordion-collapse collapse">
+<div class="accordion-body row g-4 bg-white">
+<div class="col-lg-5">
+<img src="img/parks/phantasialand/klugheim.webp"
+class="img-fluid rounded-4" alt="Phantasialand Wintertraum" itemprop="image">
+</div>
+
+<div class="col-lg-7">
+<meta itemprop="startDate" content="2026-11-28T19:00">
+<meta itemprop="endDate" content="2026-11-29T01:00">
+
+<p itemprop="description">
+Enjoy a full day at Phantasialand for their incredible
+<strong>wintertraum event</strong>
+
+<ul>
+<li>Executive return coach travel</li>
+<li>Day & night park admission</li>
+<li>Return Channel crossing</li>
+</ul> 
+<p itemprop="description">
+<p>Embark on a magical adventure with a coach trip to Phantasialand! </p>
+<p>Travel overnight in comfort on an executive touring coach and arrive at the park ready to explore. </p>
+<p>Spend a full day experiencing all the wonders of Phantasialand, from thrilling rides to enchanting shows all with a festive overlay. </p>
+<p>Create unforgettable memories with your family and friends on this exciting journey to this amazing family friendly theme park with amazing thrilling rides and great shows. After closing, head back to the coach for a restful journey back to the UK.</p>
+
+<strong>Trip consists of:</strong>
+<ul>
+  <li>Overnight coach travel from your chosen boarding point to Phantasialand with Ferry Channel crossing.</li>
+  <li>1 full day to spend in Phantasialand.</li>
+  <li>Overnight coach travel from Phantasialand back to your chosen boarding point with Ferry Channel crossing.</li>
+</ul>
+
+<strong>Rules</strong>
+This departure will go ahead subject to meeting the minimum number of passengers to make the tour viable.
+
+<p>If the minimum number of passengers is not reached we will issue full refunds.</p> 
+
+</p>
+
+<p>Price</p>
+  <ul>
+   
+    <li>Travel Only (Annual Pass Holders or sourcing Tickets elsewhere) - £79</li>
+    <li>Park Ticket: £64 (Ages 11+)</li>
+    <li>Park Ticket: £55 (Ages 4-11)</li>
+    <li>Park Ticket: Under 4 - FREE</li>
+  </ul>
+  <p>Price is for full coach travel in an executive touring coach with Return Ferry crossing ONLY (You can add an Entrance Ticket if needed at the booking stage)</p>
+
+<button class="btn btn-warning w-100 mt-4 fw-bold">Book now</button>
+
+</div>
+</div>
+</div>
+</article>
+
 
 </main>
 
