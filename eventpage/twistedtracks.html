@@ -10,32 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
-    :root{
-      --brand:#2d8fdd;
-      --brand-dark:#1b6fb8;
-      --cta:#ff4500;
-      --cta-dark:#e63900;
-      --ink:#0b3a66;
-
-      --page-bg:#f9fbfe;
-      --card-border:#e6effa;
-      --chip-bg:#eef6ff;
-      --chip-fg:#2d8fdd;
-    }
-
+    
     html{ scroll-behavior:smooth; }
     body{ font-family:"Poppins",sans-serif; background:var(--page-bg); color:#333; }
-
-    /* Announcement */
-    .announcement{
-      background:var(--brand);
-      font-weight:600;
-      font-size:.95rem;
-    }
-
-    /* Navbar include container (optional) */
-    .navbar-placeholder{ min-height:60px; }
-
+    
     /* Hero */
     .hero{
       position:relative; min-height:48vh; display:flex; align-items:center; color:#fff;
@@ -98,6 +76,7 @@
     .accordion-button{ font-weight:700; }
     .accordion-button:not(.collapsed){ background:#eef6ff; color:var(--ink); box-shadow:none; }
 
+
     /* Round map thumbnail */
     .map-thumb{
       width:110px; height:110px; object-fit:cover;
@@ -114,14 +93,10 @@
     footer a:hover{ text-decoration:underline; }
   </style>
 
-  <link href="../css/phoenix-modern.css" rel="stylesheet"/>
 </head>
 <body>
 
-  <!-- Announcement Bar -->
-  <div class="text-center text-white py-2 announcement">
-    Book today from just £1 deposit — Flexible payment plans available
-  </div>
+  
 
   <!-- Navbar include -->
   <div id="navbar-placeholder" class="navbar-placeholder"></div>
@@ -491,21 +466,19 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="py-4">
-    <div class="container">
-      <div class="row gy-3 align-items-center">
-        <div class="col-md">
-          <div class="d-flex flex-wrap gap-3">
-            <a href="/index.html">Home</a>
-            <a href="/tour-list-2025.html">2025 Tour List</a>
-            <a href="/theme-park-trips-europe.html">Theme Park Trips - Europe</a>
-            <a href="/halloween-trips.html">Halloween Trips</a>
-            <a href="/twisted-tracks.html">Twisted Tracks</a>
-          </div>
-        </div>
-         <!-- Footer include -->
+     <!-- Footer include -->
 <div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

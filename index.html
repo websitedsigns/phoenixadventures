@@ -22,66 +22,9 @@
   <link rel="preload" href="/img/phoenix/busindex.JPG" as="image"/>
   <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet"/>
+  <link href="navbar.html" rel="import"/>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const resp = await fetch('/tours.html', {cache: 'no-store'});
-      if (!resp.ok) return;
-      const html = await resp.text();
-      const parsed = new DOMParser().parseFromString(html, 'text/html');
-
-      // Inject announcement (if present in tours.html)
-      const announce = parsed.querySelector('#announcement, .announcement, [id*="announcement"]');
-      if (announce) {
-        const targetAnn = document.getElementById('announcement-placeholder');
-        if (targetAnn) targetAnn.innerHTML = announce.outerHTML;
-      }
-
-      // Inject navbar (if present in tours.html)
-      const nav = parsed.querySelector('[role="navigation"], #navbar, .navbar, [id*="nav"]');
-      if (nav) {
-        const targetNav = document.getElementById('navbar-placeholder');
-        if (targetNav) targetNav.innerHTML = nav.outerHTML;
-      }
-
-      // Replace ticker with the one from tours.html (if found)
-      const toursTicker = parsed.querySelector('.ticker, #ticker, [aria-label="Next event"]');
-      if (toursTicker) {
-        const existingTicker = document.querySelector('.ticker, #ticker, [aria-label="Next event"]');
-        if (existingTicker) existingTicker.replaceWith(toursTicker.cloneNode(true));
-        else {
-          // If no ticker currently, insert after nav placeholder
-          const navPlaceholder = document.getElementById('navbar-placeholder');
-          if (navPlaceholder && navPlaceholder.parentNode) {
-            navPlaceholder.parentNode.insertBefore(toursTicker.cloneNode(true), navPlaceholder.nextSibling);
-          }
-        }
-      }
-
-      // Re-run any scripts inside injected fragments so interactive parts initialize
-      function runInlineScripts(root) {
-        (root || document).querySelectorAll('script').forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) ns.src = s.src;
-          if (s.type) ns.type = s.type;
-          ns.textContent = s.textContent;
-          ns.async = false;
-          document.head.appendChild(ns);
-          s.remove();
-        });
-      }
-      runInlineScripts(document.getElementById('announcement-placeholder'));
-      runInlineScripts(document.getElementById('navbar-placeholder'));
-      runInlineScripts(document.querySelector('.ticker') || null);
-
-    } catch (err) {
-      console.error('Failed to import nav/ticker from /tours.html:', err);
-    }
-  });
-  </script>
+  
   <style>
     :root{
       --brand:#2d8fdd;
@@ -102,19 +45,10 @@
       background:#000; color:#fff; z-index:10000; display:inline-block; border-radius:.25rem;
     }
 
-    /* Ticker */
-    .ticker{ background:#0b1730; color:#fff; line-height:1; }
-    .ticker .inner{ display:flex; gap:.75rem; align-items:center; white-space:nowrap; overflow:hidden; padding:.6rem 1rem; }
-    .ticker .dot{ width:8px; height:8px; border-radius:50%; background:#39d98a; display:inline-block; }
-    .ticker .label{ font-weight:700; letter-spacing:.3px; opacity:.9; }
-    .ticker .marquee{ overflow:hidden; position:relative; flex:1; }
-    .ticker .marquee span{ display:inline-block; padding-left:100%; animation: slide-left 14s linear infinite; }
-    @keyframes slide-left{ 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
-    @media (prefers-reduced-motion: reduce){ .ticker .marquee span{ animation:none; padding-left:0; } }
-
+  
     /* Hero */
     .hero{
-      position:relative; min-height:70vh;
+      position:relative; min-height:50vh;
       background:url('img/phoenix/busindex.JPG') center/cover no-repeat;
       color:#fff; text-align:center; display:flex; align-items:center;
     }
@@ -175,8 +109,13 @@
     .social svg{ width:20px; height:20px; fill:#fff; }
   </style>
 
-  <link href="css/phoenix-modern.css" rel="stylesheet"/>
-</head>
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script></head>
 <body>
   <!-- Skip Links -->
   <div class="skip-links" aria-label="Skip links">
@@ -185,8 +124,7 @@
     <a href="#nav">Skip to Navigation</a>
   </div>
 
-  <!-- Announcement Bar (loaded via JS include) -->
-  <div id="announcement-placeholder"></div>
+ 
 
   <!-- Add a dedicated anchor for skip link -->
   <div id="nav"></div>
@@ -194,18 +132,6 @@
   <!-- Navbar include target (HTML fragment loaded by JS) -->
   <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
 
-  <!-- Next Event Ticker -->
-  <div class="ticker" role="region" aria-label="Next event">
-    <div class="inner container">
-      <span class="dot" aria-hidden="true"></span>
-      <span class="label">Next Event:</span>
-      <div class="marquee">
-        <span id="tickerText" role="status" aria-live="polite">Loading next tour…</span>
-      </div>
-      <!-- Default link points at Tours; JS may overwrite with deep link -->
-      <a id="tickerCta" href="/tours.html" class="btn btn-sm btn-warning fw-bold">View</a>
-    </div>
-  </div>
 
   <!-- Hero -->
   <header class="hero d-flex align-items-center text-white text-center">

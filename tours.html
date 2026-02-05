@@ -1,354 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Phoenix Adventures | Theme Park Tours 2026</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Executive coach tours to Europe’s best theme parks. Luxury travel, family-friendly experiences, and special events throughout 2026.">
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-  body { background:#f6f7f9; padding-top:70px; }
-
-  .dynamic-badge {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background:#28a745;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-  animation: badgePulse 2s infinite;
-}
-
-/* Pulse animation reused */
-@keyframes badgePulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.85; }
-}
-
-/* Collapsed accordion header when sold out */
-.accordion-button.collapsed.sold-out {
-  background: linear-gradient(90deg, #e6133d, #ff4b6e);
-  color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-}
-
-/* Slight hover effect */
-.accordion-button.collapsed.sold-out:hover {
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-/* The badge inside */
-.dynamic-badge-soldout {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background: rgba(255,255,255,0.2); /* blended into header */
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  animation: badgePulse 2s infinite;
-}
-
-.dynamic-badge-winter {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background: rgba(17, 63, 190, 0.2); /* blended into header */
-  color: #f7f7fa;
-  box-shadow: 0 2px 6px rgba(214, 71, 71, 0.1);
-  animation: badgePulse 2s infinite;
-}
-
-/* Collapsed accordion header when coming soon */
-.accordion-button.collapsed.coming-soon {
-  background: linear-gradient(90deg, #1e90ff, #4db8ff); /* blue gradient */
-  color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-}
-
-/* Hover effect */
-.accordion-button.collapsed.coming-soon:hover {
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-/* Badge inside Coming Soon header */
-.dynamic-badge-coming-soon {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background: rgba(255,255,255,0.2); /* semi-transparent to blend */
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  animation: badgePulse 2s infinite;
-}
-
-/* Badge inside 2 day europa header */
-.dynamic-badge-europa-summer {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background: rgba(1, 1, 1, 0.2); /* semi-transparent to blend */
-  color: #f9f5f5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  animation: badgePulse 2s infinite;
-}
-
-/* Collapsed accordion header for Special Offer */
-.accordion-button.collapsed.special-offer {
-  background: #a3b6e4; /
-  color: #000;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-}
-
-/* Collapsed accordion header for Special Offer */
-
-
-.accordion-button.collapsed.winter {
-  background: #42b1ec; 
-  color: #040303;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-  
-}
-
-/* Collapsed accordion header for Special Offer */
-.accordion-button.collapsed.europaparty {
-  background: #a5a3e4; /* Bright yellow gradient */
-  color: #000;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-}
-/* Hover effect */
-.accordion-button.collapsed.special-offer:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-}
-
-/* Special Offer badge */
-.dynamic-badge-special {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 1rem;
-  background: #1a65c1;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  animation: badgeBounce 1.5s infinite alternate;
-}
-
-/* Special Offer badge */
-.dynamic-badge-mystery {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 1rem;
-  background: #ebbc2e;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  animation: badgeBounce 1.5s infinite alternate;
-}
-
-
-/* Bounce animation */
-@keyframes badgeBounce {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-  100% { transform: translateY(0); }
-}
-
-
-/* Pulse animation reused */
-@keyframes badgePulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.85; }
-}
-
-
-
-/* Collapsed accordion header for Halloween */
-.accordion-button.collapsed.halloween {
-  background: linear-gradient(90deg, #ff7f00, #ffb347); /* Orange gradient */
-  color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Hover effect with glow */
-.accordion-button.collapsed.halloween:hover {
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-}
-
-/* Spooky “glow” animation for the badge */
-.dynamic-badge-halloween {
-  display: inline-block;
-  padding: 0.35em 0.75em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  background: #ff4500; /* deep orange/red */
-  color: #fff;
-  box-shadow: 0 0 10px #ff4500, 0 0 20px #ff7f00;
-  animation: badgeGlow 1.5s infinite alternate;
-}
-
-/* Glow pulse animation */
-@keyframes badgeGlow {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 8px #ff4500, 0 0 16px #ff7f00;
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px #ff4500, 0 0 24px #ffb347;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 8px #ff4500, 0 0 16px #ff7f00;
-  }
-}
-
-.dynamic-badge:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  filter: brightness(1.1);
-}
-
-@keyframes badgePulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.85; }
-}
-
-
-  @keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-  }
-
-  .pulse {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0% { opacity:1; }
-    50% { opacity:.6; }
-    100% { opacity:1; }
-  }
-
-  .accordion-item { border:0; }
-  .accordion-button:not(.collapsed) { box-shadow:none; }
-</style>
-</head>
+<link href="css/tours.css" rel="stylesheet"/>
+<link href="navbar.html" rel="import"/>
+</head> 
 
 <body>
+<!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/navbar.html")
+        .then(r=>r.text())
+        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
+        .catch(()=>{});
+    });
+  </script>
 
-<!-- COUNTDOWN BAR -->
-<section id="countdownBar" class="d-none">  </section>
-  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-white"
-    style="position:fixed; top:0; left:0; right:0; z-index:1060; background:#06283D; padding:.5rem 1rem; border-radius:0;">
-    <strong id="countdownTitle" class="fw-bold">Next adventure departs in</strong>
-
-    <div class="fw-bold fs-5">
-      <span id="cdDays">00</span>d
-      <span id="cdHours">00</span>h
-      <span id="cdMinutes">00</span>m
-      <span id="cdSeconds">00</span>s
-    </div>
-
-    <span id="seatWarning" class="badge bg-light text-dark d-none pulse">
-      Last seats remaining
-    </span>
-  </div>
-</section>
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm" style="top:80px; z-index:1040;">
-  <div class="container">
-    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
-      <img src="img/logo/logo.jpg" alt="Phoenix Adventures logo" height="80" class="d-inline-block me-2">
-      <span class="fs-5"></span>
-    </a></a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavCollapse" aria-controls="mainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-
-
-
-    <div class="collapse navbar-collapse" id="mainNavCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="tours.html">Tours</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/themeparks.html">Destinations</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/eventpage/twistedtracks.html">Multipark trips</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="more.html">About</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="moreMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            More
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="moreMenu">
-            <li><a class="dropdown-item" href="FAQ.html">FAQs</a></li>
-            <li><a class="dropdown-item" href="info.html">Terms &amp; Info</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <form class="d-flex" role="search" style="max-width:360px;">
-        <input class="form-control me-2" type="search" placeholder="Find a tour" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
-
-      <a class="btn btn-warning ms-3 fw-bold" href="#" role="button">Book now</a>
-    </div>
-  </div>
-</nav>
-<main class="container my-5">
-
-
+<div class="mb-4 text-center w-50 mx-auto">
+  <img src="img/parks/2026.png" class="img-fluid rounded-4" alt="2026">
+</div>
 
 <!-- ================= February ================= -->
 <section class="mb-5">
@@ -1729,6 +1406,8 @@ It is dedicated to the world of film and television, offering a variety of attra
 <section class="mb-5">
 <h2 class="fw-bold mb-3">October 2026</h2>
 <div class="accordion">
+  data-bs title collapse 
+
 
 
 
@@ -2215,10 +1894,19 @@ This departure will go ahead subject to meeting the minimum number of passengers
 
 </main>
 
-<footer class="bg-dark text-white py-4 text-center">
-© Phoenix Adventures · Executive Theme Park Travel
-</footer>
+   <!-- Footer include -->
+<div id="footer-placeholder"></div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- COUNTDOWN LOGIC -->
