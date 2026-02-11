@@ -1,1 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/logo/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/logo/favicon-16.png"/>
+  <link rel="apple-touch-icon" href="/img/logo/favicon-180.png"/>
+  <link rel="icon" type="image/x-icon" href="/img/logo/favicon.ico"/>
+  <link rel="mask-icon" href="/img/logo/favicon-safari.png" color="#2d8fdd"/>
+
+  <title>Phoenix Adventures | Coach Trips & Theme Parks</title>
+  <meta name="description" content="Theme park coach trips and holidays across the UK & Europe. Sleeper coaches, expertly planned itineraries and flexible payment options." />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Styles used on tours.html -->
+  <link href="css/tours.css" rel="stylesheet"/>
+  <link href="css/components.css" rel="stylesheet"/>
+  <link rel="preload" href="/img/phoenix/busindex.JPG" as="image"/>
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="navbar.html" rel="import"/>
+
+  
+  <style>
+
+   
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force the navbar placeholder to sit at the absolute top */
+#navbar-placeholder {
+  margin-top: 0 !important;
+  display: block;
+}
+
+    :root{
+      --brand:#2d8fdd;
+      --brand-dark:#1b6fb8;
+      --cta:#ff4500;
+      --cta-dark:#e63900;
+      --ink:#0b3a66;
+    }
+    html{scroll-behavior:smooth;}
+    body{ font-family:"Poppins",sans-serif; background:#f9f9f9; color:#333; }
+
+    /* Skip links */
+    .skip-links a{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-links a:focus{
+      position:static; width:auto; height:auto; padding:.5rem .75rem; margin:.25rem;
+      background:#000; color:#fff; z-index:10000; display:inline-block; border-radius:.25rem;
+    }
+
+  
+    /* Hero */
+    .hero{
+      position:relative; min-height:50vh;
+      background:url('img/phoenix/busindex.JPG') center/cover no-repeat;
+      color:#fff; text-align:center; display:flex; align-items:center;
+    }
+    .hero::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
+    .hero .container{ position:relative; z-index:1; }
+    .hero h1{ font-weight:800; letter-spacing:.3px; }
+
+    /* Buttons */
+    .btn-phoenix{ background:var(--cta); color:#fff; font-weight:700; border:none; box-shadow:0 6px 16px rgba(0,0,0,.15); }
+    .btn-phoenix:hover{ background:var(--cta-dark); color:#fff; }
+
+    /* Sections */
+    .section{ padding:3rem 0; }
+    .section h2{ font-weight:800; color:var(--ink); }
+
+    /* Service cards */
+    .service-card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px;
+      box-shadow:0 6px 16px rgba(0,0,0,.06); height:100%;
+      transition:.15s ease transform, .15s ease box-shadow;
+    }
+    .service-card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.14); }
+    .service-card .card-body{ padding:1.25rem 1.25rem 1.4rem; }
+
+    /* Feature background cards */
+    .feature-bg{
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.06);
+      min-height: 220px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      color:#fff;
+    }
+    .feature-bg .feature-overlay{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 75%);
+    }
+    .feature-bg .feature-content{
+      position: relative; z-index: 1;
+      padding: 1.25rem;
+      text-shadow:0 2px 10px rgba(0,0,0,.6);
+    }
+
+    /* Footer */
+    .footer{ background:#0b1730; }
+    .social a{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.08);
+      margin:0 .25rem; transition:transform .15s ease, background .15s ease;
+    }
+    .social a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.18); }
+    .social svg{ width:20px; height:20px; fill:#fff; }
+  </style>
+
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script></head>
+<body>
+  <!-- Skip Links -->
+  <div class="skip-links" aria-label="Skip links">
+    <a href="#main">Skip to Main Content</a>
+    <a href="#footer">Skip to Footer</a>
+    <a href="#nav">Skip to Navigation</a>
+
+<script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA&startmode=signup"></script>
+
+
 <script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA"></script>
+
+  </div>
+
+ 
+
+  <!-- Add a dedicated anchor for skip link -->
+  <div id="nav"></div>
+
+  <!-- Navbar include target (HTML fragment loaded by JS) -->
+  <div id="navbar-placeholder" role="navigation" aria-label="Primary"></div>
+
+
+  <!-- Hero -->
+  <header class="hero d-flex align-items-center text-white text-center">
+    <div class="container position-relative py-5">
+      <h1 class="display-4 fw-bold mb-3">Welcome to Phoenix Adventures</h1>
+      <p class="lead mb-4">Theme Park Coach Trips & Destination Holidays</p>
+      <a href="./tours.html" class="btn btn-lg btn-phoenix">Book A Trip With Us</a>
+    </div>
+  </header>
+
+
+<script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA&startmode=signup"></script>
+
+
+<script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA"></script>
+
+
+  <!-- Welcome -->
+  <section id="welcome" class="section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
+          <h2 class="mb-3 text-center">Creating Unforgettable Memories</h2>
+          <p class="lead text-center">
+            At Phoenix Adventures, we create unforgettable memories through carefully curated coach tours to theme parks and other brilliant destinations. With years of experience, we deliver exceptional service so every tour is filled with excitement, joy and adventure.
+          </p>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card service-card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Theme Park Trips</h5>
+              <p>From headline coasters to enchanting shows — there’s something for everyone. Pack your bags and let’s go!</p>
+              <div class="mt-auto">
+                <a href="/tours.html#toursAccordion" class="btn btn-phoenix btn-sm w-100">2026 Trips</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card service-card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Multi-Park Trips</h5>
+              <p>Sleeper coaches + multiple parks in one go. From Disney magic to the biggest thrills in Europe.</p>
+              <div class="mt-auto">
+                <a href="/eventpage/twistedtracks.html" class="btn btn-phoenix btn-sm w-100">Twisted Tracks</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card service-card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Theme Park Information</h5>
+              <p>Want to see the parks we visit and plan your wish-list?</p>
+              <div class="mt-auto">
+                <a href="/themeparks.html" class="btn btn-phoenix btn-sm w-100">Theme Parks We Visit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /row -->
+    </div>
+  </section><!-- /welcome -->
+
+  <!-- Why Phoenix -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-4 text-center">Why Travel with Phoenix</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-bg h-100" style="background-image:url('./img/phoenix/maps.jpg');">
+            <div class="feature-overlay" aria-hidden="true"></div>
+            <div class="feature-content">
+              <h5>Expertly Planned Itineraries</h5>
+              <p class="mb-0">Meticulous schedules across the UK & Europe — you focus on the fun, we handle the details.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-bg h-100" style="background-image:url('./img/phoenix/interior.jpg');">
+            <div class="feature-overlay" aria-hidden="true"></div>
+            <div class="feature-content">
+              <h5>Comfortable & Convenient Transport</h5>
+              <p class="mb-0">Modern VIP Nightliner sleeper coaches on Multi-Park Trips for smooth overnight travel.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-bg h-100" style="background-image:url('./img/phoenix/mappins.jpg');">
+            <div class="feature-overlay" aria-hidden="true"></div>
+            <div class="feature-content">
+              <h5>Exciting Destinations</h5>
+              <p class="mb-0">Thrilling parks, family favourites and unique holidays — hand-picked for every age.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CPT Membership -->
+  <section id="cpt" class="py-5 text-center bg-white">
+    <div class="container">
+      <img src="img/logo/cptlogo.png" alt="CPT – The Confederation of Passenger Transport logo" height="70" class="mb-3" loading="lazy"/>
+      <h4 class="fw-bold">Phoenix Adventures Ltd — Proud Members of the CPT</h4>
+      <p class="mt-3">CPT members stay current with national & regional compliance, operations and industry updates — travel with confidence.</p>
+      <p class="fw-semibold text-success mt-3">✅ Fully compliant. You’re in safe hands.</p>
+    </div>
+  </section>
+
+  <!-- Footer include -->
+<div id="footer-placeholder"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      })
+      .catch(err => console.error("Error loading footer:", err));
+  });
+</script>
+
+
+  <!-- JS: Bootstrap, then your page script (deferred so DOM is parsed first) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="/js/index.js"></script>
+</body>
+</html>
+
