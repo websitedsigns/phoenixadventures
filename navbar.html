@@ -52,81 +52,22 @@
         
         <div id="logged-out-ui">
           <button class="btn btn-link text-decoration-none text-dark fw-bold me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-            Login / Register
+            <script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA&startmode=signup"></script>
           </button>
           <a class="btn btn-warning fw-bold px-4 rounded-pill" href="/tours.html">Book now</a>
         </div>
 
-        <div id="logged-in-ui" class="d-none dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center fw-bold" href="#" id="userMenu" data-bs-toggle="dropdown">
-            <div class="nav-initial-circle me-2" id="nav-initial">U</div>
-            <span id="nav-display-name">My Account</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end border-0 shadow mt-3">
-            <li><a class="dropdown-item fw-bold" href="javascript:void(0)" onclick="openBookings()">View My Bookings</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="logoutUser()">Logout</a></li>
-          </ul>
-        </div>
+        
 
       </div>
     </div>
   </div>
 </nav>
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-4 border-0 shadow">
-      <div class="modal-header border-bottom-0">
-        <ul class="nav nav-tabs w-100" id="authTab">
-          <li class="nav-item"><button class="nav-link active fw-bold" id="main-tab-btn" data-bs-toggle="tab" data-bs-target="#main-pane">Login</button></li>
-          <li class="nav-item" id="reg-tab-li"><button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#reg-pane">Register</button></li>
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
 
-      <div class="modal-body p-4">
-        <div class="tab-content">
-          
-          <div class="tab-pane fade show active" id="main-pane">
-            
-            <div id="bookings-view" class="d-none">
-              <h5 class="fw-bold mb-3">Your Bookings</h5>
-              <div class="card border-0 bg-light rounded-3 p-3 mb-3 text-center">
-                <p class="text-muted small">You have 1 upcoming trip!</p>
-                <h6 class="fw-bold">Toverland Halloween Nights</h6>
-                <p class="small mb-0 text-primary">Sat 3rd Oct 2026</p>
-              </div>
-              <button class="btn btn-primary w-100 py-2 fw-bold">Manage My Trip</button>
-            </div>
-
-            <form id="loginForm">
-              <div class="mb-3">
-                <label class="small fw-bold">Email</label>
-                <input type="email" id="loginEmail" class="form-control" placeholder="admin@phoenix.com" required>
-              </div>
-              <div class="mb-3">
-                <label class="small fw-bold">Password</label>
-                <input type="password" class="form-control" placeholder="••••••••" required>
-              </div>
-              <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Sign In</button>
-            </form>
-          </div>
-
-          <div class="tab-pane fade" id="reg-pane">
-            <form id="regForm">
-              <div class="mb-3"><label class="small fw-bold">Full Name</label><input type="text" id="regName" class="form-control" required></div>
-              <div class="mb-3"><label class="small fw-bold">Email</label><input type="email" class="form-control" required></div>
-              <div class="mb-3"><label class="small fw-bold">Password</label><input type="password" class="form-control" required></div>
-              <button type="submit" class="btn btn-warning w-100 fw-bold">Create Account</button>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      
+   
+  
 
 <script>
   // Ensure the UI updates immediately after the navbar is loaded
