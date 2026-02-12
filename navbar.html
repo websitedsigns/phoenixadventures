@@ -1,34 +1,69 @@
 <style>
-  /* Ensuring no white space at the very top */
   .promo-strip {
-    background-color: #1ca2d3; /* Bootstrap Warning Yellow */
-    color: #000;
+    background-color: #1ca2d3;
+    color: #fff;
     text-align: center;
     padding: 8px 0;
     font-weight: 800;
     font-size: 0.9rem;
     position: sticky;
     top: 0;
-    z-index: 1060; /* Top-most layer */
+    z-index: 1060;
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 1px;
-    @media (min-width: 992px) {
-      .promo-strip {
-        top: 0;
-      }
-    }
+  }
+
+  .navbar {
+    z-index: 1050;
+  }
+
+  .btn-phoenix {
+    background-color: #1ca2d3;
+    color: #fff;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 8px 20px;
+    border: none;
+  }
+
+  .btn-phoenix:hover {
+    background-color: #178fba;
+    color: #fff;
+  }
+
+  .dropdown-menu-bookings {
+    min-width: 220px;
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .dropdown-menu-bookings .dropdown-item {
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .dropdown-menu-bookings .dropdown-item:hover {
+    background-color: #eef7fb;
+  }
+
+  .modal-bookeo iframe {
+    width: 100%;
+    height: 75vh;
+    border: none;
   }
 </style>
 
-<div class="promo-strip shadow-lg">
-   Save your seat on any 2026 tour for just £1 deposit! 
+
+<div class="promo-strip">
+  Save your seat on any 2026 tour for just £1 deposit!
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light main-nav shadow-lg">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-lg">
   <div class="container">
     <a class="navbar-brand fw-bold d-flex align-items-center" href="/index.html">
-      <img src="/img/logo/logo.jpg" alt="Phoenix logo" height="60" class="d-inline-block me-2">
+      <img src="/img/logo/logo.jpg" alt="Phoenix logo" height="60">
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -45,75 +80,66 @@
         <li class="nav-item"><a class="nav-link" href="/moreinfo.html">More Info</a></li>
         <li class="nav-item"><a class="nav-link" href="/coachhire.html">Coach Hire</a></li>
         <li class="nav-item"><a class="nav-link" href="/fleet.html">Fleet</a></li>
-
       </ul>
 
-      <div id="auth-section" class="d-flex align-items-center ms-lg-3">
-        
-        <div id="logged-out-ui">
-          <button class="btn btn-link text-decoration-none text-dark fw-bold me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-            <script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA&startmode=signup"></script>
-          </button>
-          <a class="btn btn-warning fw-bold px-4 rounded-pill" href="/tours.html">Book now</a>
-        </div>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-bold"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            My Bookings
+          </a>
 
-        
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-bookings">
+            <li>
+              <a class="dropdown-item"
+                 href="#"
+                 onclick="openBookeo('customer')">
+                View bookings
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+                 href="#"
+                 onclick="openBookeo('login')">
+                Log in
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+                 href="#"
+                 onclick="openBookeo('signup')">
+                Register
+              </a>
+            </li>
+          </ul>
+        </li>
 
-      </div>
+        <a class="btn btn-phoenix rounded-pill"
+   href="#"
+   onclick="openBookeo('customer')">
+  Book now
+</a>
+
+
+      </ul>
     </div>
   </div>
 </nav>
 
-
-      
-   
-  
-
-<script>
-  // Ensure the UI updates immediately after the navbar is loaded
-  function syncUI() {
-    const user = JSON.parse(localStorage.getItem('phoenix_user'));
-    if (user) {
-      document.getElementById('logged-out-ui').classList.add('d-none');
-      document.getElementById('logged-in-ui').classList.remove('d-none');
-      document.getElementById('nav-display-name').innerText = user.name;
-      document.getElementById('nav-initial').innerText = user.name.charAt(0);
-      
-      // Update Modal
-      document.getElementById('loginForm').classList.add('d-none');
-      document.getElementById('bookings-view').classList.remove('d-none');
-      document.getElementById('main-tab-btn').innerText = "My Bookings";
-      document.getElementById('reg-tab-li').classList.add('d-none');
-    }
-  }
-
-  // Handle Login Click
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const name = email === "admin@phoenix.com" ? "Admin User" : "Travel Explorer";
-    localStorage.setItem('phoenix_user', JSON.stringify({name: name, email: email}));
-    location.reload();
-  });
-
-  // Handle Register Click
-  document.getElementById('regForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('regName').value;
-    localStorage.setItem('phoenix_user', JSON.stringify({name: name}));
-    location.reload();
-  });
-
-  function logoutUser() {
-    localStorage.removeItem('phoenix_user');
-    location.reload();
-  }
-
-  function openBookings() {
-    const bModal = new bootstrap.Modal(document.getElementById('loginModal'));
-    bModal.show();
-  }
-
-  // Run sync on load
-  syncUI();
-</script>
+<div class="modal fade modal-bookeo" id="bookeoModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">My Bookings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-0">
+        <iframe id="bookeoFrame"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://bookeo.com/widget.js?a=3251PE6HRU19C4EE381AA"></script>
