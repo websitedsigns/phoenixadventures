@@ -247,6 +247,24 @@ html, body {
   margin-right: auto;
 }
 
+.section {
+  padding: 80px 0;
+}
+
+.hero {
+  min-height: 350px;
+  background: url('../images/hero-2026.jpg') center center / cover no-repeat;
+}
+
+.booking-widget {
+  border-radius: 14px;
+}
+
+.booking-widget iframe {
+  width: 100% !important;
+}
+
+
 
 /* =========================
    DESKTOP TWEAKS
