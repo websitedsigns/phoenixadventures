@@ -1,67 +1,6 @@
-<style>
-  .promo-strip {
-    background-color: #1ca2d3;
-    color: #fff;
-    text-align: center;
-    padding: 8px 0;
-    font-weight: 800;
-    font-size: 0.9rem;
-    position: sticky;
-    top: 0;
-    z-index: 1060;
-    width: 100%;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .navbar {
-    z-index: 1050;
-  }
-
-  .btn-phoenix {
-    background-color: #1ca2d3;
-    color: #fff;
-    font-weight: 800;
-    border-radius: 999px;
-    padding: 8px 20px;
-    border: none;
-  }
-
-  .btn-phoenix:hover {
-    background-color: #178fba;
-    color: #fff;
-  }
-
-  .dropdown-menu-bookings {
-    min-width: 220px;
-    padding: 10px;
-    border-radius: 14px;
-  }
-
-  .dropdown-menu-bookings .dropdown-item {
-    font-weight: 700;
-    padding: 10px 14px;
-    border-radius: 10px;
-  }
-
-  .dropdown-menu-bookings .dropdown-item:hover {
-    background-color: #eef7fb;
-  }
-
-  .modal-bookeo iframe {
-    width: 100%;
-    height: 75vh;
-    border: none;
-  }
-</style>
-
-
-<div class="promo-strip">
-  Save your seat on any 2026 tour for just £1 deposit!
-</div>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-lg">
   <div class="container">
+
     <a class="navbar-brand fw-bold d-flex align-items-center" href="/index.html">
       <img src="/img/logo/logo.jpg" alt="Phoenix logo" height="60">
     </a>
@@ -70,35 +9,98 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+
     <div class="collapse navbar-collapse" id="mainNav">
+
+
+      <!-- LEFT NAV -->
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="/tours.html">2026 Trips</a></li>
-        <li class="nav-item"><a class="nav-link" href="/themeparks.html">Theme Parks</a></li>
-        <li class="nav-item"><a class="nav-link" href="/eventpage/twistedtracks.html">Twisted Tracks</a></li>
-        <!--drop down menu for smaller nav options -->
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            More
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            2026 Trips
           </a>
+
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/FAQ.html">FAQ</a></li>
-            <li><a class="dropdown-item" href="/contact.html">Contact</a></li>
-            <li><a class="dropdown-item" href="/moreinfo.html">More Info</a></li>
-            <li><a class="dropdown-item" href="/coachhire.html">Coach Hire</a></li>
-            <li><a class="dropdown-item" href="/fleet.html">Fleet</a></li>
+            <li>
+              <a class="dropdown-item" href="/tours.html">
+                Day Trips
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="./eventpage/twistedtracks.html">
+                Twisted Tracks Multipark
+              </a>
+            </li>
           </ul>
         </li>
-        <!-- Place to the right of the nav bar max right -->
 
-        <li class="nav-item"><a class="nav-link" href="/login.html">Log In</a></li>
-        <li class="nav-item"><a class="nav-link" href="/register.html">Register</a></li>
-      </ul>
 
-      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/themeparks.html">
+            Theme Parks
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="/contact.html">
+            Contact
+          </a>
+        </li>
+
+
         <li class="nav-item dropdown">
-       
+
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            More
+          </a>
+
+          <ul class="dropdown-menu">
+
+            <li>
+              <a class="dropdown-item" href="/FAQ.html">
+                FAQ
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/moreinfo.html">
+                More Info
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/coachhire.html">
+                Coach Hire
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/fleet.html">
+                Fleet
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
       </ul>
+
+
+      <!-- RIGHT BOOK NOW BUTTON -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link book-now-btn" href="/tours.html">
+            BOOK NOW
+          </a>
+        </li>
+      </ul>
+
+
     </div>
+
   </div>
 </nav>
-

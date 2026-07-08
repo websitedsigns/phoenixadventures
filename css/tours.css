@@ -251,17 +251,54 @@ html, body {
   padding: 80px 0;
 }
 
-.hero {
-  min-height: 350px;
-  background: url('../images/hero-2026.jpg') center center / cover no-repeat;
-}
+
 
 .booking-widget {
-  border-radius: 14px;
+  border-radius: 100%;
 }
 
 .booking-widget iframe {
   width: 100% !important;
+}
+
+/* =========================
+   TRIPS HEADER IMAGE
+========================= */
+
+.trips-header {
+
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url("../img/parks/europa/wodan.jpg");
+
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 150px 0;
+
+    border-radius: 0 0 25px 25px;
+
+}
+
+
+.trips-header h2 {
+
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+
+}
+
+
+.trips-header p {
+
+    font-size: 1.2rem;
+    margin-bottom: 0;
+
 }
 
 
