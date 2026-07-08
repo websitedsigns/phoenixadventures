@@ -1,93 +1,81 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <title>Phoenix Adventures | 2026 Trips</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Explore our fleet of luxury coaches for your next adventure.">
+<meta name="description" content="Explore Phoenix Adventures 2026 coach trips and book your next adventure.">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/tours.css" rel="stylesheet"/>
-<link href="navbar.html" rel="import"/>
-</head> 
+<link href="css/tours.css" rel="stylesheet">
+
+</head>
 
 <body>
+
 <!-- Navbar -->
-  <div id="navbar-placeholder"></div>
+<div id="navbar-placeholder"></div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("/navbar.html")
-        .then(r=>r.text())
-        .then(html=>document.getElementById("navbar-placeholder").innerHTML = html)
-        .catch(()=>{});
-    });
-  </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("/navbar.html")
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("navbar-placeholder").innerHTML = html;
+    })
+    .catch(err => console.error("Navbar error:", err));
+});
+</script>
 
-<!-- Hero -->
-  <header class="hero d-flex align-items-center text-white text-center">
-    <div class="container position-relative py-5">
-        </div>
-  </header>
 
-  <!-- Welcome -->
-  <section id="welcome" class="section bg-light">
-    <div class="container">
-      <div class="row justify-content-center mb-4">
-        <div class="col-lg-8">
-          <h2 class="mb-3 text-center">2026 Trips</h2>
-          <p class="lead text-center">
-             Our Trips for 2026
-        </div>
-        <script type="text/javascript" src="https://www-251b.bookeo.com/bookeo/b_3251LK3XY319BFE1C2AE7_start.html?inwidget=true&a=3251LK3XY319BFE1C2AE7&aguid=3251LK3XY319BFE1C2AE7&axiom_bid=murcxurkwjnelfje&w=-254050657&t=vGIlcaUr%2BWvNo9S7svAOw6r%2B1cqiBnsakQEKPTAl%2FRE%3D&c=03n&m=253326492c37"></script>
 
-      </div>
+<!-- Trips Section -->
+<section id="trips" class="section bg-light py-5">
 
-      <!-- Welcome -->
-<section id="welcome" class="section bg-light py-5">
     <div class="container">
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <p class="lead">Browse our exciting 2026 coach trips and book your place today.</p>
-            </div>
+        <div class="text-center mb-5">
+            <h2>Our 2026 Trips</h2>
+            <p class="lead">
+                Browse all available trips and book your place today.
+            </p>
         </div>
 
-        <div class="row g-4">
 
-            <div class="col-lg-6">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h4>Parc Astérix</h4>
-                        <p><strong>1st August 2026</strong></p>
-                        <script src="https://bookeo.com/widget.js?a=3251LK3XY319BFE1C2AE7&type=3251YXR3YX19C5044D91C"></script>
-                    </div>
-                </div>
-            </div>
+        <!-- Bookeo Booking Widget -->
+        <div class="bookeo-widget">
 
-            
+            <script src="https://bookeo.com/widget.js?a=3251LK3XY319BFE1C2AE7"></script>
 
         </div>
+
 
     </div>
+
 </section>
 
-  <!-- Footer include -->
+
+
+<!-- Footer -->
 <div id="footer-placeholder"></div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+
     fetch("/footer.html")
-      .then(response => response.text())
-      .then(html => {
+    .then(response => response.text())
+    .then(html => {
         document.getElementById("footer-placeholder").innerHTML = html;
-      })
-      .catch(err => console.error("Error loading footer:", err));
-  });
+    })
+    .catch(err => console.error("Footer error:", err));
+
+});
 </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-
-
