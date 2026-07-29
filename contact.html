@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phoenix Adventures | Group Bookings</title>
+  <title>Phoenix Adventures | Contact Us</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -154,8 +154,8 @@
   <header class="hero-modern">
     <div class="heading container">
       <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">Travel together, the easy way</span>
-      <h1 class="display-5 fw-bold">Group Bookings</h1>
-      <p class="lead mb-0">Looking to travel as a large group of family or friends? Are you a group leader? Tell us a few details and we’ll be in touch.</p>
+      <h1 class="display-5 fw-bold">Contact Us</h1>
+      <p class="lead mb-0">Contact us Here for any information you require.</p>
     </div>
     <div class="blur-orb" aria-hidden="true"></div>
   </header>
@@ -166,13 +166,13 @@
       <div class="row g-0">
         <!-- Left: Info panel -->
         <aside class="col-lg-5 side-panel p-4 p-lg-5">
-          <h2 class="h4 fw-bold mb-3">Group travel with Phoenix</h2>
+          <h2 class="h4 fw-bold mb-3">Contact Us here</h2>
 
           <div class="d-flex align-items-start gap-3 mb-3">
-            <i class="bi bi-people-fill fs-4 text-primary" aria-hidden="true"></i>
+            <i class="fs-4 text-primary" aria-hidden="true"></i>
             <div>
-              <div class="fw-semibold">Who’s it for?</div>
-              Families, friends, schools, clubs and corporate groups.
+             
+              Please let us know all information required so we can aid with any queries
             </div>
           </div>
 
@@ -180,7 +180,7 @@
             <i class="bi bi-journal-check fs-4 text-primary" aria-hidden="true"></i>
             <div>
               <div class="fw-semibold">What we need</div>
-              Destination, preferred date, and a rough headcount (adults & children).
+              Name, email and your query 
             </div>
           </div>
 
@@ -219,7 +219,6 @@
               <!-- Name -->
               <div class="col-md-6">
                 <div class="form-floating position-relative">
-                  <i class="bi bi-person"></i>
                   <input type="text" class="form-control" id="name" name="Name"
                          placeholder="Your full name" required autocomplete="name" />
                   <label for="name">Name <span class="text-danger">*</span></label>
@@ -230,62 +229,13 @@
               <!-- Email -->
               <div class="col-md-6">
                 <div class="form-floating position-relative">
-                  <i class="bi bi-at"></i>
                   <input type="email" class="form-control" id="email" name="E-mail"
                          placeholder="you@example.com" required autocomplete="email" />
-                  <label for="email">E-mail <span class="text-danger">*</span></label>
+                  <label for="email">Email <span class="text-danger">*</span></label>
                   <div class="invalid-feedback">Please provide a valid e-mail address.</div>
                 </div>
               </div>
 
-              <!-- Destination -->
-              <div class="col-12">
-                <div class="form-floating position-relative">
-                  <i class="bi bi-geo-alt"></i>
-                  <input type="text" class="form-control" id="destination" name="Destination"
-                         placeholder="Destination" list="destinations" />
-                  <label for="destination">Destination</label>
-                  <datalist id="destinations">
-                    <option value="Alton Towers"></option>
-                    <option value="Thorpe Park"></option>
-                    <option value="Chessington World of Adventures"></option>
-                    <option value="Drayton Manor"></option>
-                    <option value="Parc Astérix"></option>
-                    <option value="Europa-Park"></option>
-                    <option value="Efteling"></option>
-                    <option value="Walibi Belgium"></option>
-                  </datalist>
-                </div>
-              </div>
-
-              <!-- Travel date -->
-              <div class="col-md-6">
-                <div class="form-floating position-relative">
-                  <i class="bi bi-calendar-event"></i>
-                  <input type="date" class="form-control" id="date" name="Travel date" placeholder="YYYY-MM-DD" />
-                  <label for="date">Travel date</label>
-                </div>
-              </div>
-
-              <!-- Passengers: Adults / Children -->
-              <div class="col-md-3">
-                <div class="form-floating position-relative">
-                  <i class="bi bi-person-badge"></i>
-                  <input type="number" class="form-control" id="adults" name="Adults"
-                         placeholder="Adults" min="0" step="1" required />
-                  <label for="adults">Adults <span class="text-danger">*</span></label>
-                  <div class="invalid-feedback">Enter number of adults.</div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-floating position-relative">
-                  <i class="bi bi-emoji-smile"></i>
-                  <input type="number" class="form-control" id="children" name="Children"
-                         placeholder="Children" min="0" step="1" required />
-                  <label for="children">Children <span class="text-danger">*</span></label>
-                  <div class="invalid-feedback">Enter number of children (0 if none).</div>
-                </div>
-              </div>
 
               <!-- Extra information -->
               <div class="col-12">
@@ -293,7 +243,7 @@
                   <i class="bi bi-chat-square-text"></i>
                   <textarea class="form-control" placeholder="Any extra information" id="extra" name="Any extra information"
                             style="height: 140px;" maxlength="1200"></textarea>
-                  <label for="extra">Any extra information</label>
+                  <label for="extra">Information Required</label>
                   <small class="text-muted d-block mt-1" id="charCount" aria-live="polite">0 / 1200</small>
                 </div>
               </div>
